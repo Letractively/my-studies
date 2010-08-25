@@ -14,8 +14,20 @@
   <name>lowoffice-web</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+  	<dependency>
+  		<groupId>javax.faces</groupId>
+  		<artifactId>jsf-api</artifactId>
+  		<version>2.0.1-FCS</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>jstl</artifactId>
+  		<version>1.2</version>
+  		<scope>provided</scope>
+  	</dependency>
   </dependencies>
   <build>
-    <finalName>lowoffice-web</finalName>
+    <finalName>lowoffice</finalName>
   </build>
 </project>
