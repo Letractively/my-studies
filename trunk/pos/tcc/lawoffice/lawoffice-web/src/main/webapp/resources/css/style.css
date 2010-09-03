@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+
+div {
+	border: 1px solid red;
+	margin-top: 5px;
+	padding: 10px;
+}
+
+table {
+	width: 100%;
+	border: 1px solid blue;
+}
