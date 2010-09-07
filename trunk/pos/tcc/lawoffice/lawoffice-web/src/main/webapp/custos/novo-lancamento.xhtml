@@ -4,76 +4,80 @@
     xmlns:f="http://java.sun.com/jsf/core"
     template="/WEB-INF/templates/template.xhtml">
     
-  <ui:define name="title">Novo Custo</ui:define>
+  <ui:define name="title">Novo Lançamento</ui:define>
   
   <ui:define name="body">
     
 	<h:form prependId="false">
 	
-		<div>
-			<h:outputLabel value="Escritório: " />
-			<h:selectOneMenu value="" >
-				<f:selectItem itemLabel="Ana Mara" itemValue="1"/>
-				<f:selectItem itemLabel="Carlos" itemValue="2"/>
-			</h:selectOneMenu>
-			
-			<h:outputLabel value="Cliente: " />
-			<h:selectOneMenu value="">
-				<f:selectItem itemLabel="Fulano" itemValue="1"/>
-				<f:selectItem itemLabel="Ciclano" itemValue="2"/>
-			</h:selectOneMenu>				
+		<div id="novoLacamento">
 		
-			<h:outputLabel value="Natureza: " />
-			<h:inputText />
+			<div>
+				<h:outputLabel value="Escritório: " />
+				<h:selectOneMenu value="" >
+					<f:selectItem itemLabel="Ana Mara" itemValue="1"/>
+					<f:selectItem itemLabel="Carlos" itemValue="2"/>
+				</h:selectOneMenu>
+				
+				<h:outputLabel value="Cliente: " />
+				<h:selectOneMenu value="">
+					<f:selectItem itemLabel="Fulano" itemValue="1"/>
+					<f:selectItem itemLabel="Ciclano" itemValue="2"/>
+				</h:selectOneMenu>				
 			
-			<h:outputLabel value="Valor: " />
-			<h:inputText />
+				<h:outputLabel value="Natureza: " />
+				<h:inputText />
+				
+				<h:outputLabel value="Valor: " />
+				<h:inputText />
+				
+				<h:commandButton value="Adicionar" action="bla" />		
+			</div>
 			
-			<h:commandButton value="Adicionar" action="bla" />		
+			<div>
+				<h:dataTable value="#{mBNovoLancamento.s}" var="t" >
+				
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Escritório" /> 
+						</f:facet>
+						<h:outputText value="t" />
+					</h:column>
+					
+								
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Cliente" /> 
+						</f:facet>
+						<h:outputText value="t" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Natureza" /> 
+						</f:facet>
+						<h:outputText value="t" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Valor" /> 
+						</f:facet>
+						<h:outputText value="t" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Acões" /> 
+						</f:facet>
+						<h:commandButton action="bla" value="editar" />
+						<h:commandButton action="bla" value="Remover" />
+					</h:column>												
+																									
+				</h:dataTable>
+			</div>		
+		
 		</div>
-		
-		<div>
-			<h:dataTable value="#{mBNovoLancamento.s}" var="t" >
-			
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Escritório" /> 
-					</f:facet>
-					<h:outputText value="t" />
-				</h:column>
-				
-							
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Cliente" /> 
-					</f:facet>
-					<h:outputText value="t" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Natureza" /> 
-					</f:facet>
-					<h:outputText value="t" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Valor" /> 
-					</f:facet>
-					<h:outputText value="t" />
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">
-						<h:outputText value="Acões" /> 
-					</f:facet>
-					<h:commandButton action="bla" value="editar" />
-					<h:commandButton action="bla" value="Remover" />
-				</h:column>												
-																								
-			</h:dataTable>
-		</div>							
 		
 	</h:form>
 	
