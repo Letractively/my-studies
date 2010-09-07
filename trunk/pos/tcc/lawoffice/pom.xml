@@ -49,7 +49,7 @@
   	</dependency>
   </dependencies>
 	<modules>
-		<module>lawoffice-custos</module>
+		<module>lawoffice-custas</module>
 		<module>lawoffice-web</module>
 	</modules>
 </project>
