@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>fiapfuncionarios</artifactId>
+    <groupId>br.com</groupId>
+    <version>1.0</version>
+  </parent>
+  <groupId>br.com</groupId>
+  <artifactId>fiapfuncionarios-autenticacao</artifactId>
+  <version>1.0</version>
+  <name>fiapfuncionarios-autenticacao</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>fiapfuncionarios-dominio</artifactId>
+  		<version>1.0</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.jboss.security</groupId>
+  		<artifactId>jbosssx</artifactId>
+  		<version>2.0.4</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax.persistence</groupId>
+  		<artifactId>persistence-api</artifactId>
+  		<version>1.0</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
+</project>

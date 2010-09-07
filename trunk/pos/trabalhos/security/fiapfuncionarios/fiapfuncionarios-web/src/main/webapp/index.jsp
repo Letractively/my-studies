@@ -1,0 +1,1 @@
+<% response.sendRedirect("/fiapfuncionarios/home.jsf"); %>

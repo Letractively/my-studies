@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		Cadastro Funcionario
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form prependId="false" >
+					
+			<div class="div-input">
+				<h:panelGrid columns="3" id="pnl-dados-funcionario">
+					<h:outputText value="Nome: " styleClass="input-label" />
+					<h:inputText value="#{funcionario_mb.funcionario.nome}"
+						size="30"/>
+					<h:outputText value="*" 
+						styleClass="msg"/>
+					
+					<h:outputText value="E-Mail: " 
+						styleClass="input-label"/>
+					<h:inputText value="#{funcionario_mb.funcionario.email}"
+						size="30"/>
+					<h:outputText value="*" 
+						styleClass="msg"/>						
+					
+					<h:outputText value="Login: " 
+						styleClass="input-label"/>
+					<h:inputText value="#{funcionario_mb.funcionario.login}"
+						size="30"/>
+					<h:outputText value="*" 
+						styleClass="msg"/>						
+					
+					<h:outputLabel value="Senha: " 
+						styleClass="input-label"/>
+					<h:inputSecret value="#{funcionario_mb.funcionario.senha}"
+						size="30"/>
+					<h:outputText value="*" 
+						styleClass="msg"/>						
+				
+					<h:outputLabel value="Cargo: " 
+						styleClass="input-label"/>
+					<h:selectOneMenu
+						value="#{funcionario_mb.funcionario.cargo}" >
+						<f:selectItem itemLabel="Administrador" itemValue="ADMINISTRADOR" />
+						<f:selectItem itemLabel="Funcionario" itemValue="FUNCIONARIO"/>
+						<f:selectItem itemLabel="Gerente" itemValue="GERENTE"/>
+					</h:selectOneMenu>																			
+				</h:panelGrid>	
+			</div>
+			
+			
+			
+			<div style="margin-top: 5px;" >			
+				<h:panelGrid cellspacing="5" columns="2">
+					<a4j:commandButton
+					styleClass="btn" 
+					value=" Cadastrar "
+					reRender="pnl-dados-funcionario,msg" 
+					action="#{funcionario_mb.cadastrar}"
+					/>
+						<a4j:commandButton
+					styleClass="btn" 
+					value=" Home " 
+					action="#{funcionario_mb.home}"
+					/>
+				</h:panelGrid>
+			</div>
+
+			
+			<div style="margin-top: 10px;" >			
+				<h:outputText value="#{funcionario_mb.msg}" 
+					id="msg"
+					styleClass="msg" />
+			</div>						
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+  <display-name>fiapfuncionarios-ear</display-name>
+  <module>
+    <web>
+      <web-uri>fiapfuncionarios.war</web-uri>
+      <context-root>/fiapfuncionarios</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>fiapfuncionarios-gerenciamento.jar</ejb>
+  </module>
+  <module>
+    <ejb>fiapfuncionarios-dominio.jar</ejb>
+  </module>
+  <library-directory>lib</library-directory>
+</application>

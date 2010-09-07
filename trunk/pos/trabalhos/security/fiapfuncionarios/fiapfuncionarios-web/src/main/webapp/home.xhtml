@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		home
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form prependId="false">			
+			<div id="div-menu"  class="div-menu" >				
+				<h:panelGrid columns="1" width="100%">
+					<h:commandButton value="Cadastrar Funcionario" 
+						action="cadastrar-funcionario"
+						styleClass="btn-menu" 
+						/>
+					<h:commandButton 
+						value="Provomer Funcionario" 
+						action="#{funcionario_mb.prepareFuncionariosPromover}"
+						styleClass="btn-menu"
+						/>
+					<h:commandButton 
+						value="Excluir Funcionario" 
+						action="#{funcionario_mb.prepareFuncionariosRemover}"
+						styleClass="btn-menu"
+						/>									
+				</h:panelGrid>			
+			</div>	
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

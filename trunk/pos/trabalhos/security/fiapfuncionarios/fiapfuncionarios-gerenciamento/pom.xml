@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+        <artifactId>fiapfuncionarios</artifactId>
+        <groupId>br.com</groupId>
+        <version>1.0</version>
+    </parent>
+  <groupId>br.com</groupId>
+  <artifactId>fiapfuncionarios-gerenciamento</artifactId>
+  <packaging>ejb</packaging>
+  <version>1.0</version>
+  <name>fiapfuncionarios-gerenciamento</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.ejb</groupId>
+  		<artifactId>ejb-api</artifactId>
+  		<version>3.0</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax.persistence</groupId>
+  		<artifactId>persistence-api</artifactId>
+  		<version>1.0</version>
+  		<scope>provided</scope>
+  	</dependency>    
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>fiapfuncionarios-dominio</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-lang</groupId>
+  		<artifactId>commons-lang</artifactId>
+  		<version>2.5</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ejb-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <ejbVersion>3.0</ejbVersion>
+        </configuration>
+      </plugin>
+
+    </plugins>
+    <finalName>fiapfuncionarios-gerenciamento</finalName>
+  </build>
+</project>
