@@ -7,10 +7,10 @@
         <version>1.0</version>
     </parent>
     <groupId>br.com</groupId>
-    <artifactId>lawoffice-custos</artifactId>
+    <artifactId>lawoffice-custas</artifactId>
     <packaging>ejb</packaging>
     <version>1.0</version>
-    <name>lawoffice-custos</name>
+    <name>lawoffice-custas</name>
     <description>this module contains functions for work custon..</description>
     <url>http://maven.apache.org</url>
     <dependencies>
