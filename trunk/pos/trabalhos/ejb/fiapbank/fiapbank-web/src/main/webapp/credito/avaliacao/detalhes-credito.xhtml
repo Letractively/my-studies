@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	
+	
+	
+<div style="display: none;" id="detalhes-credito" >
+
+	
+	<div class="div-input">
+	
+		<h:panelGrid columns="2" id="pnl-detalhes-credito">
+			<h:outputText value="Nome do cliente: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.conta.cliente.nome}" styleClass="input-label"/>
+				
+			<h:outputText value="Numero da conta: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.conta.id}" styleClass="input-label"/>
+							
+			<h:outputText value="Valor do credito: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.valorCredito}" styleClass="input-label">
+				<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" />
+			</h:outputText>
+			
+			<h:outputText value="Numero de meses para pagar: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.quantidadeDeMeses}" styleClass="input-label"/>
+			
+			<h:outputText value="Renda mensal: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.conta.cliente.renda.rendaMensal}" styleClass="input-label">
+				<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" />
+			</h:outputText>
+			
+			<h:outputText value="Gastos mensais: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.conta.cliente.renda.gastoMensal}" styleClass="input-label">
+				<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" />
+			</h:outputText>
+			
+			<h:outputText value="Patrimonio: " styleClass="input-label"/>
+			<h:outputText value="#{credito_mb.credito.conta.cliente.renda.valorTotalPatrimonio}" styleClass="input-label">
+				<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" />
+			</h:outputText>				
+													
+		</h:panelGrid>	
+	</div>
+		
+	<div style="margin-top: 10px;">
+		<h:panelGrid columns="3">
+			<a4j:commandButton value="Aprovar"
+				styleClass="btn"
+				action="#{credito_mb.aprovarCredito}"
+				reRender="dt-lista-credito-avaliar"	
+				oncomplete="exibirListaCreditosAvaliar()" 
+				/>
+			<a4j:commandButton value="Reijeitar"
+				styleClass="btn"
+				action="#{credito_mb.rejeitarCredito}"
+				reRender="dt-lista-credito-avaliar"	
+				oncomplete="exibirListaCreditosAvaliar()" 
+				/>				
+			<a4j:commandButton value="Cancelar"
+				styleClass="btn"
+				oncomplete="exibirListaCreditosAvaliar()" 
+				/>		
+		</h:panelGrid>	
+	</div>
+
+</div>
+
+
+
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		Abertura de Conta
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form prependId="false">
+				<ui:include src="/conta/dados-cliente.xhtml" />
+				<ui:include src="/conta/dados-renda.xhtml" />
+				<ui:include src="/conta/confirmar-senha.xhtml" />
+				<ui:include src="/conta/conta-aberta-sucesso.xhtml" />
+				<div style="margin-top: 10px;" >
+					<h:inputHidden value="#{conta_mb.proximoPasso}" 
+						id="proximo-passo"/>
+					<h:outputText value="#{conta_mb.msg}" 
+						id="msg"
+						styleClass="msg" />
+				</div>		
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

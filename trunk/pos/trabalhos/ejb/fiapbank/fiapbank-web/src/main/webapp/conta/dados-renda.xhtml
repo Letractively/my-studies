@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	
+	
+	
+<div style="display: none;" id="dados-renda">
+
+	<div class="div-input">
+		<h:panelGrid columns="2">
+			<h:outputText value="Renda Mensal:" 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.renda.rendaMensal}"/>
+			
+			<h:outputText value="Valor Total do Patrimonio:"
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.renda.valorTotalPatrimonio}"/>
+			
+			<h:outputText value="Gasto Mensal:"
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.renda.gastoMensal}"/>
+		</h:panelGrid>	
+	</div>
+		
+	<div style="margin-top: 10px;">
+		<a4j:commandButton
+		styleClass="btn" 
+		value="Proximo >>" 
+		action="#{conta_mb.avaliarRenda}"
+		oncomplete="exibirConfirmarSenha()" 
+		reRender="proximo-passo,msg"/>
+	</div>
+	
+</div>
+
+
+
+</html>

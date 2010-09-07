@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd" version="5">
+  <display-name>fiapbank-ear</display-name>
+  <module>
+    <web>
+      <web-uri>fiapbank-web.war</web-uri>
+      <context-root>/fiapbank</context-root>
+    </web>
+  </module>
+  <module>
+    <ejb>fiapbank-contas.jar</ejb>
+  </module>
+  <module>
+    <ejb>fiapbank-dominio.jar</ejb>
+  </module>
+  <module>
+    <ejb>fiapbank-autenticacao.jar</ejb>
+  </module>
+  <module>
+    <ejb>fiapbank-credito.jar</ejb>
+  </module>
+  <library-directory>lib</library-directory>
+</application>

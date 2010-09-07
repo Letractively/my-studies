@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	
+	
+	
+<div   id="panel-lista-credito-avaliar">
+
+	<rich:dataTable width="100%"
+		id="dt-lista-credito-avaliar" 
+		var="credito" 
+		value="#{credito_mb.creditosAvaliar}">
+		
+		<rich:column sortBy="#{credito.valorCredito}">
+			<f:facet name="header">
+				<h:outputText value="Valor do Credito" />
+			</f:facet>
+			<h:outputText value="#{credito.valorCredito}" >
+				<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" />
+			</h:outputText>
+		</rich:column>
+		
+		<rich:column sortBy="#{credito.quantidadeDeMeses}">
+			<f:facet name="header">
+				<h:outputText value="Numero de Meses" />
+			</f:facet>
+			<h:outputText value="#{credito.quantidadeDeMeses}" />
+		</rich:column>
+		
+		
+		<rich:column sortBy="#{credito.statusCredito}">
+			<f:facet name="header">
+				<h:outputText value="Status do pedido" />
+			</f:facet>
+			<h:outputText value="#{credito.statusCredito}" 
+				converter="converter_status_credito">
+			</h:outputText>
+		</rich:column>
+		
+		<rich:column >
+			<f:facet name="header">
+				<h:outputText value="Detalhes do Pedido" />
+			</f:facet>
+			<a4j:commandButton value="Detalhes"
+				styleClass="btn"
+				action="#{credito_mb.selecionarCreditoAvaliar}"
+				reRender="pnl-detalhes-credito"	
+				oncomplete="exibirDetalhesPedido()" 
+				>
+				<a4j:actionparam 
+					assignTo="#{credito_mb.idCreditoSelecionado}"
+					value="#{credito.id}"
+					name="idCreditoSelecionado"		
+				/>
+			</a4j:commandButton>
+		</rich:column>						
+				
+	</rich:dataTable>
+	
+	<div style="margin-top: 10px;">
+		<h:commandButton
+			styleClass="btn" 
+			value="Menu Principal"
+			action="menu-gerente" 
+		/>	
+	</div>
+
+</div>
+
+
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+
+	
+<div id="dados-cliente" >
+
+	<div class="div-input">
+		<h:panelGrid columns="2">
+			<h:outputText value="Nome: " styleClass="input-label" />
+			<h:inputText value="#{conta_mb.cliente.nome}"
+				size="60"/>
+			
+			<h:outputText value="CPF: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.cpf}"/>
+			
+			<h:outputText value="RG: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.rg}"/>
+			
+			<h:outputLabel value="Logradouro: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.endereco.logradouro}"
+				size="60"/>
+		
+			<h:outputLabel value="Numero: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.endereco.numero}"/>
+		
+			<h:outputLabel value="CEP: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.endereco.cep}"/>
+		
+			<h:outputLabel value="Estado: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.endereco.estado}"/>
+		
+			<h:outputLabel value="Municipio: " 
+				styleClass="input-label"/>
+			<h:inputText value="#{conta_mb.cliente.endereco.municipio}" 
+				size="60"/>
+		
+			<h:outputLabel value="Bairro: " 
+				styleClass="input-label"/>
+			<h:inputText 
+				value="#{conta_mb.cliente.endereco.bairro}"
+				size="60" />
+													
+		</h:panelGrid>	
+	</div>
+	
+	<div style="margin-top: 5px;">
+		<a4j:commandButton
+		styleClass="btn" 
+		value=" Proximo >> " 
+		action="#{conta_mb.avaliarCliente}" 
+		oncomplete="exibirDadosRenda()"
+		reRender="proximo-passo,msg" />
+	</div>
+</div>
+
+</html>

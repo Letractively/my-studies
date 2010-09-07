@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j">
+	
+<div style="display: none;" id="conta-aberta-sucesso">
+
+	
+	<div class="div-input">
+		<h:panelGrid columns="1" id="panel-grid-conta-aberta-sucesso" >
+			<h:outputText value="Conta Aberta com Sucesso !" 
+				styleClass="input-label-sucesso"/>
+			<h:panelGrid columns="2">
+				<h:outputText value="Numero da Conta:"
+					styleClass="input-label-sucesso"/>
+				<h:outputText value="#{conta_mb.conta.id}" 
+					styleClass="input-label-sucesso"/>
+			</h:panelGrid>
+		</h:panelGrid>
+	</div>
+	
+	<div style="margin-top: 10px;">
+		<h:panelGrid columns="2" cellspacing="10">
+			<h:commandButton value="Nova Conta" 
+				action="#{conta_mb.novaConta}"
+				styleClass="btn"
+				/>
+			<h:commandButton value="Menu Principal" 
+				action="menu-gerente"
+				styleClass="btn"
+				/>			
+		</h:panelGrid>
+	</div>
+	
+		
+
+</div>
+
+</html>

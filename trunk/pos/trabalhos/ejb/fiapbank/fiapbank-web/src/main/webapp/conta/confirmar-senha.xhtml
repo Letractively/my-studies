@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	
+<div style="display: none;" id="confirmar-senha">
+
+
+	<div class="div-input">
+		<h:panelGrid columns="2">
+			<h:outputText value="Senha: "
+				styleClass="input-label"/>
+			<h:inputSecret value="#{conta_mb.conta.seguranca.senha}"/>
+		</h:panelGrid>	
+	</div>
+	<div style="margin-top: 10px;">
+		<a4j:commandButton value="Finalizar"
+			styleClass="btn" 
+			action="#{conta_mb.abriConta}"
+			oncomplete="exibirContaAbertaSucesso()"
+			reRender="proximo-passo,msg,panel-grid-conta-aberta-sucesso"
+		/>
+	</div>
+
+
+
+	
+
+</div>
+
+</html>

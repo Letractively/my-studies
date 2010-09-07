@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Fiap Bank</title>
+
+<link rel="stylesheet" type="text/css" href="/fiapbank/resources/css/style.css"/>
+</head>
+
+<body>
+	<div style="display: block;">
+		<div style="float: left;">
+			<h3>
+	  			<ui:insert name="cabecalho">Default Title</ui:insert>
+			</h3>
+		</div>
+		<div align="right">
+			<h:form prependId="false">
+				<h:commandButton action="#{base_mb.logout}" value="[Logof]" styleClass="btn"/>
+			</h:form> 
+		</div>	
+	</div>
+<div id="div-hr" class="div-hr">
+</div>
+<div>
+  <ui:insert name="corpo">Default Body</ui:insert>
+</div>
+
+<script type="text/javascript" src="/fiapbank/resources/js/jquery/jquery-1.4.2.min.js" />
+<script type="text/javascript" src="/fiapbank/resources/js/jquery/jquery.dimensions.min.js" />
+<script type="text/javascript" src="/fiapbank/resources/js/jquery/jquery.gradient.min.js" />
+<script type="text/javascript" src="/fiapbank/resources/js/fiapbank/fiapbank.js" />
+<script type="text/javascript" src="/fiapbank/resources/js/conta/conta.js" />
+<script type="text/javascript" src="/fiapbank/resources/js/credito/credito.js" />
+
+</body>
+
+
+
+</html>
