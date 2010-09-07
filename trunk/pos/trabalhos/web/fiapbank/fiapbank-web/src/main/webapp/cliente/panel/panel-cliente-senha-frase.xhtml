@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+		
+	<rich:modalPanel id="panel-cliente-senha-frase" 
+		width="400"
+		autosized="true">
+				
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputLabel value="Senha"/>
+			</h:panelGroup>
+		</f:facet>
+											
+		<a4j:form >
+			<div style="margin-top: 10px;" >
+				<div class="div-input">			
+					<h:panelGrid columns="2" id="panel-dados-seguranca">				
+						<h:outputText value="Senha: "
+							styleClass="input-label"/>
+						<h:inputSecret value="#{cliente_mb.conta.senha}"/>
+						<h:outputText value="Frase Secreta: "
+							styleClass="input-label"/>
+						<h:inputSecret value="#{cliente_mb.conta.fraseSecreta}"/>																		
+					</h:panelGrid>	
+				</div>
+				<div style="margin-top: 10px; display: block;">
+					<div style="float: left;">
+						<a4j:commandButton value="Cancelar"
+						onclick="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+						styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-extrado">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.criarExtrato}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,data-table-extrato"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-saldo">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.getSaldo}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-saldo"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-frase-secreta">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.alterarFraseSecreta}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-frase-secreta"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-aplicar-poupanca">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.aplicarPoupanca}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-poupanca-aplicacao"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-resagte-poupanca">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.resgatarPoupanca}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-poupanca-resgate"
+							styleClass="btn" 										
+						/>					
+					</div>	
+					<div style="margin-left: 75px;" id="div-btn-confirmar-transferencia">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.realizarTransferencia}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-transferecia"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="div-btn-confirmar-doc-ted">
+						<a4j:commandButton value="Confirmar"
+							action="#{cliente_mb.realizarDocTed}"
+							oncomplete="Richfaces.hideModalPanel('panel-cliente-senha-frase')"
+							reRender="msg,panel-grid-doc-ted"
+							styleClass="btn" 										
+						/>					
+					</div>					
+				</div>								
+			</div>
+		</a4j:form>		
+	</rich:modalPanel>	
+</html >

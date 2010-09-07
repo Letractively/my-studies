@@ -1,0 +1,75 @@
+@CHARSET "ISO-8859-1";
+
+.input-label{
+	color:#454545;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:11px;
+}
+
+
+
+.input-label-sucesso{
+	color:#454545;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:15px;
+}
+
+
+.msg{
+	color: Red;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 13px;
+}
+
+
+.div-hr{
+	height: 10px;
+	width: 100%;
+	margin-top:4px;
+	border-bottom: 0px;
+}
+.div-menu{
+	height: 600px;
+	width: 130px;
+	padding: 10px;
+}
+H3 {
+	margin: 0px;
+	color: #454545;
+}
+
+
+.btn{
+	background-image: none;
+	border: none;
+	color: #454545;
+	cursor: pointer; 
+}
+
+
+.btn-menu{
+	background-image: none;
+	border: none;
+	color: #454545;
+	cursor: pointer;
+	padding: 5px; 
+	width: 100%;
+}
+
+.div-input{
+	margin-top: 10px;
+	padding: 10px;
+	background-color: #F8F9FB;
+}
+
+
+.div-input-login{
+	padding: 10px;
+	background-color: #F8F9FB;
+}
+
+.input-label-login{
+	color:#454545;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:15px;
+}

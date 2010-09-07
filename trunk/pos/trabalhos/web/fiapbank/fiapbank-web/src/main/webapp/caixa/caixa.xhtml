@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		Caixa
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form >
+			<div style="float: left;">
+				<div id="div-menu"  class="div-menu" >
+					<h:panelGrid columns="1" width="100%">
+						<a4j:commandButton 
+							value="Saque"
+							action="#{caixa_mb.clearMsg}"
+							reRender="msg"
+							onclick="exibirBtnConfirmarSaque()"
+							oncomplete="exibirSaque()"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Desposito"
+							onclick="exibirBtnConfirmarDeposito()"
+							action="#{caixa_mb.clearMsg}"
+							reRender="msg"							
+							oncomplete="exibirDeposito()"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Retirada de Cartao"
+							action="#{caixa_mb.clearMsg}"
+							onclick="exibirBtnConfirmarCartao()"
+							reRender="msg"							
+							oncomplete="exibirRetiradaCartao()"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Retirada de Talao"
+							action="#{caixa_mb.clearMsg}"
+							onclick="exibirBtnConfirmarTalao()"
+							reRender="msg"							
+							oncomplete="exibirRetiradaTalao()"
+							styleClass="btn-menu" 
+							/>															
+					</h:panelGrid> 			
+				</div>			
+			</div>
+		</h:form>
+		<div style="margin-left: 170px; margin-top: 10px;">					
+				<ui:include src="/caixa/deposito.xhtml" />
+				<ui:include src="/caixa/retirada-cartao.xhtml" />
+				<ui:include src="/caixa/retirada-talao.xhtml" />
+				<ui:include src="/caixa/saque.xhtml" />
+				<div style="margin-top: 5px;">
+					<h:outputText value="#{caixa_mb.msg}" id="msg" styleClass="msg"/>
+				</div>					 					
+		</div>
+		<ui:include src="/caixa/panel/panel-caixa-senha.xhtml" />	
+	</ui:define>		
+</ui:composition>
+
+</html>

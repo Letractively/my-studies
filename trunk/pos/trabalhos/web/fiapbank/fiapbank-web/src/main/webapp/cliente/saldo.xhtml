@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j" >
+
+<h:form prependId="false" >
+	<div style="display: none;" id="cliente-saldo" >
+		<div class="div-input">
+			<h:panelGrid columns="2" id="panel-grid-saldo">
+				<h:outputText value="Saldo: " 
+					styleClass="input-label"/>
+				<h:outputText value="#{cliente_mb.conta.saldo}" 
+					styleClass="input-label">
+					<f:convertNumber  pattern="R$ #,###,###,###,##0.00" locale="pt_BR" /> 
+				</h:outputText>
+			</h:panelGrid>
+		</div>	
+		<div style="margin-top: 10px;">
+			<a4j:commandButton value="Imprimir"	
+				action="#{cliente_mb.limpar}"
+				reRender="panel-dados-seguranca"			
+				oncomplete="Richfaces.showModalPanel('panel-cliente-senha-frase')"
+				styleClass="btn" 										
+			/>
+		</div>
+	</div>
+</h:form>
+</html>

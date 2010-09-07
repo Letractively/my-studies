@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		Cadastro Conta
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form prependId="false">	
+			<div class="div-input">			
+				<h:panelGrid columns="2" id="panel-grid-dados-conta">
+				
+					<h:outputText value="Numero da Conta: "
+						styleClass="input-label"/>
+					<h:inputText value="#{cadastro_conta_mb.conta.numero}"/>
+				
+					<h:outputText value="Numero da Agencia: "
+						styleClass="input-label"/>
+					<h:inputText value="#{cadastro_conta_mb.conta.numeroAgencia}"/>
+									
+					<h:outputText value="Senha: "
+						styleClass="input-label"/>
+					<h:inputSecret value="#{cadastro_conta_mb.conta.senha}"/>
+					
+					<h:outputText value="Frase secreta: "
+						styleClass="input-label" />
+					<h:inputSecret value="#{cadastro_conta_mb.conta.fraseSecreta}" 
+						size="50"/>
+					
+					
+					<h:outputText value="Tipo de Conta: "
+						styleClass="input-label"/>
+					<h:selectOneMenu value="#{cadastro_conta_mb.tipoConta}">
+						<f:selectItem itemLabel="Especial" itemValue="ESPECIAL"/>
+						<f:selectItem itemLabel="Poupanca" itemValue="POUPANCA"/>
+						<f:selectItem itemLabel="Simples" itemValue="SIMPLES"/>
+					</h:selectOneMenu>										
+										
+				</h:panelGrid>	
+			</div>
+			<div style="margin-top: 10px;">
+				<a4j:commandButton value="Cadastrar"
+					action="#{cadastro_conta_mb.cadastrar}"
+					reRender="msg,panel-grid-dados-conta"
+					styleClass="btn" 										
+				/>
+			</div>
+			<div style="margin-top: 5px;">
+				<h:outputText value="#{cadastro_conta_mb.msg}" id="msg" styleClass="msg"/>
+			</div>						
+			</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

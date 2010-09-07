@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+		
+	<rich:modalPanel id="panel-caixa-senha" 
+		width="400"
+		autosized="true">
+				
+		<f:facet name="header">
+			<h:panelGroup>
+				<h:outputLabel value="Senha"/>
+			</h:panelGroup>
+		</f:facet>
+											
+		<a4j:form >
+			<div style="margin-top: 10px;" >
+				<div class="div-input">			
+					<h:panelGrid columns="2">				
+						<h:outputText value="Senha: "
+							styleClass="input-label"/>
+						<h:inputSecret value="#{caixa_mb.conta.senha}"
+							id="conta-senha"/>
+											
+					</h:panelGrid>	
+				</div>
+				<div style="margin-top: 10px; " >
+					<div style="display: block; float: left;">
+						<a4j:commandButton value="Cancelar"
+						onclick="Richfaces.hideModalPanel('panel-caixa-senha')"
+						styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="confirmar-deposito">
+						<a4j:commandButton value="Confirmar"
+							action="#{caixa_mb.depositar}"
+							oncomplete="Richfaces.hideModalPanel('panel-caixa-senha')"
+							reRender="msg,panel-grid-deposito,conta-senha"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="confirmar-saque">
+						<a4j:commandButton value="Confirmar"
+							action="#{caixa_mb.sacar}"
+							oncomplete="Richfaces.hideModalPanel('panel-caixa-senha')"
+							reRender="msg,panel-grid-sacar,conta-senha"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="confirmar-cartao">
+						<a4j:commandButton value="Confirmar"
+							action="#{caixa_mb.retirarCartao}"
+							oncomplete="Richfaces.hideModalPanel('panel-caixa-senha')"
+							reRender="msg,panel-grid-cartao,conta-senha"
+							styleClass="btn" 										
+						/>					
+					</div>
+					<div style="margin-left: 75px;" id="confirmar-talao">
+						<a4j:commandButton value="Confirmar"
+							action="#{caixa_mb.retirarTalao}"
+							oncomplete="Richfaces.hideModalPanel('panel-caixa-senha')"
+							reRender="msg,panel-grid-talao,conta-senha"
+							styleClass="btn" 										
+						/>					
+					</div>																				
+				</div>								
+			</div>
+		</a4j:form>		
+	</rich:modalPanel>	
+</html >

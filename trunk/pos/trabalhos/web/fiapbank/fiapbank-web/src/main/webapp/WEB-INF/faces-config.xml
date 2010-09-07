@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <managed-bean>
+  <managed-bean-name>caixa_mb</managed-bean-name>
+  <managed-bean-class>br.com.fiapbank.mb.caixa.CaixaMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>cliente_mb</managed-bean-name>
+  <managed-bean-class>br.com.fiapbank.mb.cliente.ClienteMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>cadastro_conta_mb</managed-bean-name>
+  <managed-bean-class>br.com.fiapbank.mb.cadastro.CadastroContaMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>autenticador_mb</managed-bean-name>
+  <managed-bean-class>br.com.fiapbank.mb.autenticacao.AutenticadorMB</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>base_mb</managed-bean-name>
+  <managed-bean-class>br.com.fiapbank.mb.BaseMB</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>*</from-view-id>
+  <navigation-case>
+   <from-outcome>caixa</from-outcome>
+   <to-view-id>/caixa/caixa.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cadastro-conta</from-outcome>
+   <to-view-id>/cadastro/conta/cadastro-conta.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>login</from-outcome>
+   <to-view-id>/login.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cliente</from-outcome>
+   <to-view-id>/cliente/cliente.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+ </application>
+</faces-config>

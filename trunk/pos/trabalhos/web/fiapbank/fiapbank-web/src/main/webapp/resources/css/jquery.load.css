@@ -1,0 +1,40 @@
+/*
+
+ testado on ff 2.0 ieca 6 7 e 8 
+ 
+ Robson
+*/
+
+
+
+
+
+#mask{
+  	Z-INDEX: 1;
+	LEFT: 0px;
+	TOP: 0px;	
+	POSITION: absolute;	
+	background-color:#D0D0D0;
+}
+  
+  
+.mask-opacity{
+	FILTER: alpha(opacity=50);
+	opacity: .5;
+}
+  
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:0;
+  width:440px;
+  height:200px;
+  display:none;
+  z-index:9999;
+}
+
+
+#boxes #dialog {
+  padding:10px;
+  background: url("/notafacil/resources/img/gif/ajax-loader.gif") no-repeat transparent center;
+}

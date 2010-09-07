@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<head>
+	<link rel="stylesheet" type="text/css" href="/fiapbank/resources/css/style.css"/>
+	<style type="text/css">
+		H3 {
+			margin: 0px;
+			color: #454545;
+		}
+		
+		.div-hr{
+			height: 10px;
+			width: 100%;
+			margin-top:4px;
+			border-bottom: 0px;
+			background-color:#E0E0E0; 
+		}
+	</style>
+</head>
+<body>
+<h3>FiapBank</h3>
+<div class="div-hr"></div>
+	<h:form >
+		<div style="margin-top: 20px;">
+			<h:outputText value="Acesso Funcionario: "
+				styleClass="input-label-login"/>
+			<div class="div-input-login">			
+				<h:panelGrid columns="2" id="panel-grid-dados-conta">
+				
+					<h:outputText value="Login: "
+						styleClass="input-label"/>
+					<h:inputText value="#{autenticador_mb.funcionario.login}"/>
+			
+				
+					<h:outputText value="Senha: "
+						styleClass="input-label"/>
+					<h:inputSecret value="#{autenticador_mb.funcionario.senha}"/>
+																		
+				</h:panelGrid>
+				<div style="margin-top: 10px;">
+					<a4j:commandButton value="Logar"
+						action="#{autenticador_mb.autenticarFuncionario}"
+						reRender="msg"
+						styleClass="btn" 										
+					/>
+				</div>
+				<div style="margin-top: 5px;">
+					<h:outputText value="#{autenticador_mb.msg}" id="msg" styleClass="msg"/>
+				</div>									
+			</div>		
+		</div>
+	</h:form>
+	
+	
+	<h:form >
+		<div style="margin-top: 10px;">
+				<h:outputText value="Acesso Cliente: "
+					styleClass="input-label-login"/>
+				<div class="div-input-login">						
+					<h:panelGrid columns="2" id="panel-grid-dados-conta">
+					
+						<h:outputText value="Numero da Conta: "
+							styleClass="input-label"/>
+						<h:inputText value="#{autenticador_mb.conta.numero}"/>
+						
+						<h:outputText value="Numero da Agencia: "
+							styleClass="input-label"/>
+						<h:inputText value="#{autenticador_mb.conta.numeroAgencia}"/>					
+				
+					
+						<h:outputText value="Senha: "
+							styleClass="input-label"/>
+						<h:inputSecret value="#{autenticador_mb.conta.senha}"/>
+						
+						
+						<h:outputText value="Frase Secreta: "
+							styleClass="input-label"/>
+						<h:inputSecret value="#{autenticador_mb.conta.fraseSecreta}"/>					
+																			
+					</h:panelGrid>
+					<div style="margin-top: 10px;">
+						<a4j:commandButton value="Logar"
+							action="#{autenticador_mb.autenticarConta}"
+							reRender="msg"
+							styleClass="btn" 										
+						/>
+					</div>
+					<div style="margin-top: 5px;">
+						<h:outputText value="#{autenticador_mb.msg}" id="msg" styleClass="msg"/>
+					</div>											
+				</div>
+		</div>
+	</h:form>
+
+
+</body>
+</html>

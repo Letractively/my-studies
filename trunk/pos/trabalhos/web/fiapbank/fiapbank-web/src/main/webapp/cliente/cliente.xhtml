@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+
+	<ui:define name="cabecalho">
+		Cliente
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form >
+			<div style="float: left;">
+				<div id="div-menu"  class="div-menu" >
+					<h:panelGrid columns="1" width="100%">
+						<a4j:commandButton 
+							value="Extrato"
+							action="#{cliente_mb.limparExtrato}"
+							onclick="exibirBtnConfirmaExtrado()"
+							oncomplete="exibirExtrato()"
+							reRender="msg,data-table-extrato"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Saldo"
+							action="#{cliente_mb.limparSaldo}"
+							onclick="exibirBtnConfirmaSaldo()"
+							oncomplete="exibirSaldo()"
+							reRender="msg,panel-grid-saldo"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Transferencia"
+							action="#{cliente_mb.limparMsg}"
+							onclick="exibirBtnConfirmaTransferencia()"
+							oncomplete="exibirTransferencia()"
+							reRender="msg"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="DOC/TED"
+							action="#{cliente_mb.limparMsg}"
+							onclick="exibirBtnConfirmaDocTed()"
+							oncomplete="exibirDocTed()"
+							reRender="msg"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Poupanca Aplicacao"
+							action="#{cliente_mb.limparMsg}"
+							onclick="exibirBtnConfirmaAplicarPoupanca()"
+							oncomplete="exibirPoupancaAplicacao()"
+							reRender="msg"
+							styleClass="btn-menu" 
+							/>							
+						<a4j:commandButton 
+							value="Poupanca Resgate"
+							action="#{cliente_mb.limparMsg}"
+							onclick="exibirBtnConfirmaResgatePoupanca()"
+							oncomplete="exibirPoupancaResgate()"
+							reRender="msg"
+							styleClass="btn-menu" 
+							/>
+						<a4j:commandButton 
+							value="Frase Secreta"
+							action="#{cliente_mb.limparMsg}"
+							onclick="exibirBtnConfirmaFraseSecreta()"
+							oncomplete="exibirFraseSecreta()"
+							reRender="msg"
+							styleClass="btn-menu" 
+							/>																													
+					</h:panelGrid> 			
+				</div>			
+			</div>
+		</h:form>
+		<div style="margin-left: 170px; margin-top: 10px;">					
+				<ui:include src="/cliente/frase-secreta.xhtml" />
+				<ui:include src="/cliente/poupanca-aplicacao.xhtml" />
+				<ui:include src="/cliente/doc-ted.xhtml" />
+				<ui:include src="/cliente/extrato.xhtml" />
+				<ui:include src="/cliente/poupanca-resgate.xhtml" />
+				<ui:include src="/cliente/saldo.xhtml" />
+				<ui:include src="/cliente/transferencia.xhtml" />				
+				<div style="margin-top: 5px;">
+					<h:outputText value="#{cliente_mb.msg}" id="msg" styleClass="msg"/>
+				</div>					 					
+		</div>
+		<ui:include src="/cliente/panel/panel-cliente-senha-frase.xhtml" />	
+	</ui:define>		
+</ui:composition>
+
+</html>
