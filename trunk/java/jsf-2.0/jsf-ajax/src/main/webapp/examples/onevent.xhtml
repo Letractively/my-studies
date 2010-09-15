@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Onevent Atribute</ui:define>
+  
+  <ui:define name="body">
+	  <h:form>
+	  	<h:outputText value="Name: " />
+	  	<h:inputText value="#{oneventMB.name}" id="name"/>
+  		<h:commandButton action="#{oneventMB.upperCaseName}" value="Upper Case Name">
+  			<f:ajax render="upper-case-name" onevent="showHideAjaxLoader" execute="name"/>
+  		</h:commandButton>
+  		<span id="ajaxLoader">
+  			<h:graphicImage name="ajax-loader.gif" library="images"/>
+  		</span>
+  		<br/><br/>
+		<h:outputText value="#{oneventMB.name}" id="upper-case-name" styleClass="red" />
+	  </h:form>
+	  <h:outputScript name="jquery-1.4.2.min.js" library="js"/>
+	  <h:outputScript name="onevent.js" library="js"/>					
+  </ui:define>
+</ui:composition>
