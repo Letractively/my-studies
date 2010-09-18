@@ -51,5 +51,6 @@
 	<modules>
 		<module>lawoffice-custas</module>
 		<module>lawoffice-web</module>
+		<module>lawoffice-dominio</module>
 	</modules>
 </project>
