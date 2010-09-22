@@ -1,1 +1,1 @@
-<% response.sendRedirect("examples/list-examples.jsf"); %>
+<% response.sendRedirect("/jsf-ajax/examples/list-examples.jsf"); %>
