@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">List Examples</ui:define>
+  
+  <ui:define name="body">
+	  <h:form >
+	  	<h:commandLink action="render" value="Render Atributee" />
+	  	<br/>
+	  	<h:commandLink action="execute" value="Execute Atributee" />
+	  	<br/>
+	  	<h:commandLink action="execute-form" value="Execute @form" />
+	  	<br/>
+	  	<h:commandLink action="event-default" value="Event atribute (defult event)" />
+	  	<br/>
+	  	<h:commandLink action="event-dom-listener" value="Event atribute (dom event) + Listener Atribute" />
+	  	<br/>
+	  	<h:commandLink action="onevent" value="Onevent atribute" />	  		  		  		  	
+	  </h:form>					
+  </ui:define>
+</ui:composition>

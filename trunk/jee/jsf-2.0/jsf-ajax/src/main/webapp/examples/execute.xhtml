@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Execute Atribute</ui:define>
+  
+  <ui:define name="body">
+	  <h:form>
+	  	<h:outputText value="Name: " />
+	  	<h:inputText value="#{executeMB.name}" id="name"/>
+  		<h:commandButton action="#{executeMB.upperCaseName}" value="Upper Case Name">
+  			<f:ajax render="upper-case-name" execute="name"/>
+  		</h:commandButton>
+  		<br/><br/>
+		<h:outputText value="#{executeMB.name}" id="upper-case-name" styleClass="red" />
+	  </h:form>					
+  </ui:define>
+</ui:composition>

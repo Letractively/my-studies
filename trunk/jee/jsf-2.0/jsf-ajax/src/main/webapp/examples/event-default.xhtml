@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Event Atribute (Default)</ui:define>
+  
+  <ui:define name="body">
+	  <h:form>
+	  
+	  	<h:outputText value="Choose your soccer Time: " />
+	  	<h:selectOneMenu  valueChangeListener="#{eventDefaultMB.soccerTimeChoose}">
+	  		<f:selectItem itemValue="Choose" itemLabel="Choose"/>
+	  		<f:selectItem itemValue="Corinthians" itemLabel="Corinthians"/>
+	  		<f:selectItem itemValue="Santos" itemLabel="Santos"/>
+	  		<f:selectItem itemValue="Palmeiras" itemLabel="Palmeiras"/>
+	  		<f:selectItem itemValue="São Paulo" itemLabel="São Paulo"/>
+	  		<f:ajax render="you-is" />
+	  	</h:selectOneMenu>
+	  	
+	  	<br/><br/>	
+	  	
+	  	<h:outputText value="You is: " />
+	  	<h:outputText value="#{eventDefaultMB.youIs}" id="you-is"/>	
+	  
+	  </h:form>					
+  </ui:define>
+</ui:composition>
