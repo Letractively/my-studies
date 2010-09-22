@@ -19,7 +19,7 @@ public class EventDefaultMB {
 			setYouIs("Mermaid");
 		else if(event.getNewValue().equals("Palmeiras"))
 			setYouIs("Pig");
-		else if(event.getNewValue().equals("São Paulo"))
+		else if(event.getNewValue().equals("SÃ£o Paulo"))
 			setYouIs("Bambi");
 	}
 
