@@ -1,0 +1,5 @@
+esse exemplo do cache foi somente para pegar o conceito no ds 
+
+então ao estudar melhor o ds ajustar a lógica ( treino ) e add junit tdd ( treino ) 
+
+28/09/2010
