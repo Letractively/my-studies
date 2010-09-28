@@ -1,1 +1,1 @@
-<% response.sendRedirect("/prettyfaces/examples/list-examples.jsf"); %>
+<% response.sendRedirect("/prettyfaces/list-examples.jsf"); %>

@@ -1,8 +1,8 @@
 <pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.1.0 http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.1.0.xsd">
 
-	<url-mapping id="simpleExample"> 
+	<url-mapping> 
 	   <pattern value="/simple-example/" /> 
-	   <view-id>/pretty/examples/simple-example.jsf</view-id>
+	   <view-id>/examples/simple-example.jsf</view-id>
 	</url-mapping>
 
 </pretty-config>
