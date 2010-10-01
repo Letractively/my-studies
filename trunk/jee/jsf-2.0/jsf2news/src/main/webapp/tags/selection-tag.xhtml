@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">The news in Selection Tags</ui:define>
+  
+  <ui:define name="body">
+  		<div class="explication">
+  			<p>
+  				Um item que realmente deixa o seu código sujo era criar uma coleção de <a  href="http://download-llnw.oracle.com/javaee/6/api/javax/faces/model/SelectItem.html" target="_blank">SelectItem</a> 
+  				para popular um <a href="http://download.oracle.com/docs/cd/E17802_01/j2ee/javaee/javaserverfaces/2.0/docs/pdldocs/facelets/f/selectItems.html" target="_blank">f:selectItems</a> alguma coisa do tipo:
+  			</p>  			  		
+			<pre>
+List&lt;Person&gt; persons = dao.getPersons();
+List&lt;SelectItem&gt;  itens = new ArrayList&lt;SelectItem&gt;();		
+for (Person person : persons)
+	itens.add( new SelectItem(person.getName, person.getID));				  				
+			</pre>
+			<p>
+				No JSF 2.0 ficou mais fácil utilizar popular <a href="http://download.oracle.com/docs/cd/E17802_01/j2ee/javaee/javaserverfaces/2.0/docs/pdldocs/facelets/f/selectItems.html" target="_blank">f:selectItems</a>,
+				agora podemos utlizar coleções , array , maps .. de qualquer objeto				 
+			</p>
+			<p>
+			   Foi adicionado novos atributos , como var, itemlabel , itemValue entre outros .. podemos fazer da seguinte forma:
+			</p>
+			<pre>
+				não consegui add o exemplo aqui !
+			</pre>
+			
+  		</div>
+  		  	
+	  <h:form >
+	  	  	<br></br>
+	  	  	<h:selectOneMenu value="#{selectionTag.personId}">
+	  	  		<f:selectItems value="#{selectionTag.persons}" 
+	  	  			var="person" 
+	  	  			itemValue="#{person.id}"  
+	  	  			itemLabel="#{person.name}" 
+	  	  		/>
+	  	  		<f:ajax render="person-id"/>
+	  	  </h:selectOneMenu>
+	  	  <br></br><br></br>
+	  	  <h:outputText value="Person id selected is : " />
+	  	  <h:outputText value="#{selectionTag.personId}" id="person-id"/>
+	  </h:form>					
+  </ui:define>
+</ui:composition>
