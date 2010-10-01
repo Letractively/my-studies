@@ -33,8 +33,8 @@ for (Person person : persons)
   		  	
 	  <h:form >
 	  	  	<br></br>
-	  	  	<h:selectOneMenu value="#{selectionTag.personId}">
-	  	  		<f:selectItems value="#{selectionTag.persons}" 
+	  	  	<h:selectOneMenu value="#{selectionTagMB.personId}">
+	  	  		<f:selectItems value="#{selectionTagMB.persons}" 
 	  	  			var="person" 
 	  	  			itemValue="#{person.id}"  
 	  	  			itemLabel="#{person.name}" 
@@ -43,7 +43,7 @@ for (Person person : persons)
 	  	  </h:selectOneMenu>
 	  	  <br></br><br></br>
 	  	  <h:outputText value="Person id selected is : " />
-	  	  <h:outputText value="#{selectionTag.personId}" id="person-id"/>
+	  	  <h:outputText value="#{selectionTagMB.personId}" id="person-id"/>
 	  </h:form>					
   </ui:define>
 </ui:composition>

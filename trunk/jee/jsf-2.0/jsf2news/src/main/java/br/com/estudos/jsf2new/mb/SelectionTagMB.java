@@ -14,7 +14,7 @@ import br.com.estudos.jsf2new.entity.Person;
  *
  */
 @ManagedBean
-public class SelectionTag{
+public class SelectionTagMB{
 	
 	private int PersonId;
 	
