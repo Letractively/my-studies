@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>br.com.studies</groupId>
+  <artifactId>maven-jar-plugin</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>maven-jar-plugin</name>
+  <description>projeto de estudo sobre o maven, para esse projeto estamos estudando o maven-jar-plugin, baseado nos seguintes link:
+
+http://maven.apache.org/plugins/maven-jar-plugin/
+
+http://www.dzone.com/links/r/5_things_you_didnt_know_about_apache_maven.html
+</description>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-jar-plugin</artifactId>
+  			<version>2.3.1</version>
+  			<configuration>
+				<archive>
+                       <manifest>
+                           <addClasspath>true</addClasspath>
+                           <classpathPrefix>lib/</classpathPrefix>
+                           <classpathLayoutType>repository</classpathLayoutType>
+                           <mainClass>br.com.studies.maven.App</mainClass>
+                       </manifest>
+                   </archive>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>3.8.1</version>
+  		<type>jar</type>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-lang</groupId>
+  		<artifactId>commons-lang</artifactId>
+  		<version>2.5</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>
