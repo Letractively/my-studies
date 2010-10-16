@@ -1,32 +1,54 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
-	<ul class="sf-menu">
-		<li>
-			<a href="#">Agenda</a>
-			<ul>
-				<li>
-					<a href="#aa">Item 1</a>
-				</li>
-				<li>
-					<a href="#aa">Item 2</a>
-				</li>							
-			</ul>						
-		</li>
-		<li>
-			<a href="#">Custos</a>
-			<ul>
-				<li>
-					<a href="#aa">Novo Lançamento</a>
-				</li>
-				<li>
-					<a href="#aa">Item 2</a>
-				</li>							
-			</ul>						
-		</li>
-		<li><a href="#">Processo</a></li>
-		<li><a href="#">Cadastro</a></li>
-		<li><a href="#">Home</a></li>
-	</ul>
-				
+    <div>
+		<ul class="sf-menu">
+			<li>
+				<a href="#a" style="border: none;">Agenda</a>
+				<ul>
+					<li>
+						<a href="#did">Novo Agendamento</a>
+					</li>
+					<li class="current">
+						<a href="#ab">Agendamentos</a>
+					</li>
+				</ul>
+			</li>		
+			<li>
+				<a href="#a">Custas</a>
+				<ul>
+					<li>
+						<h:link outcome="novo-lacamento">Novo Lançamento</h:link>
+					</li>
+					<li class="current">
+						<a href="#ab">Lançamentos</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#a">Processo</a>
+				<ul>
+					<li>
+						<a href="#aa">Novo Processo</a>
+					</li>
+					<li class="current">
+						<a href="#ab">Processos</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#a">Dados</a>
+				<ul>
+					<li>
+						<a href="#aa">Cliente</a>
+					</li>
+					<li class="current">
+						<a href="#ab">Colaborador</a>
+					</li>
+				</ul>
+			</li>										
+		</ul>    
+    </div>
+    
 </ui:composition>

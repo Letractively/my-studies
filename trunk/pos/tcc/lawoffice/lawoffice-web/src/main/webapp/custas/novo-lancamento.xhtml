@@ -12,7 +12,7 @@
 	
 		<div id="novoLacamento">
 		
-			<div>
+			<div id="dados">
 				<h:outputLabel value="Colaborador: " />
 				<h:selectOneMenu value="#{novoLancamentoMB.nomeColaborador}" id="nomeColaborador">
 					<f:selectItem itemLabel="Colaborador 1" itemValue="Colaborador 1"/>
@@ -37,22 +37,28 @@
 				<h:inputText value="#{novoLancamentoMB.custa.valor}" id="valor"/>
 				
 				<h:commandButton value="Adicionar" action="#{novoLancamentoMB.addCusta}">
-					<f:ajax render="custas" execute="natureza valor nomeColaborador nomeCliente"/>
+					<f:ajax render="table" execute="natureza valor nomeColaborador nomeCliente" onevent="temp" />
 				</h:commandButton>		
 			</div>
 			
 			
-			<div>
-				<h:dataTable value="#{novoLancamentoMB.custas}" var="custa" id="custas">
-				
-				
+			<div id="custas">
+				<h:dataTable 
+					value="#{novoLancamentoMB.custas}" 
+					var="custa" 
+					id="table" 
+					styleClass="tablesorter" 
+					cellspacing="1" 
+					cellpadding="0" 
+					border="0"
+					>
+					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Colaborador" /> 
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
 					</h:column>
-					
 								
 					<h:column>
 						<f:facet name="header">
@@ -60,8 +66,6 @@
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.cliente.nome}" />
 					</h:column>
-					
-					
 					
 					<h:column>
 						<f:facet name="header">

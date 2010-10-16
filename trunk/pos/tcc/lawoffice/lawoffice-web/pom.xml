@@ -53,6 +53,16 @@
     			</additionalProjectFacets>
     		</configuration>
     	</plugin>
+    	<plugin>
+    		<groupId>org.codehaus.mojo</groupId>
+    		<artifactId>jboss-maven-plugin</artifactId>
+    		<version>1.4.1</version>
+    		<configuration>
+    			<jbossHome>/opt/app/jboss-6.0.0.20100911-M5</jbossHome>
+          		<serverName>lawoffice</serverName>
+          		<fileName>target/lawoffice.war</fileName>    			
+    		</configuration>
+    	</plugin>
     </plugins>
   </build>
 </project>

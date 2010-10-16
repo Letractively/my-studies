@@ -2,11 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      
 	<h:head>
 		<title><ui:insert name="title">Default Title</ui:insert></title>
 		<h:outputStylesheet name="style.css" library="css"/>
-		<h:outputStylesheet name="jquery.superfish.css" library="css"/>						
+		<h:outputStylesheet name="superfish.css" library="css"/>
+		<h:outputStylesheet name="tablesort.css" library="css"/>						
 	</h:head>
+		
 
 	<h:body>
 		<div id="wrapper">
@@ -24,8 +28,11 @@
 			</div>
 		</div>		
 		<h:outputScript name="jquery-1.4.2.min.js" library="js" />
-		<h:outputScript name="jquery.superfish.min.js" library="js" />
+		<h:outputScript name="jquery.tablesorter.min.js" library="js" />
+		<h:outputScript name="superfish.js" library="js" />
 		<h:outputScript name="geral.js" library="js" />
+		
+		
 		
 		<!--
 		

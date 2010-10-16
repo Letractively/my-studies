@@ -1,2 +1,1 @@
-
-<% response.sendRedirect("page-a.faces"); %>
+<jsp:forward page="home.html" />
