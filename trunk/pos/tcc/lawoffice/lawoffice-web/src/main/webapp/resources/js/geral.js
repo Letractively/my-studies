@@ -1,4 +1,3 @@
-
 $(function() {
 	$("table").tablesorter();
 });
@@ -13,6 +12,29 @@ function temp(data){
 }
 
 
+
+// menu .....
+
 $(function(){
-	$('ul.sf-menu').superfish();
+	$('ul.sf-menu')
+		.superfish({delay:0});
 });
+
+
+$(function(){
+	$('ul.sf-menu > li').hover(
+		function (){
+			$(this)
+			.children('a')
+			.css('color', '#FFFFFF');
+		},
+		function (){
+			$(this)
+			.children('a')
+			.css('color', '#1B5790');
+		}		
+	);
+});
+
+// fim menu ...
+

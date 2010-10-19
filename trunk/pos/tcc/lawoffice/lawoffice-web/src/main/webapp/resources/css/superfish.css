@@ -72,7 +72,7 @@ ul.sf-menu li li li.sfHover ul {
 	border: none;
 	color:	white;
 	text-decoration:none;
-	font-size: 12px;
+	font-size: 15px;
 }
 
 
@@ -83,7 +83,6 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu li:hover, .sf-menu li.sfHover,
 .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
 	background:		#1B5790;
-	color: white;
 	outline:		0;
 }
 
