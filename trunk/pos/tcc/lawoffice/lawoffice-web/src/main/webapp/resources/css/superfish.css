@@ -30,7 +30,7 @@
 .sf-menu li:hover ul,
 .sf-menu li.sfHover ul {
 	left:			0;
-	top:			2.5em; /* match top ul list item height */
+	top:			3.2em; /* match top ul list item height */
 	z-index:		99;
 }
 ul.sf-menu li:hover li ul,
@@ -62,7 +62,7 @@ ul.sf-menu li li li.sfHover ul {
 }
 
 .sf-menu a {	
-	padding:13px;
+	padding:15px;
 	margin-top: 5px;
 	color:	#1B5790;
 	text-decoration:none;
