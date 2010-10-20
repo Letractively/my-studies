@@ -68,12 +68,14 @@ ul.sf-menu li li li.sfHover ul {
 	text-decoration:none;
 }
 
-.sf-menu li ul li a {
-	border: none;
+.sf-menu li ul li a {	
 	color:	white;
 	text-decoration:none;
 	font-size: 15px;
 }
+
+
+
 
 
 .sf-menu li li {
