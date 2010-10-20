@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+
+<title>jquery propreties - length</title>
+
+<style type="text/css">
+
+#container div { width:150px; height:150px; margin:5px; float:left; background:green; }
+
+
+</style>
+
+<script type="text/javascript">
+$(function(){
+	$('span').text(' this document contains ' + $('#container > div').length  + ' green div');		
+});
+</script>
+
+
+</head>
+
+<body>
+<h4>.length</h4>
+<hr />
+<br />
+<div style="background-color: #ADD8E6; padding: 10px;">
+	<p> This is summary of the length propretie, to more information see: <a href="http://api.jquery.com/length/" style="text-decoration: none;">.length Documentation</a>
+</div>
+<br>
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(function(){
+	$('span').text(' this document contem ' + $('#container > div').length  + ' green div');		
+});
+</pre>
+</div>
+<br>
+
+
+<div id="container">
+	<div ></div>
+	<div ></div>
+	<div ></div>
+</div>
+
+<br>
+<br>
+
+<div style="clear: both; margin:5px;">
+	<span></span>
+</div>
+
+
+</body>
+</html>

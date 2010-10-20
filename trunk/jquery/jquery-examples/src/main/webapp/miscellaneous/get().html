@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+
+<title>jquery miscellaneous - .get()</title>
+
+<script type="text/javascript">
+$(function(){
+	
+	var divs = $('#container > div').get().reverse();
+	
+	var contents = [];
+	
+	for ( var i = 0; i < divs.length; i++)
+		 contents.push(divs[i].innerHTML);
+
+	$('span').text( contents.join(" "));
+	
+});
+</script>
+
+
+</head>
+
+<body>
+<h4>.get()</h4>
+<hr />
+<br />
+<div style="background-color: #ADD8E6; padding: 10px;">
+	<p> This is summary of the function .get(), to more information see: <a href="http://api.jquery.com/get/" style="text-decoration: none;">.get() Documentation</a>
+</div>
+<br>
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(function(){
+	
+	var divs = $('#container &gt; div').get().reverse();
+	
+	var contents = [];
+	
+	for ( var i = 0; i &lt; divs.length; i++)
+		 contents.push(divs[i].innerHTML);
+
+	$('span').text( contents.join(" "));
+	
+});
+</pre>
+</div>
+<br>
+
+
+<div id="container">
+	<div >one</div>
+	<div >two</div>
+	<div >three</div>
+</div>
+
+<br>
+
+<div>
+    <span></span>
+</div>
+
+</body>
+</html>

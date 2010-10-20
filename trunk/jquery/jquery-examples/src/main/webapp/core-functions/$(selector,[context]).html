@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+
+<title>$(selector,[context])</title>
+
+<style type="text/css">
+
+
+
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('p').css("background", "red");
+		$('p', '#container').css("background", "blue");
+	});
+
+	$(document).ready(function() {
+		$('a').css("color", "red");
+		$('a', 'div').css("color", "blue");
+	});
+
+	$(document).ready(function() {
+		$('div.foo').click(function() {
+			 $('span', this).css("background", "blue");;
+		});
+	});
+	
+</script>
+
+
+</head>
+
+<body>
+<h4>$(selector,[context])</h4>
+<hr />
+<br />
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(document).ready(function() {
+	$('p').css("background", "red");
+	$('p', '#container').css("background", "blue");
+});
+</pre>
+</div>
+
+
+<p> I'm paragraph out conteiner </p>
+<div id="container">
+	<p> I'm paragraph in conteiner </p>
+</div>
+<p> I'm other paragraph out conteiner </p>
+
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(document).ready(function() {
+	$('a').css("color", "red");
+	$('a', 'div').css("color", "blue");
+});
+</pre>
+</div>
+<br>
+<a href="#">I'm one anchor out div </a>
+<div>
+	<a href="#">I'm one anchor in div </a>
+</div>
+<a href="#">I'm one other anchor out div </a>
+
+<br>
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(document).ready(function() {
+	$('div.foo').click(function() {
+		 $('span', this).css("background", "blue");;
+	});
+});
+</pre>
+</div>
+
+<br>
+<div class="foo">
+	click me
+	<span>I'm one span in div with class foo</span>
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="resources/css/accordion.css" />
+
+<script type="text/javascript" src="resources/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.accordion.js"></script>
+<script type="text/javascript" src="resources/js/jquery.dimensions.js"></script>
+<title>Accordion Plugin</title>
+
+<script type="text/javascript">
+	//to more information see in 
+	// http://api.jquery.com/html/
+	$(document).ready(function() {
+		$('#list3').accordion(
+				{header: 'div.title', active: 1 , navigation: true}
+		);
+	});
+/*{
+header: 'div.title',
+active: true,
+alwaysOpen: false,
+animated: false,
+autoheight: false
+}*/
+</script>
+
+
+</head>
+
+
+
+<body>
+<h4>Accordion Plugin</h4>
+<hr />
+<br />
+	<div id="list3">
+		<div>
+			<div class="title">Tennis</div>
+			<div>
+				One ball, two players. Lots of fun.
+			</div>
+		</div>
+		<div>
+			<div class="title">Soccer</div>
+			<div>
+				One ball, 22 players. Lots of fun. <a href="http://google.com">Go to google?</a>
+			</div>
+		</div>
+		<div>
+			<div class="title">Baseball</div>
+			<div>
+				<p>
+					Well, one ball, some guys running around, some guys hitting others with a stick.<br/>
+					Sounds like fun, doesn't it?
+				</p>
+				<p>
+					Well, apart from the running part.
+					<a href="#navigation">Navigation example</a>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+
+<script type="text/javascript" src="resources/js/jquery-1.4.2.min.js"></script>
+
+<title>Show - Hide</title>
+
+
+<style type="text/css">
+
+.head{
+	padding-left: 20px;
+	cursor: pointer;
+}
+
+.content{
+	padding: 20px;
+	display: none;
+	border: solid black 1px;;
+}
+
+a {
+	text-decoration: none;
+}
+
+.mais{
+	background: url("resources/images/seta_mais.gif") left no-repeat;
+}
+
+.menos{
+	background: url("resources/images/seta_menos.gif") left no-repeat;
+}
+
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	init($("#div-1"));
+	
+	$('.head').toggle(	
+		function(){		
+			if($(this).hasClass('mais'))
+				showResposta(this);
+			else
+				hideResposta(this);
+		},
+		function(){
+			if($(this).hasClass('menos'))
+				hideResposta(this);
+			else
+				showResposta(this);								
+		}			
+	);
+
+	
+	$('a', $('#menu') ).click( function(event){
+		
+		var target  = $( "#" + event.target.name, '#container')		
+		target.prevAll("div[id^='div']").hide();
+		target.nextAll("div[id^='div']").hide();		
+		target.show();
+
+		init(target);
+			
+	});	
+	
+});
+
+
+function init(target){	
+	var numPerguntas = $(target).children('div.content');
+
+	if (numPerguntas.length == 1)
+		showResposta($(target).children('.head'));				
+}
+
+
+function showResposta(element) {
+	$(element).removeClass('mais').addClass('menos').next().slideDown();
+}
+
+function hideResposta(element) {
+	$(element).removeClass('menos').addClass('mais').next().slideUp();
+}
+
+
+</script>
+
+
+
+</head>
+
+
+<body>
+<h4>Show - Hide </h4>
+<hr />
+<br />
+
+
+<div style="margin-bottom: 10px;" id="menu">
+	<a href="#" name="div-1">div 1</a> |
+	<a href="#" name="div-2">div 2</a> |
+	<a href="#" name="div-3">div 3</a> | 
+	<a href="#" name="div-4">div 4</a> 
+</div>
+
+
+<div id="container">
+		<div style="padding: 20px; border: 1px solid red;" id="div-1">
+			 
+			 <div style="margin-bottom: 10px;">
+			 	<h3>DIV - 1</h3>
+			 </div>
+			 		
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>				
+				
+		</div>
+		
+		
+		<div style="padding: 20px; border: 1px solid red; display: none;" id="div-2">
+			 		
+			 <div style="margin-bottom: 10px;">
+			 	<h3>DIV - 2</h3>
+			 </div>		 		
+			 		
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>
+					
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>
+			
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>				
+				
+		</div>
+		
+		
+		<div style="padding: 20px; border: 1px solid red; display: none;" id="div-3">
+			 		
+			 <div style="margin-bottom: 10px;">
+			 	<h3>DIV - 3</h3>
+			 </div>		 		
+			 		
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>
+					
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>
+			
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>				
+				
+		</div>
+		
+		<div style="padding: 20px; border: 1px solid red; display: none;" id="div-4">
+			 		
+			 <div style="margin-bottom: 10px;">
+			 	<h3>DIV - 4</h3>
+			 </div>		 		
+			 		
+			<h3 class="head mais">
+				<a href="#">Lorem ipsum</a>
+			</h3>
+			<div class="content">		
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis rhoncus ligula est. Sed ac massa et nunc aliquet sollicitudin vel ut massa. Nullam dapibus orci in lacus bibendum dignissim. Integer sed sodales mauris. Nullam nulla risus, pretium at varius in, volutpat eu lectus. Proin sed mattis diam. Ut a faucibus ante. Morbi quis ultrices magna. Donec imperdiet rhoncus eros, porttitor adipiscing ante condimentum in. Aenean pretium porttitor nisl, ut imperdiet leo ullamcorper at. Aenean accumsan mi ut felis eleifend id tincidunt leo consequat.				
+			</div>
+					
+		</div>		
+		
+		<div style=" border: 1px solid blue; padding: 5px;">
+			gardenal ...	
+		</div>
+</div>
+
+</body>
+</html>

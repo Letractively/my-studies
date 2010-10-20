@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+
+<title>$(callback)</title>
+
+<style type="text/css">
+
+
+
+</style>
+
+<script type="text/javascript">
+	$(function() {
+		$('p', "#container").css('background','#87CEFF');
+	});
+</script>
+
+
+</head>
+
+<body>
+<h4>$(callback)</h4>
+<hr />
+<br />
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(function() {
+	$('p', "#container").css('background','blue');
+});
+</pre>
+</div>
+<br>
+<div id="container">
+	<p> This function is same wich the  function $(document).ready(function().. </p>
+</div>
+
+</body>
+</html>

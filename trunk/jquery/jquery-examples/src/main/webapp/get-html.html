@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+<link type="text/css" rel="stylesheet"
+	href="resources/css/jquery.treeview.css" />
+<script type="text/javascript" src="resources/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.treeview.js"></script>
+<title>Get HTML</title>
+
+<script type="text/javascript">
+	//to more information see in 
+	// http://api.jquery.com/html/
+	$(document).ready(function() {		
+		$("#get-html").click( function() {
+			$("#print").text($("#content").html());
+		});
+
+		$("#set-html").click( function() {
+			$("#new-content").html($("#content").html());
+		});		
+	});
+</script>
+
+
+</head>
+
+
+
+<body>
+<h4>Get/Set HTML</h4>
+<hr />
+<br />
+
+<div id="content">
+	<div>
+		<p> I'm content </p>	
+	</div>
+</div>
+
+<input type="button" value="get html" id="get-html"/>
+
+<p id="print" ></p>
+
+
+<input type="button" value="set html" id="set-html"/>
+
+<div id="new-content">
+
+</div>
+
+
+</body>
+</html>
