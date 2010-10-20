@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>br.com.mystudies.spring</groupId>
+  <artifactId>helloword</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>helloword</name>
+  <description>este projeto foi baseado no seguinte tutorial:  http://www.vaannila.com/spring/spring-ide-1.html</description>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-compiler-plugin</artifactId>
+  			<version>2.3.2</version>
+  			<configuration>
+  				<source>1.6</source>
+  				<target>1.6</target>
+  			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>exec-maven-plugin</artifactId>
+  			<version>1.2</version>
+  			<executions>
+  				<execution>
+  					<id>teste</id>
+  					<phase>test</phase>
+  					<goals>
+  						<goal>java</goal>
+  					</goals>
+  				</execution>
+  			</executions>
+  			<configuration>
+  				<mainClass>br.com.mystudies.spring.helloword.HelloWordApp</mainClass>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring</artifactId>
+    	<version>2.0.8</version>
+    </dependency>
+  </dependencies>
+</project>
