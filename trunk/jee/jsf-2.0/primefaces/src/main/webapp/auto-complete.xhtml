@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Auto Complete</ui:define>
+  
+  <ui:define name="body">
+	  <h:form >
+	  	<h:outputLabel value="Name:" for="autocomplete" />
+	  	<p:autoComplete id="autocomplete"
+	  		value="#{autoCompleteMB.name}" 
+	  		completeMethod="#{autoCompleteMB.temp}"/>  		  		  		  	
+	  </h:form>					
+  </ui:define>
+</ui:composition>
