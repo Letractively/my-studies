@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedBean;
 @ManagedBean
 public class AutoCompleteMB {
 	
-	
 	private String name;
 	
 	public List<String> simpleAutoComplete(String query){
@@ -30,7 +29,5 @@ public class AutoCompleteMB {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 	
 }
