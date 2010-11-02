@@ -4,7 +4,11 @@
     xmlns:f="http://java.sun.com/jsf/core"
     template="/WEB-INF/templates/template.xhtml">
     
-  <ui:define name="title">Novo Lançamento</ui:define>
+	<ui:define name="title">Novo Lançamento</ui:define>
+  
+   <ui:define name="css">
+ 		<h:outputStylesheet name="tablesort.css" library="css"/>
+   </ui:define>
   
   <ui:define name="body">
     
@@ -102,6 +106,11 @@
 		
 	</h:form>
 	
+  </ui:define>
+  
+  <ui:define name="js">
+  	<h:outputScript name="jquery.tablesorter.min.js" library="js" />
+  	<h:outputScript name="novo-lacamento.js" library="js"/>
   </ui:define>
   
 </ui:composition>

@@ -13,6 +13,13 @@
   <packaging>war</packaging>
   <name>lawoffice-web</name>
   <url>http://maven.apache.org</url>
+  <repositories>
+  	<repository>
+  		<id>prime-repo</id>
+  		<name>Prime Technology Maven Repository</name>
+  		<url>http://repository.prime.com.tr</url>
+  	</repository>
+  </repositories>
   <dependencies>
   	<dependency>
   		<groupId>javax.faces</groupId>
@@ -38,6 +45,11 @@
   		<artifactId>lawoffice-custas</artifactId>
   		<version>1.0</version>
   		<type>ejb</type>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.primefaces</groupId>
+  		<artifactId>primefaces</artifactId>
+  		<version>2.1.RC1</version>
   	</dependency>
   </dependencies>
   <build>

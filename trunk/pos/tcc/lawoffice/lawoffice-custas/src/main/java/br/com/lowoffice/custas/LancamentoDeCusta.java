@@ -1,19 +1,20 @@
 package br.com.lowoffice.custas;
 
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 
 /**
+ * 
+ * interface para os serviço de laçamentos de custa
+ * 
  * @author robson
  *
  */
-public interface LancamentoDeCusta {
+public interface LancamentoDeCusta{
 
-	public void salvarNovoLancamento();
+	public Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador);
 	
-	// TODO: esse cara ainda não está defindo como vai ser realmente.
-	// preciso saber ser na hora do lancamento podemos add somente um cliente e um colaborador..
-	// hoje definições de regras
-
-	public Custa addCusta(Custa custa, String nomeCliente, String nomeColaborador);
+	public void fecharLacamento();
 	
 }

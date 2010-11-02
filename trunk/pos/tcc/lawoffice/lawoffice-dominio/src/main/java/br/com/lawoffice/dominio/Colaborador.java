@@ -11,13 +11,31 @@ import java.util.List;
  */
 public class Colaborador{
 	
+	// TODO; Long ou long
+	private long id;
+	
 	private String nome;
 
 	private List<Lancamento> lancamentos;
 
-	// idem ao cliente 
-	public Colaborador(String nomeColaborador) {
-		setNome(nomeColaborador);
+	
+	public Colaborador(){
+		
+	}
+	
+
+	public Colaborador(long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -36,4 +54,6 @@ public class Colaborador{
 		this.lancamentos = lancamentos;
 	}
 	
+
+
 }

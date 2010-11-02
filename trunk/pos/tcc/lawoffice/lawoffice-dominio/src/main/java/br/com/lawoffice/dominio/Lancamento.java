@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 
+ * Representa um laçamento para o colaborador/cliente
+ * 
  * @author robson
  *
  */
@@ -25,29 +28,22 @@ public class Lancamento {
 	private List<Custa> custas;
 	
 	
-	public Lancamento addCliente(Cliente cliente) {
+	public Lancamento adicionarCliente(Cliente cliente) {
 		setCliente(cliente);
 		return this;
 	}
 
 
-	public Lancamento addColaborador(Colaborador colaborador){
+	public Lancamento adicionarColaborador(Colaborador colaborador){
 		setColaborador(colaborador);
 		return this;
 	}	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public Lancamento adicionarDataLancamento(){
+		setDataLancamento(new Date());
+		return this;
+	}
 	
 	
 	

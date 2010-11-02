@@ -1,3 +1,3 @@
 $(function() {
-	$('#valor').maskMoney();;
+	$("table").tablesorter();
 });

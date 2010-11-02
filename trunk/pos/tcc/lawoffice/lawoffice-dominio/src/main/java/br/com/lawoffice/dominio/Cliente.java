@@ -11,14 +11,32 @@ import java.util.List;
  */
 public class Cliente{
 
+	
+	// TODO: long ou Long
+	private long id;
+	
 	private String nome;
 	
 	private List<Lancamento> lancamentos;
+
 	
+	public Cliente() {
+	}
 	
-	// TODO: temp para validação do primeiro sprint ... falta definição de regras ..
-	public Cliente(String nomeCliente) {
-		setNome(nomeCliente);
+	// TODO: construtor temporario
+	public Cliente(long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -36,4 +54,6 @@ public class Cliente{
 	public void setLancamentos(List<Lancamento> lancamentos) {
 		this.lancamentos = lancamentos;
 	}
+	
+	
 }

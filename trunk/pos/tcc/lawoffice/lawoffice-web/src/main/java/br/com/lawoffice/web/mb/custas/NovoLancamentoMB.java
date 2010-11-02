@@ -7,9 +7,12 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
+import br.com.lawoffice.web.mb.BaseMB;
 import br.com.lowoffice.custas.LancamentoDeCusta;
-import br.com.lowoffice.custas.LancamentoDeCustaMock;
+import br.com.lowoffice.custas.LancamentoDeCustaBean;
 
 /**
  * @author robson
@@ -19,20 +22,19 @@ import br.com.lowoffice.custas.LancamentoDeCustaMock;
  */
 @ManagedBean()
 @SessionScoped // TODO: @ViewScoped ? débito técnico 
-public class NovoLancamentoMB{
+public class NovoLancamentoMB extends BaseMB{
 	
 	// TODO: cdi ?
 	private List<Custa> custas;
 
 	// TODO: cdi ?
 	private Custa custa;
+
 	
-	// TODO: hoje o combo está fixo, e outra , ainda não sei se realemente vai ser um combo então fica essa cara
-	// temporário para realizar a validação com o carlos do primeiro sprint....
-	private String nomeColaborador;
+	private List<Colaborador> colaboradores;
 	
-	// TODO: idem ao cara de cima
-	private String nomeCliente;
+
+	private List<Cliente> clientes;
 	
 	
 	// TODO: futuro ejb 3.1 !! debito técnico e fechamento das regras do serviço
@@ -44,27 +46,13 @@ public class NovoLancamentoMB{
 	public void init(){
 		custa = new Custa();
 		custas = new ArrayList<Custa>();
-		lancamentoDeCusta = new LancamentoDeCustaMock();
-		System.out.println("init");
+		lancamentoDeCusta = new LancamentoDeCustaBean();
 	}
 	
 	
-	public void addCusta(){		
-		custas.add(
-				lancamentoDeCusta.addCusta(custa, nomeCliente, nomeColaborador)
-			);
+	public void addCusta(){
 		custa = new Custa();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -90,27 +78,35 @@ public class NovoLancamentoMB{
 	}
 
 
-
-	public String getNomeColaborador() {
-		return nomeColaborador;
+	
+	// 
+	public List<Colaborador> getColaboradores() {
+		colaboradores = new ArrayList<Colaborador>();
+		colaboradores.add(new Colaborador(1 , "Adv 1"));
+		colaboradores.add(new Colaborador(2 , "Adv 2"));
+		colaboradores.add(new Colaborador(3 , "Adv 3"));
+		colaboradores.add(new Colaborador(4 , "Adv 4"));
+		return colaboradores;
 	}
 
 
-
-	public void setNomeColaborador(String nomeColaborador) {
-		this.nomeColaborador = nomeColaborador;
+	public void setColaboradores(List<Colaborador> colaboradores) {
+		this.colaboradores = colaboradores;
 	}
 
 
-
-	public String getNomeCliente() {
-		return nomeCliente;
+	public List<Cliente> getClientes() {
+		clientes = new ArrayList<Cliente>();
+		clientes.add(new Cliente(1, "Robson"));
+		clientes.add(new Cliente(2, "Robson"));
+		clientes.add(new Cliente(3, "Robson"));
+		clientes.add(new Cliente(4, "Robson"));		
+		return clientes;
 	}
 
 
-
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 	
 }
