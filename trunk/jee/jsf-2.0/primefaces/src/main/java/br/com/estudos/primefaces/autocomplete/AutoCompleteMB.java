@@ -1,6 +1,5 @@
 package br.com.estudos.primefaces.autocomplete;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -10,17 +9,15 @@ public class AutoCompleteMB {
 	
 	private String name;
 	
-	public List<String> simpleAutoComplete(String query){
-		
-		List<String> names = new ArrayList<String>();
-		
-		names.add("Robson");
-		names.add("Robson");
-		names.add("Robson");
-		names.add("Robson");
-		
-		return names;
+	private Person person;
+	
+	public List<String> simpleAutoComplete(String startNames){		
+		return AutoCompleteHelper.getNames(startNames);
 	}
+	
+	public List<Person> beanAutoComplete(String startNames){		
+		return AutoCompleteHelper.getPersons(startNames);
+	}	
 
 	public String getName() {
 		return name;
@@ -29,5 +26,12 @@ public class AutoCompleteMB {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
 }

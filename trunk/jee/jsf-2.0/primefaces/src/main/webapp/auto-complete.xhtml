@@ -9,10 +9,28 @@
   
   <ui:define name="body">
 	  <h:form >
-	  	<h:outputLabel value="Name:" for="autocomplete" />
-	  	<p:autoComplete id="autocomplete"
-	  		value="#{autoCompleteMB.name}" 
-	  		completeMethod="#{autoCompleteMB.simpleAutoComplete}"/>  		  		  		  	
-	  </h:form>					
+		<fieldset><legend>Simple AutoComplete</legend>
+			<h:outputLabel value="Name:" for="simple-autocomplete" />
+	  		<p:autoComplete id="simple-autocomplete"
+	  			value="#{autoCompleteMB.name}" 
+	  			completeMethod="#{autoCompleteMB.simpleAutoComplete}"/>
+		</fieldset>		  		  		  		  	
+	  </h:form>
+	  
+	  <h:form >
+		<fieldset><legend>Bean AutoComplete</legend>
+			<h:outputLabel value="Name:" for="bean-autocomplete" />
+	  		<p:autoComplete id="bean-autocomplete"
+	  			value="#{autoCompleteMB.person}"
+	  			var="person"
+	  			itemLabel="#{person.name}"
+	  			itemValue="#{person}" 
+	  			completeMethod="#{autoCompleteMB.beanAutoComplete}"
+	  			onSelectUpdate="person-id"
+	  			/>
+	  		<h:outputText value="#{autoCompleteMB.person.id}" id="person-id"/>
+	  		<h:commandButton  value="Submit" />
+		</fieldset>		  		  		  		  	
+	  </h:form>	  					
   </ui:define>
 </ui:composition>
