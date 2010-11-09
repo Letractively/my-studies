@@ -1,13 +1,3 @@
-function temp(data){
-	//if ( data.status == "begin")
-		//$('#ajaxLoader').show();	
-	//else 
-	if (data.status == "success")
-		$("table").tablesorter();
-}
-
-
-
 // menu .....
 
 

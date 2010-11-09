@@ -17,28 +17,63 @@ import br.com.lowoffice.custas.LancamentoDeCustaBean;
 /**
  * @author robson
  *
- * Manager Bean para página de /custos/novo-custo.xhtml
+ * Manager Bean para página de /custas/novo-lacamento.xhtml
  *
  */
 @ManagedBean()
 @SessionScoped // TODO: @ViewScoped ? débito técnico 
 public class NovoLancamentoMB extends BaseMB{
 	
-	// TODO: cdi ?
-	private List<Custa> custas;
-
-	// TODO: cdi ?
-	private Custa custa;
-
 	
+	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
+		
+	// TODO: cdi ?
+	/**
+	 * Custa para adição de custas 
+	 */
+	private Custa custa;
+	
+	/**
+	 * Colaborador selecionada na view para para adcionar nova custa 
+	 */
+	private Colaborador colaborador;
+	
+	
+	/**
+	 * Cliente selecionada na view para para adcionar nova custa 
+	 */	
+	private Cliente cliente;
+	
+	
+
+	// TODO: futuro ejb 3.1 !! debito técnico e fechamento das regras do serviço
+	private LancamentoDeCusta lancamentoDeCusta;
+	
+	
+	
+	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<
+	
+	/**
+	 * 
+	 * Colaboradore do sistema
+	 * 
+	 */
 	private List<Colaborador> colaboradores;
 	
 
+	/**
+	 * 
+	 * Clientes do sistema
+	 * 
+	 */
 	private List<Cliente> clientes;
 	
+	// TODO: cdi ?
+	/**
+	 * Custas adicionadas ( montagem da tabela )
+	 */
+	private List<Custa> custas;
 	
-	// TODO: futuro ejb 3.1 !! debito técnico e fechamento das regras do serviço
-	private LancamentoDeCusta lancamentoDeCusta;
 	
 	
 	//TODO: e esse cara temos que ter mesmo ?
@@ -46,13 +81,59 @@ public class NovoLancamentoMB extends BaseMB{
 	public void init(){
 		custa = new Custa();
 		custas = new ArrayList<Custa>();
+		colaborador = new Colaborador();
+		cliente = new Cliente();
 		lancamentoDeCusta = new LancamentoDeCustaBean();
 	}
 	
 	
-	public void addCusta(){
+	
+	public void addCusta(){		
+		custa = lancamentoDeCusta.adicionarCusta(custa, cliente, colaborador);
+		custas.add(custa);
 		custa = new Custa();
+		
+		// TODO: esses tem que ser selecionado direto na página via componente que vamos construir
+		colaborador = new Colaborador();
+		cliente = new Cliente();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -107,6 +188,30 @@ public class NovoLancamentoMB extends BaseMB{
 
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
+	}
+
+
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+
+
+	public void setColaborador(Colaborador colaborador) {
+		this.colaborador = colaborador;
+	}
+
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	
 }
