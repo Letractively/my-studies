@@ -1,17 +1,27 @@
 <?xml version="1.0"?>
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-      http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-   version="2.0">
-	<navigation-rule>
-		<display-name>menu</display-name>
-		<navigation-case>
-			<from-outcome>novo-lacamento</from-outcome>
-			<to-view-id>/custas/novo-lancamento.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-  <!--  Empty for this simple case. Managed bean name automatically
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <navigation-rule>
+  <display-name>menu</display-name>
+  <navigation-case>
+   <from-outcome>novo-lancamento</from-outcome>
+   <to-view-id>/custas/novo-lancamento.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>novo-agendamento</from-outcome>
+   <to-view-id>/agenda/novo-agendamento.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>agendamentos</from-outcome>
+   <to-view-id>/agenda/agendamentos.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>lancamentos</from-outcome>
+   <to-view-id>/custas/lacamentos.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <!--  Empty for this simple case. Managed bean name automatically
         derived from bean class name. Bean scope is request by default.
         Results pages automatically derived from return value of action controller.  
         
