@@ -6,6 +6,9 @@ package br.com.lawoffice.dominio;
 import java.util.List;
 
 /**
+ * 
+ * Representa um cliente do escritório
+ * 
  * @author robson
  *
  */
@@ -15,13 +18,18 @@ public class Cliente{
 	// TODO: long ou Long
 	private long id;
 	
+	
 	private String nome;
 	
+	
 	private List<Lancamento> lancamentos;
+	
+	
+	private Conta conta;
 
 	
-	public Cliente() {
-	}
+	public Cliente() {}
+	
 	
 	// TODO: construtor temporario
 	public Cliente(long id, String nome) {
@@ -54,6 +62,12 @@ public class Cliente{
 	public void setLancamentos(List<Lancamento> lancamentos) {
 		this.lancamentos = lancamentos;
 	}
-	
-	
+
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
 }

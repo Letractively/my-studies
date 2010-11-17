@@ -1,19 +1,27 @@
 package br.com.lowoffice.custas;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.math.BigDecimal;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.lawoffice.caixa.Caixa;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
+import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.Custa;
+import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
 public class LancamentoDeCustaBeanTest {
 
 	
-	private LancamentoDeCusta lcTest;
+	private LancamentoDeCustaBean lcTest;
+	
+	private Caixa caixa = mock(Caixa.class);
 	
 	
 	@Before
@@ -21,7 +29,14 @@ public class LancamentoDeCustaBeanTest {
 		lcTest = new LancamentoDeCustaBean();
 	}
 
-
+	
+	@After
+	public void tearDown() throws Exception {
+		reset(caixa);
+	}	
+	
+	
+	
 	@Test
 	public void testAdicionarCustaNotNullReturnCusta(){
 		assertNotNull( 
@@ -29,7 +44,7 @@ public class LancamentoDeCustaBeanTest {
 					new Custa(), 
 					new Cliente(), 
 					new Colaborador()
-				).getLancamento()
+				)
 			);
 	}
 	
@@ -77,12 +92,86 @@ public class LancamentoDeCustaBeanTest {
 					new Cliente(),
 					new Colaborador()).getLancamento()
 			);
-	}	
-
+	}
+	
+	
+	
 	
 	@Test
-	public void testFecharLacamento() {
-		//fail("Not yet implemented");
+	public void testAdicionarCustaGetTotalLancamento(){
+		
+		Cliente c = new Cliente();
+		Colaborador cl = new Colaborador();
+		
+		Custa c1 = new Custa();
+		c1.setValor(new BigDecimal(22.00));
+		
+		Custa c2 = new Custa();
+		c2.setValor(new BigDecimal(10.00));
+		
+		
+		// add custa 1
+		lcTest.adicionarCusta(
+				c1,  
+				c, 
+				cl
+		);
+		
+		// add custa 2 no mesmo lançamento		
+		assertEquals(
+			new BigDecimal(32.00), 
+			lcTest.adicionarCusta(
+					c2,  
+					c, 
+					cl
+				).getLancamento().getTotal()
+		);
+		
+		
 	}
+	
+	
+	
+	
+	
+	@Test(expected=LacamentoDeCustaException.class)
+	public void testFecharLacamentoSemLacamentosAFechar() throws LacamentoDeCustaException{		
+		lcTest.fecharLacamento();
+	}
+	
+	
+	@Test()
+	public void testFecharLacamentoComLacamentos() throws LacamentoDeCustaException{
+		
+		Exception ex = null;
+		
+		
+		// TODO: devido a falta de validação ( débito  técnico beans validation )
+		// está disparando um nullpoi... quando pega o total do lançamento
+		// e a custa não tem valor .. isso deve ser corrigido ao add as validações
+		// portanto para esse teste nesse momento add o cara abaixo
+		// assim que as validações forem add remover o cara e rodar o teste
+		Custa custa = new Custa();
+		custa.setValor(new BigDecimal(20.0));
+		
+		
+		try {
+			lcTest.adicionarCusta(
+					custa,
+					new Cliente(), 
+					new Colaborador()
+				);
+							
+			lcTest.setCaixa(caixa);			
+			lcTest.fecharLacamento();
+			
+			
+		} catch (Exception e) {
+			ex = e;
+		}
+		
+		assertNull(ex);
+	}
+	
 
 }

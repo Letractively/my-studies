@@ -47,10 +47,19 @@
   		<type>jar</type>
   		<scope>test</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-core</artifactId>
+  		<version>1.8.5</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
   </dependencies>
 	<modules>
 		<module>lawoffice-custas</module>
 		<module>lawoffice-web</module>
 		<module>lawoffice-dominio</module>
+		<module>lawoffice-caixa</module>
+		<module>lawoffice-ear</module>
 	</modules>
 </project>

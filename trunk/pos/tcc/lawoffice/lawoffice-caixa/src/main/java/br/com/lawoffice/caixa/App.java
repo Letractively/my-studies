@@ -1,4 +1,4 @@
-package br.com.lowoffice;
+package br.com.lawoffice.caixa;
 
 /**
  * Hello world!

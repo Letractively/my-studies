@@ -3,6 +3,8 @@
  */
 package br.com.lawoffice.dominio;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +30,11 @@ public class Lancamento {
 	private List<Custa> custas;
 	
 	
+	
+	// TODO; para o método que recebe parametros abaixo
+	// a necessidade de refatorar para validar os mesmo
+	// como estou com débito técnico com beans validation
+	// vamos refatorar após fechar o débito técnico
 	public Lancamento adicionarCliente(Cliente cliente) {
 		setCliente(cliente);
 		return this;
@@ -44,10 +51,33 @@ public class Lancamento {
 		setDataLancamento(new Date());
 		return this;
 	}
+
+	
+	public Lancamento addCusta(Custa custa){
+		if(custas == null)
+			custas = new ArrayList<Custa>();
+		custas.add(custa);
+		return this;
+	}
 	
 	
-	
-	
+	/**
+	 * Retorna o total do lançamento.
+	 * <br><br>
+	 * <b>Obs:</b> Se não houver nenhuma custa retorna um {@link BigDecimal} com valor 0.0
+	 * 
+	 * @return {@link BigDecimal}
+	 */
+	public BigDecimal getTotal(){
+		BigDecimal total = new BigDecimal(0.0);
+		if(custas == null || custas.isEmpty())
+			return total;
+		
+		for (Custa custa : custas)
+			total = total.add(custa.getValor());
+		
+		return total;
+	}
 	
 	
 	
@@ -91,5 +121,5 @@ public class Lancamento {
 	public void setCustas(List<Custa> custas) {
 		this.custas = custas;
 	}
-	
+
 }

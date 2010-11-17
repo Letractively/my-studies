@@ -6,6 +6,9 @@ package br.com.lawoffice.dominio;
 import java.util.List;
 
 /**
+ * 
+ * Representa uma pessoa que trabalha no escritório.
+ * 
  * @author robson
  *
  */
@@ -18,6 +21,8 @@ public class Colaborador{
 
 	private List<Lancamento> lancamentos;
 
+	private Conta conta;
+	
 	
 	public Colaborador(){
 		
@@ -53,7 +58,16 @@ public class Colaborador{
 	public void setLancamentos(List<Lancamento> lancamentos) {
 		this.lancamentos = lancamentos;
 	}
-	
 
+
+	public Conta getConta() {
+		return conta;
+	}
+
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+	
 
 }

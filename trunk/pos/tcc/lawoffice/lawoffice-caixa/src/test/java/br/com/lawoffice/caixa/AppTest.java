@@ -1,4 +1,4 @@
-package br.com.lowoffice;
+package br.com.lawoffice.caixa;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
