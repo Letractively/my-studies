@@ -19,6 +19,27 @@
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-caixa</artifactId>
   		<version>1.0</version>
+  		<type>ejb</type>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-custas</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-web</artifactId>
+  		<version>1.0</version>
+  		<type>war</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-dominio</artifactId>
+  		<version>1.0</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
   	</dependency>
   </dependencies>
   <properties>
@@ -32,8 +53,19 @@
         <artifactId>maven-ear-plugin</artifactId>
         <version>2.4.2</version>
         <configuration>
-            <version>6</version>
-            <defaultLibBundleDir>lib</defaultLibBundleDir>
+           <version>6</version>
+           <defaultLibBundleDir>lib</defaultLibBundleDir>
+           <modules>
+          	 <ejbModule>
+               <groupId>br.com</groupId>
+               <artifactId>lawoffice-custas</artifactId>        
+           	 </ejbModule>           	 	
+             <webModule>
+               <groupId>br.com</groupId>
+               <artifactId>lawoffice-web</artifactId>
+               <contextRoot>/lawoffice</contextRoot>
+             </webModule>
+          </modules>            
         </configuration>
       </plugin>
     </plugins>
