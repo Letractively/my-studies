@@ -59,7 +59,15 @@
           	 <ejbModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-custas</artifactId>        
-           	 </ejbModule>           	 	
+           	 </ejbModule>
+           	 <ejbModule>
+               <groupId>br.com</groupId>
+               <artifactId>lawoffice-caixa</artifactId>        
+           	 </ejbModule>           	 
+           	 <jarModule>
+		  		<groupId>br.com</groupId>
+		  		<artifactId>lawoffice-dominio</artifactId>           	 
+           	 </jarModule>
              <webModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-web</artifactId>

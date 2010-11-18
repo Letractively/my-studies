@@ -10,6 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.lawoffice.caixa.Caixa;
+import br.com.lawoffice.caixa.CaixaLocal;
+import br.com.lawoffice.caixa.CaixaRemote;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -21,7 +23,7 @@ public class LancamentoDeCustaBeanTest {
 	
 	private LancamentoDeCustaBean lcTest;
 	
-	private Caixa caixa = mock(Caixa.class);
+	private CaixaRemote caixa = mock(CaixaRemote.class);
 	
 	
 	@Before

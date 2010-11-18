@@ -34,9 +34,9 @@
   		<url>http://download.java.net/maven/2/</url>
   	</repository>
   	<repository>
-  		<id>jboss.org</id>
-  		<name>jboss maven repo</name>
-  		<url>http://repository.jboss.org/maven2/</url>
+  		<id>jboss repo</id>
+  		<name>jboss repo for maven</name>
+  		<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
   	</repository>
   </repositories>
   <dependencies>

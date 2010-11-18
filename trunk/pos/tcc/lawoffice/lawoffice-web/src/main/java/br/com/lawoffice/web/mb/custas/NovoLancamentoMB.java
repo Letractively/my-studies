@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -13,6 +14,7 @@ import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
 import br.com.lowoffice.custas.LancamentoDeCusta;
 import br.com.lowoffice.custas.LancamentoDeCustaBean;
+import br.com.lowoffice.custas.LancamentoDeCustaLocal;
 
 /**
  * @author robson
@@ -46,8 +48,8 @@ public class NovoLancamentoMB extends BaseMB{
 	
 	
 
-	// TODO: futuro ejb 3.1 !! debito técnico e fechamento das regras do serviço
-	private LancamentoDeCusta lancamentoDeCusta;
+	@EJB
+	private LancamentoDeCustaLocal lancamentoDeCusta;
 	
 	
 	
@@ -83,7 +85,6 @@ public class NovoLancamentoMB extends BaseMB{
 		custas = new ArrayList<Custa>();
 		colaborador = new Colaborador();
 		cliente = new Cliente();
-		lancamentoDeCusta = new LancamentoDeCustaBean();
 	}
 	
 	

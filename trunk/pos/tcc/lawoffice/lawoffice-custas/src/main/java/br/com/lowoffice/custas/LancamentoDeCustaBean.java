@@ -8,7 +8,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateful;
+
 import br.com.lawoffice.caixa.Caixa;
+import br.com.lawoffice.caixa.CaixaLocal;
+import br.com.lawoffice.caixa.CaixaRemote;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
@@ -16,18 +23,22 @@ import br.com.lawoffice.dominio.Lancamento;
 import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
 /**
- * TODO: mock para para validação do serviço...
+ *  TODO: javadoc 
  * 
  * @author robson
  *
  */
+@Stateful
+@Local(LancamentoDeCustaLocal.class)
+@Remote(LancamentoDeCustaRemote.class)
 public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	
 	
 	/**
 	 * Caixa para fechamento do lançamento , debito para o cliente , credito para o colaborador
 	 */
-	private Caixa caixa;
+	@EJB()
+	private CaixaRemote caixa;
 	
 	
 	
@@ -116,10 +127,8 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 
 
 
-	public void setCaixa(Caixa caixa) {
+	public void setCaixa(CaixaRemote caixa) {
 		this.caixa = caixa;
 	}
-	
-	
-	
+
 }

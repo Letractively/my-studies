@@ -2,7 +2,7 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
- <navigation-rule>
+ <navigation-rule id="menu">
   <display-name>menu</display-name>
   <navigation-case>
    <from-outcome>novo-lancamento</from-outcome>
@@ -27,6 +27,18 @@
   <navigation-case>
    <from-outcome>debito</from-outcome>
    <to-view-id>/caixa/debito.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>fluxo</from-outcome>
+   <to-view-id>/caixa/fluxo.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>cliente</from-outcome>
+   <to-view-id>/dados/cliente.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>colaborador</from-outcome>
+   <to-view-id>/dados/colaborador.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <!--  Empty for this simple case. Managed bean name automatically
