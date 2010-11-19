@@ -15,6 +15,7 @@ import br.com.lawoffice.web.mb.BaseMB;
 import br.com.lowoffice.custas.LancamentoDeCusta;
 import br.com.lowoffice.custas.LancamentoDeCustaBean;
 import br.com.lowoffice.custas.LancamentoDeCustaLocal;
+import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
 /**
  * @author robson
@@ -48,6 +49,9 @@ public class NovoLancamentoMB extends BaseMB{
 	
 	
 
+	/**
+	 * Serviço de lançamentos de custas 
+	 */
 	@EJB
 	private LancamentoDeCustaLocal lancamentoDeCusta;
 	
@@ -57,7 +61,7 @@ public class NovoLancamentoMB extends BaseMB{
 	
 	/**
 	 * 
-	 * Colaboradore do sistema
+	 * Colaboradores cadastrados no  sistema
 	 * 
 	 */
 	private List<Colaborador> colaboradores;
@@ -65,7 +69,7 @@ public class NovoLancamentoMB extends BaseMB{
 
 	/**
 	 * 
-	 * Clientes do sistema
+	 * Clientes cadastrados no sistema
 	 * 
 	 */
 	private List<Cliente> clientes;
@@ -101,7 +105,15 @@ public class NovoLancamentoMB extends BaseMB{
 	
 	
 	
-	
+	public void fecharLancamento(){
+		try {
+			lancamentoDeCusta.fecharLacamento();
+			custas.clear();
+		} catch (LacamentoDeCustaException e){
+			// TODO: 
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

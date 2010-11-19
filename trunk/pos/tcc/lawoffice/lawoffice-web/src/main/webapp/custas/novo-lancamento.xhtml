@@ -100,8 +100,14 @@
 					-->
 				
 				</h:dataTable>
+			</div>
+			
+			<div>
+				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}">
+					<f:ajax render="tableCustas" />
+				</h:commandButton>
 			</div>		
-		
+			
 		</div>
 		
 	</h:form>
@@ -110,7 +116,7 @@
   
   <ui:define name="js">
   	<h:outputScript name="jquery.tablesorter.min.js" library="js" />
-  	<h:outputScript name="novo-lacamento.js" library="js"/>
+  	<h:outputScript name="novo-lancamento.js" library="js"/>
   </ui:define>
   
 </ui:composition>

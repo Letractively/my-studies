@@ -1,7 +1,12 @@
 package br.com.lowoffice.custas;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 
 import java.math.BigDecimal;
 
@@ -9,12 +14,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.lawoffice.caixa.Caixa;
 import br.com.lawoffice.caixa.CaixaLocal;
-import br.com.lawoffice.caixa.CaixaRemote;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
-import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
@@ -22,6 +24,7 @@ public class LancamentoDeCustaBeanTest {
 
 	
 	private LancamentoDeCustaBean lcTest;
+	
 	
 	private CaixaLocal caixa = mock(CaixaLocal.class);
 	
@@ -39,6 +42,9 @@ public class LancamentoDeCustaBeanTest {
 	
 	
 	
+	/**
+	 * TODO: ver com endo se java doc de teste é relevante o melhor o nomes dos métodos de teste 
+	 */
 	@Test
 	public void testAdicionarCustaNotNullReturnCusta(){
 		assertNotNull( 
