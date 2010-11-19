@@ -23,7 +23,7 @@ public class LancamentoDeCustaBeanTest {
 	
 	private LancamentoDeCustaBean lcTest;
 	
-	private CaixaRemote caixa = mock(CaixaRemote.class);
+	private CaixaLocal caixa = mock(CaixaLocal.class);
 	
 	
 	@Before
