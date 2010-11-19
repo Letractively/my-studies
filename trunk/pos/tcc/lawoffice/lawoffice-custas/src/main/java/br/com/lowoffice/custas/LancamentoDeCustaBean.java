@@ -37,8 +37,8 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	/**
 	 * Caixa para fechamento do lançamento , debito para o cliente , credito para o colaborador
 	 */
-	@EJB()
-	private CaixaRemote caixa;
+	@EJB(name="br.com.lawoffice.caixa.CaixaBean")
+	private CaixaLocal caixa;
 	
 	
 	
@@ -127,8 +127,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 
 
 
-	public void setCaixa(CaixaRemote caixa) {
+	public void setCaixa(CaixaLocal caixa) {
 		this.caixa = caixa;
 	}
-
 }
