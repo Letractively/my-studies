@@ -87,8 +87,8 @@ public class NovoLancamentoMB extends BaseMB{
 	public void init(){
 		custa = new Custa();
 		custas = new ArrayList<Custa>();
-		colaborador = new Colaborador();
-		cliente = new Cliente();
+		colaborador = new Colaborador(1L, "ADV1");
+		cliente = new Cliente(1L, "Robson");
 	}
 	
 	
@@ -98,9 +98,11 @@ public class NovoLancamentoMB extends BaseMB{
 		custas.add(custa);
 		custa = new Custa();
 		
-		// TODO: esses tem que ser selecionado direto na página via componente que vamos construir
+/*		// TODO: esses tem que ser selecionado direto na página via componente que vamos construir
 		colaborador = new Colaborador();
-		cliente = new Cliente();
+		cliente = new Cliente();*/
+		
+		
 	}
 	
 	
@@ -180,6 +182,9 @@ public class NovoLancamentoMB extends BaseMB{
 		colaboradores.add(new Colaborador(2 , "Adv 2"));
 		colaboradores.add(new Colaborador(3 , "Adv 3"));
 		colaboradores.add(new Colaborador(4 , "Adv 4"));
+		// insert into COLABORADOR ( nome ) values ( "ADV 1" );
+		// insert into CLIENTE ( nome ) values ( "Robson" );
+		
 		return colaboradores;
 	}
 

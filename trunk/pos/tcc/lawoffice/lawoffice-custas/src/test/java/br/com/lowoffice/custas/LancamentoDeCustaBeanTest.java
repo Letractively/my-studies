@@ -1,14 +1,11 @@
 package br.com.lowoffice.custas;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertSame;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.reset;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
+
+import javax.persistence.EntityManager;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,13 +17,21 @@ import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
+/**
+ * @author robson
+ *
+ */
 public class LancamentoDeCustaBeanTest {
 
 	
 	private LancamentoDeCustaBean lcTest;
 	
 	
-	private CaixaLocal caixa = mock(CaixaLocal.class);
+	
+	private CaixaLocal caixaMock = mock(CaixaLocal.class);
+	
+
+	private EntityManager entityManagerMock = mock(EntityManager.class);
 	
 	
 	@Before
@@ -36,8 +41,7 @@ public class LancamentoDeCustaBeanTest {
 
 	
 	@After
-	public void tearDown() throws Exception {
-		reset(caixa);
+	public void tearDown() throws Exception{
 	}	
 	
 	
@@ -148,10 +152,8 @@ public class LancamentoDeCustaBeanTest {
 	}
 	
 	
-	@Test()
+	@Test(expected=LacamentoDeCustaException.class)
 	public void testFecharLacamentoComLacamentos() throws LacamentoDeCustaException{
-		
-		Exception ex = null;
 		
 		
 		// TODO: devido a falta de validação ( débito  técnico beans validation )
@@ -163,22 +165,21 @@ public class LancamentoDeCustaBeanTest {
 		custa.setValor(new BigDecimal(20.0));
 		
 		
-		try {
+			
 			lcTest.adicionarCusta(
 					custa,
 					new Cliente(), 
 					new Colaborador()
 				);
 							
-			lcTest.setCaixa(caixa);			
+			lcTest.setCaixa(caixaMock);
+			lcTest.setEntityManager(entityManagerMock);
 			lcTest.fecharLacamento();
-			
-			
-		} catch (Exception e) {
-			ex = e;
-		}
-		
-		assertNull(ex);
+
+			// chamada para verificar se realmente
+			// ocorreu a limpeza dos lançamentos
+			// após realizar o fechamento
+			lcTest.fecharLacamento();
 	}
 	
 

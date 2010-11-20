@@ -5,6 +5,15 @@ package br.com.lawoffice.dominio;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 /**
  * 
  * Representa um cliente do escritório
@@ -12,19 +21,25 @@ import java.util.List;
  * @author robson
  *
  */
+@Entity
+@Table(name="CLIENTE")
 public class Cliente{
 
 	
 	// TODO: long ou Long
+	@Id
+	@GeneratedValue
+	@Column(name="ID")
 	private long id;
 	
-	
+	@Column(name="NOME")
 	private String nome;
 	
-	
+	@OneToMany(mappedBy="cliente")
 	private List<Lancamento> lancamentos;
 	
-	
+	// TODO: transient até fechar o serviço de caixa
+	@Transient
 	private Conta conta;
 
 	

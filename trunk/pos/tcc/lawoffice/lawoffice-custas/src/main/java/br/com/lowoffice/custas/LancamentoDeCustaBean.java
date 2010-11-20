@@ -12,10 +12,10 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import br.com.lawoffice.caixa.Caixa;
 import br.com.lawoffice.caixa.CaixaLocal;
-import br.com.lawoffice.caixa.CaixaRemote;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
@@ -37,19 +37,23 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	/**
 	 * Caixa para fechamento do lançamento , debito para o cliente , credito para o colaborador
 	 */
-	@EJB(name="br.com.lawoffice.caixa.CaixaBean")
+	@EJB()
 	private CaixaLocal caixa;
 	
 	
 	
-	public LancamentoDeCustaBean() {
-		// TODO Auto-generated constructor stub
-	}
+	/**
+	 * Persisti os lançamentos 
+	 */
+	@PersistenceContext(unitName="lawoffice-custas")
+	private EntityManager entityManager;
+	
+	
 	
 	/**
 	 *	Mapa com os laçamento  
 	 */
-	private Map<Map<Cliente, Colaborador>, Lancamento> mapsLacamentos;
+	private Map<Map<Cliente, Colaborador>, Lancamento> mapsLacamentos = new HashMap<Map<Cliente,Colaborador>, Lancamento>();
 	
 	
 	
@@ -70,12 +74,10 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	
 	
 
-	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador) {
-		if(mapsLacamentos == null)
-			mapsLacamentos = new HashMap<Map<Cliente,Colaborador>, Lancamento>(); // TODO: relembrar a diferença desse cara
+	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
 		
-		// todo: guava ??
-		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>();
+		// TODO: guava ??
+		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>(); 
 		chave.put(cliente, colaborador);
 		
 
@@ -96,7 +98,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	@Override
 	public void fecharLacamento()throws LacamentoDeCustaException{
 		
-		if(mapsLacamentos == null)
+		if(mapsLacamentos.isEmpty())
 			throw new LacamentoDeCustaException("Não há lançamento(s) para fechar");
 		
 	
@@ -104,6 +106,8 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		
 		
 		for (Lancamento lancamento : lancamentos) {
+			
+			entityManager.persist(lancamento);
 			
 			caixa.creditar(
 				lancamento.getColaborador().getConta(), 
@@ -114,15 +118,9 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 				lancamento.getCliente().getConta(), 
 				lancamento.getTotal()
 			);
-			
-			// entityManager.persist(lancamentos)
-						
 		}
 		
-		
-		
-		
-		// TODO Auto-generated method stub		
+		mapsLacamentos.clear();
 	}
 
 
@@ -130,4 +128,10 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	public void setCaixa(CaixaLocal caixa) {
 		this.caixa = caixa;
 	}
+
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
 }

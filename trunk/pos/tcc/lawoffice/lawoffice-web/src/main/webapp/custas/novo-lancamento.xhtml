@@ -103,8 +103,8 @@
 			</div>
 			
 			<div>
-				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}">
-					<f:ajax render="tableCustas" />
+				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" value="Fechar Lançamento" id="btnFecharLancamento" >
+					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
 				</h:commandButton>
 			</div>		
 			
