@@ -61,5 +61,6 @@
 		<module>lawoffice-dominio</module>
 		<module>lawoffice-caixa</module>
 		<module>lawoffice-ear</module>
+		<module>lawoffice-dados</module>
 	</modules>
 </project>

@@ -182,9 +182,6 @@ public class NovoLancamentoMB extends BaseMB{
 		colaboradores.add(new Colaborador(2 , "Adv 2"));
 		colaboradores.add(new Colaborador(3 , "Adv 3"));
 		colaboradores.add(new Colaborador(4 , "Adv 4"));
-		// insert into COLABORADOR ( nome ) values ( "ADV 1" );
-		// insert into CLIENTE ( nome ) values ( "Robson" );
-		
 		return colaboradores;
 	}
 
@@ -194,7 +191,7 @@ public class NovoLancamentoMB extends BaseMB{
 	}
 
 
-	public List<Cliente> getClientes() {
+	public List<Cliente> getClientes(){
 		clientes = new ArrayList<Cliente>();
 		clientes.add(new Cliente(1, "Robson"));
 		clientes.add(new Cliente(2, "Robson"));
