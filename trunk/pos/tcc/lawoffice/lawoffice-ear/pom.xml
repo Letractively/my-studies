@@ -32,14 +32,18 @@
   		<artifactId>lawoffice-web</artifactId>
   		<version>1.0</version>
   		<type>war</type>
-  		<scope>compile</scope>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-dominio</artifactId>
   		<version>1.0</version>
   		<type>jar</type>
-  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-dados</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
   	</dependency>
   </dependencies>
   <properties>
@@ -63,11 +67,11 @@
            	 <ejbModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-caixa</artifactId>        
-           	 </ejbModule>           	 
-           	 <jarModule>
-		  		<groupId>br.com</groupId>
-		  		<artifactId>lawoffice-dominio</artifactId>           	 
-           	 </jarModule>
+           	 </ejbModule>
+           	 <ejbModule>
+               <groupId>br.com</groupId>
+               <artifactId>lawoffice-dados</artifactId>        
+           	 </ejbModule>
              <webModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-web</artifactId>

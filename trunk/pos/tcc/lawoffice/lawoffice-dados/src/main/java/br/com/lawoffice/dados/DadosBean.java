@@ -5,7 +5,11 @@ package br.com.lawoffice.dados;
 
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
 /**
@@ -16,8 +20,12 @@ import javax.persistence.criteria.CriteriaQuery;
  * @author robson
  *
  */
+@Stateless
+@Local(DadosLocal.class)
+@Remote(DadosRemote.class)
 public class DadosBean implements Dados {
 
+	@PersistenceContext(unitName="lawoffice-dados")
 	EntityManager entityManager;
 	
 	
@@ -57,7 +65,9 @@ public class DadosBean implements Dados {
 		
 		return entityManager.createQuery(criteriaQuery).getResultList();
 	}
-	
-	
-	
+
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 }

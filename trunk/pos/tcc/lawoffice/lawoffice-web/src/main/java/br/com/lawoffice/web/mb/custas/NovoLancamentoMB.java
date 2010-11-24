@@ -6,14 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
+import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
-import br.com.lowoffice.custas.LancamentoDeCusta;
-import br.com.lowoffice.custas.LancamentoDeCustaBean;
 import br.com.lowoffice.custas.LancamentoDeCustaLocal;
 import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
 
@@ -24,7 +23,7 @@ import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
  *
  */
 @ManagedBean()
-@SessionScoped // TODO: @ViewScoped ? débito técnico 
+@ViewScoped // TODO: @ViewScoped ? débito técnico 
 public class NovoLancamentoMB extends BaseMB{
 	
 	
@@ -37,15 +36,15 @@ public class NovoLancamentoMB extends BaseMB{
 	private Custa custa;
 	
 	/**
-	 * Colaborador selecionada na view para para adcionar nova custa 
+	 * ID do Colaborador selecionada na view para para adcionar nova custa 
 	 */
-	private Colaborador colaborador;
+	private Long colaboradorID;
 	
 	
 	/**
-	 * Cliente selecionada na view para para adcionar nova custa 
+	 * ID do Cliente selecionada na view para para adcionar nova custa 
 	 */	
-	private Cliente cliente;
+	private Long clienteID;
 	
 	
 
@@ -54,6 +53,13 @@ public class NovoLancamentoMB extends BaseMB{
 	 */
 	@EJB
 	private LancamentoDeCustaLocal lancamentoDeCusta;
+	
+	
+	/**
+	 * Serviço de dados ( CRUD ) 
+	 */
+	@EJB
+	private DadosLocal dados;
 	
 	
 	
@@ -87,26 +93,23 @@ public class NovoLancamentoMB extends BaseMB{
 	public void init(){
 		custa = new Custa();
 		custas = new ArrayList<Custa>();
-		colaborador = new Colaborador(1L, "ADV1");
-		cliente = new Cliente(1L, "Robson");
+		clientes = dados.listar(Cliente.class);
+		colaboradores = dados.listar(Colaborador.class);
 	}
-	
 	
 	
 	public void addCusta(){		
-		custa = lancamentoDeCusta.adicionarCusta(custa, cliente, colaborador);
-		custas.add(custa);
-		custa = new Custa();
-		
-/*		// TODO: esses tem que ser selecionado direto na página via componente que vamos construir
-		colaborador = new Colaborador();
-		cliente = new Cliente();*/
-		
-		
+		custas.add(
+			lancamentoDeCusta.adicionarCusta(
+				custa, 
+				getClienteSelecionado(), 
+				getColaboradorSelecionado()
+			)
+		);
+		custa = new Custa();		
 	}
 	
-	
-	
+
 	public void fecharLancamento(){
 		try {
 			lancamentoDeCusta.fecharLacamento();
@@ -118,41 +121,22 @@ public class NovoLancamentoMB extends BaseMB{
 	}
 	
 	
+	private Colaborador getColaboradorSelecionado() {
+		for (Colaborador colaborador: colaboradores)
+			if( colaborador.getId().equals(colaboradorID))
+				return colaborador;		
+		return null;
+	}
+
+
+	private Cliente getClienteSelecionado() {
+		for (Cliente cliente : clientes)
+			if( cliente.getId().equals(clienteID))
+				return cliente;
+		return null;
+	}	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	// gets e sets ...
 	public Custa getCusta() {
@@ -173,60 +157,40 @@ public class NovoLancamentoMB extends BaseMB{
 		this.custas = custas;
 	}
 
-
 	
 	// 
 	public List<Colaborador> getColaboradores() {
-		colaboradores = new ArrayList<Colaborador>();
-		colaboradores.add(new Colaborador(1 , "Adv 1"));
-		colaboradores.add(new Colaborador(2 , "Adv 2"));
-		colaboradores.add(new Colaborador(3 , "Adv 3"));
-		colaboradores.add(new Colaborador(4 , "Adv 4"));
 		return colaboradores;
 	}
-
 
 	public void setColaboradores(List<Colaborador> colaboradores) {
 		this.colaboradores = colaboradores;
 	}
 
-
-	public List<Cliente> getClientes(){
-		clientes = new ArrayList<Cliente>();
-		clientes.add(new Cliente(1, "Robson"));
-		clientes.add(new Cliente(2, "Robson"));
-		clientes.add(new Cliente(3, "Robson"));
-		clientes.add(new Cliente(4, "Robson"));		
+	public List<Cliente> getClientes(){		
 		return clientes;
 	}
 
-
+	
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
 
+	public Long getColaboradorID() {
+		return colaboradorID;
+	}
 
-
-	public Colaborador getColaborador() {
-		return colaborador;
+	public void setColaboradorID(Long colaboradorID) {
+		this.colaboradorID = colaboradorID;
 	}
 
 
-
-	public void setColaborador(Colaborador colaborador) {
-		this.colaborador = colaborador;
+	public Long getClienteID() {
+		return clienteID;
 	}
 
-
-
-	public Cliente getCliente() {
-		return cliente;
+	public void setClienteID(Long clienteID) {
+		this.clienteID = clienteID;
 	}
 
-
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
 }

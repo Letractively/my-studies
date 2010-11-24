@@ -21,7 +21,7 @@ public class Custa {
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	private long id;
+	private Long id;
 	
 	//TODO: debito tecnico com bigdecimal , usar ou não ?
 	@Column(name="VALOR", precision = 19 , scale = 2)
@@ -39,10 +39,21 @@ public class Custa {
 	
 	// >>>>>>>>>> gets e set <<<<<<<<<<<<<<<<<
 
+	
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public BigDecimal getValor() {
 		return valor;
 	}
-
+	
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}

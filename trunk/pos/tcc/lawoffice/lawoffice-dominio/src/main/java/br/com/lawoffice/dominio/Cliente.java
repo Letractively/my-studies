@@ -30,7 +30,7 @@ public class Cliente{
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	private long id;
+	private Long id;
 	
 	@Column(name="NOME")
 	private String nome;
@@ -54,11 +54,12 @@ public class Cliente{
 	}
 
 
-	public long getId() {
+
+	public Long getId() {
 		return id;
 	}
-
-	public void setId(long id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
 

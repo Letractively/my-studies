@@ -9,6 +9,6 @@ package br.com.lawoffice.dados;
  * @author robson
  *
  */
-public interface DadoLocal extends Dados {
+public interface DadosLocal extends Dados {
 
 }

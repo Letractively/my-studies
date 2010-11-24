@@ -24,11 +24,10 @@ import javax.persistence.Transient;
 @Table(name="COLABORADOR")
 public class Colaborador{
 	
-	// TODO; Long ou long
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	private long id;
+	private Long id;
 	
 	@Column(name="NOME")
 	private String nome;
@@ -53,11 +52,12 @@ public class Colaborador{
 		this.nome = nome;
 	}
 
-	public long getId() {
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

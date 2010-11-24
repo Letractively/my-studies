@@ -34,7 +34,7 @@ public class Lancamento{
 	@Id
 	@GeneratedValue
 	@Column(name="ID")
-	private long id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name="CLIENTE_ID")
@@ -57,9 +57,20 @@ public class Lancamento{
 	
 	
 	// >>>>>>> GETS E SETS <<<<<<<<<<<
+
 	
 	public Cliente getCliente() {
 		return cliente;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
