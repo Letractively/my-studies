@@ -101,9 +101,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		if(mapsLacamentos.isEmpty())
 			throw new LacamentoDeCustaException("Não há lançamento(s) para fechar");
 		
-	
 		List<Lancamento> lancamentos =  new ArrayList<Lancamento>(mapsLacamentos.values());
-		
 		
 		for (Lancamento lancamento : lancamentos) {
 			
