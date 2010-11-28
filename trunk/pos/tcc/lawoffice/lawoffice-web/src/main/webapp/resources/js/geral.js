@@ -30,3 +30,11 @@ $(function(){
 
 // fim menu ...
 
+
+
+// jquery ui 
+
+$(function(){
+	$('input:submit').button();
+});
+

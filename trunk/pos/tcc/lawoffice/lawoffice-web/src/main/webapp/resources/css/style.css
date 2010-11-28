@@ -1,6 +1,8 @@
 @CHARSET "UTF-8";
 
-body, h1{
+
+
+body, h1, h3{
 	margin: 0px;
 	padding: 0px;
 }
@@ -40,37 +42,33 @@ body, h1{
 
 /* page */
 
-#page{
-
-}
-
 #page #pageTitle{
 	width: 50%;
 	margin-top: 20px;
 }
 
-#page #pageTitle h1{
+#page #pageTitle div{
+	margin-left: 10px;
+	font-family: arial;
 	border-bottom: 1px solid #CFDEF0;
-	font-size: 23px;
-	font-weight: normal;
+	color: #1B5790;
 }
+
 
 #page #pageContent{
 	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-left:1px solid #CFDEF0;
+	border-right:1px solid #CFDEF0;
+	-moz-border-radius: 5px 5px;
+	border-top:1px solid #CFDEF0;
+	padding: 10px;
 }
 
 
 
 /* novo lançamento */
-
-#novoLacamento{
-
-}
-
-
-#novoLacamento{
-
-}
 
 
 #novoLacamento #dados{
@@ -81,4 +79,22 @@ body, h1{
 #novoLacamento #custas{
 	margin-top: 20px;
 }
+
+/* geral */
+form label {
+	font-family: arial;
+	font-size: 13px;
+	display: block;
+}
+
+
+#divInput div {
+	float: left;
+	margin-right: 50px;	
+}
+
+
+
+
+
 

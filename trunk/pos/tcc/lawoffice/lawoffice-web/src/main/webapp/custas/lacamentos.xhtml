@@ -6,8 +6,46 @@
     
   <ui:define name="title">Lançamentos</ui:define>
   
-  <ui:define name="body">    
-	<h2>Em construção</h2>
+  <ui:define name="body">
+  	
+  	<h:form prependId="false">
+  		
+  		<div id="filtros" >
+			<div id="divInput">
+	  			<div>
+	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/> 
+	  				<h:inputText id="dataInicial"/>
+	  			</div>
+	  			
+	  			<div>
+	  				<h:outputLabel value="Data Final:" for="dataFinal"/> 
+	  				<h:inputText id="dataFinal"/>
+	  			</div>
+				
+	  			<div>
+	  				<h:outputLabel value="Cliente:" for="clientes"/> 
+	  				<h:selectOneMenu id="clientes">
+	  					<f:selectItem itemValue="3" itemLabel="Ana Mara Simões" />
+	  					<f:selectItem itemValue="2" itemLabel="Carlos Chamma" />
+	  					<f:selectItem itemValue="1" itemLabel="Robson Oliviera Duarte" />
+	  				</h:selectOneMenu>						  				
+	  			</div>
+	  			
+				<div style="padding-top: 15px;">
+					<h:commandButton value="Pesquisar" id="btnPesquisar">
+					</h:commandButton>					
+				</div>	  			
+	  						
+			</div> 
+			<div style="clear: both;"></div> 			
+  		</div>
+	  
+  	</h:form>
+      
+  </ui:define>
+ 
+  <ui:define name="js">
+	<h:outputScript name="lancamentos.js" library="js"/>
   </ui:define>
   
 </ui:composition>

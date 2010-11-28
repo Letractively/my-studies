@@ -17,31 +17,52 @@
 		<div id="novoLacamento">
 		
 			<div id="dados">
-				<h:outputLabel value="Colaborador: " />
-				<h:selectOneMenu value="#{novoLancamentoMB.colaboradorID}" id="colaboradorID">
-					<f:selectItems value="#{novoLancamentoMB.colaboradores}"
-						var="colaborador" 
-						itemLabel="#{colaborador.nome}"
-						itemValue="#{colaborador.id}"/>
-				</h:selectOneMenu>
-				
-				<h:outputLabel value="Cliente: " />
-				<h:selectOneMenu value="#{novoLancamentoMB.clienteID}" id="clienteID">
-					<f:selectItems value="#{novoLancamentoMB.clientes}"
-						var="cliente" 
-						itemLabel="#{cliente.nome}"
-						itemValue="#{cliente.id}"/>
-				</h:selectOneMenu>				
 			
-				<h:outputLabel value="Natureza: " />
-				<h:inputText value="#{novoLancamentoMB.custa.natureza}" id="natureza"/>
+				<div id="divInput">
 				
-				<h:outputLabel value="Valor: " />
-				<h:inputText value="#{novoLancamentoMB.custa.valor}" id="valor"/>
+					<div>
+						<h:outputLabel value="Colaborador: " for="colaboradorID" />
+							<h:selectOneMenu value="#{novoLancamentoMB.colaboradorID}" id="colaboradorID">
+								<f:selectItems value="#{novoLancamentoMB.colaboradores}"
+									var="colaborador" 
+									itemLabel="#{colaborador.nome}"
+									itemValue="#{colaborador.id}"/>
+							</h:selectOneMenu>					
+					</div>
+					
+					<div>
+						<h:outputLabel value="Cliente: " for="clienteID"/>
+							<h:selectOneMenu value="#{novoLancamentoMB.clienteID}" id="clienteID">
+								<f:selectItems value="#{novoLancamentoMB.clientes}"
+									var="cliente" 
+									itemLabel="#{cliente.nome}"
+									itemValue="#{cliente.id}"/>
+							</h:selectOneMenu>					
+					</div>
+					
+					<div>
+						<h:outputLabel value="Natureza: " for="natureza"/>
+						<h:inputText value="#{novoLancamentoMB.custa.natureza}" id="natureza"/>
+					</div>
+					
+					<div>
+						<h:outputLabel value="Valor: " for="valor" />
+						<h:inputText value="#{novoLancamentoMB.custa.valor}" id="valor"/>					
+					</div>
+					
+					<div style="padding-top: 15px;">
+						<h:commandButton value="Adicionar" action="#{novoLancamentoMB.addCusta}" id="btnAdicionar">
+							<f:ajax render="tableCustas natureza valor" 
+								execute="natureza valor colaboradorID clienteID" 
+								onevent="oneventAddCusta" />
+						</h:commandButton>					
+					</div>
+					
+				</div>
+					
+				<div style="clear: both;"></div>
 				
-				<h:commandButton value="Adicionar" action="#{novoLancamentoMB.addCusta}">
-					<f:ajax render="tableCustas natureza valor" execute="natureza valor colaboradorID clienteID" onevent="oneventAddCusta" />
-				</h:commandButton>		
+		
 			</div>
 			
 			
@@ -49,7 +70,7 @@
 				<h:dataTable 
 					value="#{novoLancamentoMB.custas}" 
 					var="custa" 
-					id="tableCustas" 
+					id="tableCustas"
 					styleClass="tablesorter" 
 					cellspacing="1" 
 					cellpadding="0" 
@@ -102,7 +123,10 @@
 			</div>
 			
 			<div>
-				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" value="Fechar Lançamento" id="btnFecharLancamento" >
+				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+						value="Fechar Lançamento" 
+						id="btnFecharLancamento" 
+						>
 					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
 				</h:commandButton>
 			</div>		
