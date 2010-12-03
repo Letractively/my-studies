@@ -14,17 +14,19 @@
 			<div id="divInput">
 	  			<div>
 	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/> 
-	  				<h:inputText id="dataInicial"/>
+	  				<h:inputText id="dataInicial" >
+	  				</h:inputText>
 	  			</div>
 	  			
 	  			<div>
 	  				<h:outputLabel value="Data Final:" for="dataFinal"/> 
-	  				<h:inputText id="dataFinal"/>
+	  				<h:inputText id="dataFinal">
+	  				</h:inputText>
 	  			</div>
 				
 	  			<div>
-	  				<h:outputLabel value="Cliente:" for="clientes"/> 
-	  				<h:selectOneMenu id="clientes">
+	  				<h:outputLabel value="Cliente:" for="clienteID"/> 
+	  				<h:selectOneMenu id="clienteID" value="#{lancamentosMB.clienteID}">
 	  					<f:selectItem itemValue="3" itemLabel="Ana Mara Simões" />
 	  					<f:selectItem itemValue="2" itemLabel="Carlos Chamma" />
 	  					<f:selectItem itemValue="1" itemLabel="Robson Oliviera Duarte" />
@@ -32,13 +34,38 @@
 	  			</div>
 	  			
 				<div style="padding-top: 15px;">
-					<h:commandButton value="Pesquisar" id="btnPesquisar">
-					</h:commandButton>					
+					<h:commandButton value="Pesquisar" id="btnPesquisar" action="#{lancamentosMB.pesquisarLancamentos}">
+						<f:ajax render="tableCustas"/>
+					</h:commandButton>										
 				</div>	  			
 	  						
 			</div> 
 			<div style="clear: both;"></div> 			
   		</div>
+  		
+  		<div id="custas">
+  			<h:dataTable 
+  				value="#{lancamentosMB.listaCustas}"
+  				var="custa"
+  				id="tableCustas">
+  			
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Natureza" /> 
+						</f:facet>
+						<h:outputText value="#{custa.natureza}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Valor" /> 
+						</f:facet>
+						<h:outputText value="#{custa.valor}" />
+					</h:column>					 				
+  			
+  			</h:dataTable>
+  		</div>
+  		
 	  
   	</h:form>
       

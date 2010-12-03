@@ -7,7 +7,16 @@ import br.com.lawoffice.dominio.Custa;
 
 
 /**
- * Interface para o serviço de consulta e report de Lançamentos de custas
+ * Interface para o serviço de custas
+ * 
+ * <br><br>
+ * 
+ * Forncendo o serviço de pesquisa de lançamentos ( custas ) utilizando um conjunto de filtros
+ * 
+ * <br> <br>
+ * 
+ * E o de report de para o resultado da consulta.
+ * 
  * 
  * @author robson
  *

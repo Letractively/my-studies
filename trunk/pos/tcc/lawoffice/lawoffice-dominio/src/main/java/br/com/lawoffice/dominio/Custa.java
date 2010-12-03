@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
+ * 
+ * TODO: javadoc aqui e nas outras entidades
+ * 
  * @author robson
  *
  */
@@ -37,9 +40,16 @@ public class Custa {
 	
 	
 	
-	// >>>>>>>>>> gets e set <<<<<<<<<<<<<<<<<
+	// 	>>>>>>>> MÉTODOS DE DOMINIO <<<<<<<<<
+		
+	public Custa addLancamento(Lancamento lancamento) {
+		setLancamento(lancamento);
+		return this;
+	}
+	
 
 	
+	// >>>>>>>>>> GETS E SET <<<<<<<<<<<<<<<<<
 
 	public Long getId() {
 		return id;
@@ -74,15 +84,6 @@ public class Custa {
 
 	public void setLancamento(Lancamento lacamento) {
 		this.lancamento = lacamento;
-	}
-	
-	
-	// >>>>>>>> MÉTODOS DE DOMINIO <<<<<<<<<
-	
-	
-	public Custa addLancamento(Lancamento lancamento) {
-		setLancamento(lancamento);
-		return this;
 	}
 	
 
