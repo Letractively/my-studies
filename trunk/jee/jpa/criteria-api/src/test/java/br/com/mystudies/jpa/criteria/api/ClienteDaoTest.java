@@ -1,85 +1,97 @@
-/**
- * 
- */
 package br.com.mystudies.jpa.criteria.api;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.Persistence;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- * @author rduarte
- *
- */
 public class ClienteDaoTest {
 
+	
+	private static EntityManager entityManager;
+	
 	private ClienteDao clienteDaoTest;
 	
-	private EntityManager entityManagerMock;
-	
-	private CriteriaBuilder criteriaBuilderMock;
-	
-	private CriteriaQuery<Cliente> criteriaQueryMock;
-	
-	private TypedQuery<Cliente> typedQueryMock;
-	
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception{
-		clienteDaoTest = new ClienteDao();
-		entityManagerMock = mock(EntityManager.class);
-		criteriaBuilderMock = mock(CriteriaBuilder.class);
-		criteriaQueryMock = mock(CriteriaQuery.class);
-		typedQueryMock = mock(TypedQuery.class);
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		entityManager = 
+			Persistence
+			.createEntityManagerFactory("criteria-api")
+			.createEntityManager();
+		
+		
+		Cliente robsonCliente = new Cliente();
+		robsonCliente.setNome("Robson Oliveira Duarte");
+		robsonCliente.setIdade(34);
+		robsonCliente.setEmail("robson.o.d@gmail.com");
+
+		
+		Cliente anamaraCliente = new Cliente();
+		anamaraCliente.setNome("Ana mara simões");
+		anamaraCliente.setIdade(35);
+		anamaraCliente.setEmail("anamara@gmail.com");
+		
+		Cliente cibeleCliente = new Cliente();
+		cibeleCliente.setNome("Cibele Oliveira Duarte");
+		cibeleCliente.setIdade(25);
+		cibeleCliente.setEmail("cibele@gmail.com");		
+		
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(robsonCliente);
+		entityManager.persist(anamaraCliente);
+		entityManager.persist(cibeleCliente);
+		entityManager.getTransaction().commit();
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception{
+		entityManager.close();
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		clienteDaoTest = new ClienteDao();
+		clienteDaoTest.setEntityManager(entityManager);
+	}
+
 	@After
 	public void tearDown() throws Exception {
-		clienteDaoTest = null;
-		reset(entityManagerMock);
-		reset(criteriaBuilderMock);
+		
 	}
 
-	/**
-	 * Test method for {@link br.com.mystudies.jpa.criteria.api.ClienteDao#selecionarTodosCliente()}.
-	 */
 	@Test
-	public void testSelecionarTodosCliente() {
-		
-		List<Cliente> clientes = new ArrayList<Cliente>();
-		clientes.add(new Cliente());
-		clientes.add(new Cliente());
-		
-		
-		// preparando os mocks
-		when(entityManagerMock.getCriteriaBuilder()).thenReturn(criteriaBuilderMock);
-		when(criteriaBuilderMock.createQuery(Cliente.class)).thenReturn(criteriaQueryMock);
-		when(entityManagerMock.createQuery(criteriaQueryMock)).thenReturn(typedQueryMock);
-		when(typedQueryMock.getResultList()).thenReturn(clientes);
-		
-		
-		
-		clienteDaoTest.setEntityManager(entityManagerMock);
-		
-		assertNotNull(clientes);
-		assertEquals(2,clientes.size());
+	public void deveSelecionarTodosCliente(){
+		List<Cliente> listaClientes = 
+			clienteDaoTest.selecionarTodosCliente();
+		assertNotNull(listaClientes);
+		assertEquals(3, listaClientes.size());
+	}
+
+	@Test
+	public void deveSelecionarClientePorNome(){
+		Cliente robsonCliente = 
+			clienteDaoTest.selecionarClientePorNome("Robson Oliveira Duarte");
+		assertNotNull(robsonCliente);
+		assertEquals("Robson Oliveira Duarte", robsonCliente.getNome());
+		assertEquals(new Integer(34), robsonCliente.getIdade());
+		assertEquals("robson.o.d@gmail.com", robsonCliente.getEmail());
+	}
+	
+	
+	@Test
+	public void deveSelecionarTodosClientePelaIdadeEntre(){
+		List<Cliente> listaClientes =
+			clienteDaoTest.deveSelecionarTodosClientePelaIdadeEntre(30,35);
+		assertNotNull(listaClientes);
 	}
 
 }
