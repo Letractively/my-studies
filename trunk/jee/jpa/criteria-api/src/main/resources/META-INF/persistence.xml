@@ -7,6 +7,7 @@
     <persistence-unit name="criteria-api" >
     	<provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
         <class>br.com.mystudies.jpa.criteria.api.Cliente</class>
+        <class>br.com.mystudies.jpa.criteria.api.Endereco</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbc.JDBCDriver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:criteria-api"/>

@@ -32,22 +32,43 @@ public class ClienteDaoTest {
 		robsonCliente.setNome("Robson Oliveira Duarte");
 		robsonCliente.setIdade(34);
 		robsonCliente.setEmail("robson.o.d@gmail.com");
+		
+		Endereco enderecoRobson = new Endereco();
+		enderecoRobson.setLogradouro("Rua mário Calazans Machado");
+		enderecoRobson.setNumero(96);
+		enderecoRobson.setCep("03589070");
+		
+		robsonCliente.setEndereco(enderecoRobson);
 
 		
-		Cliente anamaraCliente = new Cliente();
-		anamaraCliente.setNome("Ana mara simões");
-		anamaraCliente.setIdade(35);
-		anamaraCliente.setEmail("anamara@gmail.com");
+		Cliente anaMaraCliente = new Cliente();
+		anaMaraCliente.setNome("Ana mara simões");
+		anaMaraCliente.setIdade(35);
+		anaMaraCliente.setEmail("anamara@gmail.com");
+		
+		Endereco enderecoAnaMara = new Endereco();
+		enderecoAnaMara.setLogradouro("Rua Ponche Verde");
+		enderecoAnaMara.setNumero(103);
+		enderecoAnaMara.setCep("03589071");
+		
+		anaMaraCliente.setEndereco(enderecoAnaMara);		
 		
 		Cliente cibeleCliente = new Cliente();
 		cibeleCliente.setNome("Cibele Oliveira Duarte");
 		cibeleCliente.setIdade(25);
-		cibeleCliente.setEmail("cibele@gmail.com");		
+		cibeleCliente.setEmail("cibele@gmail.com");	
+		
+		Endereco enderecoCibele = new Endereco();
+		enderecoCibele.setLogradouro("Rua Gil de Siqueira");
+		enderecoCibele.setNumero(122);
+		enderecoCibele.setCep("01245789");
+		
+		cibeleCliente.setEndereco(enderecoCibele);		
 		
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(robsonCliente);
-		entityManager.persist(anamaraCliente);
+		entityManager.persist(anaMaraCliente);
 		entityManager.persist(cibeleCliente);
 		entityManager.getTransaction().commit();
 	}
@@ -90,8 +111,26 @@ public class ClienteDaoTest {
 	@Test
 	public void deveSelecionarTodosClientePelaIdadeEntre(){
 		List<Cliente> listaClientes =
-			clienteDaoTest.deveSelecionarTodosClientePelaIdadeEntre(30,35);
+			clienteDaoTest.selecionarTodosClientePelaIdadeEntre(30,35);
 		assertNotNull(listaClientes);
+		assertEquals(2, listaClientes.size());
+	}
+	
+	
+	@Test
+	public void deveSelecionarTodosClientePeloNumeroEnderecoEntre(){
+		List<Cliente> listaClientes=
+			clienteDaoTest.selecionarTodosClientePeloNumeroEnderecoEntre(50,100);
+		assertNotNull(listaClientes);
+	}
+	
+	@Test
+	public void deveSelecionarClientePorNomeIdade(){
+		Cliente clienteRobson =
+			 clienteDaoTest.selecionarClientePorNomeIdade("Robson Oliveira Duarte", 34);
+		assertNotNull(clienteRobson);
+		assertEquals("Robson Oliveira Duarte", clienteRobson.getNome());
+		assertEquals(new Integer(34), clienteRobson.getIdade());
 	}
 
 }
