@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/tablesorter/style.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.tablesorter.min.js"></script>
+
+<title>jquery propreties - tablesorter</title>
+
+<style type="text/css">
+
+#container div { width:150px; height:150px; margin:5px; float:left; background:green; }
+
+
+</style>
+ 
+<script type="text/javascript">
+$(function(){
+	$('#person-table')
+		.tablesorter({
+				widgets: ['zebra'],
+				headers:{
+		            2: { 
+		                // disable it by setting the property sorter to false 
+		                sorter: false 
+		            } 
+			    }									
+			}
+		);
+});
+</script>
+
+
+</head>
+	<body>
+	<h4>.tablesorter</h4>
+	<hr />
+	<br />
+	<div style="background-color: #ADD8E6; padding: 10px;">
+		<p> This is summary of TableSorter plugin, to more information see: <a href="http://tablesorter.com/docs/" style="text-decoration: none;">TableSorter</a>
+	</div>
+	<br>
+	
+	<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(function(){
+$('#person-table')
+	.tablesorter({
+			widgets: ['zebra'],
+			headers:{
+	            2: { 
+	                // disable it by setting the property sorter to false 
+	                sorter: false 
+	            } 
+		    }									
+		}
+	);
+});
+</pre>
+	</div>
+	<br>
+	
+	<table id="person-table" class="tablesorter" cellspacing="1" > 
+		<thead> 
+			<tr>  
+			    <th>Name</th> 
+			    <th>e-mail</th> 
+			    <th>Age</th> 
+			    <th>Job</th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+			<tr> 
+			    <td>Robson Oliveira Duarte</td> 
+			    <td>robson.o.d@gmail.com</td> 
+			    <td>34</td> 
+			    <td>Java Developer</td> 
+			</tr> 
+			<tr> 
+			    <td>Ana Mara Simões</td> 
+			    <td>ana@gmail.com</td> 
+			    <td>35</td>  
+			    <td>Teacher</td> 
+			</tr> 
+			<tr> 
+			    <td>Cibele Oliveira Duarte</td> 
+			    <td>cibele@gmail.com</td> 
+			    <td>26</td> 
+			    <td>Nurse</td> 
+			</tr> 
+			<tr> 
+			    <td>Thiago Oliveira</td> 
+			    <td>thiago@gmail.com</td> 
+			    <td>21</td> 
+			    <td>Administrator</td> 
+			</tr> 
+			</tbody>
+	</table>
+</body>
+</html>
