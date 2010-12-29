@@ -156,7 +156,7 @@ public class LancamentoDeCustaBeanTest {
 	public void testFecharLacamentoComLacamentos() throws LacamentoDeCustaException{
 		
 		
-		// TODO: devido a falta de validação ( débito  técnico beans validation )
+		// FIXME: devido a falta de validação ( débito  técnico beans validation )
 		// está disparando um nullpoi... quando pega o total do lançamento
 		// e a custa não tem valor .. isso deve ser corrigido ao add as validações
 		// portanto para esse teste nesse momento add o cara abaixo

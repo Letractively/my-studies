@@ -1,14 +1,19 @@
 package br.com.lawoffice.web.mb.custas;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.lawoffice.dados.DadosLocal;
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
 import br.com.lowoffice.custas.CustasLocal;
@@ -49,27 +54,41 @@ public class LancamentosMB extends BaseMB{
 	
 	
 	/**
-	 * Mapa para o filtro da pesquisa
+	 * serviços de custas
 	 */
-	private Map<String, Object> filtro = new HashMap<String, Object>();
-	
-	
-	// FIXME o bean injetado está com um implementação mock ainda do 
-	// serviço de filtrar devido o débito tecnico em creteria em jpa 2.0
 	@EJB
 	private CustasLocal custas;
 	
+	
+	/**
+	 * Serviço de dados ( CRUD ) 
+	 */
+	@EJB
+	private DadosLocal dados;
+	
+	
+	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<
+	
+	/**
+	 * 
+	 * Clientes cadastrados no sistema
+	 * 
+	 */
+	private List<Cliente> clientes;
 
 	
 	
 	
-	public void pesquisarLancamentos(){
-		
-		filtro.put("dataInicial", dataInicial);
-		filtro.put("dataFinal", dataFinal);
-		filtro.put("clienteId", clienteID);
-		
-		listaCustas = custas.getCustas(filtro);
+	//TODO: e esse cara temos que ter mesmo ?
+	@PostConstruct
+	public void init(){
+		clientes = dados.listar(Cliente.class);
+	}
+	
+	
+	
+	public void pesquisarLancamentos(){			
+		listaCustas = custas.getCustasPorDataCliente(dataInicial, dataFinal, clienteID);
 	}
 	
 	
@@ -113,4 +132,17 @@ public class LancamentosMB extends BaseMB{
 	public void setListaCustas(List<Custa> listaCustas) {
 		this.listaCustas = listaCustas;
 	}
+
+
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+	
 }

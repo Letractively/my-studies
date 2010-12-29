@@ -1,5 +1,6 @@
 package br.com.lowoffice.custas;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,25 +12,14 @@ import br.com.lawoffice.dominio.Custa;
  * 
  * <br><br>
  * 
- * Forncendo o serviço de pesquisa de lançamentos ( custas ) utilizando um conjunto de filtros
+ * Forncendo o serviço de pesquisa de lançamentos ( custas )
  * 
  * <br> <br>
- * 
- * E o de report de para o resultado da consulta.
- * 
  * 
  * @author robson
  *
  */
 public interface Custas{
 	
-	
-	//TODO: documentar os valores do filtro
-	/**
-	 *
-	 * 
-	 * @param filter - mapa com o valores que serão utilizado no filtro
-	 * @return {@link List<{@link Custa}>}
-	 */
-	public List<Custa> getCustas(Map<String, Object> filter);
+	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente);
 }

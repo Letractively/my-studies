@@ -1,0 +1,121 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Lançamentos</ui:define>
+  
+   <ui:define name="css">
+ 		<h:outputStylesheet name="tablesort.css" library="css"/>
+   </ui:define>
+  
+  <ui:define name="body">
+  	
+  	<h:form prependId="false">
+  		
+  		<div id="filtros" >
+			<div id="divInput">
+	  			<div>
+	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/>
+	  				<h:inputText id="dataInicial" value="#{lancamentosMB.dataInicial}">
+	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00" />
+	  				</h:inputText>
+	  			</div>
+	  			
+	  			<div>
+	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
+	  				<h:inputText id="dataFinal" value="#{lancamentosMB.dataFinal}" >
+	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00"/>
+	  				</h:inputText>
+	  			</div>
+				
+	  			<div>
+	  				<h:outputLabel value="Cliente:" for="clienteID"/> 
+	  				<h:selectOneMenu id="clienteID" value="#{lancamentosMB.clienteID}">
+							<f:selectItems value="#{lancamentosMB.clientes}"
+								var="cliente" 
+								itemLabel="#{cliente.nome}"
+								itemValue="#{cliente.id}"/>
+	  				</h:selectOneMenu>						  				
+	  			</div>
+	  			
+				<div style="padding-top: 15px;">
+					<h:commandButton value="Pesquisar" 
+						id="btnPesquisar" 
+						action="#{lancamentosMB.pesquisarLancamentos}">
+						<f:ajax render="tableCustas" 
+							execute="dataInicial dataFinal clienteID" 
+							onevent="oneventPesquisar"/>
+					</h:commandButton>										
+				</div>	  			
+	  						
+			</div> 
+			<div style="clear: both;"></div> 			
+  		</div>
+  		
+  		<div id="custas">
+  			<h:dataTable 
+  				value="#{lancamentosMB.listaCustas}"
+  				var="custa"
+  				id="tableCustas"
+  				styleClass="tablesorter" 
+				cellspacing="1" 
+				cellpadding="0" 
+				border="0"
+  				>
+  			
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data" /> 
+						</f:facet>
+						<h:outputText value="#{custa.lancamento.dataLancamento}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+						
+					</h:column>  			
+  			
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Natureza" /> 
+						</f:facet>
+						<h:outputText value="#{custa.natureza}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Valor" /> 
+						</f:facet>
+						<h:outputText value="#{custa.valor}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Colaborador" /> 
+						</f:facet>
+						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Valor" /> 
+						</f:facet>
+						<h:outputText value="#{custa.valor}" >
+							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+						</h:outputText>
+					</h:column>																	 				
+  			
+  			</h:dataTable>
+  		</div>
+  		
+	  
+  	</h:form>
+      
+  </ui:define>
+ 
+  <ui:define name="js">
+  	<h:outputScript name="jquery.tablesorter.min.js" library="js" />  
+	<h:outputScript name="lancamentos.js" library="js"/>
+  </ui:define>
+  
+</ui:composition>

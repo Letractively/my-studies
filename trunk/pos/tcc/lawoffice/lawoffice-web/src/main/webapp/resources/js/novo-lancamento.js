@@ -10,7 +10,7 @@ function oneventAddCusta(data){
 	//else 
 	if (data.status == "success"){
 		$("#tableCustas").tablesorter();
-		$("#natureza").focus();
+		$("#natureza").focus();		
 	}
 }
 
@@ -21,3 +21,4 @@ function oneventFecharLancamento(data){
 	if (data.status == "success")
 		$("#btnFecharLancamento").attr('disabled', '');
 }
+

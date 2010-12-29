@@ -61,24 +61,12 @@ body, h1, h3{
 	margin-right: 10px;
 	border-left:1px solid #CFDEF0;
 	border-right:1px solid #CFDEF0;
-	-moz-border-radius: 5px 5px;
 	border-top:1px solid #CFDEF0;
+	-moz-border-radius: 5px 5px;	
 	padding: 10px;
 }
 
 
-
-/* novo lançamento */
-
-
-#novoLacamento #dados{
-	margin-top: 20px;
-}
-
-
-#novoLacamento #custas{
-	margin-top: 20px;
-}
 
 /* geral */
 form label {
@@ -92,9 +80,3 @@ form label {
 	float: left;
 	margin-right: 50px;	
 }
-
-
-
-
-
-
