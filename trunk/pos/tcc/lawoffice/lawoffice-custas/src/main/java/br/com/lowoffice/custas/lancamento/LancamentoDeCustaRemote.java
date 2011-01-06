@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.lancamento;
 
 /**
  * Interface para acesso Remoto dos serviços de Lançamentos de custas

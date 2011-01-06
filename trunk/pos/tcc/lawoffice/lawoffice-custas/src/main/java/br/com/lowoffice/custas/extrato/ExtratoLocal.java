@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.extrato;
 
 /**
  * interface para acesso local do serviço de custas
@@ -9,6 +9,6 @@ package br.com.lowoffice.custas;
  * @author robson
  *
  */
-public interface CustasLocal extends Custas {
+public interface ExtratoLocal extends Extrato {
 
 }

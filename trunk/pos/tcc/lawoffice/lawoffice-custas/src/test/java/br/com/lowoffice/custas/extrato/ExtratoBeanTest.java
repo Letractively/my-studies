@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.extrato;
 
 import static org.junit.Assert.*;
 
@@ -18,37 +18,40 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.lawoffice.dominio.Custa;
+import br.com.lowoffice.custas.extrato.ExtratoBean;
 
 /**
  * 
- * Teste de unidade para a classe {@link CustasBean}
+ * Teste de unidade para a classe {@link ExtratoBean}
  * 
  * @author robson
  *
  */
-public class CustasBeanTest {
+public class ExtratoBeanTest {
 
 	
-	private CustasBean custasBeanTest;
+	private ExtratoBean custasBeanTest;
 	
-	private EntityManager entityManagerMock;
+/*	private EntityManager entityManagerMock;
 	
-	private CriteriaBuilder criteriaBuilderMock;
+	private CriteriaBuilder criteriaBuilderMock;*/
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		custasBeanTest = new CustasBean();
-		entityManagerMock = mock(EntityManager.class);
-		criteriaBuilderMock = mock(CriteriaBuilder.class);
+		custasBeanTest = new ExtratoBean();
+		
+		//TODO: problemas para mocar o entitymanager
+/*		entityManagerMock = mock(EntityManager.class);
+		criteriaBuilderMock = mock(CriteriaBuilder.class);*/
 	}
 
 
 	@After
 	public void tearDown() throws Exception{
 		custasBeanTest = null;
-		reset(entityManagerMock);
-		reset(criteriaBuilderMock);
+/*		reset(entityManagerMock);
+		reset(criteriaBuilderMock);*/
 	}
 
 

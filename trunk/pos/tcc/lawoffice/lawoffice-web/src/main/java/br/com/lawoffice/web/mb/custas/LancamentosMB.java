@@ -16,7 +16,7 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
-import br.com.lowoffice.custas.CustasLocal;
+import br.com.lowoffice.custas.extrato.ExtratoLocal;
 
 /**
  * 
@@ -57,7 +57,7 @@ public class LancamentosMB extends BaseMB{
 	 * serviços de custas
 	 */
 	@EJB
-	private CustasLocal custas;
+	private ExtratoLocal custas;
 	
 	
 	/**

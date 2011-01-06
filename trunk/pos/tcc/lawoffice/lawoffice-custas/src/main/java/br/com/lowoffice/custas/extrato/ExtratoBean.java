@@ -1,14 +1,11 @@
 /**
  * 
  */
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.extrato;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 import javax.ejb.Local;
 import javax.ejb.Remote;
@@ -19,24 +16,22 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import br.com.lawoffice.dominio.Cliente;
-import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.Lancamento;
 
 /**
  * 
- * Implementação para o serviço de Custas
+ * Implementação para o serviço de Extrato
  * 
  * 
  * @author robson
- * @see Custas
+ * @see Extrato
  *
  */
 @Stateful
-@Local(CustasLocal.class)
-@Remote(CustasRemote.class)
-public class CustasBean implements Custas{
+@Local(ExtratoLocal.class)
+@Remote(ExtratoRemote.class)
+public class ExtratoBean implements Extrato{
 
 	
 	/**
@@ -47,7 +42,7 @@ public class CustasBean implements Custas{
 	
 	
 	@Override
-	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente) {
+	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente){
 		this.checarDataInicial(dataInicial)
 			.checarDataFinal(dataFinal)
 			.checarIdCliente(idCliente);
@@ -90,19 +85,19 @@ public class CustasBean implements Custas{
 	}
 
 	
-	private CustasBean checarDataInicial(Date dataInicial) {
+	private ExtratoBean checarDataInicial(Date dataInicial) {
 		if(dataInicial == null)
 			throw new IllegalArgumentException("Data Inicial nula");
 		return this;
 	}
 	
-	private CustasBean checarDataFinal(Date dataFinal) {
+	private ExtratoBean checarDataFinal(Date dataFinal) {
 		if(dataFinal == null)
 			throw new IllegalArgumentException("Data Final nula");
 		return this;		
 	}
 	
-	private CustasBean checarIdCliente(Long idCliente){
+	private ExtratoBean checarIdCliente(Long idCliente){
 		if(idCliente == null)
 			throw new IllegalArgumentException("ID cliente nulo");
 		return this;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.lancamento;
 
 import java.util.ArrayList;
 import java.util.HashMap;

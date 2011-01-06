@@ -1,14 +1,13 @@
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.extrato;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import br.com.lawoffice.dominio.Custa;
 
 
 /**
- * Interface para o serviço de custas
+ * Interface para o serviço de extrato de custas
  * 
  * <br><br>
  * 
@@ -19,7 +18,7 @@ import br.com.lawoffice.dominio.Custa;
  * @author robson
  *
  */
-public interface Custas{
+public interface Extrato{
 	
 	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente);
 }

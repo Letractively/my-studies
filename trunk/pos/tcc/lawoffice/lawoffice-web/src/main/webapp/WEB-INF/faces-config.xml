@@ -5,8 +5,8 @@
  <navigation-rule id="menu">
   <display-name>menu</display-name>
   <navigation-case>
-   <from-outcome>novo-lancamento</from-outcome>
-   <to-view-id>/custas/novo-lancamento.xhtml</to-view-id>
+   <from-outcome>lancamento</from-outcome>
+   <to-view-id>/custas/lancamento.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>novo-agendamento</from-outcome>
@@ -17,8 +17,8 @@
    <to-view-id>/agenda/agendamentos.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>lancamentos</from-outcome>
-   <to-view-id>/custas/lancamentos.xhtml</to-view-id>
+   <from-outcome>extrato</from-outcome>
+   <to-view-id>/custas/extrato.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>credito</from-outcome>

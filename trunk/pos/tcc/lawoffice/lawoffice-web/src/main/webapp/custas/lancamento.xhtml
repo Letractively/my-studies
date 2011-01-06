@@ -4,7 +4,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     template="/WEB-INF/templates/template.xhtml">
     
-	<ui:define name="title">Novo Lançamento</ui:define>
+	<ui:define name="title">Lançamento</ui:define>
   
    <ui:define name="css">
  		<h:outputStylesheet name="tablesort.css" library="css"/>
@@ -105,12 +105,28 @@
 						<h:outputText value="#{custa.valor}" >
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 						</h:outputText>
-					</h:column>					
+					</h:column>	
+					<f:ajax event="click" listener="#{novoLancamentoMB.temp()}"></f:ajax>				
 				</h:dataTable>
 
 			</div>
 			
 			<div>
+			
+				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+						value="Editar" 
+						id="btnEditar" 
+						>
+					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
+				</h:commandButton>
+				
+				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+						value="Remover" 
+						id="btnRemover" 
+						>
+					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
+				</h:commandButton>
+											
 				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
 						value="Fechar Lançamento" 
 						id="btnFecharLancamento" 

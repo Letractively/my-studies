@@ -13,8 +13,8 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
-import br.com.lowoffice.custas.LancamentoDeCustaLocal;
 import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
+import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
 
 /**
  * @author robson
@@ -118,6 +118,12 @@ public class NovoLancamentoMB extends BaseMB{
 			// TODO: 
 			e.printStackTrace();
 		}
+	}
+	
+
+	
+	public void temp(String string){
+		System.out.println(string);
 	}
 	
 	

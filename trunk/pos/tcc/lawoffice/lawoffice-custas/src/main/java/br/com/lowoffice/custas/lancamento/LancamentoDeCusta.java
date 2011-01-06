@@ -1,4 +1,4 @@
-package br.com.lowoffice.custas;
+package br.com.lowoffice.custas.lancamento;
 
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
