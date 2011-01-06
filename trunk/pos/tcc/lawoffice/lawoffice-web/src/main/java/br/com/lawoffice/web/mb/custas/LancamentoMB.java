@@ -24,7 +24,7 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
  */
 @ManagedBean()
 @ViewScoped // TODO: @ViewScoped ? débito técnico 
-public class NovoLancamentoMB extends BaseMB{
+public class LancamentoMB extends BaseMB{
 	
 	
 	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<

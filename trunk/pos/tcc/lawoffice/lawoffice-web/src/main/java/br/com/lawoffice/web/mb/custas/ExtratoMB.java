@@ -27,7 +27,7 @@ import br.com.lowoffice.custas.extrato.ExtratoLocal;
  */
 @ManagedBean
 @ViewScoped
-public class LancamentosMB extends BaseMB{
+public class ExtratoMB extends BaseMB{
 
 
 	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<

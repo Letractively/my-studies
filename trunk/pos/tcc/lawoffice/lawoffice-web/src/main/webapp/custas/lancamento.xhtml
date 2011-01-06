@@ -22,8 +22,8 @@
 				
 					<div>
 						<h:outputLabel value="Colaborador: " for="colaboradorID" />
-							<h:selectOneMenu value="#{novoLancamentoMB.colaboradorID}" id="colaboradorID">
-								<f:selectItems value="#{novoLancamentoMB.colaboradores}"
+							<h:selectOneMenu value="#{lancamentoMB.colaboradorID}" id="colaboradorID">
+								<f:selectItems value="#{lancamentoMB.colaboradores}"
 									var="colaborador" 
 									itemLabel="#{colaborador.nome}"
 									itemValue="#{colaborador.id}"/>
@@ -32,8 +32,8 @@
 					
 					<div>
 						<h:outputLabel value="Cliente: " for="clienteID"/>
-							<h:selectOneMenu value="#{novoLancamentoMB.clienteID}" id="clienteID">
-								<f:selectItems value="#{novoLancamentoMB.clientes}"
+							<h:selectOneMenu value="#{lancamentoMB.clienteID}" id="clienteID">
+								<f:selectItems value="#{lancamentoMB.clientes}"
 									var="cliente" 
 									itemLabel="#{cliente.nome}"
 									itemValue="#{cliente.id}"/>
@@ -42,16 +42,16 @@
 					
 					<div>
 						<h:outputLabel value="Natureza: " for="natureza"/>
-						<h:inputText value="#{novoLancamentoMB.custa.natureza}" id="natureza"/>
+						<h:inputText value="#{lancamentoMB.custa.natureza}" id="natureza"/>
 					</div>
 					
 					<div>
 						<h:outputLabel value="Valor: " for="valor" />
-						<h:inputText value="#{novoLancamentoMB.custa.valor}" id="valor"/>					
+						<h:inputText value="#{lancamentoMB.custa.valor}" id="valor"/>					
 					</div>
 					
 					<div style="padding-top: 15px;">
-						<h:commandButton value="Adicionar" action="#{novoLancamentoMB.addCusta}" id="btnAdicionar">
+						<h:commandButton value="Adicionar" action="#{lancamentoMB.addCusta}" id="btnAdicionar">
 							<f:ajax render="tableCustas natureza valor" 
 								execute="natureza valor colaboradorID clienteID" 
 								onevent="oneventAddCusta" />
@@ -68,7 +68,7 @@
 			
 			<div id="custas">
 				<h:dataTable 
-					value="#{novoLancamentoMB.custas}" 
+					value="#{lancamentoMB.custas}" 
 					var="custa" 
 					id="tableCustas"
 					styleClass="tablesorter" 
@@ -106,28 +106,28 @@
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 						</h:outputText>
 					</h:column>	
-					<f:ajax event="click" listener="#{novoLancamentoMB.temp()}"></f:ajax>				
+					<f:ajax event="click" listener="#{lancamentoMB.temp()}"></f:ajax>				
 				</h:dataTable>
 
 			</div>
 			
 			<div>
 			
-				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
 						value="Editar" 
 						id="btnEditar" 
 						>
 					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
 				</h:commandButton>
 				
-				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
 						value="Remover" 
 						id="btnRemover" 
 						>
 					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
 				</h:commandButton>
 											
-				<h:commandButton action="#{novoLancamentoMB.fecharLancamento}" 
+				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
 						value="Fechar Lançamento" 
 						id="btnFecharLancamento" 
 						>
@@ -143,7 +143,7 @@
   
   <ui:define name="js">
   	<h:outputScript name="jquery.tablesorter.min.js" library="js" />
-  	<h:outputScript name="novo-lancamento.js" library="js"/>
+  	<h:outputScript name="lancamento.js" library="js"/>
   </ui:define>
   
 </ui:composition>

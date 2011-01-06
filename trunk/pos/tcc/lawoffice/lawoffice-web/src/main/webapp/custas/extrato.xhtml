@@ -18,22 +18,22 @@
 			<div id="divInput">
 	  			<div>
 	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/>
-	  				<h:inputText id="dataInicial" value="#{lancamentosMB.dataInicial}">
+	  				<h:inputText id="dataInicial" value="#{extratoMB.dataInicial}">
 	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00" />
 	  				</h:inputText>
 	  			</div>
 	  			
 	  			<div>
 	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
-	  				<h:inputText id="dataFinal" value="#{lancamentosMB.dataFinal}" >
+	  				<h:inputText id="dataFinal" value="#{extratoMB.dataFinal}" >
 	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00"/>
 	  				</h:inputText>
 	  			</div>
 				
 	  			<div>
 	  				<h:outputLabel value="Cliente:" for="clienteID"/> 
-	  				<h:selectOneMenu id="clienteID" value="#{lancamentosMB.clienteID}">
-							<f:selectItems value="#{lancamentosMB.clientes}"
+	  				<h:selectOneMenu id="clienteID" value="#{extratoMB.clienteID}">
+							<f:selectItems value="#{extratoMB.clientes}"
 								var="cliente" 
 								itemLabel="#{cliente.nome}"
 								itemValue="#{cliente.id}"/>
@@ -43,7 +43,7 @@
 				<div style="padding-top: 15px;">
 					<h:commandButton value="Pesquisar" 
 						id="btnPesquisar" 
-						action="#{lancamentosMB.pesquisarLancamentos}">
+						action="#{extratoMB.pesquisarLancamentos}">
 						<f:ajax render="tableCustas" 
 							execute="dataInicial dataFinal clienteID" 
 							onevent="oneventPesquisar"/>
@@ -56,7 +56,7 @@
   		
   		<div id="custas">
   			<h:dataTable 
-  				value="#{lancamentosMB.listaCustas}"
+  				value="#{extratoMB.listaCustas}"
   				var="custa"
   				id="tableCustas"
   				styleClass="tablesorter" 
@@ -115,7 +115,7 @@
  
   <ui:define name="js">
   	<h:outputScript name="jquery.tablesorter.min.js" library="js" />  
-	<h:outputScript name="lancamentos.js" library="js"/>
+	<h:outputScript name="extrato.js" library="js"/>
   </ui:define>
   
 </ui:composition>
