@@ -2,6 +2,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
 	<ui:define name="title">Lançamento</ui:define>
@@ -66,65 +67,63 @@
 			</div>
 			
 			
-			<div id="custas">
-				<h:dataTable 
+			<div class="divContent">
+			
+				<p:dataTable
 					value="#{lancamentoMB.custas}" 
-					var="custa" 
+					var="custa"
 					id="tableCustas"
-					styleClass="tablesorter" 
-					cellspacing="1" 
-					cellpadding="0" 
-					border="0"
+					selection="#{lancamentoMB.custa}" 
+					selectionMode="single">
 					>
 										
-					<h:column>
+					<p:column sortBy="#{custa.lancamento.colaborador.nome}">
 						<f:facet name="header">
 							<h:outputText value="Colaborador" /> 
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
-					</h:column>
+					</p:column>
 								
-					<h:column>
+					<p:column sortBy="#{custa.lancamento.cliente.nome}">
 						<f:facet name="header">
 							<h:outputText value="Cliente" /> 
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.cliente.nome}" />
-					</h:column>
+					</p:column>
 					
-					<h:column>
+					<p:column sortBy="#{custa.natureza}">
 						<f:facet name="header">
 							<h:outputText value="Natureza" /> 
 						</f:facet>
 						<h:outputText value="#{custa.natureza}" />
-					</h:column>
+					</p:column>
 					
-					<h:column>
+					<p:column sortBy="#{custa.valor}">
 						<f:facet name="header">
 							<h:outputText value="Valor" /> 
 						</f:facet>
 						<h:outputText value="#{custa.valor}" >
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</h:column>	
-					<f:ajax event="click" listener="#{lancamentoMB.temp()}"></f:ajax>				
-				</h:dataTable>
-
+						</h:outputText>	
+					</p:column>				
+					
+				</p:dataTable>
+				
 			</div>
 			
-			<div>
-			
-				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
-						value="Editar" 
-						id="btnEditar" 
-						>
-					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
+			<div class="divContent">
+				<h:commandButton action="#{lancamentoMB.editarCusta}" 
+					value="Editar" 
+					id="btnEditar" 
+					>
+					<f:ajax render="natureza valor colaboradorID clienteID" execute="@form"/>				
 				</h:commandButton>
 				
-				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
+				<h:commandButton action="#{lancamentoMB.removerCusta}" 
 						value="Remover" 
 						id="btnRemover" 
 						>
-					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
+					<f:ajax render="tableCustas" execute="@form"/>
 				</h:commandButton>
 											
 				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
@@ -142,7 +141,6 @@
   </ui:define>
   
   <ui:define name="js">
-  	<h:outputScript name="jquery.tablesorter.min.js" library="js" />
   	<h:outputScript name="lancamento.js" library="js"/>
   </ui:define>
   

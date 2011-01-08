@@ -7,6 +7,7 @@ body, h1, h3{
 	padding: 0px;
 }
 
+
 /* header */
 
 #header{
@@ -80,3 +81,9 @@ form label {
 	float: left;
 	margin-right: 50px;	
 }
+
+
+.divContent{
+	margin-top: 10px;
+}
+
