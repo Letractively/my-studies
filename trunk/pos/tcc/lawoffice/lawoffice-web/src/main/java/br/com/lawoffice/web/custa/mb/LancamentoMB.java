@@ -98,7 +98,7 @@ public class LancamentoMB extends BaseMB{
 	}
 	
 	
-	public void addCusta(){		
+	public void adicionarCusta(){		
 		custas.add(
 			lancamentoDeCusta.adicionarCusta(
 				custa, 
@@ -107,17 +107,6 @@ public class LancamentoMB extends BaseMB{
 			)
 		);
 		custa = new Custa();	
-	}
-	
-
-	public void fecharLancamento(){
-		try {
-			lancamentoDeCusta.fecharLacamento();
-			custas.clear();
-		} catch (LancamentoDeCustaException e){
-			// TODO: 
-			e.printStackTrace();
-		}
 	}
 	
 
@@ -144,11 +133,18 @@ public class LancamentoMB extends BaseMB{
 		System.out.println(custa);
 	}
 
-	
-	
-	
-	
 
+	public void fecharLancamento(){
+		try {
+			lancamentoDeCusta.fecharLacamento();
+			custas.clear();
+		} catch (LancamentoDeCustaException e){
+			// TODO: 
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	private Colaborador getColaboradorSelecionado() {
 		for (Colaborador colaborador: colaboradores)
