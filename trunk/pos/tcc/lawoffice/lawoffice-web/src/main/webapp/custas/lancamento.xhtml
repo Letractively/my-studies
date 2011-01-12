@@ -74,8 +74,10 @@
 					var="custa"
 					id="tableCustas"
 					selection="#{lancamentoMB.custa}" 
-					selectionMode="single">
+					selectionMode="single"
+					onRowSelectComplete="alert('aaa');" 						
 					>
+					
 										
 					<p:column sortBy="#{custa.lancamento.colaborador.nome}">
 						<f:facet name="header">
@@ -107,23 +109,22 @@
 						</h:outputText>	
 					</p:column>				
 					
-				</p:dataTable>
-				
+				</p:dataTable>			
 			</div>
 			
 			<div class="divContent">
 				<h:commandButton action="#{lancamentoMB.editarCusta}" 
 					value="Editar" 
-					id="btnEditar" 
+					id="btnEditar"
 					>
-					<f:ajax render="natureza valor colaboradorID clienteID" execute="@form"/>				
+					<f:ajax render="natureza valor colaboradorID clienteID" execute="tableCustas"/>				
 				</h:commandButton>
-				
+								
 				<h:commandButton action="#{lancamentoMB.removerCusta}" 
 						value="Remover" 
-						id="btnRemover" 
+						id="btnRemover"
 						>
-					<f:ajax render="tableCustas" execute="@form"/>
+					<f:ajax render="tableCustas" execute="tableCustas"/>
 				</h:commandButton>
 											
 				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 

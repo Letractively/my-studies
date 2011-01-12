@@ -1,7 +1,6 @@
 package br.com.lawoffice.web.custa.mb;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +13,7 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.BaseMB;
-import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
+import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
 
 /**
@@ -32,7 +31,7 @@ public class LancamentoMB extends BaseMB{
 		
 	// TODO: cdi ?
 	/**
-	 * Custa para adição de custas 
+	 * Custa para adição/edicão/remoção da lista de custas 
 	 */
 	private Custa custa;
 	
@@ -83,7 +82,7 @@ public class LancamentoMB extends BaseMB{
 	
 	// TODO: cdi ?
 	/**
-	 * Custas adicionadas ( montagem da tabela )
+	 * Custas adicionadas para efetuar o lançamento ( montagem da tabela )
 	 */
 	private List<Custa> custas;
 	
@@ -107,7 +106,7 @@ public class LancamentoMB extends BaseMB{
 				getColaboradorSelecionado()
 			)
 		);
-		custa = new Custa();		
+		custa = new Custa();	
 	}
 	
 
@@ -115,22 +114,33 @@ public class LancamentoMB extends BaseMB{
 		try {
 			lancamentoDeCusta.fecharLacamento();
 			custas.clear();
-		} catch (LacamentoDeCustaException e){
+		} catch (LancamentoDeCustaException e){
 			// TODO: 
 			e.printStackTrace();
 		}
 	}
 	
 
-	
 	public void removerCusta(){
-		/*custas = lancamentoDeCusta.removerCusta(custa);*/
-		custas.remove(custa);
+		try {
+			if(custa != null){
+				lancamentoDeCusta.removerCusta(custa);
+				custas.remove(custa);
+			}else{
+				custa = new Custa();
+			}
+				
+		} catch (LancamentoDeCustaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 	
 	
 	
-	public void editarCusta(){	
+	public void editarCusta(){
+		if(custa == null)
+			custa = new Custa();
 		System.out.println(custa);
 	}
 

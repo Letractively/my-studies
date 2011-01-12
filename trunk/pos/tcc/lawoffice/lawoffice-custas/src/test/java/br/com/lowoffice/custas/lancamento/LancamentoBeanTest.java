@@ -15,7 +15,8 @@ import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
-import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
+import br.com.lawoffice.dominio.Lancamento;
+import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 import br.com.lowoffice.custas.lancamento.LancamentoDeCustaBean;
 
 /**
@@ -118,30 +119,30 @@ public class LancamentoBeanTest {
 	@Test
 	public void testAdicionarCustaGetTotalLancamento(){
 		
-		Cliente c = new Cliente();
-		Colaborador cl = new Colaborador();
+		Cliente cliente = new Cliente();
+		Colaborador colaborador = new Colaborador();
 		
-		Custa c1 = new Custa();
-		c1.setValor(new BigDecimal(22.00));
+		Custa custa1 = new Custa();
+		custa1.setValor(new BigDecimal(22.00));
 		
-		Custa c2 = new Custa();
-		c2.setValor(new BigDecimal(10.00));
+		Custa custa2 = new Custa();
+		custa2.setValor(new BigDecimal(10.00));
 		
 		
 		// add custa 1
 		lcTest.adicionarCusta(
-				c1,  
-				c, 
-				cl
+				custa1,  
+				cliente, 
+				colaborador
 		);
 		
 		// add custa 2 no mesmo lançamento		
 		assertEquals(
 			new BigDecimal(32.00), 
 			lcTest.adicionarCusta(
-					c2,  
-					c, 
-					cl
+					custa2,  
+					cliente, 
+					colaborador
 				).getLancamento().getTotal()
 		);
 		
@@ -152,10 +153,47 @@ public class LancamentoBeanTest {
 	
 	
 	
-	@Test(expected=LacamentoDeCustaException.class)
-	public void testFecharLacamentoSemLacamentosAFechar() throws LacamentoDeCustaException{		
+	@Test(expected=LancamentoDeCustaException.class)
+	public void testFecharLacamentoSemLacamentosAFechar() throws LancamentoDeCustaException{		
 		lcTest.fecharLacamento();
 	}
+
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoCustaNula() throws LancamentoDeCustaException{
+		lcTest.removerCusta(null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoCustaNãoTiverLancamento() throws LancamentoDeCustaException{
+		lcTest.removerCusta(new Custa());
+	}
+	
+	@Test(expected=LancamentoDeCustaException.class)
+	public void deveDispararUmaExcecaoQuandoOLancamentoNaoEncontratoNaSessao() throws LancamentoDeCustaException{
+		lcTest.removerCusta(new Custa().addLancamento(new Lancamento()));
+	}
+	
+	
+	
+	@Test()
+	public void deveRemoverACustaPassada() throws LancamentoDeCustaException{
+		
+		// add a custa
+		Custa custa = lcTest.adicionarCusta(
+				new Custa(), 
+				new Cliente(), 
+				new Colaborador()
+			);
+		
+		// removendo a custa do lançamento
+		lcTest.removerCusta(custa);
+		 
+		// lançamento sem custas
+		assertEquals(0, custa.getLancamento().getCustas().size());
+	}
+	
 	
 	
 	

@@ -20,7 +20,7 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.Lancamento;
-import br.com.lowoffice.custas.exception.LacamentoDeCustaException;
+import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 
 /**
  *  TODO: javadoc 
@@ -77,10 +77,8 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
 		
 		// TODO: guava ??
-		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>(); 
-		chave.put(cliente, colaborador);
+		Map<Cliente, Colaborador> chave = getChave(cliente, colaborador);
 		
-
 		if( !mapsLacamentos.containsKey(chave))
 			mapsLacamentos.put(
 					chave, 
@@ -96,10 +94,10 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 
 
 	@Override
-	public void fecharLacamento()throws LacamentoDeCustaException{
+	public void fecharLacamento()throws LancamentoDeCustaException{
 		
 		if(mapsLacamentos.isEmpty())
-			throw new LacamentoDeCustaException("Não há lançamento(s) para fechar");
+			throw new LancamentoDeCustaException("Não há lançamento(s) para fechar");
 		
 		List<Lancamento> lancamentos =  new ArrayList<Lancamento>(mapsLacamentos.values());
 		
@@ -120,6 +118,43 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		
 		mapsLacamentos.clear();
 	}
+	
+	
+	
+	@Override
+	public void removerCusta(Custa custa) throws LancamentoDeCustaException{
+		validarCusta(custa);
+		
+		Lancamento lancamento = 
+			mapsLacamentos.get(
+					getChave(
+						custa.getLancamento().getCliente(), 
+						custa.getLancamento().getColaborador()
+					)
+				);
+		
+		if(lancamento  == null)
+			throw new LancamentoDeCustaException("O Lançamento da custa não está na sessão do Bean");
+		
+		lancamento.getCustas().remove(custa);
+	}
+
+
+
+	private Map<Cliente, Colaborador> getChave(Cliente cliente, Colaborador colaborador) {
+		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>(); 
+		chave.put(cliente, colaborador);
+		return chave;
+	}
+
+
+
+	private void validarCusta(Custa custa) {
+		if(custa == null)
+			throw new IllegalArgumentException("Custa está nula");
+		if(custa.getLancamento() == null)
+			throw new IllegalArgumentException("Custa não está associada a um lancamento");
+	}	
 
 
 

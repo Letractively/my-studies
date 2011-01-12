@@ -12,23 +12,23 @@ package br.com.lowoffice.custas.exception;
  * @see  {@link Exception} {@link CustasException}
  *
  */
-public class LacamentoDeCustaException extends CustasException {
+public class LancamentoDeCustaException extends CustasException {
 	
 	private static final long serialVersionUID = 8075648092307954164L;
 	
 
-	public LacamentoDeCustaException() {
+	public LancamentoDeCustaException() {
 	}
 
 
-	public LacamentoDeCustaException(String arg0) {
+	public LancamentoDeCustaException(String arg0) {
 		super(arg0);
 	}
 
 	/**
 	 * @param arg0
 	 */
-	public LacamentoDeCustaException(Throwable arg0) {
+	public LancamentoDeCustaException(Throwable arg0) {
 		super(arg0);
 	}
 
@@ -36,7 +36,7 @@ public class LacamentoDeCustaException extends CustasException {
 	 * @param arg0
 	 * @param arg1
 	 */
-	public LacamentoDeCustaException(String arg0, Throwable arg1) {
+	public LancamentoDeCustaException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
