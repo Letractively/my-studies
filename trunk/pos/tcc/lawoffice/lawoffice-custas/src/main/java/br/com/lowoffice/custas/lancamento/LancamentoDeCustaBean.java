@@ -3,6 +3,7 @@
  */
 package br.com.lowoffice.custas.lancamento;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,26 +73,6 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 			);
 	}
 	
-	
-
-	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
-		
-		// TODO: guava ??
-		Map<Cliente, Colaborador> chave = getChave(cliente, colaborador);
-		
-		if( !mapsLacamentos.containsKey(chave))
-			mapsLacamentos.put(
-					chave, 
-					new Lancamento()
-						.adicionarCliente(cliente)
-						.adicionarColaborador(colaborador)
-						.adicionarDataLancamento()
-				);
-		
-		return mapsLacamentos.get(chave);
-	}
-
-
 
 	@Override
 	public void fecharLacamento()throws LancamentoDeCustaException{
@@ -123,8 +104,37 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	
 	@Override
 	public void removerCusta(Custa custa) throws LancamentoDeCustaException{
+		validarCusta(custa);		
+		getLancamento(custa).getCustas().remove(custa);
+	}
+	
+	
+
+	@Override
+	public Custa atualizarCusta(Custa custa) throws LancamentoDeCustaException {
 		validarCusta(custa);
 		
+		Lancamento lancamento = getLancamento(custa);
+				
+		Custa custaAtual = 
+			lancamento.getCustas().get(lancamento.getCustas().indexOf(custa));
+		
+		custaAtual.setNatureza(custa.getNatureza());
+		custaAtual.setValor(custa.getValor());
+		
+		return custaAtual;
+	}
+
+
+
+	/**
+	 * Retorna o Lançamento da custa que está na sessão do bean
+	 * 
+	 * @param custa
+	 * @return
+	 * @throws LancamentoDeCustaException
+	 */
+	private Lancamento getLancamento(Custa custa)throws LancamentoDeCustaException {
 		Lancamento lancamento = 
 			mapsLacamentos.get(
 					getChave(
@@ -135,11 +145,35 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		
 		if(lancamento  == null)
 			throw new LancamentoDeCustaException("O Lançamento da custa não está na sessão do Bean");
-		
-		lancamento.getCustas().remove(custa);
+		return lancamento;
 	}
-
-
+	
+	
+	/**
+	 * Retorna o Lançamento para a combinaçao de {@link Cliente} e {@link Colaborador} que está na sessão do bean
+	 * 
+	 * 
+	 * @param cliente
+	 * @param colaborador
+	 * @return
+	 */
+	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
+		
+		// TODO: guava ??
+		Map<Cliente, Colaborador> chave = getChave(cliente, colaborador);
+		
+		if( !mapsLacamentos.containsKey(chave))
+			mapsLacamentos.put(
+					chave, 
+					new Lancamento()
+						.adicionarCliente(cliente)
+						.adicionarColaborador(colaborador)
+						.adicionarDataLancamento()
+				);
+		
+		return mapsLacamentos.get(chave);
+	}
+	
 
 	private Map<Cliente, Colaborador> getChave(Cliente cliente, Colaborador colaborador) {
 		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>(); 

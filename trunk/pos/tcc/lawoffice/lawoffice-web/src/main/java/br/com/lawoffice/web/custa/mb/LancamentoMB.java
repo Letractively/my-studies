@@ -126,14 +126,25 @@ public class LancamentoMB extends BaseMB{
 	}
 	
 	
-	
 	public void editarCusta(){
 		if(custa == null)
 			custa = new Custa();
-		System.out.println(custa);
+	}
+	
+	
+	
+	public void atualizarCusta(){
+		try {
+			lancamentoDeCusta.atualizarCusta(custas.get(custas.indexOf(custa)));
+			
+		} catch (LancamentoDeCustaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
+	
 	public void fecharLancamento(){
 		try {
 			lancamentoDeCusta.fecharLacamento();

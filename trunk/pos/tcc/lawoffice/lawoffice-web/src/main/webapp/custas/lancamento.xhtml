@@ -56,7 +56,13 @@
 							<f:ajax render="tableCustas natureza valor" 
 								execute="natureza valor colaboradorID clienteID" 
 								onevent="oneventAddCusta" />
-						</h:commandButton>					
+						</h:commandButton>
+						
+						<h:commandButton value="Atualizar" action="#{lancamentoMB.atualizarCusta}" id="btnSalvar">
+							<f:ajax render="tableCustas natureza valor" 
+								execute="natureza valor colaboradorID clienteID" 
+								onevent="oneventAddCusta" />
+						</h:commandButton>											
 					</div>
 					
 				</div>
@@ -113,10 +119,10 @@
 			</div>
 			
 			<div class="divContent">
+			
 				<h:commandButton action="#{lancamentoMB.editarCusta}" 
 					value="Editar" 
-					id="btnEditar"
-					>
+					id="btnEditar">
 					<f:ajax render="natureza valor colaboradorID clienteID" execute="tableCustas"/>				
 				</h:commandButton>
 								

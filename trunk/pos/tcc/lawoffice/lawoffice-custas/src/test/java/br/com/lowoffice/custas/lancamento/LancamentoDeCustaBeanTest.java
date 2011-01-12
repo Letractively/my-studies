@@ -23,7 +23,7 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaBean;
  * @author robson
  *
  */
-public class LancamentoBeanTest {
+public class LancamentoDeCustaBeanTest {
 
 	
 	private LancamentoDeCustaBean lcTest;
@@ -152,7 +152,7 @@ public class LancamentoBeanTest {
 	
 	
 	
-	
+	//TODO: renomear testes para o padrão devefazeralgumacoias.....
 	@Test(expected=LancamentoDeCustaException.class)
 	public void testFecharLacamentoSemLacamentosAFechar() throws LancamentoDeCustaException{		
 		lcTest.fecharLacamento();
@@ -161,17 +161,17 @@ public class LancamentoBeanTest {
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoQuandoCustaNula() throws LancamentoDeCustaException{
+	public void deveDispararUmaExcecaoQuandoRemoverCustaNula() throws LancamentoDeCustaException{
 		lcTest.removerCusta(null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoQuandoCustaNãoTiverLancamento() throws LancamentoDeCustaException{
+	public void deveDispararUmaExcecaoQuandoRemoverCustaSemLancamento() throws LancamentoDeCustaException{
 		lcTest.removerCusta(new Custa());
 	}
 	
 	@Test(expected=LancamentoDeCustaException.class)
-	public void deveDispararUmaExcecaoQuandoOLancamentoNaoEncontratoNaSessao() throws LancamentoDeCustaException{
+	public void deveDispararUmaExcecaoQuandoRemoverCustaEOLancamentoNaoEncontratoNaSessao() throws LancamentoDeCustaException{
 		lcTest.removerCusta(new Custa().addLancamento(new Lancamento()));
 	}
 	
@@ -196,6 +196,48 @@ public class LancamentoBeanTest {
 	
 	
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoAtualizarCustaNula() throws LancamentoDeCustaException{
+		lcTest.atualizarCusta(null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoAtulizarCustaSemLancamento() throws LancamentoDeCustaException{
+		lcTest.atualizarCusta(new Custa());
+	}
+
+	@Test(expected=LancamentoDeCustaException.class)
+	public void deveDispararUmaExcecaoQuandoAtualizarCustaEOLancamentoNaoEncontratoNaSessao() throws LancamentoDeCustaException{
+		lcTest.atualizarCusta(new Custa().addLancamento(new Lancamento()));
+	}	
+	
+	@Test()
+	public void deveAtualizarACustaPassada() throws LancamentoDeCustaException{
+		
+		
+		Custa custa = new Custa();  
+			
+		custa.setNatureza("Natureza");
+		custa.setValor(new BigDecimal(10));
+		
+			
+		// add a custa
+		 custa = lcTest.adicionarCusta(
+				custa, 
+				new Cliente(), 
+				new Colaborador()
+			);
+		
+		// novos valores ...
+		 custa.setNatureza("Nova Natureza");
+		 custa.setValor(new BigDecimal(11));
+		 
+         custa = lcTest.atualizarCusta(custa);
+         
+         assertEquals("Nova Natureza", custa.getNatureza());
+         assertEquals(new BigDecimal(11), custa.getValor());
+         
+	}	
 	
 	
 /*	@Test(expected=LacamentoDeCustaException.class)
