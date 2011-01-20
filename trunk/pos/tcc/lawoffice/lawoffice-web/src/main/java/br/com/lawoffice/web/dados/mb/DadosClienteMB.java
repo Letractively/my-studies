@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.resource.spi.IllegalStateException;
 
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
@@ -63,7 +64,6 @@ public class DadosClienteMB extends BaseMB {
 	public void adicionarCliente(){
 		dadosLocal.salvar(cliente);
 		listarClientes();
-		cliente = new Cliente();
 	}
 	
 	
@@ -82,6 +82,12 @@ public class DadosClienteMB extends BaseMB {
 	public void editarCliente(){
 		if(clienteSelecionado != null)
 			cliente = clienteSelecionado;
+		else
+			throw new IllegalArgumentException();// TODO: test
+	}
+	
+	public void novoCliente(){
+		cliente = new Cliente();
 	}
 	
 	

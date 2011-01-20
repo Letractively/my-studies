@@ -15,78 +15,105 @@
 				
 				<div id="clientes" class="divContent">
 				
-					<p:dataTable
-						value="#{dadosClienteMB.listClientes}"
-						var="cliente" 
-						id="tableClientes"
-						selection="#{dadosClienteMB.clienteSelecionado}" 
-						selectionMode="single" >
+					<div>
 					
-						<p:column sortBy="#{cliente.id}">
-							<f:facet name="header">
-								<h:outputText value="Número" /> 
-							</f:facet>
-							<h:outputText value="#{cliente.id}" />
-						</p:column>			
-					
-						<p:column sortBy="#{cliente.nome}">
-							<f:facet name="header">
-								<h:outputText value="Nome" /> 
-							</f:facet>
-							<h:outputText value="#{cliente.nome}" />
-						</p:column>
+						<p:dataTable
+							value="#{dadosClienteMB.listClientes}"
+							var="cliente" 
+							id="tableClientes"
+							selection="#{dadosClienteMB.clienteSelecionado}" 
+							selectionMode="single" >
 						
-						<p:column sortBy="#{cliente.email}">
-							<f:facet name="header">
-								<h:outputText value="Email" /> 
-							</f:facet>
-							<h:outputText value="#{cliente.email}" />
-						</p:column>				
+							<p:column sortBy="#{cliente.id}">
+								<f:facet name="header">
+									<h:outputText value="Número" /> 
+								</f:facet>
+								<h:outputText value="#{cliente.id}" />
+							</p:column>			
+						
+							<p:column sortBy="#{cliente.nome}">
+								<f:facet name="header">
+									<h:outputText value="Nome" /> 
+								</f:facet>
+								<h:outputText value="#{cliente.nome}" />
+							</p:column>
 							
-					</p:dataTable>
+							<p:column sortBy="#{cliente.email}">
+								<f:facet name="header">
+									<h:outputText value="Email" /> 
+								</f:facet>
+								<h:outputText value="#{cliente.email}" />
+							</p:column>											
+						</p:dataTable>
+											
+					</div>
 					
-					<h:commandButton value="Editar" 
-						action="#{dadosClienteMB.editarCliente}" 
-						id="btnEditar" >					
-						<f:ajax execute="tableClientes" render="nome email"/>						
-					</h:commandButton>
+					<div>
 					
-					<h:commandButton value="Remover" 
-						action="#{dadosClienteMB.removerCliente}"
-						id="btnRemover" >					
-						<f:ajax execute="tableClientes" render="tableClientes"/>						
-					</h:commandButton>					
-					
+						<h:commandButton value="Novo" 
+							action="#{dadosClienteMB.novoCliente}"
+							id="btnNovo" >					
+							<f:ajax  render="nome email" onevent="onClickBtnNovo"/>						
+						</h:commandButton>					
+						
+						
+						<h:commandButton value="Editar" 
+							action="#{dadosClienteMB.editarCliente}" 
+							id="btnEditar" >					
+							<f:ajax execute="tableClientes" render="nome email" onevent="onClickBtnEditar" oneerror="temp"/>						
+						</h:commandButton>
+								
+						<h:commandButton value="Remover" 
+							action="#{dadosClienteMB.removerCliente}"
+							id="btnRemover" >					
+							<f:ajax execute="tableClientes" render="tableClientes"/>						
+						</h:commandButton>										
+					</div>
+										
 				</div>
 				
-				<div id="dados">
+				<div id="dados" style="display: none;">
 				
-					<p>
-						<h:outputLabel value="Nome:"  for="nome"/>
-						<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome"/>
-					</p>
+					<div>
+						<p>
+							<h:outputLabel value="Nome:"  for="nome"/>
+							<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome"/>
+						</p>
+					
+						<p>
+							<h:outputLabel value="Email:"  for="email"/>
+							<h:inputText value="#{dadosClienteMB.cliente.email}" id="email"/>
+						</p>									
+					</div>
 				
-					<p>
-						<h:outputLabel value="Email:"  for="email"/>
-						<h:inputText value="#{dadosClienteMB.cliente.email}" id="email"/>
-					</p>				
-				
-					<h:commandButton value="Salvar" action="#{dadosClienteMB.adicionarCliente}" id="btnSalvar" >					
-						<f:ajax execute="nome email" render="tableClientes"/>						
-					</h:commandButton>
-											
-					<h:commandButton value="Salvar" action="#{dadosClienteMB.atualizarCliente}" id="btnAtualizar" >					
-						<f:ajax execute="nome email" render="tableClientes"/>						
-					</h:commandButton>											
+					<div>
+						<h:commandButton value="Salvar" 
+							action="#{dadosClienteMB.adicionarCliente}" 
+							id="btnSalvarNovo" >					
+							<f:ajax execute="nome email" render="tableClientes" onevent="onClickBtnSalvar"/>						
+						</h:commandButton>
+												
+						<h:commandButton value="Salvar" 
+							action="#{dadosClienteMB.atualizarCliente}" 
+							id="btnSalvarEditar" >					
+							<f:ajax execute="nome email" render="tableClientes" onevent="onClickBtnSalvar"/>						
+						</h:commandButton>
+						
+						<h:commandButton value="Cancelar"
+							id="btnCancelar" 
+							onclick="onClickBtnCancelar">																		
+						</h:commandButton>						
+							
+					</div>											
 				</div>
 				
 			</div>
-			
-			
 							
-			
-				
 		</h:form>		
   </ui:define>
+  
+  <ui:define name="js">
+  	<h:outputScript name="dados.js" library="js"/>
+  </ui:define>  
   
 </ui:composition>
