@@ -5,6 +5,7 @@ package br.com.lawoffice.dominio;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,11 @@ public class Cliente{
 	@Column(name="NOME")
 	private String nome;
 	
-	@OneToMany(mappedBy="cliente")
+	@Column(name="EMAIL")
+	private String email;
+	
+	
+	@OneToMany(mappedBy="cliente", cascade =  CascadeType.REMOVE)
 	private List<Lancamento> lancamentos;
 	
 	// TODO: transient até fechar o serviço de caixa
@@ -45,15 +50,6 @@ public class Cliente{
 	
 	public Cliente() {}
 	
-	
-	// TODO: construtor temporario
-	public Cliente(long id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-
-
 
 	public Long getId() {
 		return id;
@@ -69,6 +65,14 @@ public class Cliente{
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public List<Lancamento> getLancamentos() {

@@ -2,12 +2,91 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
   <ui:define name="title">Cliente</ui:define>
   
-  <ui:define name="body">    
-	<h2>Em construção</h2>
+  <ui:define name="body">
+  
+		<h:form prependId="false">
+			
+			<div id="dadosCliente">
+				
+				<div id="clientes" class="divContent">
+				
+					<p:dataTable
+						value="#{dadosClienteMB.listClientes}"
+						var="cliente" 
+						id="tableClientes"
+						selection="#{dadosClienteMB.clienteSelecionado}" 
+						selectionMode="single" >
+					
+						<p:column sortBy="#{cliente.id}">
+							<f:facet name="header">
+								<h:outputText value="Número" /> 
+							</f:facet>
+							<h:outputText value="#{cliente.id}" />
+						</p:column>			
+					
+						<p:column sortBy="#{cliente.nome}">
+							<f:facet name="header">
+								<h:outputText value="Nome" /> 
+							</f:facet>
+							<h:outputText value="#{cliente.nome}" />
+						</p:column>
+						
+						<p:column sortBy="#{cliente.email}">
+							<f:facet name="header">
+								<h:outputText value="Email" /> 
+							</f:facet>
+							<h:outputText value="#{cliente.email}" />
+						</p:column>				
+							
+					</p:dataTable>
+					
+					<h:commandButton value="Editar" 
+						action="#{dadosClienteMB.editarCliente}" 
+						id="btnEditar" >					
+						<f:ajax execute="tableClientes" render="nome email"/>						
+					</h:commandButton>
+					
+					<h:commandButton value="Remover" 
+						action="#{dadosClienteMB.removerCliente}"
+						id="btnRemover" >					
+						<f:ajax execute="tableClientes" render="tableClientes"/>						
+					</h:commandButton>					
+					
+				</div>
+				
+				<div id="dados">
+				
+					<p>
+						<h:outputLabel value="Nome:"  for="nome"/>
+						<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome"/>
+					</p>
+				
+					<p>
+						<h:outputLabel value="Email:"  for="email"/>
+						<h:inputText value="#{dadosClienteMB.cliente.email}" id="email"/>
+					</p>				
+				
+					<h:commandButton value="Salvar" action="#{dadosClienteMB.adicionarCliente}" id="btnSalvar" >					
+						<f:ajax execute="nome email" render="tableClientes"/>						
+					</h:commandButton>
+											
+					<h:commandButton value="Salvar" action="#{dadosClienteMB.atualizarCliente}" id="btnAtualizar" >					
+						<f:ajax execute="nome email" render="tableClientes"/>						
+					</h:commandButton>											
+				</div>
+				
+			</div>
+			
+			
+							
+			
+				
+		</h:form>		
   </ui:define>
   
 </ui:composition>

@@ -30,26 +30,28 @@ public class DadosBean implements Dados {
 	
 	
 	@Override
-	public <T> T atualizar(T t) {
-		return null;
+	public <T> T atualizar(T t){
+		entityManager.merge(t);
+		return t;
 	}
 
 	
 	@Override
-	public void remover(long id) {
-		
+	public <T> void remover(Class<T> t, long id){
+		entityManager.remove(localizar(t, id));
 	}
 
 	
 	@Override
-	public <T> T localizar(long id) {
-		return null;
+	public <T> T localizar(Class<T> t,long id){
+		return entityManager.find(t, id);
 	}
 
 	
 	@Override
-	public <T> T salvar(T t) {
-		return null;
+	public <T> T salvar(T t){
+		entityManager.persist(t);
+		return t;
 	}
 
 	
