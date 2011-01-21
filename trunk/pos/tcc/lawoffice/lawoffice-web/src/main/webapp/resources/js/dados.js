@@ -2,6 +2,7 @@ function onClickBtnNovo(data){
 	if (data.status == "success"){
 		showDados();
 		$("#btnSalvarEditar").hide();
+		$("#btnSalvarNovo").show();
 	}
 		
 }
@@ -10,36 +11,31 @@ function onClickBtnNovo(data){
 function onClickBtnEditar(data){	
 	if (data.status == "success"){
 		showDados();
+		$("#btnSalvarEditar").show();
 		$("#btnSalvarNovo").hide();
 	}
 }
 
 
-function temp(data) {
-	if (data.status == "serverError"){
-		alert("sksks");
-	}
-}
-
 // function para os dois btn de salvar ( novo/editar )
 function onClickBtnSalvar(data){	
 	if (data.status == "success"){
-		showClientes();
+		showListaDados();
 	}		
 }
 
 
 function onClickBtnCancelar(){		
-	showClientes();
+	showListaDados();
 }
 
 
-function showClientes() {
-	$("#clientes").show();
+function showListaDados() {
+	$("#listaDados").show();
 	$("#dados").hide();
 }
 
 function showDados() {
-	$("#clientes").hide();		
+	$("#listaDados").hide();		
 	$("#dados").show();
 }

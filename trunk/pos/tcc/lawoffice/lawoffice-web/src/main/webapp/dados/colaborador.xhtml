@@ -2,12 +2,131 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
   <ui:define name="title">Colaborador</ui:define>
   
-  <ui:define name="body">    
-	<h2>Em construção</h2>
+  <ui:define name="body">
+  
+		<h:form prependId="false">
+			
+			<div id="dadosColaborador">
+				
+				<div id="listaDados" class="divContent">
+				
+					<div>
+					
+						<p:dataTable
+							value="#{dadosColaboradorMB.listColaboradores}"
+							var="colaborador" 
+							id="tableColaboradores"
+							selection="#{dadosColaboradorMB.colaboradorSelecionado}" 
+							selectionMode="single" >
+						
+							<p:column sortBy="#{colaborador.id}">
+								<f:facet name="header">
+									<h:outputText value="Número" /> 
+								</f:facet>
+								<h:outputText value="#{colaborador.id}" />
+							</p:column>			
+						
+							<p:column sortBy="#{colaborador.nome}">
+								<f:facet name="header">
+									<h:outputText value="Nome" /> 
+								</f:facet>
+								<h:outputText value="#{colaborador.nome}" />
+							</p:column>
+							
+							<p:column sortBy="#{colaborador.cargo}">
+								<f:facet name="header">
+									<h:outputText value="Cargo" /> 
+								</f:facet>
+								<h:outputText value="#{colaborador.cargo}" />
+							</p:column>							
+							
+							<p:column sortBy="#{colaborador.email}">
+								<f:facet name="header">
+									<h:outputText value="Email" /> 
+								</f:facet>
+								<h:outputText value="#{colaborador.email}" />
+							</p:column>											
+						</p:dataTable>
+											
+					</div>
+					
+					<div>
+					
+						<h:commandButton value="Novo" 
+							action="#{dadosColaboradorMB.novoColaborador}"
+							id="btnNovo" >					
+							<f:ajax  render="nome email cargo" onevent="onClickBtnNovo"/>						
+						</h:commandButton>					
+						
+						
+						<h:commandButton value="Editar" 
+							action="#{dadosColaboradorMB.editarColaborador}" 
+							id="btnEditar" >					
+							<f:ajax execute="tableColaboradores" render="nome email cargo" onevent="onClickBtnEditar" />						
+						</h:commandButton>
+								
+						<h:commandButton value="Remover" 
+							action="#{dadosColaboradorMB.removerColaborador}"
+							id="btnRemover" >					
+							<f:ajax execute="tableColaboradores" render="tableColaboradores"/>						
+						</h:commandButton>										
+					</div>
+										
+				</div>
+				
+				<div id="dados" style="display: none;">
+				
+					<div>
+					
+						<p>
+							<h:outputLabel value="Nome:"  for="nome"/>
+							<h:inputText value="#{dadosColaboradorMB.colaborador.nome}" id="nome" size="60"/>
+						</p>
+						
+						<p>
+							<h:outputLabel value="Cargo:"  for="cargo"/>
+							<h:inputText value="#{dadosColaboradorMB.colaborador.cargo}" id="cargo" size="60"/>
+						</p>						
+					
+						<p>
+							<h:outputLabel value="Email:"  for="email"/>
+							<h:inputText value="#{dadosColaboradorMB.colaborador.email}" id="email" size="60"/>
+						</p>									
+					</div>
+				
+					<div>
+						<h:commandButton value="Salvar" 
+							action="#{dadosColaboradorMB.adicionarColaborador}" 
+							id="btnSalvarNovo" >					
+							<f:ajax execute="nome email cargo" render="tableColaboradores" onevent="onClickBtnSalvar"/>						
+						</h:commandButton>
+												
+						<h:commandButton value="Salvar" 
+							action="#{dadosColaboradorMB.atualizarColaborador}" 
+							id="btnSalvarEditar" >					
+							<f:ajax execute="nome email cargo" render="tableColaboradores" onevent="onClickBtnSalvar"/>					
+						</h:commandButton>
+						
+						<h:commandButton value="Cancelar"
+							id="btnCancelar">
+							<f:ajax  onevent="onClickBtnCancelar"/>																		
+						</h:commandButton>						
+							
+					</div>											
+				</div>
+				
+			</div>
+							
+		</h:form>		
   </ui:define>
+  
+  <ui:define name="js">
+  	<h:outputScript name="dados.js" library="js"/>
+  </ui:define>  
   
 </ui:composition>

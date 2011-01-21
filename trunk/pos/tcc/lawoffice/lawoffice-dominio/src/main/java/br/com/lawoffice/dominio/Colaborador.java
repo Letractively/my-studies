@@ -32,6 +32,11 @@ public class Colaborador{
 	@Column(name="NOME")
 	private String nome;
 
+	@Column(name="EMAIL")
+	private String email;
+	
+	@Column(name="CARGO")
+	private String cargo;
 	
 	@OneToMany(mappedBy="colaborador")
 	private List<Lancamento> lancamentos;
@@ -39,19 +44,6 @@ public class Colaborador{
 	@Transient
 	// TODO: veja no cliente
 	private Conta conta;
-	
-	
-	public Colaborador(){
-		
-	}
-	
-
-	public Colaborador(long id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-
 
 	public Long getId() {
 		return id;
@@ -69,6 +61,22 @@ public class Colaborador{
 		this.nome = nome;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
 	public List<Lancamento> getLancamentos() {
 		return lancamentos;
 	}
@@ -77,15 +85,11 @@ public class Colaborador{
 		this.lancamentos = lancamentos;
 	}
 
-
 	public Conta getConta() {
 		return conta;
 	}
 
-
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-	
-
 }

@@ -28,13 +28,13 @@ public class DadosClienteMB extends BaseMB {
 
 	
 	/**
-	 * Cliente para adcionar/remover/editar 
+	 * Cliente para adicionar/remover/editar 
 	 */
 	private Cliente cliente;
 	
 	
 	/**
-	 * Cliente selecionado na lista de cliente da página 
+	 * Cliente selecionado na lista de cliente da página ( grid ) 
 	 */
 	private Cliente clienteSelecionado;
 	
@@ -56,7 +56,6 @@ public class DadosClienteMB extends BaseMB {
 	
 	@PostConstruct
 	public void init(){
-		cliente = new Cliente();
 		listarClientes();
 	}
 	
@@ -79,12 +78,12 @@ public class DadosClienteMB extends BaseMB {
 		}			
 	}
 	
+	
 	public void editarCliente(){
 		if(clienteSelecionado != null)
 			cliente = clienteSelecionado;
-		else
-			throw new IllegalArgumentException();// TODO: test
 	}
+	
 	
 	public void novoCliente(){
 		cliente = new Cliente();
@@ -96,9 +95,6 @@ public class DadosClienteMB extends BaseMB {
 	}
 	
 
-	
-	
-	
 	
 	
     // >>>>>>> GETS E SETS do MB <<<<<<<<<<<<<
@@ -132,5 +128,4 @@ public class DadosClienteMB extends BaseMB {
 		this.listClientes = listClientes;
 	}	
 	
-  
 }

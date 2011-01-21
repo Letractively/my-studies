@@ -3,7 +3,6 @@
  */
 package br.com.lowoffice.custas.lancamento;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,7 +110,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	
 
 	@Override
-	public Custa atualizarCusta(Custa custa) throws LancamentoDeCustaException {
+	public Custa atualizarCusta(Custa custa, Cliente cliente, Colaborador colaborador) throws LancamentoDeCustaException{
 		validarCusta(custa);
 		
 		Lancamento lancamento = getLancamento(custa);

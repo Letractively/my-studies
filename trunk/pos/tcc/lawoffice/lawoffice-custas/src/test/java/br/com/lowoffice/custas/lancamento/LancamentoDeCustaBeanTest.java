@@ -196,7 +196,7 @@ public class LancamentoDeCustaBeanTest {
 	
 	
 	
-	@Test(expected=IllegalArgumentException.class)
+/*	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoQuandoAtualizarCustaNula() throws LancamentoDeCustaException{
 		lcTest.atualizarCusta(null);
 	}
@@ -237,7 +237,7 @@ public class LancamentoDeCustaBeanTest {
          assertEquals("Nova Natureza", custa.getNatureza());
          assertEquals(new BigDecimal(11), custa.getValor());
          
-	}	
+	}*/	
 	
 	
 /*	@Test(expected=LacamentoDeCustaException.class)

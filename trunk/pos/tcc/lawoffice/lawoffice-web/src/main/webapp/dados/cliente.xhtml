@@ -13,7 +13,7 @@
 			
 			<div id="dadosCliente">
 				
-				<div id="clientes" class="divContent">
+				<div id="listaDados" class="divContent">
 				
 					<div>
 					
@@ -77,12 +77,12 @@
 					<div>
 						<p>
 							<h:outputLabel value="Nome:"  for="nome"/>
-							<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome"/>
+							<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome" size="60"/>
 						</p>
 					
 						<p>
 							<h:outputLabel value="Email:"  for="email"/>
-							<h:inputText value="#{dadosClienteMB.cliente.email}" id="email"/>
+							<h:inputText value="#{dadosClienteMB.cliente.email}" id="email" size="60"/>
 						</p>									
 					</div>
 				
@@ -100,8 +100,8 @@
 						</h:commandButton>
 						
 						<h:commandButton value="Cancelar"
-							id="btnCancelar" 
-							onclick="onClickBtnCancelar">																		
+							id="btnCancelar">
+							<f:ajax  onevent="onClickBtnCancelar"/>																		
 						</h:commandButton>						
 							
 					</div>											

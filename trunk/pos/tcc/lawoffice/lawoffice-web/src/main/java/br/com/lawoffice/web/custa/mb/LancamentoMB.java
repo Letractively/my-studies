@@ -19,7 +19,7 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
 /**
  * @author robson
  *
- * Manager Bean para página de /custas/novo-lacamento.xhtml
+ * Manager Bean para página de /custas/lacamento.xhtml
  *
  */
 @ManagedBean()
@@ -34,6 +34,13 @@ public class LancamentoMB extends BaseMB{
 	 * Custa para adição/edicão/remoção da lista de custas 
 	 */
 	private Custa custa;
+	
+	
+	
+	/**
+	 * Custa selecionada para edição e remoção do grid de custa na página
+	 */
+	private Custa custaSelecionada;
 	
 	/**
 	 * ID do Colaborador selecionada na view para para adcionar nova custa 
@@ -112,13 +119,10 @@ public class LancamentoMB extends BaseMB{
 
 	public void removerCusta(){
 		try {
-			if(custa != null){
-				lancamentoDeCusta.removerCusta(custa);
-				custas.remove(custa);
-			}else{
-				custa = new Custa();
-			}
-				
+			if(custaSelecionada != null){
+				lancamentoDeCusta.removerCusta(custaSelecionada);
+				custas.remove(custaSelecionada);
+			}				
 		} catch (LancamentoDeCustaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,18 +131,25 @@ public class LancamentoMB extends BaseMB{
 	
 	
 	public void editarCusta(){
-		if(custa == null)
-			custa = new Custa();
+		if(custaSelecionada != null)
+			custa = custaSelecionada;
 	}
 	
 	
 	
+	
+	// TODO: revisar o editar/remover
+	// pelo que vi o editar não precisa de ter um serviço no ejb
+	// vou tocado outros lances no projeto
 	public void atualizarCusta(){
-		/*try {*/
-			
-/*			Custa c = custas.get(custas.indexOf(custa));
-			
-			c = lancamentoDeCusta.atualizarCusta(custa);*/
+		
+/*		try {
+
+			lancamentoDeCusta.atualizarCusta(
+					custa,
+					getClienteSelecionado(),
+					getColaboradorSelecionado()
+				);*/
 			
 			custa = new Custa();
 			
@@ -160,8 +171,6 @@ public class LancamentoMB extends BaseMB{
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	private Colaborador getColaboradorSelecionado() {
 		for (Colaborador colaborador: colaboradores)
@@ -176,11 +185,11 @@ public class LancamentoMB extends BaseMB{
 			if( cliente.getId().equals(clienteID))
 				return cliente;
 		return null;
-	}	
+	}
+
+
+	// >>>>>>>> GETS E SETS DO MB <<<<<<<<<<<<<
 	
-		
-	
-	// gets e sets ...
 	public Custa getCusta() {
 		return custa;
 	}
@@ -191,36 +200,20 @@ public class LancamentoMB extends BaseMB{
 	}
 
 
-	public List<Custa> getCustas() {
-		return custas;
+	public Custa getCustaSelecionada() {
+		return custaSelecionada;
 	}
 
-	public void setCustas(List<Custa> custas) {
-		this.custas = custas;
+
+	public void setCustaSelecionada(Custa custaSelecionada) {
+		this.custaSelecionada = custaSelecionada;
 	}
 
-	
-	// 
-	public List<Colaborador> getColaboradores() {
-		return colaboradores;
-	}
-
-	public void setColaboradores(List<Colaborador> colaboradores) {
-		this.colaboradores = colaboradores;
-	}
-
-	public List<Cliente> getClientes(){		
-		return clientes;
-	}
-
-	
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
 
 	public Long getColaboradorID() {
 		return colaboradorID;
 	}
+
 
 	public void setColaboradorID(Long colaboradorID) {
 		this.colaboradorID = colaboradorID;
@@ -231,8 +224,39 @@ public class LancamentoMB extends BaseMB{
 		return clienteID;
 	}
 
+
 	public void setClienteID(Long clienteID) {
 		this.clienteID = clienteID;
 	}
+
+
+	public List<Colaborador> getColaboradores() {
+		return colaboradores;
+	}
+
+
+	public void setColaboradores(List<Colaborador> colaboradores) {
+		this.colaboradores = colaboradores;
+	}
+
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
+
+	public List<Custa> getCustas() {
+		return custas;
+	}
+
+
+	public void setCustas(List<Custa> custas) {
+		this.custas = custas;
+	}	
 
 }

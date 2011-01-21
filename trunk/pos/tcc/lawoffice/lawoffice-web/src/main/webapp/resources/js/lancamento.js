@@ -15,3 +15,11 @@ function oneventFecharLancamento(data){
 		$("#btnFecharLancamento").attr('disabled', '');
 }
 
+
+$(function() {
+	$("table").click(
+			function() {
+				alert('aaa');
+			}
+	);
+});

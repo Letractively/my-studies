@@ -19,9 +19,9 @@ public interface LancamentoDeCusta{
 
 	Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador);
 	
-	void removerCusta(Custa custa) throws LancamentoDeCustaException;
+	Custa atualizarCusta(Custa custa, Cliente cliente, Colaborador colaborador)throws LancamentoDeCustaException;
 	
-	Custa atualizarCusta(Custa custa)throws LancamentoDeCustaException;
+	void removerCusta(Custa custa) throws LancamentoDeCustaException;
 	
 	void fecharLacamento() throws LancamentoDeCustaException;
 	
