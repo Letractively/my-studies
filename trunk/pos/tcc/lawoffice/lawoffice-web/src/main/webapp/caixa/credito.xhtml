@@ -2,12 +2,33 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
-  <ui:define name="title">Debito</ui:define>
+  <ui:define name="title">Credito</ui:define>
   
-  <ui:define name="body">    
-	<h2>Em construção</h2>
+  <ui:define name="body">
+      
+	<h:form prependId="false">
+	
+		<div id="credito">
+			
+			<p:tabView>
+														
+				<p:tab title="Colaborador">
+					<ui:include src="/caixa/elements/colaborador.xhtml"></ui:include>							
+				</p:tab>
+														
+				<p:tab title="Cliente">		
+					<ui:include src="/caixa/elements/cliente.xhtml"></ui:include>											
+				</p:tab>				
+			
+			</p:tabView>
+		</div>		
+	</h:form>
+	
   </ui:define>
   
 </ui:composition>
+
+

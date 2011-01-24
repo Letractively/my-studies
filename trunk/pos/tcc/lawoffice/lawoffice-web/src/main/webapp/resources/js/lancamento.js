@@ -14,12 +14,3 @@ function oneventFecharLancamento(data){
 	if (data.status == "success")
 		$("#btnFecharLancamento").attr('disabled', '');
 }
-
-
-$(function() {
-	$("table").click(
-			function() {
-				alert('aaa');
-			}
-	);
-});

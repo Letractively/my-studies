@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+	<div id="dados">
+				
+		<div id="divInput">
+		
+			<div>
+				<h:outputLabel value="Cliente: " for="clienteID"/>
+					<h:selectOneMenu value="#{lancamentoMB.clienteID}" id="clienteID">
+						<f:selectItems value="#{lancamentoMB.clientes}"
+							var="cliente" 
+							itemLabel="#{cliente.nome}"
+							itemValue="#{cliente.id}"/>
+					</h:selectOneMenu>					
+			</div>			
+		
+			<div>
+				<h:outputLabel value="Valor: " for="valorCliente"/>
+				<h:inputText value="#{lancamentoMB.custa.natureza}" id="valorCliente"/>
+			</div>
+										
+			<div style="padding-top: 15px;">
+			
+				<h:commandButton value="Creditar" action="#{lancamentoMB.adicionarCusta}" id="btnCreditarCliente"><!--
+					<f:ajax render="tableCustas natureza valor" 
+						execute="natureza valor colaboradorID clienteID" 
+						onevent="oneventAddCusta" />
+				-->
+				</h:commandButton>
+														
+			</div>	
+
+			
+		</div>
+			
+		<div style="clear: both;"></div>
+					
+	</div>    
+		
+</ui:composition>
+
+

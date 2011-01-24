@@ -31,25 +31,25 @@ public class LancamentoMB extends BaseMB{
 		
 	// TODO: cdi ?
 	/**
-	 * Custa para adição/edicão/remoção da lista de custas 
+	 * {@link Custa} para adição/edicão/remoção da lista de custas 
 	 */
 	private Custa custa;
 	
 	
 	
 	/**
-	 * Custa selecionada para edição e remoção do grid de custa na página
+	 * {@link Custa} selecionada para edição e remoção do grid de custa na página
 	 */
 	private Custa custaSelecionada;
 	
 	/**
-	 * ID do Colaborador selecionada na view para para adcionar nova custa 
+	 * ID do {@link Colaborador} selecionado na view para para adcionar nova custa 
 	 */
 	private Long colaboradorID;
 	
 	
 	/**
-	 * ID do Cliente selecionada na view para para adcionar nova custa 
+	 * ID do {@link Cliente} selecionada na view para para adcionar nova custa 
 	 */	
 	private Long clienteID;
 	

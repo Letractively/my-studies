@@ -91,7 +91,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 			);
 			
 			caixa.debitar(
-				lancamento.getCliente().getConta(), 
+				lancamento.getCliente().getConta(),
 				lancamento.getTotal()
 			);
 		}
