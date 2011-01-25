@@ -3,14 +3,13 @@ function oneventAddCusta(data){
 		//$('#ajaxLoader').show();	
 	//else 
 	if (data.status == "success"){
-		$("#natureza").focus();		
+		jQuery("#natureza").focus();		
 	}
 }
 
-
 function oneventFecharLancamento(data){
 	if ( data.status == "begin")
-		$("#btnFecharLancamento").attr('disabled', 'disabled');	
+		jQuery("#btnFecharLancamento").attr('disabled', 'disabled');	
 	if (data.status == "success")
-		$("#btnFecharLancamento").attr('disabled', '');
+		jQuery("#btnFecharLancamento").attr('disabled', '');
 }

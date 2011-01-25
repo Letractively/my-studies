@@ -20,6 +20,7 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.Lancamento;
+import br.com.lawoffice.dominio.Pessoa;
 import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 
 /**
@@ -110,7 +111,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	
 
 	@Override
-	public Custa atualizarCusta(Custa custa, Cliente cliente, Colaborador colaborador) throws LancamentoDeCustaException{
+	public Custa atualizarCusta(Custa custa, Pessoa cliente, Colaborador colaborador) throws LancamentoDeCustaException{
 		validarCusta(custa);
 		
 		Lancamento lancamento = getLancamento(custa);

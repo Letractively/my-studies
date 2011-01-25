@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui" >
       
       
 	<h:head>
 		<title><ui:insert name="title">Default Title</ui:insert></title>
 		<h:outputStylesheet name="style.css" library="css"/>
 		<h:outputStylesheet name="superfish.css" library="css"/>
-		<h:outputStylesheet name="jquery-ui-1.8.6.custom.css" library="css"/>
+		<h:outputStylesheet name="jquery-ui-1.8.6.custom.css" library="css"/>		
 		<ui:insert name="css"></ui:insert>						
 	</h:head>
 		
@@ -28,11 +29,12 @@
 				<ui:include src="/WEB-INF/elements/footer.xhtml" />
 			</div>
 			<div id="js">
-				<h:outputScript name="jquery-1.4.2.min.js" library="js" />
+				<!--<h:outputScript name="jquery-1.4.4.min.js" library="js" />
+				-->
 				<h:outputScript name="supersubs.js" library="js" />
 				<h:outputScript name="superfish.js" library="js" />
 				<h:outputScript name="geral.js" library="js" />
-				<h:outputScript name="jquery-ui-1.8.6.custom.min.js" library="js" />			
+				<h:outputScript name="jquery-ui-1.8.6.custom.min.js" library="js" />
 				<ui:insert name="js"></ui:insert>					
 			</div>
 		</div>

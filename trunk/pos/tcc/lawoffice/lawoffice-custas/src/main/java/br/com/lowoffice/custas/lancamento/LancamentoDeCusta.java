@@ -3,6 +3,7 @@ package br.com.lowoffice.custas.lancamento;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
+import br.com.lawoffice.dominio.Pessoa;
 import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 
 
@@ -19,7 +20,7 @@ public interface LancamentoDeCusta{
 
 	Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador);
 	
-	Custa atualizarCusta(Custa custa, Cliente cliente, Colaborador colaborador)throws LancamentoDeCustaException;
+	Custa atualizarCusta(Custa custa, Pessoa cliente, Colaborador colaborador)throws LancamentoDeCustaException;
 	
 	void removerCusta(Custa custa) throws LancamentoDeCustaException;
 	

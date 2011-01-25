@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lawoffice.web.dados.mb;
+package br.com.lawoffice.web.mb.dados;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Colaborador;
+import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.web.mb.BaseMB;
 
 /**

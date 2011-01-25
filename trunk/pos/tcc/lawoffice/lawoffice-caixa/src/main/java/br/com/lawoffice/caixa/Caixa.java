@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import br.com.lawoffice.dominio.Conta;
 
 /**
+ * 
+ * TODO: javadoc
+ * 
  *  Representa o contrato 
  * 
  * 
@@ -13,6 +16,6 @@ import br.com.lawoffice.dominio.Conta;
  */
 public interface Caixa {
 	
-	public void creditar(Conta conta, BigDecimal quantidade);
-	public void debitar(Conta conta, BigDecimal quantidade);
+	public void creditar(Conta conta, BigDecimal valor);
+	public void debitar(Conta conta, BigDecimal valor);
 }

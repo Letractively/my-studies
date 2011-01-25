@@ -1,8 +1,8 @@
 function onClickBtnNovo(data){	
 	if (data.status == "success"){
 		showDados();
-		$("#btnSalvarEditar").hide();
-		$("#btnSalvarNovo").show();
+		jQuery("#btnSalvarEditar").hide();
+		jQuery("#btnSalvarNovo").show();
 	}
 		
 }
@@ -11,8 +11,8 @@ function onClickBtnNovo(data){
 function onClickBtnEditar(data){	
 	if (data.status == "success"){
 		showDados();
-		$("#btnSalvarEditar").show();
-		$("#btnSalvarNovo").hide();
+		jQuery("#btnSalvarEditar").show();
+		jQuery("#btnSalvarNovo").hide();
 	}
 }
 
@@ -31,11 +31,11 @@ function onClickBtnCancelar(){
 
 
 function showListaDados() {
-	$("#listaDados").show();
-	$("#dados").hide();
+	jQuery("#listaDados").show();
+	jQuery("#dados").hide();
 }
 
 function showDados() {
-	$("#listaDados").hide();		
-	$("#dados").show();
+	jQuery("#listaDados").hide();		
+	jQuery("#dados").show();
 }

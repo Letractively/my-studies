@@ -26,5 +26,5 @@ public interface Dados {
 	
 	
 	public <T> List<T> listar(Class<T> c);
-	
+		
 }

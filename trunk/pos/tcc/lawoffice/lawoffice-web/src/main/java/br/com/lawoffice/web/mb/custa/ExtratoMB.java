@@ -1,4 +1,4 @@
-package br.com.lawoffice.web.custa.mb;
+package br.com.lawoffice.web.mb.custa;
 
 import java.util.ArrayList;
 import java.util.Date;

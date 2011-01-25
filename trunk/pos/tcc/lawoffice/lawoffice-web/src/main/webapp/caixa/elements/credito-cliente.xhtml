@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui">
+    
+	<div id="dados">
+					
+		<div id="divInput">
+		
+			<div>
+				<h:outputLabel value="Cliente: " for="cliente"/>
+				<p:autoComplete id="cliente"
+					value="#{creditoMB.cliente}"
+					completeMethod="#{creditoMB.listarClientes}"
+					var="cliente"
+					itemLabel="#{cliente.nome}"
+					itemValue="#{cliente}"
+					converter="clienteConverter"
+					size="60"/>
+			</div>			
+		
+			<div>
+				<h:outputLabel value="Valor: " for="valorCliente"/>
+				<h:inputText value="#{creditoMB.valor}" id="valorCliente" size="10"/>
+			</div>
+										
+			<div style="padding-top: 10px;">			
+				<h:commandButton value="Creditar" action="#{creditoMB.creditarCliente}" id="btnCreditarCliente">
+					<f:ajax execute="cliente valorCliente" render="cliente valorCliente"/>				
+				</h:commandButton>														
+			</div>	
+
+		</div>
+					
+		<div style="clear: both;"></div>
+							
+	</div>    
+		
+</ui:composition>
+
+
+

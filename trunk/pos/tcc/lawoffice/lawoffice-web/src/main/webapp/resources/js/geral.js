@@ -1,8 +1,8 @@
 // menu .....
 
 
-$(function(){ 
-    $("ul.sf-menu").supersubs({ 
+jQuery(function(){ 
+	jQuery("ul.sf-menu").supersubs({ 
         minWidth:    12,   // minimum width of sub-menus in em units 
         maxWidth:    20,   // maximum width of sub-menus in em units 
         extraWidth:  1     // extra width can ensure lines don't sometimes turn over 
@@ -13,8 +13,8 @@ $(function(){
 }); 
 
 
-$(function(){
-	$('ul.sf-menu > li').hover(
+jQuery(function(){
+	jQuery('ul.sf-menu > li').hover(
 		function (){
 			$(this)
 			.children('a')
@@ -34,7 +34,7 @@ $(function(){
 
 // jquery ui 
 
-$(function(){
-	$('input:submit').button();
+jQuery(function(){
+	jQuery('input:submit').button();
 });
 

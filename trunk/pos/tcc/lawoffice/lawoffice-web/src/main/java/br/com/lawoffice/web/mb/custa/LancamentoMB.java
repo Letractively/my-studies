@@ -1,4 +1,4 @@
-package br.com.lawoffice.web.custa.mb;
+package br.com.lawoffice.web.mb.custa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
  */
 @ManagedBean()
 @ViewScoped // TODO: @ViewScoped ? débito técnico 
-public class LancamentoMB extends BaseMB{
+public class LancamentoMB extends BaseMB {
 	
 	
 	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
@@ -34,7 +34,6 @@ public class LancamentoMB extends BaseMB{
 	 * {@link Custa} para adição/edicão/remoção da lista de custas 
 	 */
 	private Custa custa;
-	
 	
 	
 	/**
@@ -74,7 +73,7 @@ public class LancamentoMB extends BaseMB{
 	
 	/**
 	 * 
-	 * Colaboradores cadastrados no  sistema
+	 * Lista de {@link Colaborador} cadastrados no  sistema
 	 * 
 	 */
 	private List<Colaborador> colaboradores;
@@ -82,7 +81,7 @@ public class LancamentoMB extends BaseMB{
 
 	/**
 	 * 
-	 * Clientes cadastrados no sistema
+	 * Lista de {@link Cliente} cadastrados no sistema
 	 * 
 	 */
 	private List<Cliente> clientes;

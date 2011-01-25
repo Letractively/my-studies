@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lawoffice.web.dados.mb;
+package br.com.lawoffice.web.mb.dados;
 
 import java.util.List;
 
@@ -9,10 +9,11 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.resource.spi.IllegalStateException;
 
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.Pessoa;
 import br.com.lawoffice.web.mb.BaseMB;
 
 /**
@@ -87,25 +88,26 @@ public class DadosClienteMB extends BaseMB {
 	
 	public void novoCliente(){
 		cliente = new Cliente();
+		Conta conta = new Conta();
+		cliente.setConta(conta);
+		conta.setCliente(cliente);
 	}
 	
 	
 	private void listarClientes() {
 		listClientes = dadosLocal.listar(Cliente.class);
 	}
-	
 
-	
-	
-    // >>>>>>> GETS E SETS do MB <<<<<<<<<<<<<
+
+    // >>>>>>> GETS E SETS do MB <<<<<<<<<<<<<	
 	
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 
-	public void setCliente(Cliente clienteNovo) {
-		this.cliente = clienteNovo;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 
@@ -126,6 +128,16 @@ public class DadosClienteMB extends BaseMB {
 
 	public void setListClientes(List<Cliente> listClientes) {
 		this.listClientes = listClientes;
-	}	
-	
+	}
+
+
+	public DadosLocal getDadosLocal() {
+		return dadosLocal;
+	}
+
+
+	public void setDadosLocal(DadosLocal dadosLocal) {
+		this.dadosLocal = dadosLocal;
+	}
+		
 }
