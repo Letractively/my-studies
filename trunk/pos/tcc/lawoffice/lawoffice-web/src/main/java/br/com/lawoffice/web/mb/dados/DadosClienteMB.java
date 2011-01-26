@@ -3,6 +3,7 @@
  */
 package br.com.lawoffice.web.mb.dados;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -86,9 +87,12 @@ public class DadosClienteMB extends BaseMB {
 	}
 	
 	
+	
+
 	public void novoCliente(){
-		cliente = new Cliente();
+		cliente = new Cliente();  // TODO: fornecer um método de criação conforme java efetivo ( livro )
 		Conta conta = new Conta();
+		conta.setSaldo(new BigDecimal(0.0));
 		cliente.setConta(conta);
 		conta.setCliente(cliente);
 	}

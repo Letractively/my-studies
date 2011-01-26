@@ -46,6 +46,17 @@ public class Transacao{
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
 
+	
+	public Transacao() {
+	}
+
+
+	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao) {
+		super();
+		this.dataTransacao = dataTransacao;
+		this.tipoTransacao = tipoTransacao;
+	}
+
 
 	public Long getId() {
 		return id;

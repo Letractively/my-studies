@@ -16,6 +16,6 @@ import br.com.lawoffice.dominio.Conta;
  */
 public interface Caixa {
 	
-	public void creditar(Conta conta, BigDecimal valor);
+	public Conta creditar(Conta conta, BigDecimal valor);
 	public void debitar(Conta conta, BigDecimal valor);
 }
