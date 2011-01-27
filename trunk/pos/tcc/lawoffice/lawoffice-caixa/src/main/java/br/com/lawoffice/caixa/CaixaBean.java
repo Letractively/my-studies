@@ -30,34 +30,31 @@ public class CaixaBean implements Caixa {
 	private EntityManager entityManager;
 	
 	@Override
-	public Conta creditar(Conta conta, BigDecimal valor){
-		
-		// TODO: refatorar
-		if(conta == null || conta.getSaldo() == null)
-			throw new IllegalArgumentException("Conta está nula ou sem saldo");
+	public Conta creditar(Conta conta, BigDecimal valor) throws CaixaException{
 		if(valor == null || valor.doubleValue() < 0)
 			throw new IllegalArgumentException("Conta está nula ou é menor que 0");
-		
-		
-		// TODO: testar		
+		if(conta == null || conta.getId() == null)
+			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
+
+		// TODO: testar	 mesmo problema com o entityManager dos outros testes	
 		conta = entityManager.find(Conta.class, conta.getId());
 		
+		if(conta == null)
+			throw new CaixaException("Conta não encontrada");
 		
 		conta.setSaldo(
 				conta.getSaldo().add(valor)
 			);
 		
-		Transacao t = new Transacao(new Date(), TipoTransacao.CREDITO);
-		
-		t.setConta(conta);
-		
 		conta.getTransacoes().add(
-				t	
+				new Transacao(
+						new Date(), 
+						TipoTransacao.CREDITO , 
+						conta
+					)	
 			);
 		
-		entityManager.merge(conta);
-		
-		return conta;
+		return entityManager.merge(conta);
 	}
 
 	

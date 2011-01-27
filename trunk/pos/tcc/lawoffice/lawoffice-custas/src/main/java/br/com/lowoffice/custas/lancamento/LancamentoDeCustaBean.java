@@ -15,6 +15,7 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import br.com.lawoffice.caixa.CaixaException;
 import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
@@ -86,15 +87,20 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 			
 			entityManager.persist(lancamento);
 			
-			caixa.creditar(
-				lancamento.getColaborador().getConta(), 
-				lancamento.getTotal()
-			);
-			
-			caixa.debitar(
-				lancamento.getCliente().getConta(),
-				lancamento.getTotal()
-			);
+			try {
+					caixa.creditar(
+						lancamento.getColaborador().getConta(), 
+						lancamento.getTotal()
+					);
+					
+					caixa.debitar(
+						lancamento.getCliente().getConta(),
+						lancamento.getTotal()
+					);
+					
+			} catch (CaixaException e) {
+				new LancamentoDeCustaException(e);
+			}
 		}
 		
 		mapsLacamentos.clear();

@@ -39,6 +39,7 @@ public class Transacao{
 	
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name="TIPO_TRANSACAO")
 	private TipoTransacao tipoTransacao;
 
 	
@@ -51,10 +52,10 @@ public class Transacao{
 	}
 
 
-	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao) {
-		super();
+	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao, Conta conta){
 		this.dataTransacao = dataTransacao;
 		this.tipoTransacao = tipoTransacao;
+		this.conta = conta;
 	}
 
 
