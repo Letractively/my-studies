@@ -2,6 +2,7 @@ package br.com.lawoffice.caixa;
 
 import java.math.BigDecimal;
 
+import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Conta;
 
 /**
@@ -17,5 +18,5 @@ import br.com.lawoffice.dominio.Conta;
 public interface Caixa {
 	
 	public Conta creditar(Conta conta, BigDecimal valor) throws CaixaException;
-	public void debitar(Conta conta, BigDecimal valor);
+	public Conta debitar(Conta conta, BigDecimal valor) throws CaixaException;
 }

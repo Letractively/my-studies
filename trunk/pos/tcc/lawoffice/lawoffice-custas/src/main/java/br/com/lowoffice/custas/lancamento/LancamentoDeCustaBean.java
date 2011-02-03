@@ -15,8 +15,8 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.lawoffice.caixa.CaixaException;
 import br.com.lawoffice.caixa.CaixaLocal;
+import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;

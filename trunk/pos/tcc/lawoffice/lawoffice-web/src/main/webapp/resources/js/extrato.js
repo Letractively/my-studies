@@ -1,17 +1,17 @@
-$(function() {
-	$("#dataInicial").datepicker({ dateFormat: 'dd/mm/yy' });
-	$("#dataFinal").datepicker({ dateFormat: 'dd/mm/yy' });
-	$("table").tablesorter();
+jQuery(function() {
+	jQuery("#dataInicial").datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery("#dataFinal").datepicker({ dateFormat: 'dd/mm/yy' });
+	jQuery("table").tablesorter();
 });
 
 
 function oneventPesquisar(data){
 	if ( data.status == "begin"){
-		$("#btnPesquisar").attr('disabled', 'disabled');
+		jQuery("#btnPesquisar").attr('disabled', 'disabled');
 	}			
 	if (data.status == "success"){
-		$("#btnPesquisar").attr('disabled', '');
-		$("table").tablesorter();
+		jQuery("#btnPesquisar").attr('disabled', '');
+		jQuery("table").tablesorter();
 	}
 }
 

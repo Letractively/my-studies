@@ -3,6 +3,7 @@
  */
 package br.com.lawoffice.dominio;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -41,6 +42,9 @@ public class Transacao{
 	@Enumerated(EnumType.STRING)
 	@Column(name="TIPO_TRANSACAO")
 	private TipoTransacao tipoTransacao;
+	
+	@Column(name="VALOR")
+	private BigDecimal valor;
 
 	
 	@ManyToOne
@@ -52,9 +56,10 @@ public class Transacao{
 	}
 
 
-	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao, Conta conta){
+	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao, BigDecimal valor, Conta conta){
 		this.dataTransacao = dataTransacao;
 		this.tipoTransacao = tipoTransacao;
+		this.valor = valor;
 		this.conta = conta;
 	}
 
@@ -88,12 +93,22 @@ public class Transacao{
 		this.tipoTransacao = tipoTransacao;
 	}
 
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
 
+	
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+
+	
 	public Conta getConta() {
 		return conta;
 	}
 
-
+	
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}

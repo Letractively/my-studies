@@ -2,12 +2,100 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
   <ui:define name="title">Fluxo</ui:define>
   
   <ui:define name="body">    
-	<h2>Em construção</h2>
+
+	<h:form>
+				
+		<div id="fluxo">
+			
+			<div id="dados">
+			
+					<div id="divInput">
+					
+						<div>
+							<h:outputLabel value="Data Incial: " for="dataInicial"/>
+							<p:calendar pattern="dd/MM/yyyy" effect="Fade" id="dataInicial" value="#{fluxoMB.dataInicial}"/>
+						</div>
+						
+						<div>
+							<h:outputLabel value="Data Final: " for="dataFinal"/>
+							<p:calendar pattern="dd/MM/yyyy" effect="Fade" id="dataFinal" value="#{fluxoMB.dataFinal}"/>
+						</div>											
+					
+						<div>
+							<h:outputLabel value="Colaborador: " for="colaborador"/>
+							<p:autoComplete id="colaborador"
+								value="#{fluxoMB.colaborador}"
+								completeMethod="#{fluxoMB.listarColaboradores}"
+								var="colaborador"
+								itemLabel="#{colaborador.nome}"
+								itemValue="#{colaborador}"
+								converter="colaboradorConverter"
+								size="60"/>
+						</div>			
+					
+
+													
+						<div style="padding-top: 10px;">			
+							<h:commandButton value="Consultar" action="#{fluxoMB.consultar}" id="btnConsultar">
+								<f:ajax execute="dataInicial dataFinal colaborador" render="transacoes"/>				
+							</h:commandButton>														
+						</div>	
+			
+					</div>
+				
+					<div style="clear: both;"></div>				
+				
+			</div>
+			
+			<div id="transacoes" class="divContent">
+					
+					<p:dataTable 
+						value="#{fluxoMB.listTransacoes}" 
+						var="transacoes"
+						id="transacoes">
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText  value="Data"/>
+							</f:facet>
+							<h:outputText  value="#{transacoes.dataTransacao}">
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText  value="Tipo de Transacao"/>
+							</f:facet>
+							<h:outputText  value="#{transacoes.tipoTransacao}"/>
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText  value="Valor"/>
+							</f:facet>
+							<h:outputText  value="#{transacoes.valor}">
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>
+						</p:column>	
+						
+						<f:facet name="footer">
+						</f:facet>											
+					
+					</p:dataTable>
+				
+			</div>			
+			
+		</div>
+		
+	</h:form>
+		
   </ui:define>
   
 </ui:composition>

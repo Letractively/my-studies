@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lawoffice.caixa;
+package br.com.lawoffice.caixa.exception;
 
 /**
  * Exceção para para os serviços de caixa

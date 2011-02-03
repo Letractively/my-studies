@@ -22,19 +22,7 @@ import br.com.lawoffice.web.mb.BaseMB;
  * @see {@link DebitoMB} {@link CreditoMB}
  *
  */
-public class CaixaTransacaoMB extends BaseMB{
-	
-	/**
-	 * Valor para debitar/creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
-	 */
-	protected BigDecimal valor;
-	
-	
-	/**
-	 * Serviço de caixa para realizar o debito
-	 */
-	@EJB
-	protected CaixaLocal caixaLocal;
+public class CaixaBaseMB extends BaseMB{
 	
 	
 	/**
@@ -45,13 +33,13 @@ public class CaixaTransacaoMB extends BaseMB{
 	
 	
 	/**
-	 * {@link Cliente} selecionado para debitar/creditar em sua conta
+	 * {@link Cliente} selecionado no autocomplete
 	 */
 	protected Cliente cliente;
 	
 	
 	/**
-	 * {@link Colaborador} selecionado para debitar/creditar em sua conta 
+	 * {@link Colaborador} selecionado no autocomplete 
 	 */
 	protected Colaborador colaborador;
 	
@@ -71,14 +59,6 @@ public class CaixaTransacaoMB extends BaseMB{
 
 	public Cliente getCliente() {
 		return cliente;
-	}
-
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
 	}
 
 	public void setCliente(Cliente cliente) {

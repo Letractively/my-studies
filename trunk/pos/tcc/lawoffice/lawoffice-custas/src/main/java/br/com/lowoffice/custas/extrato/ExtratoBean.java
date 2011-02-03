@@ -43,8 +43,8 @@ public class ExtratoBean implements Extrato{
 	
 	@Override
 	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente){
-		this.checarDataInicial(dataInicial)
-			.checarDataFinal(dataFinal)
+		this.checarDataInicial(dataInicial) // TODO: refatorar a validacao conforme o bean de fluxo
+			.checarDataFinal(dataFinal) // criar um metodo que da resolve tudo
 			.checarIdCliente(idCliente);
 	
 		List<Lancamento> listaLancamentos = 

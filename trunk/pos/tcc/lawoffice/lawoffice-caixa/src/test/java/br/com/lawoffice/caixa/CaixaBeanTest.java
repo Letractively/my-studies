@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.TipoTransacao;
 import br.com.lawoffice.dominio.Transacao;
@@ -37,7 +38,7 @@ public class CaixaBeanTest{
 
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorNulo() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorNuloCreditando() throws CaixaException{
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));		
 		caixaBean.creditar(conta, null);
@@ -45,7 +46,7 @@ public class CaixaBeanTest{
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorMenorZero() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorMenorZeroCreditando() throws CaixaException{
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));
 		caixaBean.creditar(conta, new BigDecimal(-0.01));
@@ -53,33 +54,53 @@ public class CaixaBeanTest{
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComContaNula() throws CaixaException{
+	public void deveDispararUmaExcecaoComContaNulaCreditando() throws CaixaException{
 		caixaBean.creditar(null, new BigDecimal(0));
 	}
 
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoContaComIDNula() throws CaixaException{
+	public void deveDispararUmaExcecaoContaComIDNulaCreditando() throws CaixaException{
 		caixaBean.creditar(new Conta(), new BigDecimal(0));
 	}	
 	
-/*		
-	@Test()
-	public void deveAdcionarUmaTransacaoDeCredito(){
-		// conta com valor zerado
-		Conta conta = new Conta(); 
-		conta.setSaldo(new BigDecimal(0));
-		conta.setTransacoes(new ArrayList<Transacao>());
-		
-		conta = caixaBean.creditar(conta,new BigDecimal(10.0));
-		
-		assertEquals(conta.getTransacoes().get(0).getTipoTransacao(), TipoTransacao.CREDITO);		
+	/*
+		@Test()
+		public void deveAdcionarUmaTransacaoDeCredito(){
+			// conta com valor zerado
+			Conta conta = new Conta(); 
+			conta.setSaldo(new BigDecimal(0));
+			conta.setTransacoes(new ArrayList<Transacao>());
+			
+			conta = caixaBean.creditar(conta,new BigDecimal(10.0));
+			
+			assertEquals(conta.getTransacoes().get(0).getTipoTransacao(), TipoTransacao.CREDITO);		
 	}*/
 	
 	
-	@Test
-	public void testDebitar() {
-		fail("Not yet implemented");
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoComValorNuloDebitando() throws CaixaException{
+		Conta conta = new Conta();
+		conta.setSaldo(new BigDecimal(0));		
+		caixaBean.debitar(conta, null);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoComValorMenorZeroDebitando() throws CaixaException{
+		Conta conta = new Conta();
+		conta.setSaldo(new BigDecimal(0));
+		caixaBean.debitar(conta, new BigDecimal(-0.01));
+	}	
 
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoComContaNulaDebitando() throws CaixaException{
+		caixaBean.debitar(null, new BigDecimal(0));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoContaComIDNulaDebitando() throws CaixaException{
+		caixaBean.debitar(new Conta(), new BigDecimal(0));
+	}	
+	
 }
