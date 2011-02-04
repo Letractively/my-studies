@@ -11,20 +11,20 @@ body, h1, h3{
 /* header */
 
 #header{
-	background-color: #1B5790;
-	height: 70px;
+	background-color: #A8A898;
+	height: 50px;
 	padding: 5px;
-	color: white;
-	font:  Arial,Verdana,Tahoma,sans-serif;
+	font: Arial, Verdana, Tahoma, sans-serif;
 }
 
 #header #logo{	
 	margin-top: 25px;		
-	font-size: 40px;
+	font-size: 25px;
+	color: #40403C;
 }
 
 #header #logo #slogan{	
-	font-size: 15px;
+	font-size: 25px;
 	color: white;
 }
 
@@ -36,7 +36,7 @@ body, h1, h3{
 /* menu */
 
 #menu{
-	background-color: #E5ECF3;
+	background-color: #E1E1DB;
 	height: 50px;
 }
 
@@ -51,8 +51,8 @@ body, h1, h3{
 #page #pageTitle div{
 	margin-left: 10px;
 	font-family: arial;
-	border-bottom: 1px solid #CFDEF0;
-	color: #1B5790;
+	border-bottom: 1px solid #A8A898;
+	color: #40403C;
 }
 
 
@@ -60,9 +60,9 @@ body, h1, h3{
 	margin-top: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
-	border-left:1px solid #CFDEF0;
-	border-right:1px solid #CFDEF0;
-	border-top:1px solid #CFDEF0;
+	border-left:1px solid #A8A898;
+	border-right:1px solid #A8A898;
+	border-top:1px solid #A8A898;
 	-moz-border-radius: 5px 5px;	
 	padding: 10px;
 }

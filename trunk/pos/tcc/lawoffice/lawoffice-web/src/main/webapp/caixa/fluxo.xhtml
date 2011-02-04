@@ -57,14 +57,14 @@
 					
 					<p:dataTable 
 						value="#{fluxoMB.listTransacoes}" 
-						var="transacoes"
+						var="transacao"
 						id="transacoes">
 						
 						<p:column>
 							<f:facet name="header">
 								<h:outputText  value="Data"/>
-							</f:facet>
-							<h:outputText  value="#{transacoes.dataTransacao}">
+							</f:facet>							
+							<h:outputText  value="#{transacao.dataTransacao}">
 								<f:convertDateTime pattern="dd/MM/yyyy"/>
 							</h:outputText>
 						</p:column>
@@ -73,20 +73,26 @@
 							<f:facet name="header">
 								<h:outputText  value="Tipo de Transacao"/>
 							</f:facet>
-							<h:outputText  value="#{transacoes.tipoTransacao}"/>
+							<h:outputText  value="#{transacao.tipoTransacao}"/>
 						</p:column>
 						
 						<p:column>
 							<f:facet name="header">
 								<h:outputText  value="Valor"/>
 							</f:facet>
-							<h:outputText  value="#{transacoes.valor}">
+							<h:outputText  value="#{transacao.valor}">
 								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 							</h:outputText>
 						</p:column>	
 						
 						<f:facet name="footer">
-						</f:facet>											
+							<p:column>
+								skskks
+							</p:column>
+							<p:column>
+								skskks
+							</p:column>														
+						</f:facet>						
 					
 					</p:dataTable>
 				

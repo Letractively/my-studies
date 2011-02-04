@@ -64,7 +64,7 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu a {	
 	padding:15px;
 	margin-top: 5px;
-	color:	#1B5790;
+	color:	#40403C;
 	text-decoration:none;
 }
 
@@ -79,12 +79,12 @@ ul.sf-menu li li li.sfHover ul {
 
 
 .sf-menu li li {
-	background:	#1B5790;;
+	background:	#A8A898;
 }
 
 .sf-menu li:hover, .sf-menu li.sfHover,
 .sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
-	background:		#1B5790;
+	background:		#A8A898;
 	outline:		0;
 }
 
