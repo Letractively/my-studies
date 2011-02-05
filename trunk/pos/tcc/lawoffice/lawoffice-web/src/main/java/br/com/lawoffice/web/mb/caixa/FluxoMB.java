@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 
 import br.com.lawoffice.caixa.fluxo.FluxoCaixaLocal;
 import br.com.lawoffice.dominio.Transacao;
+import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
  * 
@@ -20,7 +21,7 @@ import br.com.lawoffice.dominio.Transacao;
  *
  */
 @ManagedBean
-public class FluxoMB extends CaixaBaseMB {
+public class FluxoMB extends AutoCompleteMB {
 
 	/**
 	 * Data inicial para consulta

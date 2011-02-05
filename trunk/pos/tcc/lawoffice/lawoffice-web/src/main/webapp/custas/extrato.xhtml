@@ -2,6 +2,7 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
   <ui:define name="title">Extrato</ui:define>
@@ -30,22 +31,25 @@
 	  				</h:inputText>
 	  			</div>
 				
-	  			<div>
-	  				<h:outputLabel value="Cliente:" for="clienteID"/> 
-	  				<h:selectOneMenu id="clienteID" value="#{extratoMB.clienteID}">
-							<f:selectItems value="#{extratoMB.clientes}"
-								var="cliente" 
-								itemLabel="#{cliente.nome}"
-								itemValue="#{cliente.id}"/>
-	  				</h:selectOneMenu>						  				
-	  			</div>
+				<div>
+					<h:outputLabel value="Cliente: " for="cliente"/>
+					<p:autoComplete id="cliente"
+						value="#{extratoMB.cliente}"
+						completeMethod="#{extratoMB.listarClientes}"
+						var="cliente"
+						itemLabel="#{cliente.nome}"
+						itemValue="#{cliente}"
+						converter="clienteConverter"
+						size="60"
+						/>
+				</div>
 	  			
 				<div style="padding-top: 15px;">
 					<h:commandButton value="Pesquisar" 
 						id="btnPesquisar" 
 						action="#{extratoMB.pesquisarLancamentos}">
 						<f:ajax render="tableCustas" 
-							execute="dataInicial dataFinal clienteID" 
+							execute="dataInicial dataFinal cliente" 
 							onevent="oneventPesquisar"/>
 					</h:commandButton>										
 				</div>	  			
@@ -54,8 +58,9 @@
 			<div style="clear: both;"></div> 			
   		</div>
   		
-  		<div id="custas">
-  			<h:dataTable 
+  		<div class="divContent">
+  		
+  			<p:dataTable 
   				value="#{extratoMB.listaCustas}"
   				var="custa"
   				id="tableCustas"
@@ -65,7 +70,7 @@
 				border="0"
   				>
   			
-					<h:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Data" /> 
 						</f:facet>
@@ -73,39 +78,39 @@
 							<f:convertDateTime pattern="dd/MM/yyyy"/>
 						</h:outputText>
 						
-					</h:column>  			
+					</p:column>  			
   			
-					<h:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Natureza" /> 
 						</f:facet>
 						<h:outputText value="#{custa.natureza}" />
-					</h:column>
+					</p:column>
 					
-					<h:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Valor" /> 
 						</f:facet>
 						<h:outputText value="#{custa.valor}" />
-					</h:column>
+					</p:column>
 					
-					<h:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Colaborador" /> 
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
-					</h:column>
+					</p:column>
 					
-					<h:column>
+					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Valor" /> 
 						</f:facet>
 						<h:outputText value="#{custa.valor}" >
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 						</h:outputText>
-					</h:column>																	 				
+					</p:column>																	 				
   			
-  			</h:dataTable>
+  			</p:dataTable>
   		</div>
   		
 	  
@@ -113,8 +118,7 @@
       
   </ui:define>
  
-  <ui:define name="js">
-  	<h:outputScript name="jquery.tablesorter.min.js" library="js" />  
+  <ui:define name="js">  
 	<h:outputScript name="extrato.js" library="js"/>
   </ui:define>
   

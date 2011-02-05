@@ -1,28 +1,27 @@
-package br.com.lawoffice.web.mb.caixa;
+package br.com.lawoffice.web.mb;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.ejb.EJB;
 
-import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.dados.DadosPessoaLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
-import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.Pessoa;
-import br.com.lawoffice.web.mb.BaseMB;
+import br.com.lawoffice.web.mb.caixa.CreditoMB;
+import br.com.lawoffice.web.mb.caixa.DebitoMB;
+import br.com.lawoffice.web.mb.custa.LancamentoMB;
 
 /**
  * 
- * Manager Bean base para os manager bean que realizam operações de transação de caixa
+ * Manager Bean base para os manager bean que possui recurso de auto complete
  * 
  * @author robson
  *
- * @see {@link DebitoMB} {@link CreditoMB}
+ * @see {@link DebitoMB} {@link CreditoMB} {@link LancamentoMB}
  *
  */
-public class CaixaBaseMB extends BaseMB{
+public class AutoCompleteMB extends BaseMB{
 	
 	
 	/**

@@ -20,26 +20,31 @@
 			<div id="dados">
 			
 				<div id="divInput">
-				
+									
 					<div>
-						<h:outputLabel value="Colaborador: " for="colaboradorID" />
-							<h:selectOneMenu value="#{lancamentoMB.colaboradorID}" id="colaboradorID">
-								<f:selectItems value="#{lancamentoMB.colaboradores}"
-									var="colaborador" 
-									itemLabel="#{colaborador.nome}"
-									itemValue="#{colaborador.id}"/>
-							</h:selectOneMenu>					
+						<h:outputLabel value="Colaborador: " for="colaborador"/>
+						<p:autoComplete id="colaborador"
+							value="#{lancamentoMB.colaborador}"
+							completeMethod="#{lancamentoMB.listarColaboradores}"
+							var="colaborador"
+							itemLabel="#{colaborador.nome}"
+							itemValue="#{colaborador}"
+							converter="colaboradorConverter"
+							size="60"/>
 					</div>
 					
 					<div>
-						<h:outputLabel value="Cliente: " for="clienteID"/>
-							<h:selectOneMenu value="#{lancamentoMB.clienteID}" id="clienteID">
-								<f:selectItems value="#{lancamentoMB.clientes}"
-									var="cliente" 
-									itemLabel="#{cliente.nome}"
-									itemValue="#{cliente.id}"/>
-							</h:selectOneMenu>					
-					</div>
+						<h:outputLabel value="Cliente: " for="cliente"/>
+						<p:autoComplete id="cliente"
+							value="#{lancamentoMB.cliente}"
+							completeMethod="#{lancamentoMB.listarClientes}"
+							var="cliente"
+							itemLabel="#{cliente.nome}"
+							itemValue="#{cliente}"
+							converter="clienteConverter"
+							size="60"
+							/>
+					</div>					
 					
 					<div>
 						<h:outputLabel value="Natureza: " for="natureza"/>
@@ -54,13 +59,16 @@
 					<div style="padding-top: 15px;">
 						<h:commandButton value="Adicionar" action="#{lancamentoMB.adicionarCusta}" id="btnAdicionar">
 							<f:ajax render="tableCustas natureza valor" 
-								execute="natureza valor colaboradorID clienteID" 
+								execute="natureza valor colaborador cliente" 
 								onevent="oneventAddCusta" />
 						</h:commandButton>
 						
-						<h:commandButton value="Atualizar" action="#{lancamentoMB.atualizarCusta}" id="btnSalvar">
+						<h:commandButton 
+							value="Atualizar" 
+							action="#{lancamentoMB.atualizarCusta}" 
+							id="btnSalvar">
 							<f:ajax render="tableCustas natureza valor" 
-								execute="natureza valor colaboradorID clienteID" 
+								execute="natureza valor colaborador cliente" 
 								onevent="oneventAddCusta" />
 						</h:commandButton>											
 					</div>
@@ -80,10 +88,9 @@
 					var="custa"
 					id="tableCustas"
 					selection="#{lancamentoMB.custaSelecionada}" 
-					selectionMode="single" 						
+					selectionMode="single"				
 					>
 					
-										
 					<p:column sortBy="#{custa.lancamento.colaborador.nome}">
 						<f:facet name="header">
 							<h:outputText value="Colaborador" /> 
@@ -118,11 +125,12 @@
 			</div>
 			
 			<div class="divContent">
-			
+				
 				<h:commandButton action="#{lancamentoMB.editarCusta}" 
-					value="Editar" 
-					id="btnEditar">
-					<f:ajax render="natureza valor colaboradorID clienteID" execute="tableCustas"/>				
+						value="Editar" 
+						id="btnEditar"
+						>
+						<f:ajax render="natureza valor colaborador cliente" execute="tableCustas"/>
 				</h:commandButton>
 								
 				<h:commandButton action="#{lancamentoMB.removerCusta}" 

@@ -13,6 +13,7 @@ import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
  * 
@@ -24,7 +25,7 @@ import br.com.lawoffice.dominio.Conta;
  */
 
 @ManagedBean
-public class CreditoMB extends CaixaBaseMB{
+public class CreditoMB extends AutoCompleteMB{
 
 	/**
 	 * Valor para creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
