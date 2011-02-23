@@ -19,16 +19,20 @@
 			<div id="divInput">
 	  			<div>
 	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/>
-	  				<h:inputText id="dataInicial" value="#{extratoMB.dataInicial}">
-	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00" />
-	  				</h:inputText>
+	  				<p:calendar id="dataInicial" 
+	  					pattern="dd/MM/yyyy" 
+	  					timeZone="GMT-2:00" 
+	  					value="#{extratoMB.dataInicial}"
+	  					/>
 	  			</div>
 	  			
 	  			<div>
 	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
-	  				<h:inputText id="dataFinal" value="#{extratoMB.dataFinal}" >
-	  					<f:convertDateTime pattern="dd/MM/yyyy"  timeZone="GMT-2:00"/>
-	  				</h:inputText>
+	  				<p:calendar id="dataFinal" 
+	  					pattern="dd/MM/yyyy" 
+	  					timeZone="GMT-2:00" 
+	  					value="#{extratoMB.dataFinal}"
+	  					/>	  					  				
 	  			</div>
 				
 				<div>
@@ -89,18 +93,11 @@
 					
 					<p:column>
 						<f:facet name="header">
-							<h:outputText value="Valor" /> 
-						</f:facet>
-						<h:outputText value="#{custa.valor}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
 							<h:outputText value="Colaborador" /> 
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
 					</p:column>
-					
+
 					<p:column>
 						<f:facet name="header">
 							<h:outputText value="Valor" /> 
@@ -108,7 +105,7 @@
 						<h:outputText value="#{custa.valor}" >
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 						</h:outputText>
-					</p:column>																	 				
+					</p:column>					
   			
   			</p:dataTable>
   		</div>
