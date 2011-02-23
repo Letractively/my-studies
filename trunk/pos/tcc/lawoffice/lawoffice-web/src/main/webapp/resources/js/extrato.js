@@ -1,7 +1,7 @@
-jQuery(function() {
+/*jQuery(function() {
 	jQuery("#dataInicial").datepicker({ dateFormat: 'dd/mm/yy' });
 	jQuery("#dataFinal").datepicker({ dateFormat: 'dd/mm/yy' });
-});
+});*/
 
 
 function oneventPesquisar(data){

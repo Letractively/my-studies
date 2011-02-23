@@ -1,7 +1,7 @@
 // menu .....
 
 
-jQuery(function(){ 
+/*jQuery(function(){ 
 	jQuery("ul.sf-menu").supersubs({ 
         minWidth:    12,   // minimum width of sub-menus in em units 
         maxWidth:    20,   // maximum width of sub-menus in em units 
@@ -36,5 +36,5 @@ jQuery(function(){
 
 jQuery(function(){
 	jQuery('input:submit').button();
-});
+});*/
 
