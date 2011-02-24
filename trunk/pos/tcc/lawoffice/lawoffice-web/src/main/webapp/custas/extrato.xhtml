@@ -23,15 +23,18 @@
 	  					pattern="dd/MM/yyyy" 
 	  					timeZone="GMT-2:00" 
 	  					value="#{extratoMB.dataInicial}"
+	  					size="10"
+	  					styleClass="inputText"
 	  					/>
 	  			</div>
-	  			
 	  			<div>
 	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
 	  				<p:calendar id="dataFinal" 
 	  					pattern="dd/MM/yyyy" 
 	  					timeZone="GMT-2:00" 
 	  					value="#{extratoMB.dataFinal}"
+	  					size="10"
+	  					styleClass="inputText"	  					
 	  					/>	  					  				
 	  			</div>
 				
@@ -44,7 +47,8 @@
 						itemLabel="#{cliente.nome}"
 						itemValue="#{cliente}"
 						converter="clienteConverter"
-						size="60"
+						styleClass="inputText"
+						size="30"
 						/>
 				</div>
 	  			

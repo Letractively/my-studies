@@ -19,12 +19,24 @@
 					
 						<div>
 							<h:outputLabel value="Data Incial: " for="dataInicial"/>
-							<p:calendar pattern="dd/MM/yyyy" effect="Fade" id="dataInicial" value="#{fluxoMB.dataInicial}"/>
+							<p:calendar 
+								pattern="dd/MM/yyyy"  
+								id="dataInicial" 
+								value="#{fluxoMB.dataInicial}"
+								size="10"								
+	  							styleClass="inputText"
+							/>
 						</div>
 						
 						<div>
 							<h:outputLabel value="Data Final: " for="dataFinal"/>
-							<p:calendar pattern="dd/MM/yyyy" effect="Fade" id="dataFinal" value="#{fluxoMB.dataFinal}"/>
+							<p:calendar 
+								pattern="dd/MM/yyyy"  
+								id="dataFinal" 
+								value="#{fluxoMB.dataFinal}"
+								size="10"								
+	  							styleClass="inputText"								
+							/>
 						</div>											
 					
 						<div>
@@ -35,8 +47,9 @@
 								var="colaborador"
 								itemLabel="#{colaborador.nome}"
 								itemValue="#{colaborador}"
-								converter="colaboradorConverter"
-								size="60"/>
+								converter="colaboradorConverter"				
+	  							styleClass="inputText"								
+								size="30"/>
 						</div>			
 					
 

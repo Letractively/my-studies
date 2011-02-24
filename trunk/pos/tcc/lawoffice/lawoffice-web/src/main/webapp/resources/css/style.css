@@ -18,7 +18,7 @@ body, h1, h3{
 }
 
 #header #logo{	
-	margin-top: 25px;		
+	margin-top: 12px;		
 	font-size: 25px;
 	color: #40403C;
 }
@@ -87,3 +87,9 @@ form label {
 	margin-top: 10px;
 }
 
+
+
+.inputText{
+	background-image: none !important; 
+	background-color: white !important;
+}

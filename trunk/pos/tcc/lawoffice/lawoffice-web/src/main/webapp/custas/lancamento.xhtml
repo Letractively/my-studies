@@ -30,7 +30,9 @@
 							itemLabel="#{colaborador.nome}"
 							itemValue="#{colaborador}"
 							converter="colaboradorConverter"
-							size="40"/>
+							size="30"
+							styleClass="inputText"
+							/>
 					</div>
 					
 					<div>
@@ -42,18 +44,28 @@
 							itemLabel="#{cliente.nome}"
 							itemValue="#{cliente}"
 							converter="clienteConverter"
-							size="40"
+							size="30"
+							styleClass="inputText"
 							/>
 					</div>					
 					
 					<div>
 						<h:outputLabel value="Natureza: " for="natureza"/>
-						<p:inputText value="#{lancamentoMB.custa.natureza}" id="natureza"/>
+						<p:inputText value="#{lancamentoMB.custa.natureza}" 
+							id="natureza" 
+							styleClass="inputText"
+							size="30"
+							/>
 					</div>
 					
 					<div>
 						<h:outputLabel value="Valor: " for="valor" />
-						<h:inputText value="#{lancamentoMB.custa.valor}" id="valor"/>					
+						<p:inputText 
+							value="#{lancamentoMB.custa.valor}" 
+							id="valor" 
+							styleClass="inputText"
+							size="10"
+							/>					
 					</div>
 					
 					<div style="padding-top: 15px;">

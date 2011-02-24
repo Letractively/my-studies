@@ -1,51 +1,57 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.prime.com.tr/ui">
+    xmlns:ui="http://java.sun.com/jsf/facelets">
     
-<div>
-	<h:form>
-	    <p:menubar autoSubmenuDisplay="true"  styleClass="temp">
-			<p:submenu label="Agenda" >
-				<p:menuitem>
-					<h:link outcome="novo-agendamento">Agendamento</h:link>
-				</p:menuitem>
-				<p:menuitem>
-					<h:link outcome="agendamentos">Agendamentos</h:link>
-				</p:menuitem>				
-			</p:submenu>
-			
-			<p:submenu label="Custas">
-				<p:menuitem>
-					<h:link outcome="lancamento">Lançamento</h:link>
-				</p:menuitem>
-				<p:menuitem>
-					<h:link outcome="extrato">Extrato</h:link>
-				</p:menuitem>				
-			</p:submenu>
-			
-			<p:submenu label="Caixa">
-				<p:menuitem>
-					<h:link outcome="debito">Debito</h:link>
-				</p:menuitem>
-				<p:menuitem>
-					<h:link outcome="credito">Credito</h:link>
-				</p:menuitem>
-				<p:menuitem>
-					<h:link outcome="fluxo">Fluxo</h:link>
-				</p:menuitem>								
-			</p:submenu>
-			
-			<p:submenu label="Dados">
-				<p:menuitem>
-					<h:link outcome="cliente">Cliente</h:link>
-				</p:menuitem>
-				<p:menuitem>
-					<h:link outcome="colaborador">Colaborador</h:link>
-				</p:menuitem>
-			</p:submenu>									
-	    </p:menubar>	
-	</h:form>
-</div>
+    <div>
+		<ul class="sf-menu">
+			<li>
+				<a href="#a" style="border: none;">Agenda</a>
+				<ul>
+					<li>
+						<h:link outcome="novo-agendamento">Novo Agendamento</h:link>
+					</li>
+					<li class="current">
+						<h:link outcome="agendamentos">Agendamentos</h:link>
+					</li>
+				</ul>
+			</li>		
+			<li>
+				<a href="#a">Custas</a>
+				<ul>
+					<li>
+						<h:link outcome="lancamento">Lançamento</h:link>
+					</li>
+					<li class="current">
+						<h:link outcome="extrato">Extrato</h:link>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#a">Caixa</a>
+				<ul>
+					<li>
+						<h:link outcome="debito">Debito</h:link>
+					</li>
+					<li class="current">
+						<h:link outcome="credito">Credito</h:link>
+					</li>
+					<li class="current">
+						<h:link outcome="fluxo">Fluxo</h:link>
+					</li>					
+				</ul>
+			</li>
+			<li>
+				<a href="#a">Dados</a>
+				<ul>
+					<li>	
+						<h:link outcome="cliente">Cliente</h:link>
+					</li>
+					<li class="current">
+						<h:link outcome="colaborador">Colaborador</h:link>
+					</li>
+				</ul>
+			</li>										
+		</ul>   
+    </div>
     
 </ui:composition>

@@ -1,7 +1,7 @@
 // menu .....
 
 
-/*jQuery(function(){ 
+jQuery(function(){ 
 	jQuery("ul.sf-menu").supersubs({ 
         minWidth:    12,   // minimum width of sub-menus in em units 
         maxWidth:    20,   // maximum width of sub-menus in em units 
@@ -16,12 +16,12 @@
 jQuery(function(){
 	jQuery('ul.sf-menu > li').hover(
 		function (){
-			$(this)
+			jQuery(this)
 			.children('a')
 			.css('color', '#FFFFFF');
 		},
 		function (){
-			$(this)
+			jQuery(this)
 			.children('a')
 			.css('color', '#1B5790');
 		}		
@@ -31,10 +31,9 @@ jQuery(function(){
 // fim menu ...
 
 
-
 // jquery ui 
 
 jQuery(function(){
 	jQuery('input:submit').button();
-});*/
+});
 
