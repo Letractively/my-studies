@@ -109,7 +109,18 @@
 						<h:outputText value="#{custa.valor}" >
 							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
 						</h:outputText>
-					</p:column>					
+					</p:column>
+					
+	 				<f:facet name="footer"> 
+                    	<table>
+                    		<tr>
+                    			<td style="border-left:  1px solid red">45</td>
+								<td style="border-left:  1px solid red">45</td>
+								<td style="border-left:  1px solid red">45</td>
+								<td style="border-left:  1px solid red">45</td>																
+                    		</tr>
+                    	</table>         
+                    </f:facet>										
   			
   			</p:dataTable>
   		</div>
