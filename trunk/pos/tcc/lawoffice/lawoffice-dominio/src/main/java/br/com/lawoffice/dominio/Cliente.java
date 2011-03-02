@@ -46,6 +46,5 @@ public class Cliente extends Pessoa{
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
-	}
-	
+	}	
 }

@@ -95,6 +95,7 @@ form label {
 }
 
 
-.top{
+.nofificationBar{
 	opacity: 0.5;
+	height: 60px !important;
 }

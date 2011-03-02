@@ -17,10 +17,9 @@
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					styleClass="inputText"
 					size="30"
-					onfocus="temp.hide()"
-					/>
+					onfocus="nofificationBar.hide()"	
+					/>	
 			</div>			
 		
 			<div>
@@ -37,7 +36,9 @@
 					action="#{creditoMB.creditarCliente}" 
 					value="Creditar"
 					onstart="this.disabled=true"
-					oncomplete="this.disabled=false;temp.show()" 
+					onsuccess="nofificationBar.show()"
+					oncomplete="this.disabled=false"
+					update="msg" 
 					/>
 			</div>
 			

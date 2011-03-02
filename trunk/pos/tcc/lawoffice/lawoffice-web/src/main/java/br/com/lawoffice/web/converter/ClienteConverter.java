@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
@@ -34,13 +35,9 @@ public class ClienteConverter implements Converter {
 	private DadosLocal dadosLocal;
 	
 	
-	
-	
 	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
-	
-	  
-		
+	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String clienteID) {
+		  
 		try {
 			Context context = new InitialContext();
 			dadosLocal = (DadosLocal) context.lookup("lawoffice-ear/DadosBean/local");
@@ -49,7 +46,10 @@ public class ClienteConverter implements Converter {
 			e.printStackTrace();
 		}
 
-		return dadosLocal.localizar(Cliente.class, Long.valueOf(arg2));
+		if(NumberUtils.isNumber(clienteID))		
+			return dadosLocal.localizar(Cliente.class, Long.valueOf(clienteID));
+		else
+			return null;
 		
 	}
 

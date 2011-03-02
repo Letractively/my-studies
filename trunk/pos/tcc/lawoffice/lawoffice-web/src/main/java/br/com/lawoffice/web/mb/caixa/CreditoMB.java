@@ -4,6 +4,7 @@
 package br.com.lawoffice.web.mb.caixa;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +29,7 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 @ManagedBean
 public class CreditoMB extends AutoCompleteMB{
 
+	
 	/**
 	 * Valor para creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
 	 */
@@ -42,34 +44,81 @@ public class CreditoMB extends AutoCompleteMB{
 	
 	
 	
-	private String msg;
-	
 	public void creditarCliente(){
 		try {
 			
 			if(cliente == null){
-				setMsg("dkdkdk");
+				adicionarMensagemErro(
+						null, 
+						"Existe Campos ..: ",  
+						"Selecione um cliente"  
+					);
+			}			
+			else if( valor.doubleValue() <= 0 ){
+				adicionarMensagemErro(
+						null, 
+						"slsls: ",  
+						"Saldo Atual =  "  
+					);
 			}else{
+			
 				caixaLocal.creditar(cliente.getConta(), valor);
-			}
 				
-			
-			
-		} catch (CaixaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-		
-	public void creditarColaborador(){
-		try {
-			caixaLocal.creditar(colaborador.getConta(), valor);
+				
+				// TODO: internacionalização
+				adicionarMensagemInformacao(
+						null, 
+						"Crédito realizado com sucesso: ",  
+						"Saldo Atual =  "  + NumberFormat.getCurrencyInstance().format(cliente.getConta().getSaldo())
+					);				
+			}
+						
+						
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
+	public void creditarColaborador(){
+		try {
+			
+			if(cliente == null){
+				adicionarMensagemErro(
+						null, 
+						"Existe Campos ..: ",  
+						"Selecione um cliente"  
+					);
+			}			
+			else if( valor.doubleValue() <= 0 ){
+				adicionarMensagemErro(
+						null, 
+						"slsls: ",  
+						"Saldo Atual =  "  
+					);
+			}else{
+			
+				caixaLocal.creditar(colaborador.getConta(), valor);
+				
+				
+				// TODO: internacionalização
+				adicionarMensagemInformacao(
+						null, 
+						"Crédito realizado com sucesso: ",  
+						"Saldo Atual =  "  + NumberFormat.getCurrencyInstance().format(colaborador.getConta().getSaldo())
+					);				
+			}			
+			
+			
+			
+		} catch (CaixaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
 	
 	
 	
@@ -81,14 +130,5 @@ public class CreditoMB extends AutoCompleteMB{
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-	
+	}	
 }

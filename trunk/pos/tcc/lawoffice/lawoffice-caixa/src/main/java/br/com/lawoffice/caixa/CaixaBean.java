@@ -88,7 +88,7 @@ public class CaixaBean implements Caixa {
 
 	private void validarParamentros(Conta conta, BigDecimal valor) {
 		if(valor == null || valor.doubleValue() < 0)
-			throw new IllegalArgumentException("Conta está nula ou é menor que 0");
+			throw new IllegalArgumentException("O valor está nulo ou é menor que 0");
 		if(conta == null || conta.getId() == null)
 			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
 	}

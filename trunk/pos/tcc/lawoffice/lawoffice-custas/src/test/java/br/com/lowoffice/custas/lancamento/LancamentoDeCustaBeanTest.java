@@ -83,7 +83,10 @@ public class LancamentoDeCustaBeanTest {
 	public void testAdicionarCustaChaveClienteColaboradorIguais(){
 		
 		Cliente cliente = new Cliente();
-		Colaborador colaborador = new Colaborador(); 
+		cliente.setId(1l);
+		
+		Colaborador colaborador = new Colaborador();
+		colaborador.setId(1l);
 		
 		assertSame(
 				lcTest.adicionarCusta(
@@ -100,16 +103,29 @@ public class LancamentoDeCustaBeanTest {
 	
 	@Test
 	public void testAdicionarCustaChaveClienteColaboradorDiferente(){
-				
+		
+		Cliente cliente1 = new Cliente();
+		cliente1.setId(1l);
+		
+		Cliente cliente2 = new Cliente();
+		cliente2.setId(2l);		
+		
+		Colaborador colaborador1 = new Colaborador();
+		colaborador1.setId(1l);
+		
+		Colaborador colaborador2 = new Colaborador();
+		colaborador2.setId(1l);
+		
+		
 		assertNotSame(
 				lcTest.adicionarCusta(
 					new Custa(),  
-					new Cliente(), 
-					new Colaborador()).getLancamento(), 
+					cliente1, 
+					colaborador1).getLancamento(), 
 				lcTest.adicionarCusta(
 					new Custa(), 
-					new Cliente(),
-					new Colaborador()).getLancamento()
+					cliente2,
+					colaborador2).getLancamento()
 			);
 	}
 	

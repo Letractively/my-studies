@@ -55,7 +55,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	/**
 	 *	Mapa com os laçamento  
 	 */
-	private Map<Map<Cliente, Colaborador>, Lancamento> mapsLacamentos = new HashMap<Map<Cliente,Colaborador>, Lancamento>();
+	private Map<Map<Long, Long>, Lancamento> mapsLacamentos = new HashMap<Map<Long,Long>, Lancamento>();
 	
 	
 	
@@ -166,7 +166,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
 		
 		// TODO: guava ??
-		Map<Cliente, Colaborador> chave = getChave(cliente, colaborador);
+		Map<Long, Long> chave = getChave(cliente, colaborador);
 		
 		if( !mapsLacamentos.containsKey(chave))
 			mapsLacamentos.put(
@@ -181,9 +181,9 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	}
 	
 
-	private Map<Cliente, Colaborador> getChave(Cliente cliente, Colaborador colaborador) {
-		Map<Cliente, Colaborador> chave = new HashMap<Cliente, Colaborador>(); 
-		chave.put(cliente, colaborador);
+	private Map<Long, Long> getChave(Cliente cliente, Colaborador colaborador) {
+		Map<Long, Long> chave = new HashMap<Long, Long>(); 
+		chave.put(cliente.getId(), colaborador.getId());
 		return chave;
 	}
 
