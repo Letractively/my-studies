@@ -18,7 +18,9 @@
 					itemValue="#{cliente}"
 					converter="clienteConverter"
 					styleClass="inputText"
-					size="30"/>
+					size="30"
+					onfocus="temp.hide()"
+					/>
 			</div>			
 		
 			<div>
@@ -30,11 +32,25 @@
 					/>
 			</div>
 										
-			<div style="padding-top: 10px;">			
-				<h:commandButton value="Creditar" action="#{creditoMB.creditarCliente}" id="btnCreditarCliente">
-					<f:ajax execute="cliente valorCliente" onevent="oneventCreditar" render="modalCreditoCliente"/>				
-				</h:commandButton>														
-			</div>	
+			<div style="padding-top: 10px;">
+				<p:commandButton 
+					action="#{creditoMB.creditarCliente}" 
+					value="Creditar"
+					onstart="this.disabled=true"
+					oncomplete="this.disabled=false;temp.show()" 
+					/>
+			</div>
+			
+			<div>
+				<p:ajaxStatus >
+					<f:facet name="start">
+						creditando
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value=" " />
+					</f:facet>
+				</p:ajaxStatus>
+			</div>				
 
 		</div>
 					

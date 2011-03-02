@@ -93,3 +93,8 @@ form label {
 	background-image: none !important; 
 	background-color: white !important;
 }
+
+
+.top{
+	opacity: 0.5;
+}

@@ -48,11 +48,8 @@ public class ClienteConverter implements Converter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(!StringUtils.isNumeric(arg2))
-			return dadosLocal.localizar(Cliente.class, Long.valueOf(arg2));
-		else 
-			return null;
+
+		return dadosLocal.localizar(Cliente.class, Long.valueOf(arg2));
 		
 	}
 

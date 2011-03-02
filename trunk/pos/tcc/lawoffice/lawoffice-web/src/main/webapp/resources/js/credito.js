@@ -10,7 +10,7 @@ function oneventCreditar(data){
 	}			
 	if (data.status == "success"){
 		jQuery("#btnCreditarCliente").attr('disabled', '');
-		modalCreditoCliente.show();
+		temp.show();
 	}
 }
 
