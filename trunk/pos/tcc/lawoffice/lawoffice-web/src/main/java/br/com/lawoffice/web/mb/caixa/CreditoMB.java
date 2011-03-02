@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.caixa.exception.CaixaException;
@@ -41,9 +42,19 @@ public class CreditoMB extends AutoCompleteMB{
 	
 	
 	
+	private String msg;
+	
 	public void creditarCliente(){
 		try {
-			caixaLocal.creditar(cliente.getConta(), valor);
+			
+			if(cliente == null){
+				setMsg("dkdkdk");
+			}else{
+				caixaLocal.creditar(cliente.getConta(), valor);
+			}
+				
+			
+			
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,6 +81,14 @@ public class CreditoMB extends AutoCompleteMB{
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	
 }

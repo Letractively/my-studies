@@ -12,6 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.apache.commons.lang.StringUtils;
+
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
 
@@ -36,6 +38,8 @@ public class ClienteConverter implements Converter {
 	
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
+	
+	  
 		
 		try {
 			Context context = new InitialContext();
@@ -45,8 +49,11 @@ public class ClienteConverter implements Converter {
 			e.printStackTrace();
 		}
 		
-		// TODO Auto-generated method stub
-		return dadosLocal.localizar(Cliente.class, Long.valueOf(arg2));
+		if(!StringUtils.isNumeric(arg2))
+			return dadosLocal.localizar(Cliente.class, Long.valueOf(arg2));
+		else 
+			return null;
+		
 	}
 
 

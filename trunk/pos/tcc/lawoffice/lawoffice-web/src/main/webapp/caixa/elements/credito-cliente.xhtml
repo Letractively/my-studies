@@ -17,17 +17,22 @@
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					size="60"/>
+					styleClass="inputText"
+					size="30"/>
 			</div>			
 		
 			<div>
 				<h:outputLabel value="Valor: " for="valorCliente"/>
-				<h:inputText value="#{creditoMB.valor}" id="valorCliente" size="10"/>
+				<p:inputText  value="#{creditoMB.valor}" 
+					id="valorCliente" 
+					size="10"
+					styleClass="inputText"
+					/>
 			</div>
 										
 			<div style="padding-top: 10px;">			
 				<h:commandButton value="Creditar" action="#{creditoMB.creditarCliente}" id="btnCreditarCliente">
-					<f:ajax execute="cliente valorCliente" render="cliente valorCliente"/>				
+					<f:ajax execute="cliente valorCliente" onevent="oneventCreditar" render="modalCreditoCliente"/>				
 				</h:commandButton>														
 			</div>	
 

@@ -16,18 +16,25 @@
 				<p:tab title="Colaborador">
 					<h:form prependId="false">
 						<ui:include src="/caixa/elements/credito-colaborador.xhtml"></ui:include>
-					</h:form>							
+					</h:form>												
 				</p:tab>
 														
 				<p:tab title="Cliente">
 					<h:form prependId="false">		
 						<ui:include src="/caixa/elements/credito-cliente.xhtml"></ui:include>
+						<p:dialog widgetVar="modalCreditoCliente" modal="true" onHide="clear()" id="modalCreditoCliente">
+				 	 		<h:outputText value="#{creditoMB.msg}" />
+						</p:dialog>						
 					</h:form>											
-				</p:tab>				
+				</p:tab>
 			
 			</p:tabView>
 		</div>
 	
+  </ui:define>
+  
+  <ui:define name="js">
+     <h:outputScript  library="js" name="credito.js"/>
   </ui:define>
   
 </ui:composition>
