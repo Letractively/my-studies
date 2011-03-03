@@ -1,3 +1,4 @@
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -17,8 +18,9 @@
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					size="30"
-					onfocus="nofificationBar.hide()"	
+					validator="clienteValidator"
+					onfocus="nofificationBar.hide()"
+					size="30"	
 					/>	
 			</div>			
 		

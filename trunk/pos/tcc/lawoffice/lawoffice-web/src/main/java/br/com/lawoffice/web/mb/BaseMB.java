@@ -47,6 +47,16 @@ public class BaseMB {
 	 */
 	protected void adicionarMensagemErro(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_ERROR, sumario, detalhe));
+	}
+	
+	/**
+	 * TODO: javadoc
+	 * 
+	 * @param sumario
+	 * @param detalhe
+	 */
+	protected void adicionarMensagemErroValidacao(String clienteID, String detalhe) {
+		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existem campos obrigatórios sem preenchimento..: ", detalhe)); // TODO: internacionalizacao
 	}	
 	
 	
