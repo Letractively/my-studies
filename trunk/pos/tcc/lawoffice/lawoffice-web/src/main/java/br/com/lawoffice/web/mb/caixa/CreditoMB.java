@@ -8,7 +8,6 @@ import java.text.NumberFormat;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.caixa.exception.CaixaException;
@@ -27,23 +26,9 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
  */
 
 @ManagedBean
-public class CreditoMB extends AutoCompleteMB{
+public class CreditoMB extends CaixaMB{
 
-	
-	/**
-	 * Valor para creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
-	 */
-	protected BigDecimal valor;
-	
-	
-	/**
-	 * Serviço de caixa para realizar o credito
-	 */
-	@EJB
-	protected CaixaLocal caixaLocal;
-	
-	
-	
+
 	public void creditarCliente(){
 		try {
 			
@@ -117,18 +102,5 @@ public class CreditoMB extends AutoCompleteMB{
 			e.printStackTrace();
 		}
 	}
-
 	
-	
-	
-	
-	// >>>> GETS E SETS do MB <<<<
-	
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}	
 }
