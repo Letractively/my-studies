@@ -10,7 +10,7 @@
 		<div id="divInput">
 		
 			<div>
-				<h:outputLabel value="Cliente: " for="cliente"/>
+				<h:outputLabel value="#{msg.labelCliente}" for="cliente"/>
 				<p:autoComplete id="cliente"
 					value="#{creditoMB.cliente}"
 					completeMethod="#{creditoMB.listarClientes}"
@@ -19,17 +19,20 @@
 					itemValue="#{cliente}"
 					converter="clienteConverter"
 					validator="clienteValidator"
-					onfocus="nofificationBar.hide()"
+					onfocus="nofificationBar.hide()"					
+					required="true"
+					requiredMessage="#{msg.obrigatorioCliente}"	
 					size="30"	
 					/>	
 			</div>			
 		
 			<div>
-				<h:outputLabel value="Valor: " for="valorCliente"/>
+				<h:outputLabel value="#{msg.labelValor}" for="valorCliente"/>
 				<p:inputText  value="#{creditoMB.valor}" 
 					id="valorCliente" 
 					size="10"
-					styleClass="inputText"
+					required="true"
+					requiredMessage="#{msg.obrigatorioValor}"
 					/>
 			</div>
 										

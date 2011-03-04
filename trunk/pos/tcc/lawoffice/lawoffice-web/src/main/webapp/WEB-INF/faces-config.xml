@@ -41,9 +41,12 @@
    <to-view-id>/dados/colaborador.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
- <!--  Empty for this simple case. Managed bean name automatically
-        derived from bean class name. Bean scope is request by default.
-        Results pages automatically derived from return value of action controller.  
-        
-        From JSF 2.0 tutorial at http://www.coreservlets.com/JSF-Tutorial/jsf2/ -->
+ 
+ <application>
+ 	<resource-bundle>
+ 		<base-name>br.com.lawoffice.web.resource.bundle.mensagens</base-name>
+ 		<var>msg</var>
+ 	</resource-bundle>
+ </application>
+ 
 </faces-config>

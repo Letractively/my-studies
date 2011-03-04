@@ -20,19 +20,17 @@ public class ClienteValidator implements Validator {
 
 
 	@Override
-	public void validate(FacesContext arg0, UIComponent arg1, Object cliente) throws ValidatorException {
+	public void validate(FacesContext facesContext, UIComponent uiComponent, Object cliente) throws ValidatorException {
 		if(cliente == null){
-			FacesContext.getCurrentInstance()
+			facesContext
 				.addMessage(
-						arg1.getClientId(), 
-						new FacesMessage(
-								FacesMessage.SEVERITY_ERROR, 
-								"Existem campos obrigatórios sem preenchimento..: ", 
-								"O Cliente é obrigatório"
-							)
+					uiComponent.getClientId(), 
+					new FacesMessage(
+							FacesMessage.SEVERITY_ERROR, 
+							"Existem campos obrigatórios sem preenchimento..: ", 
+							"O Cliente é obrigatório"
+						)
 				);
-	
 		}
 	}
-
 }

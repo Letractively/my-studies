@@ -49,8 +49,7 @@ public class CreditoMB extends AutoCompleteMB{
 			if(cliente != null){
 				caixaLocal.creditar(cliente.getConta(), valor);
 				adicionarMensagemCreditoSucesso(cliente.getConta());
-			}
-				
+			}				
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,44 +58,16 @@ public class CreditoMB extends AutoCompleteMB{
 
 	public void creditarColaborador(){
 		try {			
-			if(parametrosValidosCreditoColaborador()){
+			
 				caixaLocal.creditar(colaborador.getConta(), valor);
 				adicionarMensagemCreditoSucesso(colaborador.getConta());
-			}
+			
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
-	private boolean parametrosValidosCreditoColaborador(){
-		if(colaborador == null){
-			adicionarMensagemErroValidacao(null, "O colaborador é obrigatório");
-			return false;
-		}											
-		return validarValor();
-	}
-
-
-	private boolean parametrosValidosCreditoCliente() {
-		if(cliente == null){
-			adicionarMensagemErroValidacao(null, "O colaborador é obrigatório");
-			return false;
-		}							
-		return validarValor();
-	}	
-	
-
-	
-	private boolean validarValor() {
-		if( valor.doubleValue() <= 0 ){
-			adicionarMensagemErroValidacao(null, "O valor do credito é obrigatório e deve ser maior que zero");
-			return false;
-		}			
-		return true;
-	}
-	
 	
 	private void adicionarMensagemCreditoSucesso(Conta conta) {
 		// TODO: internacionalização
