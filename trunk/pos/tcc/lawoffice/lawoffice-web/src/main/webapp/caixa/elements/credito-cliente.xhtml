@@ -19,11 +19,9 @@
 					itemValue="#{cliente}"
 					converter="clienteConverter"
 					validator="clienteValidator"
-					onfocus="nofificationBar.hide()"					
-					required="true"
-					requiredMessage="#{msg.obrigatorioCliente}"	
+					onfocus="nofificationBar.hide()"	
 					size="30"	
-					/>	
+					/>		
 			</div>			
 		
 			<div>
@@ -31,12 +29,11 @@
 				<p:inputText  value="#{creditoMB.valor}" 
 					id="valorCliente" 
 					size="10"
-					required="true"
-					requiredMessage="#{msg.obrigatorioValor}"
-					/>
+					validator="valorValidator"
+					/>						
 			</div>
-										
-			<div style="padding-top: 10px;">
+								
+			<div style="padding-top: 12px;">
 				<p:commandButton 
 					action="#{creditoMB.creditarCliente}" 
 					value="Creditar"
@@ -47,17 +44,6 @@
 					/>
 			</div>
 			
-			<div>
-				<p:ajaxStatus >
-					<f:facet name="start">
-						creditando
-					</f:facet>
-					<f:facet name="complete">
-						<h:outputText value=" " />
-					</f:facet>
-				</p:ajaxStatus>
-			</div>				
-
 		</div>
 					
 		<div style="clear: both;"></div>
