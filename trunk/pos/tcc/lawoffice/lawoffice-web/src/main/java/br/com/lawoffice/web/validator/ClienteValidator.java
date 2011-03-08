@@ -20,16 +20,13 @@ public class ClienteValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext facesContext, UIComponent uiComponent, Object cliente) throws ValidatorException {
-		if(cliente == null){
-			facesContext
-				.addMessage(
-					uiComponent.getClientId(), 
-					new FacesMessage(
+		if(cliente == null){	
+			throw new ValidatorException(
+				 new FacesMessage(
 							FacesMessage.SEVERITY_ERROR, 
 							"Existem campos obrigatórios sem preenchimento..: ", 
-							"O Cliente é obrigatório"
-						)
-				);
+							"O Cliente é obrigatório" // TODO: internacionlização no livro jsf tem um esquema ver em bundles ( para todo validators )
+				));
 		}
 	}
 }

@@ -13,6 +13,8 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
+ * Validator para os valores monetários utilizados nas interfaces do sistema.  
+ *
  * @author rduarte
  *
  */
@@ -26,15 +28,12 @@ public class ValorValidator implements Validator {
 		BigDecimal valor = (BigDecimal) object;
 		
 		if(valor == null || valor.doubleValue() <= 0){
-			facesContext
-				.addMessage(
-					uiComponent.getClientId(), 
-					new FacesMessage(
-							FacesMessage.SEVERITY_ERROR, 
-							"Existem campos obrigatórios sem preenchimento..: ", 
-							"O Valor é obrigatório e deve ser maior que zero"
-						)
-				);
+			throw new ValidatorException(
+				new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, 
+					"Existem campos obrigatórios sem preenchimento..: ", 
+					"O Valor é obrigatório e deve ser maior que zero" // TODO: internacionalização
+			));
 		}
 	}
 }

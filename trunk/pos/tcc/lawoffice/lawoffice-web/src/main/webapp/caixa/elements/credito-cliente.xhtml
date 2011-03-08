@@ -18,10 +18,10 @@
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					validator="clienteValidator"
-					onfocus="nofificationBar.hide()"	
+					onfocus="nofificationBarCliente.hide()"
+					validator="clienteValidator"		
 					size="30"	
-					/>		
+					/>
 			</div>			
 		
 			<div>
@@ -37,10 +37,8 @@
 				<p:commandButton 
 					action="#{creditoMB.creditarCliente}" 
 					value="Creditar"
-					onstart="this.disabled=true"
-					onsuccess="nofificationBar.show()"
-					oncomplete="this.disabled=false"
-					update="msg" 
+					onsuccess="nofificationBarCliente.show()"
+					update="msgCliente" 
 					/>
 			</div>
 			

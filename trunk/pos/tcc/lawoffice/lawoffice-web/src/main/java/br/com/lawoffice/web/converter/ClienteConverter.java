@@ -55,9 +55,8 @@ public class ClienteConverter implements Converter {
 
 
 	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		return ((Cliente) arg2).getId().toString();
+	public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object cliente) {
+		return ((Cliente) cliente).getId().toString();
 	}
 
 }

@@ -12,6 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import br.com.lawoffice.dados.DadosLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
@@ -36,7 +38,7 @@ public class ColaboradorConverter implements Converter {
 	
 	
 	@Override
-	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2) {
+	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String colaboradorID) {
 		
 		try {
 			Context context = new InitialContext();
@@ -45,16 +47,18 @@ public class ColaboradorConverter implements Converter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		if(NumberUtils.isNumber(colaboradorID))		
+			return dadosLocal.localizar(Colaborador.class, Long.valueOf(colaboradorID));
+		else
+			return null;
 		
-		// TODO Auto-generated method stub
-		return dadosLocal.localizar(Colaborador.class, Long.valueOf(arg2));
 	}
 
 
 	@Override
-	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		// TODO Auto-generated method stub
-		return ((Colaborador) arg2).getId().toString();
+	public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object colaborador) {
+		return ((Colaborador) colaborador).getId().toString();
 	}
 
 }

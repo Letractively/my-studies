@@ -10,6 +10,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.TabChangeEvent;
+
 import br.com.lawoffice.caixa.CaixaLocal;
 import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Cliente;
@@ -46,10 +48,9 @@ public class CreditoMB extends AutoCompleteMB{
 	
 	public void creditarCliente(){
 		try {
-			if(cliente != null){
-				caixaLocal.creditar(cliente.getConta(), valor);
-				adicionarMensagemCreditoSucesso(cliente.getConta());
-			}				
+			adicionarMensagemCreditoSucesso(
+					caixaLocal.creditar(cliente.getConta(), valor)
+				);						
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,17 +58,16 @@ public class CreditoMB extends AutoCompleteMB{
 	}
 
 	public void creditarColaborador(){
-		try {			
-			
-				caixaLocal.creditar(colaborador.getConta(), valor);
-				adicionarMensagemCreditoSucesso(colaborador.getConta());
-			
+		try {
+			adicionarMensagemCreditoSucesso(
+					caixaLocal.creditar(colaborador.getConta(), valor)
+				);			
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
+	
 	
 	private void adicionarMensagemCreditoSucesso(Conta conta) {
 		// TODO: internacionalização
