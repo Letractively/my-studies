@@ -17,18 +17,28 @@
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					size="60"/>
-			</div>			
-		
+					validator="clienteValidator"
+					onfocus="nofificationBarCliente.hide()"
+					size="30"/>
+			</div>					
 			<div>
 				<h:outputLabel value="Valor: " for="valorCliente"/>
-				<h:inputText value="#{debitoMB.valor}" id="valorCliente" size="10"/>
+				<p:inputText 
+					value="#{debitoMB.valor}" 
+					id="valorCliente" 
+					size="10"
+					validator="valorValidator"
+					/>
 			</div>
 										
 			<div style="padding-top: 10px;">			
-				<h:commandButton value="Debitar" action="#{debitoMB.debitarCliente}" id="btnDebitarCliente">
-					<f:ajax execute="cliente valorCliente" />				
-				</h:commandButton>														
+				<p:commandButton 
+					value="Debitar" 
+					action="#{debitoMB.debitarCliente}" 
+					id="btnDebitarCliente"
+					oncomplete="nofificationBarCliente.show()"
+					update="msgCliente"
+				/>														
 			</div>	
 
 		</div>

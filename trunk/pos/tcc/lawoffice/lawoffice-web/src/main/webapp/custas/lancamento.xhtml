@@ -31,7 +31,6 @@
 							itemValue="#{colaborador}"
 							converter="colaboradorConverter"
 							size="30"
-							styleClass="inputText"
 							/>
 					</div>
 					
@@ -45,15 +44,13 @@
 							itemValue="#{cliente}"
 							converter="clienteConverter"
 							size="30"
-							styleClass="inputText"
 							/>
 					</div>					
 					
 					<div>
 						<h:outputLabel value="Natureza: " for="natureza"/>
 						<p:inputText value="#{lancamentoMB.custa.natureza}" 
-							id="natureza" 
-							styleClass="inputText"
+							id="natureza"
 							size="30"
 							/>
 					</div>
@@ -62,17 +59,20 @@
 						<h:outputLabel value="Valor: " for="valor" />
 						<p:inputText 
 							value="#{lancamentoMB.custa.valor}" 
-							id="valor" 
-							styleClass="inputText"
+							id="valor"
 							size="10"
 							/>					
 					</div>
 					
 					<div style="padding-top: 15px;">
-						<h:commandButton value="Adicionar" action="#{lancamentoMB.adicionarCusta}" id="btnAdicionar">
-							<f:ajax render="tableCustas natureza valor" 
-								execute="natureza valor colaborador cliente" />
-						</h:commandButton>
+						<p:commandButton 
+							value="Adicionar" 
+							action="#{lancamentoMB.adicionarCusta}" 
+							id="btnAdicionar"
+							update="tableCustas natureza valor"
+							oncomplete="showTable()" 
+							/>
+
 					</div>
 					
 				</div>

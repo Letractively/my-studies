@@ -4,6 +4,7 @@
 package br.com.lawoffice.web.mb.caixa;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -43,7 +44,9 @@ public class DebitoMB extends AutoCompleteMB{
 	
 	public void debitarCliente(){
 		try {
-			caixaLocal.debitar(cliente.getConta(), valor);
+			adicionarMensagemDebitoSucesso(
+					caixaLocal.debitar(cliente.getConta(), valor)
+				);
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,13 +55,24 @@ public class DebitoMB extends AutoCompleteMB{
 	
 	public void debitarColaborador(){
 		try {
-			caixaLocal.debitar(colaborador.getConta(), valor);
+			adicionarMensagemDebitoSucesso(
+					caixaLocal.debitar(colaborador.getConta(), valor)
+				);
 		} catch (CaixaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
+	private void adicionarMensagemDebitoSucesso(Conta conta) {
+		// TODO: internacionalização
+		adicionarMensagemInformacao(
+				null, 
+				"Débito realizado com sucesso: ",  
+				"Saldo Atual =  "  + NumberFormat.getCurrencyInstance().format(conta.getSaldo())
+			);		
+	}	
 	
 	// >>>> GETS e SETS do MB <<< 
 	

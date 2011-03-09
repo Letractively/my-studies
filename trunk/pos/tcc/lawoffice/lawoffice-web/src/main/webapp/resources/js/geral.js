@@ -28,12 +28,27 @@ jQuery(function(){
 	);
 });
 
+
+jQuery(function(){
+	hideTable();
+});
+
+
+function showTable() {
+	jQuery('table').show();
+}
+
+
+function hideTable() {
+	jQuery('table').hide();
+}
+
 // fim menu ...
 
 
 // jquery ui 
 
-jQuery(function(){
+/*jQuery(function(){
 	jQuery('input:submit').button();
-});
+});*/
 

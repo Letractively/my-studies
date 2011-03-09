@@ -8,18 +8,15 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.lawoffice.dados.DadosLocal;
-import br.com.lawoffice.dominio.Cliente;
-import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
 
 /**
- * @author robson
- *
  * Manager Bean para página de /custas/lacamento.xhtml
+ * 
+ * @author robson
  *
  */
 @ManagedBean()
