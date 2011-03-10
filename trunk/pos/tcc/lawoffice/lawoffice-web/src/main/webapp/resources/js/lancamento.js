@@ -1,4 +1,4 @@
-function oneventAddCusta(data){
+/*function oneventAddCusta(data){
 	//if ( data.status == "begin")
 		//$('#ajaxLoader').show();	
 	//else 
@@ -12,4 +12,21 @@ function oneventFecharLancamento(data){
 		jQuery("#btnFecharLancamento").attr('disabled', 'disabled');	
 	if (data.status == "success")
 		jQuery("#btnFecharLancamento").attr('disabled', '');
+}*/
+
+
+function focusNatureza() {
+	jQuery('#natureza').focus();
 }
+
+
+function showNotificationBar() {
+	
+	var text = jQuery("#msgLancamento").text();
+	
+	if(text != "")
+		nofificationBarLancamento.show();
+		
+	
+}
+

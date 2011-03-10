@@ -30,7 +30,9 @@
 							itemLabel="#{colaborador.nome}"
 							itemValue="#{colaborador}"
 							converter="colaboradorConverter"
+							validator="colaboradorValidator"
 							size="30"
+							onkeypress="nofificationBarLancamento.hide()"
 							/>
 					</div>
 					
@@ -43,7 +45,9 @@
 							itemLabel="#{cliente.nome}"
 							itemValue="#{cliente}"
 							converter="clienteConverter"
+							validator="clienteValidator"
 							size="30"
+							onkeypress="nofificationBarLancamento.hide()"
 							/>
 					</div>					
 					
@@ -52,6 +56,8 @@
 						<p:inputText value="#{lancamentoMB.custa.natureza}" 
 							id="natureza"
 							size="30"
+							onkeypress="nofificationBarLancamento.hide()"
+						    validator="naturezaValidator"
 							/>
 					</div>
 					
@@ -61,6 +67,8 @@
 							value="#{lancamentoMB.custa.valor}" 
 							id="valor"
 							size="10"
+							validator="valorValidator"
+							onkeypress="nofificationBarLancamento.hide()"
 							/>					
 					</div>
 					
@@ -69,8 +77,8 @@
 							value="Adicionar" 
 							action="#{lancamentoMB.adicionarCusta}" 
 							id="btnAdicionar"
-							update="tableCustas natureza valor"
-							oncomplete="showTable()" 
+							update="tableCustas natureza valor msgLancamento"
+							oncomplete="showNotificationBar();showHideTable();focusNatureza()"
 							/>
 
 					</div>
@@ -126,29 +134,40 @@
 				</p:dataTable>			
 			</div>
 			
-			<div class="divContent">
+			<div class="divContent" id="commandButtons">
+			
+			
+				<h:commandButton action="#{lancamentoMB.removerCusta}" 
+						value="Remover" 
+						id="btnRemover"
+						>
+					<f:ajax render="tableCustas" execute="tableCustas" onevent="hideTableRemove"/>
+				</h:commandButton>
+				
 				
 				<h:commandButton action="#{lancamentoMB.editarCusta}" 
 						value="Editar" 
 						id="btnEditar"
 						>
-						<f:ajax render="natureza valor colaborador cliente" execute="tableCustas"/>
-				</h:commandButton>
-								
-				<h:commandButton action="#{lancamentoMB.removerCusta}" 
-						value="Remover" 
-						id="btnRemover"
-						>
 					<f:ajax render="tableCustas" execute="tableCustas"/>
-				</h:commandButton>
-											
-				<h:commandButton action="#{lancamentoMB.fecharLancamento}" 
+				</h:commandButton>				
+			
+				
+				<p:commandButton action="#{lancamentoMB.fecharLancamento}" 
 						value="Fechar Lançamento" 
-						id="btnFecharLancamento" 
-						>
-					<f:ajax render="tableCustas" onevent="oneventFecharLancamento"/>
-				</h:commandButton>
-			</div>		
+						id="btnFecharLancamento"
+						update="tableCustas msgLancamento"
+						oncomplete="nofificationBarLancamento.show();hideTable()"
+						immediate="true"						
+					/>
+			</div>
+			
+			<p:notificationBar position="bottom" 
+				effect="slide"
+				widgetVar="nofificationBarLancamento" 
+				styleClass="nofificationBar">
+			  	<p:messages id="msgLancamento" showDetail="true"  showSummary="true"/>
+			</p:notificationBar>
 			
 		</div>
 		

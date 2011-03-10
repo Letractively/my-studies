@@ -126,9 +126,9 @@ public class LancamentoMB extends AutoCompleteMB {
 		try {
 			lancamentoDeCusta.fecharLacamento();
 			custas.clear();
+			adicionarMensagemInformacao(null, null, "Lançamento fechado com sucesso.");
 		} catch (LancamentoDeCustaException e){
-			// TODO: 
-			e.printStackTrace();
+			adicionarMensagemErro(null, null, e.getMessage());
 		}
 	}
 

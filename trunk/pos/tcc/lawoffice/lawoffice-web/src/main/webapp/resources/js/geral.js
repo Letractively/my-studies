@@ -29,26 +29,62 @@ jQuery(function(){
 });
 
 
+
+jQuery(function(){
+	jQuery('input:submit').button();
+});
+
+
+
+
 jQuery(function(){
 	hideTable();
 });
 
 
-function showTable() {
-	jQuery('table').show();
-}
-
-
-function hideTable() {
+function hideTable(){
 	jQuery('table').hide();
+	jQuery('#commandButtons').hide();
 }
 
-// fim menu ...
+
+function showTable(){
+	jQuery('table').show();
+	jQuery('#commandButtons').show();
+}
 
 
-// jquery ui 
 
-/*jQuery(function(){
-	jQuery('input:submit').button();
-});*/
+/**
+ * exibi ou esconde a tabela ao adicioanar uma custa.
+ */
+function showHideTable() {
+	
+	var trs =  jQuery('table > tbody > tr');
+	
+	if(trs.length == 1){
+		if(jQuery(trs).text() != 'No records found.'){
+			showTable();	
+		}else{
+			hideTable();
+		}		
+	}
+}
+
+
+/**
+ * esconde a tabela de custas 
+ */
+function hideTableRemove(data){
+	
+	if (data.status == "success"){		
+		
+		var trs =  jQuery('table > tbody > tr');
+		
+		if(trs.length == 1)
+			if(jQuery(trs).text() == 'No records found.')
+				hideTable();
+	}
+}
+
 
