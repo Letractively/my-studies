@@ -76,6 +76,13 @@ public class CaixaBean implements Caixa {
 		return entityManager.merge(conta);
 	}
 
+	
+	
+	@Override
+	public BigDecimal getSaldo(Conta conta) throws CaixaException {
+		return getConta(conta).getSaldo();
+	}
+	
 
 	private Conta getConta(Conta conta) throws CaixaException {
 		// TODO: testar	 mesmo problema com o entityManager dos outros testes	
@@ -94,5 +101,6 @@ public class CaixaBean implements Caixa {
 		if(conta == null || conta.getId() == null)
 			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
 	}
+
 
 }

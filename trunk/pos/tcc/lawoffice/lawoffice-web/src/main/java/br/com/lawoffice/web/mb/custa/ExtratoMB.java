@@ -15,7 +15,7 @@ import br.com.lowoffice.custas.extrato.ExtratoLocal;
  * 
  * @author robson
  * 
- * Manager Bean para página de /custas/lacamentos.xhtml
+ * Manager Bean para página de /caixa/extrato.xhtml
  *
  */
 @ManagedBean

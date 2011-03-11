@@ -5,11 +5,11 @@
     xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
-  <ui:define name="title">Fluxo</ui:define>
+  <ui:define name="title">#{msg.labelFluxo}</ui:define>
   
   <ui:define name="body">    
 
-	<h:form>
+	<h:form prependId="false">
 				
 		<div id="fluxo">
 			
@@ -18,46 +18,54 @@
 					<div id="divInput">
 					
 						<div>
-							<h:outputLabel value="Data Incial: " for="dataInicial"/>
+							<h:outputLabel value="#{msg.labelDataInicial}:" for="dataInicial"/>
 							<p:calendar 
 								pattern="dd/MM/yyyy"  
 								id="dataInicial" 
 								value="#{fluxoMB.dataInicial}"
-								size="10"								
-	  							styleClass="inputText"
+								size="11"
+								timeZone="GMT-2:00"
+								validator="dataValidator"
+								onfocus="nofificationBarFluxo.hide()"
 							/>
 						</div>
 						
 						<div>
-							<h:outputLabel value="Data Final: " for="dataFinal"/>
+							<h:outputLabel value="#{msg.labelDataFinal}:" for="dataFinal"/>
 							<p:calendar 
 								pattern="dd/MM/yyyy"  
 								id="dataFinal" 
 								value="#{fluxoMB.dataFinal}"
-								size="10"								
-	  							styleClass="inputText"								
+								size="11"
+								timeZone="GMT-2:00"
+								validator="dataValidator"
+								onfocus="nofificationBarFluxo.hide()"								
 							/>
 						</div>											
 					
 						<div>
-							<h:outputLabel value="Colaborador: " for="colaborador"/>
+							<h:outputLabel value="#{msg.labelColaborador}:" for="colaborador"/>
 							<p:autoComplete id="colaborador"
 								value="#{fluxoMB.colaborador}"
 								completeMethod="#{fluxoMB.listarColaboradores}"
 								var="colaborador"
 								itemLabel="#{colaborador.nome}"
 								itemValue="#{colaborador}"
-								converter="colaboradorConverter"				
-	  							styleClass="inputText"								
+								converter="colaboradorConverter"
+								validator="colaboradorValidator"								
 								size="30"/>
 						</div>			
 					
 
 													
 						<div style="padding-top: 10px;">			
-							<h:commandButton value="Consultar" action="#{fluxoMB.consultar}" id="btnConsultar">
-								<f:ajax execute="dataInicial dataFinal colaborador" render="transacoes"/>				
-							</h:commandButton>														
+							<p:commandButton 
+								value="#{msg.btnLabelConsultar}" 
+								action="#{fluxoMB.consultar}" 
+								id="btnConsultar" 
+								update="transacoes msg"
+								oncomplete="showHideNotificationBar();"
+								/>													
 						</div>	
 			
 					</div>
@@ -66,7 +74,7 @@
 				
 			</div>
 			
-			<div id="transacoes" class="divContent">
+			<div class="divContent">
 					
 					<p:dataTable 
 						value="#{fluxoMB.listTransacoes}" 
@@ -98,18 +106,18 @@
 							</h:outputText>
 						</p:column>	
 						
-						<f:facet name="footer">
-							<p:column>
-								skskks
-							</p:column>
-							<p:column>
-								skskks
-							</p:column>														
-						</f:facet>						
+						<f:facet name="footer"></f:facet>						
 					
 					</p:dataTable>
 				
-			</div>			
+			</div>
+				
+			<p:notificationBar position="bottom" 
+				effect="slide"
+				widgetVar="nofificationBar" 
+				styleClass="nofificationBar">
+			  	<p:messages id="msg" showDetail="true"  showSummary="true"/>
+			</p:notificationBar>			
 			
 		</div>
 		

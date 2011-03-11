@@ -12,32 +12,22 @@
 			<div>
 				<h:outputLabel value="#{msg.labelCliente}:" for="cliente"/>
 				<p:autoComplete id="cliente"
-					value="#{creditoMB.cliente}"
-					completeMethod="#{creditoMB.listarClientes}"
+					value="#{saldoMB.cliente}"
+					completeMethod="#{saldoMB.listarClientes}"
 					var="cliente"
 					itemLabel="#{cliente.nome}"
 					itemValue="#{cliente}"
 					converter="clienteConverter"
-					onkeypress="nofificationBarCliente.hide()"
+					onfocus="nofificationBarCliente.hide()"
 					validator="clienteValidator"		
 					size="30"	
 					/>
 			</div>			
-		
-			<div>
-				<h:outputLabel value="#{msg.labelValor}:" for="valorCliente"/>
-				<p:inputText  value="#{creditoMB.valor}" 
-					id="valorCliente" 
-					size="10"
-					onkeypress="nofificationBarCliente.hide()"
-					validator="valorValidator"
-					/>						
-			</div>
 								
 			<div style="padding-top: 12px;">
 				<p:commandButton 
-					action="#{creditoMB.creditarCliente}" 
-					value="Creditar"
+					action="#{saldoMB.consultarSaldoCliente}" 
+					value="#{msg.btnLabelConsultar}"
 					onsuccess="nofificationBarCliente.show()"
 					update="msgCliente" 
 					/>

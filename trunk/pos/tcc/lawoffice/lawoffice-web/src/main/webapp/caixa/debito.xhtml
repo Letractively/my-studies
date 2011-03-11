@@ -14,29 +14,17 @@
 			<p:tabView style="border-bottom: none;"
 				onTabChange="nofificationBarCliente.hide();nofificationBarColaborador.hide()">
 														
-				<p:tab title="Colaborador">
-					<h:form prependId="false">
-						<ui:include src="/caixa/elements/debito-colaborador.xhtml"></ui:include>
-						<p:notificationBar position="bottom" 
-							effect="slide" 
-							widgetVar="nofificationBarColaborador" 
-							styleClass="nofificationBar">
-						  	<p:messages id="msgColaborador" showDetail="true"  showSummary="true"/>
-						</p:notificationBar>						
-					</h:form>								
-				</p:tab>
-														
-				<p:tab title="Cliente">
+				<p:tab title="#{msg.labelCliente}">
 					<h:form prependId="false">		
 						<ui:include src="/caixa/elements/debito-cliente.xhtml"></ui:include>
 					</h:form>
-						<p:notificationBar position="bottom" 
-							effect="slide" 
-							widgetVar="nofificationBarCliente" 
-							styleClass="nofificationBar">
-						  	<p:messages id="msgCliente" showDetail="true"  showSummary="true"/>
-						</p:notificationBar>																	
-				</p:tab>				
+				</p:tab>
+				
+				<p:tab title="#{msg.labelColaborador}">
+					<h:form prependId="false">
+						<ui:include src="/caixa/elements/debito-colaborador.xhtml"></ui:include>
+					</h:form>								
+				</p:tab>								
 			
 			</p:tabView>
 		</div>

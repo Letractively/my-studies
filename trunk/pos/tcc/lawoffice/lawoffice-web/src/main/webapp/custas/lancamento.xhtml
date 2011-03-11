@@ -77,7 +77,7 @@
 							value="Adicionar" 
 							action="#{lancamentoMB.adicionarCusta}" 
 							id="btnAdicionar"
-							update="tableCustas natureza valor msgLancamento"
+							update="tableCustas natureza valor msg"
 							oncomplete="showNotificationBar();showHideTable();focusNatureza()"
 							/>
 
@@ -156,7 +156,7 @@
 				<p:commandButton action="#{lancamentoMB.fecharLancamento}" 
 						value="Fechar Lançamento" 
 						id="btnFecharLancamento"
-						update="tableCustas msgLancamento"
+						update="tableCustas msg"
 						oncomplete="nofificationBarLancamento.show();hideTable()"
 						immediate="true"						
 					/>
@@ -164,9 +164,9 @@
 			
 			<p:notificationBar position="bottom" 
 				effect="slide"
-				widgetVar="nofificationBarLancamento" 
+				widgetVar="nofificationBar" 
 				styleClass="nofificationBar">
-			  	<p:messages id="msgLancamento" showDetail="true"  showSummary="true"/>
+			  	<p:messages id="msg" showDetail="true"  showSummary="true"/>
 			</p:notificationBar>
 			
 		</div>

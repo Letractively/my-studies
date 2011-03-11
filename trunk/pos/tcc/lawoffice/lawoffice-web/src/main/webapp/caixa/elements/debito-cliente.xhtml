@@ -9,7 +9,7 @@
 		<div id="divInput">
 		
 			<div>
-				<h:outputLabel value="Cliente: " for="cliente"/>
+				<h:outputLabel value="#{msg.labelCliente}:" for="cliente"/>
 				<p:autoComplete id="cliente"
 					value="#{debitoMB.cliente}"
 					completeMethod="#{debitoMB.listarClientes}"
@@ -18,20 +18,21 @@
 					itemValue="#{cliente}"
 					converter="clienteConverter"
 					validator="clienteValidator"
-					onfocus="nofificationBarCliente.hide()"
+					onkeypress="nofificationBarCliente.hide()"	
 					size="30"/>
 			</div>					
 			<div>
-				<h:outputLabel value="Valor: " for="valorCliente"/>
+				<h:outputLabel value="#{msg.labelValor}:" for="valorCliente"/>
 				<p:inputText 
 					value="#{debitoMB.valor}" 
 					id="valorCliente" 
 					size="10"
+					onkeypress="nofificationBarCliente.hide()"
 					validator="valorValidator"
 					/>
 			</div>
 										
-			<div style="padding-top: 10px;">			
+			<div style="padding-top: 12px;">			
 				<p:commandButton 
 					value="Debitar" 
 					action="#{debitoMB.debitarCliente}" 
@@ -46,6 +47,8 @@
 		<div style="clear: both;"></div>
 							
 	</div>    
+
+	<ui:include src="/caixa/elements/notification-bar-cliente.xhtml"></ui:include>
 		
 </ui:composition>
 

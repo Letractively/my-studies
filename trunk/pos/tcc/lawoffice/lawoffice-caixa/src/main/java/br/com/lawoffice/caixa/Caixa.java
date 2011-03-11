@@ -19,4 +19,5 @@ public interface Caixa {
 	
 	public Conta creditar(Conta conta, BigDecimal valor) throws CaixaException;
 	public Conta debitar(Conta conta, BigDecimal valor) throws CaixaException;
+	public BigDecimal getSaldo(Conta conta) throws CaixaException;
 }

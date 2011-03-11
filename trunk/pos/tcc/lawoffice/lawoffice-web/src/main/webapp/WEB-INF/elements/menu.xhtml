@@ -29,15 +29,18 @@
 			<li>
 				<a href="#a">Caixa</a>
 				<ul>
+					<li class="current">
+						<h:link outcome="credito">#{msg.labelCredito}</h:link>
+					</li>				
 					<li>
-						<h:link outcome="debito">Debito</h:link>
+						<h:link outcome="debito">#{msg.labelDebito}</h:link>
 					</li>
 					<li class="current">
-						<h:link outcome="credito">Credito</h:link>
+						<h:link outcome="fluxo">#{msg.labelFluxo}</h:link>
 					</li>
 					<li class="current">
-						<h:link outcome="fluxo">Fluxo</h:link>
-					</li>					
+						<h:link outcome="saldo">#{msg.labelSaldo}</h:link>
+					</li>										
 				</ul>
 			</li>
 			<li>

@@ -56,7 +56,7 @@ function showTable(){
 
 
 /**
- * exibi ou esconde a tabela ao adicioanar uma custa.
+ * exibi ou esconde a tabela ao executar uma ação
  */
 function showHideTable() {
 	
@@ -73,7 +73,7 @@ function showHideTable() {
 
 
 /**
- * esconde a tabela de custas 
+ * esconde a tabela ao executar uma ação
  */
 function hideTableRemove(data){
 	
@@ -85,6 +85,18 @@ function hideTableRemove(data){
 			if(jQuery(trs).text() == 'No records found.')
 				hideTable();
 	}
+}
+
+
+
+function showHideNotificationBar() {
+
+	var text = jQuery("#msg").text();
+	
+	if(text != "")
+		nofificationBar.show();
+	else
+		nofificationBar.hide();	
 }
 
 

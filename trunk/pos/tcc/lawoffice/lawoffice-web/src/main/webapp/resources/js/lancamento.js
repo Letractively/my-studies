@@ -19,14 +19,3 @@ function focusNatureza() {
 	jQuery('#natureza').focus();
 }
 
-
-function showNotificationBar() {
-	
-	var text = jQuery("#msgLancamento").text();
-	
-	if(text != "")
-		nofificationBarLancamento.show();
-		
-	
-}
-

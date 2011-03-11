@@ -9,7 +9,7 @@
 		<div id="divInput">
 		
 			<div>
-				<h:outputLabel value="#{msg.labelColaborador}" for="colaborador"/>
+				<h:outputLabel value="#{msg.labelColaborador}:" for="colaborador"/>
 				<p:autoComplete id="colaborador"
 					value="#{creditoMB.colaborador}"
 					completeMethod="#{creditoMB.listarColaboradores}"
@@ -18,20 +18,21 @@
 					itemValue="#{colaborador}"
 					converter="colaboradorConverter"
 					validator="colaboradorValidator"
-					onfocus="nofificationBarColaborador.hide()"										
+					onkeypress="nofificationBarColaborador.hide()"											
 					size="30"/>
 			</div>			
 		
 			<div>
-				<h:outputLabel value="#{msg.labelValor}" for="valorColaborador"/>
+				<h:outputLabel value="#{msg.labelValor}:" for="valorColaborador"/>
 				<p:inputText value="#{creditoMB.valor}" 
 					id="valorColaborador"
-					validator="valorValidator" 
+					validator="valorValidator"
+					onkeypress="nofificationBarColaborador.hide()" 
 					size="10"
 					/>
 			</div>
 										
-			<div style="padding-top: 10px;">			
+			<div style="padding-top: 12px;">			
 				<p:commandButton 
 					value="Creditar" 
 					action="#{creditoMB.creditarColaborador}"
@@ -45,7 +46,9 @@
 		<div style="clear: both;"></div>
 		
 	</div>				    
-		
+
+	<ui:include src="/caixa/elements/notification-bar-colaborador.xhtml"></ui:include>
+			
 </ui:composition>
 
 
