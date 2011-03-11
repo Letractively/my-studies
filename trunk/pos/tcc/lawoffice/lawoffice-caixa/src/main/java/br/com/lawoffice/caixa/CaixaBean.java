@@ -42,13 +42,13 @@ public class CaixaBean implements Caixa {
 			);
 		
 		entityManager.persist(
-				new Transacao(
-					new Date(), 
-					TipoTransacao.CREDITO,
-					valor,
-					conta
-				)
-			);
+			new Transacao(
+				new Date(), 
+				TipoTransacao.CREDITO,
+				valor,
+				conta
+			)
+		);
 		
 		return entityManager.merge(conta);
 	}
@@ -65,13 +65,13 @@ public class CaixaBean implements Caixa {
 			);
 	 		
 		entityManager.persist(
-				new Transacao(
-					new Date(), 
-					TipoTransacao.DEBITO ,
-					valor,
-					conta
-				)
-			);
+			new Transacao(
+				new Date(), 
+				TipoTransacao.DEBITO ,
+				valor,
+				conta
+			)
+		);
 		
 		return entityManager.merge(conta);
 	}
