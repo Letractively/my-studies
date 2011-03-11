@@ -12,6 +12,10 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -83,7 +87,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		
 		List<Lancamento> lancamentos =  new ArrayList<Lancamento>(mapsLacamentos.values());
 		
-		for (Lancamento lancamento : lancamentos) {
+		for (Lancamento lancamento : lancamentos){
 			
 			entityManager.persist(lancamento);
 			

@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -39,13 +41,13 @@ public class CaixaBean implements Caixa {
 				conta.getSaldo().add(valor)
 			);
 		
-		conta.getTransacoes().add(
+		entityManager.persist(
 				new Transacao(
-						new Date(),
-						TipoTransacao.CREDITO ,
-						valor,
-						conta
-					)	
+					new Date(), 
+					TipoTransacao.CREDITO,
+					valor,
+					conta
+				)
 			);
 		
 		return entityManager.merge(conta);
@@ -61,17 +63,17 @@ public class CaixaBean implements Caixa {
 		conta.setSaldo(
 				conta.getSaldo().subtract(valor)
 			);
-		
-		conta.getTransacoes().add(
+	 		
+		entityManager.persist(
 				new Transacao(
-						new Date(), 
-						TipoTransacao.DEBITO ,
-						valor,
-						conta
-					)	
+					new Date(), 
+					TipoTransacao.DEBITO ,
+					valor,
+					conta
+				)
 			);
 		
-		return entityManager.merge(conta);		
+		return entityManager.merge(conta);
 	}
 
 
