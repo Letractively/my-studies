@@ -45,12 +45,14 @@ jQuery(function(){
 function hideTable(){
 	jQuery('table').hide();
 	jQuery('#commandButtons').hide();
+	jQuery('.ui-datatable-footer').hide();
 }
 
 
 function showTable(){
 	jQuery('table').show();
 	jQuery('#commandButtons').show();
+	jQuery('.ui-datatable-footer').show();
 }
 
 
@@ -60,9 +62,9 @@ function showTable(){
  */
 function showHideTable() {
 	
-	var trs =  jQuery('table > tbody > tr');
+	var trs =  jQuery('table > tbody > tr' ,'.divContent');
 	
-	if(trs.length == 1){
+	if(trs.length >= 1){
 		if(jQuery(trs).text() != 'No records found.'){
 			showTable();	
 		}else{

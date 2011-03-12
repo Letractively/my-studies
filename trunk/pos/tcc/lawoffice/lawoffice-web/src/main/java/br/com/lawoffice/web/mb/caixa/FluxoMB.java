@@ -5,6 +5,7 @@ package br.com.lawoffice.web.mb.caixa;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -59,6 +60,9 @@ public class FluxoMB extends AutoCompleteMB {
 				dataFinal, 
 				colaborador.getConta().getId()
 			);
+		
+		if(listTransacoes.isEmpty())
+			adicionarMensagemAlerta(null, null, "Não foi encontrado nem fluxo de caixa para esse periodo");
 	}
 
 	

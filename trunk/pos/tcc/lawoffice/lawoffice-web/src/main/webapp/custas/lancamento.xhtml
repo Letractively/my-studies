@@ -32,7 +32,7 @@
 							converter="colaboradorConverter"
 							validator="colaboradorValidator"
 							size="30"
-							onkeypress="nofificationBarLancamento.hide()"
+							onkeypress="nofificationBar.hide()"
 							/>
 					</div>
 					
@@ -47,7 +47,7 @@
 							converter="clienteConverter"
 							validator="clienteValidator"
 							size="30"
-							onkeypress="nofificationBarLancamento.hide()"
+							onkeypress="nofificationBar.hide()"
 							/>
 					</div>					
 					
@@ -56,7 +56,7 @@
 						<p:inputText value="#{lancamentoMB.custa.natureza}" 
 							id="natureza"
 							size="30"
-							onkeypress="nofificationBarLancamento.hide()"
+							onkeypress="nofificationBar.hide()"
 						    validator="naturezaValidator"
 							/>
 					</div>
@@ -68,7 +68,7 @@
 							id="valor"
 							size="10"
 							validator="valorValidator"
-							onkeypress="nofificationBarLancamento.hide()"
+							onkeypress="nofificationBar.hide()"
 							/>					
 					</div>
 					
@@ -78,7 +78,7 @@
 							action="#{lancamentoMB.adicionarCusta}" 
 							id="btnAdicionar"
 							update="tableCustas natureza valor msg"
-							oncomplete="showNotificationBar();showHideTable();focusNatureza()"
+							oncomplete="showHideNotificationBar();showHideTable();focusNatureza()"
 							/>
 
 					</div>
@@ -157,7 +157,7 @@
 						value="Fechar Lançamento" 
 						id="btnFecharLancamento"
 						update="tableCustas msg"
-						oncomplete="nofificationBarLancamento.show();hideTable()"
+						oncomplete="nofificationBar.show();hideTable()"
 						immediate="true"						
 					/>
 			</div>

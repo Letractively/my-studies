@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -69,6 +70,12 @@ public class ExtratoBeanTest {
 	public void deveDispararUmaExcecaoRecebendoIDClineteNulo() {
 		custasBeanTest.getCustasPorDataCliente(new Date(), new Date(), null);
 	}
+
+	@Test()
+	public void deveRetornaZeroComListaDeCustaVaziaOuNulla() {
+		assertEquals(new BigDecimal(0.0), custasBeanTest.getValorTotalPesquisa());
+	}
+	
 	
 	
 	// TODO: é o seguinte acho que vou der que dar uma mudada na arquitetura

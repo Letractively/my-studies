@@ -19,27 +19,27 @@
 					
 						<div>
 							<h:outputLabel value="#{msg.labelDataInicial}:" for="dataInicial"/>
-							<p:calendar 
-								pattern="dd/MM/yyyy"  
-								id="dataInicial" 
+							<p:calendar  
+								id="dataInicial"
+								pattern="dd/MM/yyyy" 
 								value="#{fluxoMB.dataInicial}"
 								size="11"
-								timeZone="GMT-2:00"
+								readOnlyInputText="true"
 								validator="dataValidator"
-								onfocus="nofificationBarFluxo.hide()"
+								onfocus="nofificationBar.hide()"	
 							/>
 						</div>
 						
 						<div>
 							<h:outputLabel value="#{msg.labelDataFinal}:" for="dataFinal"/>
-							<p:calendar 
-								pattern="dd/MM/yyyy"  
-								id="dataFinal" 
+							<p:calendar   
+								id="dataFinal"
+								pattern="dd/MM/yyyy" 
 								value="#{fluxoMB.dataFinal}"
 								size="11"
-								timeZone="GMT-2:00"
+								readOnlyInputText="true"
 								validator="dataValidator"
-								onfocus="nofificationBarFluxo.hide()"								
+								onfocus="nofificationBar.hide()"									
 							/>
 						</div>											
 					
@@ -52,19 +52,20 @@
 								itemLabel="#{colaborador.nome}"
 								itemValue="#{colaborador}"
 								converter="colaboradorConverter"
-								validator="colaboradorValidator"								
+								validator="colaboradorValidator"
+								onkeypress="nofificationBar.hide()"								
 								size="30"/>
 						</div>			
 					
 
 													
-						<div style="padding-top: 10px;">			
-							<p:commandButton 
+						<div style="padding-top: 12px;">			
+							<p:commandButton
 								value="#{msg.btnLabelConsultar}" 
 								action="#{fluxoMB.consultar}" 
 								id="btnConsultar" 
 								update="transacoes msg"
-								oncomplete="showHideNotificationBar();"
+								oncomplete="showHideNotificationBar();showHideTable()"
 								/>													
 						</div>	
 			
@@ -79,7 +80,8 @@
 					<p:dataTable 
 						value="#{fluxoMB.listTransacoes}" 
 						var="transacao"
-						id="transacoes">
+						id="transacoes"
+						styleClass="table">
 						
 						<p:column>
 							<f:facet name="header">

@@ -3,6 +3,7 @@
  */
 package br.com.lowoffice.custas.extrato;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,10 +36,16 @@ public class ExtratoBean implements Extrato{
 
 	
 	/**
-	 * Entity Manager para realizar as consultas na base de dados 
+	 * Entity Manager para realizar as consultas na base de dados.
 	 */
 	@PersistenceContext(unitName="lawoffice-custas")
 	EntityManager entityManager;
+	
+	
+	/**
+	 * {@link List} de {@link Custa} com o resultado da pesquisa.
+	 */
+	private List<Custa> listaCustas ;
 	
 	
 	@Override
@@ -50,7 +57,7 @@ public class ExtratoBean implements Extrato{
 		List<Lancamento> listaLancamentos = 
 			getLancamentos(dataInicial,dataFinal,idCliente);
 		
-		List<Custa> listaCustas = new ArrayList<Custa>();
+		listaCustas = new ArrayList<Custa>();
 		
 		for (Lancamento lancamento : listaLancamentos)
 			listaCustas.addAll(lancamento.getCustas());
@@ -59,6 +66,29 @@ public class ExtratoBean implements Extrato{
 	}
 
 
+	@Override
+	public BigDecimal getValorTotalPesquisa() {
+		if(listaCustas == null || listaCustas.isEmpty())
+			return new BigDecimal(0.0);
+		
+		BigDecimal valorTotal = new BigDecimal(0.0);
+		
+		for (Custa custa : listaCustas) 			
+			valorTotal = valorTotal.add(custa.getValor());
+				
+		return valorTotal;
+	}
+	
+	@Override
+	public byte[] gerarExtrato(TipoExtrato tipoExtrato){
+		if(listaCustas == null || listaCustas.isEmpty())
+			throw new IllegalStateException("Não existe custas para gerar o extrato");
+		
+		ExtratoReport extratoReport = SimpleFactoryExtratoReport.createExtratoReport(tipoExtrato);
+		
+		return extratoReport.gerarExtrato(listaCustas);
+	}	
+	
 	
 	private List<Lancamento> getLancamentos(Date dataInicial, Date dataFinal, Long idCliente) {
 		CriteriaBuilder criteriaBuilder =
@@ -107,5 +137,4 @@ public class ExtratoBean implements Extrato{
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
 	}
-	
 }

@@ -21,20 +21,22 @@
 	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/>
 	  				<p:calendar id="dataInicial" 
 	  					pattern="dd/MM/yyyy" 
-	  					timeZone="GMT-2:00" 
 	  					value="#{extratoMB.dataInicial}"
+	  					validator="dataValidator"
+	  					readOnlyInputText="true"
 	  					size="10"
-	  					styleClass="inputText"
+	  					onfocus="nofificationBar.hide()"
 	  					/>
 	  			</div>
 	  			<div>
 	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
 	  				<p:calendar id="dataFinal" 
 	  					pattern="dd/MM/yyyy" 
-	  					timeZone="GMT-2:00" 
+	  					readOnlyInputText="true"
 	  					value="#{extratoMB.dataFinal}"
+	  					validator="dataValidator"
 	  					size="10"
-	  					styleClass="inputText"	  					
+	  					onfocus="nofificationBar.hide()"	  					
 	  					/>	  					  				
 	  			</div>
 				
@@ -47,19 +49,19 @@
 						itemLabel="#{cliente.nome}"
 						itemValue="#{cliente}"
 						converter="clienteConverter"
-						styleClass="inputText"
+						validator="clienteValidator"
 						size="30"
+						onkeypress="nofificationBar.hide()"
 						/>
 				</div>
 	  			
-				<div style="padding-top: 15px;">
-					<h:commandButton value="Pesquisar" 
-						id="btnPesquisar" 
-						action="#{extratoMB.pesquisarLancamentos}">
-						<f:ajax render="tableCustas" 
-							execute="dataInicial dataFinal cliente" 
-							onevent="oneventPesquisar"/>
-					</h:commandButton>										
+				<div style="padding-top: 12px;">
+					<p:commandButton value="Pesquisar" 
+						id="btnPesquisar"
+						action="#{extratoMB.pesquisarLancamentos}" 
+						update="tableCustas msg"
+						oncomplete="showHideNotificationBar();showHideTable()"
+						/>										
 				</div>	  			
 	  						
 			</div> 
@@ -72,10 +74,6 @@
   				value="#{extratoMB.listaCustas}"
   				var="custa"
   				id="tableCustas"
-  				styleClass="tablesorter" 
-				cellspacing="1" 
-				cellpadding="0" 
-				border="0"
   				>
   			
 					<p:column>
@@ -111,20 +109,31 @@
 						</h:outputText>
 					</p:column>
 					
-	 				<f:facet name="footer"> 
-                    	<table>
-                    		<tr>
-                    			<td style="border-left:  1px solid red">45</td>
-								<td style="border-left:  1px solid red">45</td>
-								<td style="border-left:  1px solid red">45</td>
-								<td style="border-left:  1px solid red">45</td>																
-                    		</tr>
-                    	</table>         
-                    </f:facet>										
+					<f:facet name="footer">
+						Valor Total =
+						<h:outputText value="#{extratoMB.valorTotalPesquisa}" >
+							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+						</h:outputText>
+					</f:facet>
   			
   			</p:dataTable>
   		</div>
   		
+		<div class="divContent" id="commandButtons">			
+			<p:commandButton 
+					ajax="false" 
+					value="Download Extrato"
+					immediate="true">
+				<p:fileDownload value="#{extratoMB.fileExtrado}" />
+			</p:commandButton>
+		</div>  		
+
+		<p:notificationBar position="bottom" 
+			effect="slide"
+			widgetVar="nofificationBar" 
+			styleClass="nofificationBar">
+		  	<p:messages id="msg" showDetail="true"  showSummary="true"/>
+		</p:notificationBar>  		
 	  
   	</h:form>
       

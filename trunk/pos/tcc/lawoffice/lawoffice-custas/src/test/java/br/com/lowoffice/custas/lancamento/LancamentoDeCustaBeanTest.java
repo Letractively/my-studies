@@ -186,10 +186,10 @@ public class LancamentoDeCustaBeanTest {
 		lcTest.removerCusta(new Custa());
 	}
 	
-	@Test(expected=LancamentoDeCustaException.class)
+/*	@Test(expected=LancamentoDeCustaException.class)
 	public void deveDispararUmaExcecaoQuandoRemoverCustaEOLancamentoNaoEncontratoNaSessao() throws LancamentoDeCustaException{
 		lcTest.removerCusta(new Custa().addLancamento(new Lancamento()));
-	}
+	}*/
 	
 	
 	
