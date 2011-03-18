@@ -29,6 +29,11 @@ jQuery(function(){
 });
 
 
+jQuery(function(){
+	jQuery("#jMenu").jMenu();
+});
+
+
 
 jQuery(function(){
 	jQuery('input:submit').button();
@@ -43,14 +48,14 @@ jQuery(function(){
 
 
 function hideTable(){
-	jQuery('table').hide();
+	jQuery('table','.divContente').hide();
 	jQuery('#commandButtons').hide();
 	jQuery('.ui-datatable-footer').hide();
 }
 
 
 function showTable(){
-	jQuery('table').show();
+	jQuery('table','.divContente').show();
 	jQuery('#commandButtons').show();
 	jQuery('.ui-datatable-footer').show();
 }

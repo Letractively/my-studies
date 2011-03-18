@@ -3,18 +3,18 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <div>
-		<ul id="jMenu">
-			<li><a class="fNiv">Agenda</a>
+		<ul class="sf-menu">
+			<li>
+				<a href="#a" style="border: none;">Agenda</a>
 				<ul>
-					<li class="arrow"></li>
-					<li>
+					<li class="current">
 						<h:link outcome="agendamentos">Agendamentos</h:link>
 					</li>
 				</ul>
 			</li>		
-			<li><a class="fNiv">Custas</a>
+			<li>
+				<a href="#a">Custas</a>
 				<ul>
-					<li class="arrow"></li>
 					<li>
 						<h:link outcome="lancamento">Lançamento</h:link>
 					</li>
@@ -23,26 +23,26 @@
 					</li>
 				</ul>
 			</li>
-			<li><a class="fNiv">Caixa</a>
+			<li>
+				<a href="#a">Caixa</a>
 				<ul>
-					<li class="arrow"></li>
-					<li>
+					<li class="current">
 						<h:link outcome="credito">#{msg.labelCredito}</h:link>
 					</li>				
 					<li>
 						<h:link outcome="debito">#{msg.labelDebito}</h:link>
 					</li>
-					<li>
+					<li class="current">
 						<h:link outcome="fluxo">#{msg.labelFluxo}</h:link>
 					</li>
-					<li>
+					<li class="current">
 						<h:link outcome="saldo">#{msg.labelSaldo}</h:link>
 					</li>										
 				</ul>
 			</li>
-			<li><a class="fNiv">Dados</a>
+			<li>
+				<a href="#a">Dados</a>
 				<ul>
-					<li class="arrow"></li>
 					<li>	
 						<h:link outcome="cliente">Cliente</h:link>
 					</li>

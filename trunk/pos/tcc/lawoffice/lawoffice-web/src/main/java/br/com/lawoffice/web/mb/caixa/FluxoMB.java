@@ -5,7 +5,6 @@ package br.com.lawoffice.web.mb.caixa;
 
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +15,7 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
  * 
- * Manager Bean para página de /caixa/fluxo.xhtml
+ * Managed Bean para página de /caixa/fluxo.xhtml
  * 
  * @author robson
  *

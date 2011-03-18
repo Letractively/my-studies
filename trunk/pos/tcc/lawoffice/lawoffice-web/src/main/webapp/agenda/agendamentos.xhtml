@@ -2,12 +2,17 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
     template="/WEB-INF/templates/template.xhtml">
     
   <ui:define name="title">Agendamentos</ui:define>
   
-  <ui:define name="body">    
-	<h2>Em construção</h2>
+  <ui:define name="body">
+      
+		<h:form>
+				<p:schedule value="#{agendamentoMB.scheduleModel}" style="height:100px;" />
+		</h:form>
+		
   </ui:define>
   
 </ui:composition>
