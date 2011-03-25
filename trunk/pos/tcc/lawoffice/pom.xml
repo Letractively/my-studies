@@ -60,6 +60,7 @@
 		<module>lawoffice-web</module>
 		<module>lawoffice-dominio</module>
 		<module>lawoffice-caixa</module>
+		<module>lawoffice-agenda</module>
 		<module>lawoffice-ear</module>
 		<module>lawoffice-dados</module>
 	</modules>
