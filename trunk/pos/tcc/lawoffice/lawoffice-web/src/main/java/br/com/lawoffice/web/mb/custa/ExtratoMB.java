@@ -1,10 +1,7 @@
 package br.com.lawoffice.web.mb.custa;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +22,7 @@ import br.com.lowoffice.custas.extrato.TipoExtrato;
  * 
  * @author robson
  * 
- * Manager Bean para página de /caixa/extrato.xhtml
+ * Managed Bean para página de /caixa/extrato.xhtml
  *
  */
 @ManagedBean
