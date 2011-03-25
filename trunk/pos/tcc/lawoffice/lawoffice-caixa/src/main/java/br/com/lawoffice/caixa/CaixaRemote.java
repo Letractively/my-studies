@@ -7,5 +7,4 @@ package br.com.lawoffice.caixa;
  *
  */
 public interface CaixaRemote extends Caixa{
-
 }

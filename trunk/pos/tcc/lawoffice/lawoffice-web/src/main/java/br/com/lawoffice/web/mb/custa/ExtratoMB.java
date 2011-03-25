@@ -13,6 +13,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 import br.com.lowoffice.custas.extrato.ExtratoLocal;
@@ -22,7 +23,7 @@ import br.com.lowoffice.custas.extrato.TipoExtrato;
  * 
  * @author robson
  * 
- * Managed Bean para página de /caixa/extrato.xhtml
+ * Manager Bean para página de /caixa/extrato.xhtml
  *
  */
 @ManagedBean
@@ -70,6 +71,9 @@ public class ExtratoMB extends AutoCompleteMB{
 	
 	
 	
+	/**
+	 * Pesquisa os Lançamentos de {@link Custa} para o {@link Cliente} no periodo passado. 
+	 */
 	public void pesquisarLancamentos(){			
 		listaCustas = 
 			extrato.getCustasPorDataCliente(
@@ -91,7 +95,7 @@ public class ExtratoMB extends AutoCompleteMB{
 			fileExtrado = new DefaultStreamedContent(
 					new ByteArrayInputStream(extrato.gerarExtrato(TipoExtrato.PDF)), 
 					"application/pdf", 
-					getNomeArquivo()
+					getNomeArquivoFormatado()
 				);
 		}
 
@@ -99,7 +103,12 @@ public class ExtratoMB extends AutoCompleteMB{
 	
 	
 	
-	private String getNomeArquivo() {		
+	/**
+	 * Retorna o nome do arquivo formatado
+	 * 
+	 * @return {@link String}
+	 */
+	private String getNomeArquivoFormatado() {		
 		return cliente.getNome().replace(" ", "-")
 			+ "-"
 			+ DateFormatUtils.format(dataInicial, "dd/MM/yyyy")

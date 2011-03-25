@@ -10,7 +10,14 @@
   <ui:define name="body">
       
 		<h:form>
-				<p:schedule value="#{agendamentoMB.scheduleModel}" style="height:100px;" />
+			<p:schedule value="#{agendamentoMB.scheduleModel}" 
+				 editable="true"
+				 onDateSelectComplete="eventoDialog.show()"
+				 onEventSelectComplete="eventoDialog.show()">						
+			</p:schedule>
+			
+			<p:dialog widgetVar="eventoDialog">
+			</p:dialog>			
 		</h:form>
 		
   </ui:define>

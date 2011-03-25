@@ -17,8 +17,7 @@ import br.com.lawoffice.dominio.TipoTransacao;
 import br.com.lawoffice.dominio.Transacao;
 
 /**
- * 
- * TODO: javadoc
+ * Implementação para a Interface de serviços de caixa do escritório.
  * 
  * @author robson
  *
@@ -28,6 +27,9 @@ import br.com.lawoffice.dominio.Transacao;
 @Remote(CaixaRemote.class)
 public class CaixaBean implements Caixa {
 	
+	/**
+	 * EntityManager para realizar as operações com a base de dados.
+	 */
 	@PersistenceContext(unitName="lawoffice-caixa")
 	private EntityManager entityManager;
 	
@@ -84,8 +86,14 @@ public class CaixaBean implements Caixa {
 	}
 	
 
+	/**
+	 * Retorna a Conta pelo contexto do EntityManager
+	 * 
+	 * @param conta passda para adicionar ao contexto do EntiyManager.
+	 * @return {@link Conta} no contexto do EntityManager.
+	 * @throws CaixaException caso a {@link Conta} não seja encontrada na base de dados.
+	 */
 	private Conta getConta(Conta conta) throws CaixaException {
-		// TODO: testar	 mesmo problema com o entityManager dos outros testes	
 		conta = entityManager.find(Conta.class, conta.getId());		
 		
 		if(conta == null)
@@ -95,6 +103,13 @@ public class CaixaBean implements Caixa {
 
 	
 
+	/**
+	 * 
+	 * Realiza as validações dos parametros passado para realizar as operações de caixa.
+	 * 
+	 * @param conta a ser validada.
+	 * @param valor a ser validado.
+	 */
 	private void validarParamentros(Conta conta, BigDecimal valor) {
 		if(valor == null || valor.doubleValue() < 0)
 			throw new IllegalArgumentException("O valor está nulo ou é menor que 0");
