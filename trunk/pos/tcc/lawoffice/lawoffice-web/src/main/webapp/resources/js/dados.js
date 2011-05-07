@@ -1,27 +1,21 @@
-function onClickBtnNovo(data){	
-	if (data.status == "success"){
-		showDados();
-		jQuery("#btnSalvarEditar").hide();
-		jQuery("#btnSalvarNovo").show();
-	}
-		
+function onClickBtnNovo(){	
+	showDados();
+	jQuery("#btnSalvarEditar").hide();
+	jQuery("#btnSalvarNovo").show();
 }
 
 
-function onClickBtnEditar(data){	
-	if (data.status == "success"){
-		showDados();
-		jQuery("#btnSalvarEditar").show();
-		jQuery("#btnSalvarNovo").hide();
-	}
+function onClickBtnEditar(){	
+	showDados();
+	jQuery("#btnSalvarEditar").show();
+	jQuery("#btnSalvarNovo").hide();
+	
 }
 
 
 // function para os dois btn de salvar ( novo/editar )
-function onClickBtnSalvar(data){	
-	if (data.status == "success"){
+function onClickBtnSalvar(){
 		showListaDados();
-	}		
 }
 
 

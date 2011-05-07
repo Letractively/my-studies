@@ -30,12 +30,6 @@ jQuery(function(){
 
 
 jQuery(function(){
-	jQuery("#jMenu").jMenu();
-});
-
-
-
-jQuery(function(){
 	jQuery('input:submit').button();
 });
 

@@ -50,11 +50,13 @@
 					
 					<div class="divContent">
 					
-						<h:commandButton value="Novo" 
+						<p:commandButton value="Novo" 
 							action="#{dadosClienteMB.novoCliente}"
-							id="btnNovo" >					
-							<f:ajax  render="nome email" onevent="onClickBtnNovo"/>						
-						</h:commandButton>					
+							id="btnNovo"
+							update="nome email"
+							oncomplete="onClickBtnNovo()" 
+							>						
+						</p:commandButton>					
 						
 						
 						<h:commandButton value="Editar" 
