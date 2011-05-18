@@ -42,8 +42,9 @@ public class LogLevelFilterFileAppender extends FileAppender{
 
 	@Override
 	public void append(LoggingEvent event) {
-		// TODO Auto-generated method stub
-		super.append(event);
+		System.out.println("temp");
+/*		// TODO Auto-generated method stub
+		super.append(event);*/
 	}
 
 	
