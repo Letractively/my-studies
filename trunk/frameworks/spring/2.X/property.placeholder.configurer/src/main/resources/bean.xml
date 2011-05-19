@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="systemPropertiesConfig" class="br.com.mystudies.spring.property.placeholder.configurer.SystemPropertiesConfig">
+		<property name="osName" value="${osName}"/>
+		<property name="cpuName" value="${cpuName}"/>
+		<property name="cpuSpeedy" value="${cpuSpeedy}"/>
+		<property name="ram" value="${ram}"/>
+	</bean>
+
+
+	<bean id="systemConfigWindows" class="br.com.mystudies.spring.property.placeholder.configurer.SystemConfigWindows">
+		<property name="propertiesConfig">
+			<ref bean="systemPropertiesConfig"/>
+		</property>
+	</bean>
+	
+	
+	<bean id="systemConfigUbuntu" class="br.com.mystudies.spring.property.placeholder.configurer.SystemConfigUbuntu">
+		<property name="propertiesConfig">
+			<ref bean="systemPropertiesConfig"/>
+		</property>
+	</bean>	
+	
+
+	<bean  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>system.properties</value>
+		</property>
+	</bean>
+</beans>
