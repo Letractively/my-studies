@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="../resources/css/main.css" />
+
+<script type="text/javascript" src="../resources/js/jquery-1.4.2.min.js"></script>
+
+<title>jquery miscellaneous - .index()</title>
+
+<script type="text/javascript">
+$(function(){
+	
+	$('p', "#container").click(function(){
+			var index = $('p').index(this);
+			$('span').text('The index this paragraph is: ' + index)				
+		});
+});
+</script>
+
+<style>
+	#container p { background:yellow; margin:5px; }
+	span { color:red; }
+</style>
+
+</head>
+
+<body>
+<h4>.get()</h4>
+<hr />
+<br />
+<div style="background-color: #ADD8E6; padding: 10px;">
+	<p> This is summary of the function .index(), to more information see: <a href="http://api.jquery.com/index/" style="text-decoration: none;">.index() Documentation</a>
+</div>
+<br>
+
+<div style="background-color: #EEEEE0; padding: 10px;">
+<pre>
+$(function(){
+	
+	$('div', "#container").click(function(){
+			var index = $('div').index(this);
+			$('span').text('the index this div is: ' + index)				
+		});
+});
+</pre>
+</div>
+<br>
+
+
+<div id="container">
+	<p >First paragraph</p>
+	<p >Second paragraph</p>
+	<p >Third paragraph</p>
+</div>
+
+<br>
+
+<div>
+    <span></span>
+</div>
+
+</body>
+</html>
