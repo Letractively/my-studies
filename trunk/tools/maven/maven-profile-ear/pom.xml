@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+        <artifactId>maven-profile</artifactId>
+        <groupId>br.com.mystudies</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+  <groupId>br.com.mystudies</groupId>
+  <artifactId>maven-profile-ear</artifactId>
+  <packaging>ear</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>maven-profile-ear J2EE 1.4 Assembly</name>
+  <url>http://maven.apache.org</url>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.4</source>
+          <target>1.4</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+            <version>1.4</version>
+           <modules>
+           	 <ejbModule>
+  				<groupId>br.com.mystudies</groupId>
+  				<artifactId>maven-profile-ejb</artifactId>        
+           	 </ejbModule>
+             <webModule>
+  				<groupId>br.com.mystudies</groupId>
+  				<artifactId>maven-profile-web</artifactId>
+               <contextRoot>/web</contextRoot>
+             </webModule>
+            </modules>             
+        </configuration>
+      </plugin>
+    </plugins>
+    <finalName>maven-profile-ear</finalName>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>br.com.mystudies</groupId>
+  		<artifactId>maven-profile-ejb</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>ejb</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com.mystudies</groupId>
+  		<artifactId>maven-profile-web</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<type>war</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+
+</project>
