@@ -67,5 +67,6 @@
 		<module>lawoffice-agenda</module>
 		<module>lawoffice-ear</module>
 		<module>lawoffice-dados</module>
+		<module>lawoffice-persistencia</module>
 	</modules>
 </project>
