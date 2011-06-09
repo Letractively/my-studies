@@ -12,7 +12,9 @@
       <class>br.com.lawoffice.dominio.Lancamento</class>
       <class>br.com.lawoffice.dominio.Custa</class>
       <class>br.com.lawoffice.dominio.Conta</class>
-      <class>br.com.lawoffice.dominio.Transacao</class>            
+      <class>br.com.lawoffice.dominio.Transacao</class>
+      <class>br.com.lawoffice.dominio.Agenda</class>
+      <class>br.com.lawoffice.dominio.Evento</class>                  
       
       <properties>
       	  <property name="hibernate.show_sql" value="true"/>

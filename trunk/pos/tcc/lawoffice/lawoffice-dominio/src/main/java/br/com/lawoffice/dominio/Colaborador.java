@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * 
@@ -34,6 +35,10 @@ public class Colaborador extends Pessoa{
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
+
+	@OneToOne
+	@JoinColumn(name="AGENDA_ID")
+	private Agenda agenda;
 	
 
 	public String getCargo() {
@@ -59,4 +64,12 @@ public class Colaborador extends Pessoa{
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}	
 }

@@ -62,6 +62,13 @@
   		<version>2.6</version>
   		<type>jar</type>
   	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-agenda</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
+  		<scope>provided</scope>
+  	</dependency>
   </dependencies>
   <build>
     <finalName>lawoffice</finalName>

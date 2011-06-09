@@ -7,20 +7,55 @@
     <groupId>br.com</groupId>
     <version>1.0</version>
   </parent>
-  <groupId>br.com.lawoffice</groupId>
+  <groupId>br.com</groupId>
   <artifactId>lawoffice-agenda</artifactId>
   <version>1.0</version>
+  <packaging>ejb</packaging>
   <name>lawoffice-agenda</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-ejb-plugin</artifactId>
+  			<version>2.3</version>
+  			<configuration>
+  				<ejbVersion>3.1</ejbVersion>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-dominio</artifactId>
+  		<version>1.0</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax</groupId>
+  		<artifactId>javaee-api</artifactId>
+  		<version>6.0</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>commons-lang</groupId>
+  		<artifactId>commons-lang</artifactId>
+  		<version>2.6</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.github.dcarter.gdata-java-client</groupId>
+  		<artifactId>gdata-calendar-2.0</artifactId>
+  		<version>1.41.0-SNAPSHOT</version>
+  		<type>jar</type>
+  		<scope>provided</scope>
+  	</dependency>
   </dependencies>
 </project>
