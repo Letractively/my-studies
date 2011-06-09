@@ -51,6 +51,12 @@
   		<version>1.0</version>
   		<type>ejb</type>
   	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-persistencia</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
+  	</dependency>
   </dependencies>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -81,7 +87,11 @@
            	 <ejbModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-agenda</artifactId>        
-           	 </ejbModule>           	 
+           	 </ejbModule>
+           	 <ejbModule>
+				<groupId>br.com</groupId>
+  				<artifactId>lawoffice-persistencia</artifactId>        
+           	 </ejbModule>           	   
              <webModule>
                <groupId>br.com</groupId>
                <artifactId>lawoffice-web</artifactId>
