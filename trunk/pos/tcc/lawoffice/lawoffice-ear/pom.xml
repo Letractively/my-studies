@@ -97,7 +97,8 @@
                <artifactId>lawoffice-web</artifactId>
                <contextRoot>/lawoffice</contextRoot>
              </webModule>
-          </modules>            
+          </modules> 
+          <generateApplicationXml>true</generateApplicationXml>           
         </configuration>
       </plugin>
     </plugins>
