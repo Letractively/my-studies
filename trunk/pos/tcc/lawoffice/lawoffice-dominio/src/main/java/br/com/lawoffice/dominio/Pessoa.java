@@ -15,7 +15,7 @@ import javax.persistence.MappedSuperclass;
  *
  */
 @MappedSuperclass
-public class Pessoa{
+public class Pessoa implements EntityBase{
 
 	@Id
 	@GeneratedValue

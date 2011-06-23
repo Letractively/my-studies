@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="TRANSACAO")
-public class Transacao{
+public class Transacao implements EntityBase{
 
 	@Id
 	@GeneratedValue

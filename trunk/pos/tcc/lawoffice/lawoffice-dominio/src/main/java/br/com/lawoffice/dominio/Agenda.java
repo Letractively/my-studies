@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,7 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="AGENDA")
-public class Agenda {
+public class Agenda implements EntityBase {
 
 	@Id
 	@GeneratedValue
@@ -30,7 +31,8 @@ public class Agenda {
 	private Long id;
 	
 	
-	@OneToOne(mappedBy="agenda")
+	@OneToOne()
+	@JoinColumn(name="COLABORADOR_ID")
 	private Colaborador colaborador;
 	
 	

@@ -24,7 +24,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="CONTA")
-public class Conta {
+public class Conta implements EntityBase{
 	
 	@Id
 	@GeneratedValue

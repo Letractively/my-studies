@@ -33,14 +33,12 @@ public interface AgendaService {
 	 * 
 	 * Se as datas estiver nula a consulta não será realizada e uma lista vázia será retornada.
 	 * 
-	 * @param colaborador que a {@link br.com.lawoffice.dominio.Agenda} será consultada.
+	 * @param colaborador que a {@link Agenda} será consultada.
 	 * @param dataIncial para consulta.
 	 * @param dataFinal para consulta.
 	 * @return {@link List}
 	 */
 	List<Evento> listarEventos(Colaborador colaborador, Date dataIncial, Date dataFinal);
-	
-	
 	
 	
 	Evento adicionarEvento(Colaborador colaborador, Evento evento);

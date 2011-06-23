@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CUSTA")
-public class Custa {
+public class Custa implements EntityBase{
 
 	@Id
 	@GeneratedValue

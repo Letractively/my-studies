@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name="EVENTO")
-public class Evento {
+public class Evento implements EntityBase{
 
 	@Id
 	@GeneratedValue()

@@ -36,8 +36,7 @@ public class Colaborador extends Pessoa{
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
 
-	@OneToOne
-	@JoinColumn(name="AGENDA_ID")
+	@OneToOne(mappedBy="colaborador")
 	private Agenda agenda;
 	
 

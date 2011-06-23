@@ -22,14 +22,14 @@ import javax.persistence.TemporalType;
 
 /**
  * 
- * Representa um laçamento para o colaborador/cliente
+ * Representa um laçamento para o {@link Colaborador} e para o {@link Cliente}.
  * 
  * @author robson
  *
  */
 @Entity
 @Table(name="LANCAMENTO")
-public class Lancamento{
+public class Lancamento implements EntityBase{
 
 	@Id
 	@GeneratedValue

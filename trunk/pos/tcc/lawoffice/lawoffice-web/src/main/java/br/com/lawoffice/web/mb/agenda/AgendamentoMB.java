@@ -16,6 +16,7 @@ import org.primefaces.model.LazyScheduleModel;
 import org.primefaces.model.ScheduleModel;
 
 import br.com.lawoffice.agenda.service.AgendaServiceLocal;
+import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Evento;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 
@@ -24,7 +25,6 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
  * Manager Bean para página de /caixa/credito.xhtml
  * 
  * @author rduarte
- *
  *
  */
 
@@ -52,9 +52,7 @@ public class AgendamentoMB extends AutoCompleteMB{
 				for (DefaultScheduleEvent defaultScheduleEvent : listDefaultScheduleEvents) {
 					addEvent(defaultScheduleEvent);
 				}
-
 			}
-			
 		};
 	}
 
@@ -62,8 +60,8 @@ public class AgendamentoMB extends AutoCompleteMB{
 	private List<DefaultScheduleEvent> getDefaultScheduleEvents(Date dataIncial, Date dataFinal) {
 	
 		
-		
-		
+		Colaborador c = new Colaborador();
+		c.setId(1L);
 		
 		// obtem o colaborador
 		// algum serviço que retorna a lista e eventos
@@ -74,7 +72,7 @@ public class AgendamentoMB extends AutoCompleteMB{
 		List<Evento> listEventos = null;
 		
 		try {
-			listEventos = agendaService.listarEventos(colaborador, dataIncial, dataFinal);
+			listEventos = agendaService.listarEventos(c, dataIncial, dataFinal);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
