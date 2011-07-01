@@ -7,16 +7,56 @@
     
   <ui:define name="title">Agendamentos</ui:define>
   
-  <ui:define name="body">
+  <ui:define name="body">	
       
 		<h:form>
 			<p:schedule value="#{agendamentoMB.scheduleModel}" 
 				 editable="true"
-				 onDateSelectComplete="eventoDialog.show()"
-				 onEventSelectComplete="eventoDialog.show()">						
+				 dateSelectListener="#{agendamentoMB.onSelectData}"
+				 eventSelectListener="#{agendamentoMB.onSelectEvento}"
+				 onDateSelectComplete="eventoDialog.show()"				 
+				 onEventSelectComplete="eventoDialog.show()"
+				 aspectRatio="2"
+				 >						
 			</p:schedule>
 			
-			<p:dialog widgetVar="eventoDialog">
+			<p:dialog widgetVar="eventoDialog" hideEffect="clip" showEffect="clip">
+				<div>
+									 		
+				 	<div>
+						<h:outputLabel value="Cliente:" for="cliente"/>
+						<h:inputText value="#{agendamentoMB.evento.nomeCliente}" id="cliente"/>				 	
+				 	</div>				 		
+				 					
+				 	<div>
+						<h:outputLabel value="Titulo:" for="titulo"/>
+						<h:inputText value="#{agendamentoMB.evento.title}" id="titulo"/>				 	
+				 	</div>
+				 	
+				 	<div>
+						<h:outputLabel value="Data Incial:" for="dataIncial"/>
+						<p:calendar id="dataInicial" 
+		  					pattern="dd/MM/yyyy" 
+		  					value="#{agendamentoMB.evento.startDate}"
+		  					readOnlyInputText="true"
+		  					size="10"
+			  			/>				 	
+				 	</div>				 	
+				 	<div>
+						<h:outputLabel value="Data final:" for="dataFinal"/>
+						<p:calendar id="dataFinal" 
+		  					pattern="dd/MM/yyyy" 
+		  					value="#{agendamentoMB.evento.endDate}"
+		  					readOnlyInputText="true"
+		  					size="10"
+			  			/>				 	
+				 	</div>
+				 	<div>
+						<p:commandButton value="Salvar"  actionListener="#{agendamentoMB.salvarEvento}"/>				 	
+				 	</div>
+				</div>
+			
+				
 			</p:dialog>			
 		</h:form>
 		
