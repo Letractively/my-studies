@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 
-import br.com.lawoffice.dados.DadosPessoaLocal;
+import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Pessoa;
@@ -25,10 +25,10 @@ public class AutoCompleteMB extends BaseMB{
 	
 	
 	/**
-	 * Serviço de dados de {@link Pessoa} para realizar o autoComplete 
+	 * Serviço de dados cadastrais de {@link Pessoa} para realizar o autoComplete 
 	 */
 	@EJB
-	private DadosPessoaLocal dadosPessoaLocal;
+	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
 	/**
@@ -45,11 +45,11 @@ public class AutoCompleteMB extends BaseMB{
 	
 	
 	public List<Cliente> listarClientes(String query){
-		return dadosPessoaLocal.listarPorNome(Cliente.class, query); 
+		return pessoaServiceLocal.listarPorNome(Cliente.class, query); 
 	}
 	
 	public List<Colaborador> listarColaboradores(String query){
-		return dadosPessoaLocal.listarPorNome(Colaborador.class, query); 
+		return pessoaServiceLocal.listarPorNome(Colaborador.class, query); 
 	}
 	
 

@@ -11,7 +11,7 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.lawoffice.dados.DadosLocal;
+import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.Pessoa;
@@ -48,34 +48,34 @@ public class DadosClienteMB extends BaseMB {
 	
 	
 	/**
-	 * 
-	 * Serviço de cadastro de dados
-	 * 
+	 * Serviço de dados para {@link Pessoa} que estao no dominio do escritorio.
 	 */
 	@EJB
-	private DadosLocal dadosLocal;
+	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
 	@PostConstruct
 	public void init(){
 		listarClientes();
+		cliente = new Cliente();
 	}
 	
 	
 	public void adicionarCliente(){
-		dadosLocal.salvar(cliente);
+		pessoaServiceLocal.salvar(cliente);
 		listarClientes();
 	}
 	
 	
 	public void atualizarCliente(){
-		dadosLocal.atualizar(cliente);
+		pessoaServiceLocal.atualizar(cliente);
 	}
 	
 	
+	
 	public void removerCliente(){
-		if(clienteSelecionado != null){
-			dadosLocal.remover(Cliente.class, clienteSelecionado.getId());
+		if(clienteSelecionado != null){			
+			pessoaServiceLocal.remover(Cliente.class,clienteSelecionado);
 			listarClientes();
 		}			
 	}
@@ -88,9 +88,9 @@ public class DadosClienteMB extends BaseMB {
 	
 	
 	
-
+	// TODO: fornecer um método de criação conforme java efetivo ( livro )
 	public void novoCliente(){
-		cliente = new Cliente();  // TODO: fornecer um método de criação conforme java efetivo ( livro )
+		cliente = new Cliente();  
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0.0));
 		cliente.setConta(conta);
@@ -99,7 +99,7 @@ public class DadosClienteMB extends BaseMB {
 	
 	
 	private void listarClientes() {
-		listClientes = dadosLocal.listar(Cliente.class);
+		listClientes = pessoaServiceLocal.listar(Cliente.class);
 	}
 
 
@@ -132,16 +132,6 @@ public class DadosClienteMB extends BaseMB {
 
 	public void setListClientes(List<Cliente> listClientes) {
 		this.listClientes = listClientes;
-	}
-
-
-	public DadosLocal getDadosLocal() {
-		return dadosLocal;
-	}
-
-
-	public void setDadosLocal(DadosLocal dadosLocal) {
-		this.dadosLocal = dadosLocal;
 	}
 		
 }

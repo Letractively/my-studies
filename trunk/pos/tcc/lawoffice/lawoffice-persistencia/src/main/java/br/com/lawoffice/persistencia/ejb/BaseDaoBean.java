@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.lawoffice.dominio.EntityBase;
 import br.com.lawoffice.persistencia.BaseDao;
@@ -45,9 +46,18 @@ public class BaseDaoBean implements BaseDao {
 	}
 
 	@Override
-	public <T extends EntityBase> List<T> listar(Class<T> tClass) {
-		// TODO: implementar listar all ..
-		return null;
+	public <T extends EntityBase> List<T> listar(Class<T> c) {
+		
+		CriteriaQuery<T> criteriaQuery =
+			entityManager
+			.getCriteriaBuilder()
+			.createQuery(c);
+		
+		criteriaQuery.from(c);
+		
+		return entityManager
+			.createQuery(criteriaQuery)
+			.getResultList();
 	}
 
 }

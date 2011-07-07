@@ -38,6 +38,13 @@
   		<type>jar</type>
   		<scope>provided</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>lawoffice-persistencia</artifactId>
+  		<version>1.0</version>
+  		<type>ejb</type>
+  		<scope>provided</scope>
+  	</dependency>
   </dependencies>
   
   <build>

@@ -1,37 +1,33 @@
 /**
  * 
  */
-package br.com.lawoffice.dados;
+package br.com.lawoffice.persistencia.ejb;
 
 import java.util.List;
 
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import br.com.lawoffice.dominio.Pessoa;
+import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
+ * classe de implementacao para o {@link PessoaDao} utilizando tecnologia EJB 3.1
+ * 
  * @author robson
  *
  */
+@Local(PessoaDao.class)
 @Stateless
-@Local(DadosPessoaLocal.class)
-public class DadosPessoaBean implements DadosPessoa {
+public class PessoaDaoBean extends BaseDaoBean implements PessoaDao {
 
-	@PersistenceContext(unitName="lawoffice-dados")
-	private EntityManager entityManager;
 
-	
 	@Override
-	public <T extends Pessoa> List<T> listarPorNome(Class<T> c,  String nome) {
-
-		 // TODO: validar pessoa ( teste de unidade )
-				
+	public <T extends Pessoa> List<T> listarPorNome(Class<T> c, String nome) {
+		
 		CriteriaBuilder criteriaBuilder =
 			entityManager.getCriteriaBuilder();		
 		
@@ -41,15 +37,14 @@ public class DadosPessoaBean implements DadosPessoa {
 		Root<T> root =
 			criteriaQuery.from(c);		
 
-		
 		criteriaQuery
 			.select(root)
 			.where( 
-					criteriaBuilder.like(
-							root.get("nome").as(String.class), 
-							nome + "%"  
-						)
-				);
+				criteriaBuilder.like(
+					root.get("nome").as(String.class), 
+					nome + "%"  
+				)
+			);
 				
 		return entityManager
 			.createQuery(criteriaQuery)

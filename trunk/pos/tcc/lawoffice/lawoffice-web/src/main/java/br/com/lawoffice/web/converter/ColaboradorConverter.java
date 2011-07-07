@@ -3,7 +3,6 @@
  */
 package br.com.lawoffice.web.converter;
 
-import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -14,10 +13,8 @@ import javax.naming.NamingException;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import br.com.lawoffice.dados.DadosLocal;
-import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Colaborador;
-import br.com.lawoffice.dominio.Pessoa;
 
 /**
  * TODO: terminar a programação conforme exemplo do prime faces
@@ -31,10 +28,7 @@ import br.com.lawoffice.dominio.Pessoa;
 public class ColaboradorConverter implements Converter {
 
 
-	@EJB
-	private DadosLocal dadosLocal;
-	
-	
+	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
 	@Override
@@ -42,14 +36,17 @@ public class ColaboradorConverter implements Converter {
 		
 		try {
 			Context context = new InitialContext();
-			dadosLocal = (DadosLocal) context.lookup("lawoffice-ear/DadosBean/local");
+			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("lawoffice-ear/PessoaServiceBean/local");
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
+			// TODO: ver como está no exemplo do prime
 			e.printStackTrace();
 		}
 
-		if(NumberUtils.isNumber(colaboradorID))		
-			return dadosLocal.localizar(Colaborador.class, Long.valueOf(colaboradorID));
+		if(NumberUtils.isNumber(colaboradorID)){
+			Colaborador colaborador = new Colaborador();
+			colaborador.setId(Long.valueOf(colaboradorID));
+			return pessoaServiceLocal.localizar(Colaborador.class, colaborador);
+		}			
 		else
 			return null;
 		

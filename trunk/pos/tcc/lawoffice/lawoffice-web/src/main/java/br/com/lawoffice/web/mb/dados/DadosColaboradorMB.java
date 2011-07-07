@@ -11,9 +11,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.lawoffice.dados.DadosLocal;
+import br.com.lawoffice.dados.PessoaService;
+import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.Pessoa;
 import br.com.lawoffice.web.mb.BaseMB;
 
 /**
@@ -47,34 +49,33 @@ public class DadosColaboradorMB extends BaseMB {
 	
 	
 	/**
-	 * 
-	 * Serviço de cadastro de dados
-	 * 
+	 * Serviço de dados para {@link Pessoa} que estao no dominio do escritorio.
 	 */
 	@EJB
-	private DadosLocal dadosLocal;
+	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
 	@PostConstruct
 	public void init(){
 		listarColaboradores();
+		colaborador = new Colaborador();
 	}
 	
 	
 	public void adicionarColaborador(){
-		dadosLocal.salvar(colaborador);
+		pessoaServiceLocal.salvar(colaborador);
 		listarColaboradores();
 	}
 	
 	
 	public void atualizarColaborador(){
-		dadosLocal.atualizar(colaborador);
+		pessoaServiceLocal.atualizar(colaborador);
 	}
 	
 	
 	public void removerColaborador(){
 		if(colaboradorSelecionado != null){
-			dadosLocal.remover(Colaborador.class, colaboradorSelecionado.getId());
+			pessoaServiceLocal.remover(Colaborador.class, colaboradorSelecionado);
 			listarColaboradores();
 		}			
 	}
@@ -102,7 +103,7 @@ public class DadosColaboradorMB extends BaseMB {
 	
 	
 	private void listarColaboradores() {
-		listColaboradores = dadosLocal.listar(Colaborador.class);
+		listColaboradores = pessoaServiceLocal.listar(Colaborador.class);
 	}
 
 	
