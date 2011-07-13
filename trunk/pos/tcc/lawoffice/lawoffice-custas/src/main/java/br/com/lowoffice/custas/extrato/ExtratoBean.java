@@ -84,7 +84,8 @@ public class ExtratoBean implements Extrato{
 		if(listaCustas == null || listaCustas.isEmpty())
 			throw new IllegalStateException("Não existe custas para gerar o extrato");
 		
-		ExtratoReport extratoReport = SimpleFactoryExtratoReport.createExtratoReport(tipoExtrato);
+		ExtratoReport extratoReport = 
+			SimpleFactoryExtratoReport.createExtratoReport(tipoExtrato);
 		
 		return extratoReport.gerarExtrato(listaCustas);
 	}	
