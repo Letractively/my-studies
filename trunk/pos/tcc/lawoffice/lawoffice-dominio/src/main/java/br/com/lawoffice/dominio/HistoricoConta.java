@@ -19,14 +19,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * Representa uma transação de uma {@link Conta} do {@link Cliente} ou {@link Colaborador} no escritório
+ * Historico de uma {@link Conta} do {@link Cliente} ou {@link Colaborador} no escritório
  * 
  * @author robson
  *
  */
 @Entity
-@Table(name="TRANSACAO")
-public class Transacao implements EntityBase{
+@Table(name="HISTORICO_CONTA")
+public class HistoricoConta implements EntityBase{
 
 	@Id
 	@GeneratedValue
@@ -34,7 +34,7 @@ public class Transacao implements EntityBase{
 	private Long id;
 	
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DATA_TRANSACAO")
 	private Date dataTransacao;
 	
@@ -43,25 +43,49 @@ public class Transacao implements EntityBase{
 	@Column(name="TIPO_TRANSACAO")
 	private TipoTransacao tipoTransacao;
 	
-	@Column(name="VALOR")
-	private BigDecimal valor;
+	
+	@Column(name="VALOR_TRANSACAO")
+	private BigDecimal valorTransacao;
 
+	
+	@Column(name="SALDO_ANTERIOR")
+	private BigDecimal saloAnterior;	
+	
 	
 	@ManyToOne
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
 
 	
-	public Transacao() {
+	
+	/**
+	 * Construtor padrão. 
+	 */
+	public HistoricoConta() {
 	}
+	
+	
+	
+	
+	
 
-
-	public Transacao(Date dataTransacao, TipoTransacao tipoTransacao, BigDecimal valor, Conta conta){
+	// TODO: java doc 
+	public HistoricoConta(Date dataTransacao, 
+			TipoTransacao tipoTransacao,
+			BigDecimal valorTransacao, 
+			BigDecimal saloAnterior, 
+			Conta conta) {
+		super();
 		this.dataTransacao = dataTransacao;
 		this.tipoTransacao = tipoTransacao;
-		this.valor = valor;
+		this.valorTransacao = valorTransacao;
+		this.saloAnterior = saloAnterior;
 		this.conta = conta;
 	}
+
+
+
+
 
 
 	public Long getId() {
@@ -93,24 +117,32 @@ public class Transacao implements EntityBase{
 		this.tipoTransacao = tipoTransacao;
 	}
 
-	
-	public BigDecimal getValor() {
-		return valor;
+
+	public BigDecimal getValorTransacao() {
+		return valorTransacao;
 	}
 
-	
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+
+	public void setValorTransacao(BigDecimal valorTransacao) {
+		this.valorTransacao = valorTransacao;
 	}
 
-	
+
+	public BigDecimal getSaloAnterior() {
+		return saloAnterior;
+	}
+
+
+	public void setSaloAnterior(BigDecimal saloAnterior) {
+		this.saloAnterior = saloAnterior;
+	}
+
+
 	public Conta getConta() {
 		return conta;
 	}
 
-	
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
-		
 }

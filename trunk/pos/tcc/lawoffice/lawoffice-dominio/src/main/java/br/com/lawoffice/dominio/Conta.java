@@ -35,7 +35,7 @@ public class Conta implements EntityBase{
 	private BigDecimal saldo;
 	
 	@OneToMany(mappedBy="conta", cascade = CascadeType.ALL)
-	private List<Transacao> transacoes;
+	private List<HistoricoConta> historicos;
 	
 	@OneToOne(mappedBy="conta")
 	private Cliente cliente;
@@ -43,53 +43,44 @@ public class Conta implements EntityBase{
 	@OneToOne(mappedBy="conta")
 	private Colaborador	colaborador;
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public BigDecimal getSaldo() {
 		return saldo;
 	}
-
 
 	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 
-
-	public List<Transacao> getTransacoes() {
-		return transacoes;
+	public List<HistoricoConta> getHistoricos() {
+		return historicos;
 	}
 
-
-	public void setTransacoes(List<Transacao> transacoes) {
-		this.transacoes = transacoes;
+	public void setHistoricos(List<HistoricoConta> historicos) {
+		this.historicos = historicos;
 	}
-
 
 	public Cliente getCliente() {
 		return cliente;
 	}
 
-
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
 
 	public Colaborador getColaborador() {
 		return colaborador;
 	}
 
-
 	public void setColaborador(Colaborador colaborador) {
 		this.colaborador = colaborador;
 	}
+
 }
