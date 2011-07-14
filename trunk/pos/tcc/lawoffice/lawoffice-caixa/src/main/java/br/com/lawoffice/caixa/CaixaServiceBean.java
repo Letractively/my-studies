@@ -6,15 +6,10 @@ import java.util.Date;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.HistoricoConta;
 import br.com.lawoffice.dominio.TipoTransacao;
-import br.com.lawoffice.dominio.Transacao;
 
 /**
  * Implementação para a Interface de serviços de caixa do escritório.
@@ -23,28 +18,23 @@ import br.com.lawoffice.dominio.Transacao;
  *
  */
 @Stateless
-@Local(CaixaLocal.class)
-@Remote(CaixaRemote.class)
-public class CaixaBean implements Caixa {
+@Local(CaixaServiceLocal.class)
+@Remote(CaixaServiceRemote.class)
+public class CaixaServiceBean implements CaixaService {
 	
-	/**
-	 * EntityManager para realizar as operações com a base de dados.
-	 */
-	@PersistenceContext(unitName="lawoffice-caixa")
-	private EntityManager entityManager;
 	
 	@Override
-	public Conta creditar(Conta conta, BigDecimal valor) throws CaixaException{
+	public Conta creditar(Conta conta, BigDecimal valor){
 		validarParamentros(conta, valor);
 	
-		conta = getConta(conta); 
+/*		conta = getConta(conta); 
 			
 		conta.setSaldo(
 				conta.getSaldo().add(valor)
 			);
 		
 		entityManager.persist(
-			new Transacao(
+			new HistoricoConta(
 				new Date(), 
 				TipoTransacao.CREDITO,
 				valor,
@@ -52,22 +42,24 @@ public class CaixaBean implements Caixa {
 			)
 		);
 		
-		return entityManager.merge(conta);
+		return entityManager.merge(conta);*/
+		
+		return null;
 	}
 
 	
 	@Override
-	public Conta debitar(Conta conta, BigDecimal  valor) throws CaixaException {
+	public Conta debitar(Conta conta, BigDecimal  valor){
 		validarParamentros(conta, valor);
 		
-		conta = getConta(conta);
+/*		conta = getConta(conta);
 		
 		conta.setSaldo(
 				conta.getSaldo().subtract(valor)
 			);
 	 		
 		entityManager.persist(
-			new Transacao(
+			new HistoricoConta(
 				new Date(), 
 				TipoTransacao.DEBITO ,
 				valor,
@@ -75,15 +67,12 @@ public class CaixaBean implements Caixa {
 			)
 		);
 		
-		return entityManager.merge(conta);
+		return entityManager.merge(conta);*/
+		
+		return null;
 	}
 
 	
-	
-	@Override
-	public BigDecimal getSaldo(Conta conta) throws CaixaException {
-		return getConta(conta).getSaldo();
-	}
 	
 
 	/**
@@ -93,12 +82,14 @@ public class CaixaBean implements Caixa {
 	 * @return {@link Conta} no contexto do EntityManager.
 	 * @throws CaixaException caso a {@link Conta} não seja encontrada na base de dados.
 	 */
-	private Conta getConta(Conta conta) throws CaixaException {
-		conta = entityManager.find(Conta.class, conta.getId());		
+	private Conta getConta(Conta conta){
+/*		conta = entityManager.find(Conta.class, conta.getId());		
 		
 		if(conta == null)
 			throw new CaixaException("Conta não encontrado");
-		return conta;
+		return conta;*/
+		
+		return null;
 	}	
 
 	
@@ -116,6 +107,4 @@ public class CaixaBean implements Caixa {
 		if(conta == null || conta.getId() == null)
 			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
 	}
-
-
 }

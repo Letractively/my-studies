@@ -1,34 +1,33 @@
 package br.com.lawoffice.caixa;
 
-import static org.junit.Assert.*;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.lawoffice.caixa.exception.CaixaException;
 import br.com.lawoffice.dominio.Conta;
-import br.com.lawoffice.dominio.TipoTransacao;
-import br.com.lawoffice.dominio.Transacao;
 
 /**
  * 
- * Teste de unidade para a classe {@link CaixaBean}
+ * Teste de unidade para a classe {@link CaixaServiceBean}
  * 
  * @author rduarte
  *
  */
-public class CaixaBeanTest{
+public class CaixaServiceBeanTest{
 
 	
-	private CaixaBean caixaBean;
+	
+	private Contad
+	
+	private CaixaServiceBean caixaBean;
+
+	
 	
 	@Before
 	public void setUp() throws Exception {
-		caixaBean = new CaixaBean();
+		caixaBean = new CaixaServiceBean();
 	}
 
 	@After
@@ -38,7 +37,7 @@ public class CaixaBeanTest{
 
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorNuloCreditando() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorNuloCreditando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));		
 		caixaBean.creditar(conta, null);
@@ -46,7 +45,7 @@ public class CaixaBeanTest{
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorMenorZeroCreditando() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorMenorZeroCreditando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));
 		caixaBean.creditar(conta, new BigDecimal(-0.01));
@@ -54,19 +53,21 @@ public class CaixaBeanTest{
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComContaNulaCreditando() throws CaixaException{
+	public void deveDispararUmaExcecaoComContaNulaCreditando(){
 		caixaBean.creditar(null, new BigDecimal(0));
 	}
 
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoContaComIDNulaCreditando() throws CaixaException{
+	public void deveDispararUmaExcecaoContaComIDNulaCreditando(){
 		caixaBean.creditar(new Conta(), new BigDecimal(0));
 	}	
 	
-	/*
-		@Test()
-		public void deveAdcionarUmaTransacaoDeCredito(){
+	
+	
+	
+	@Test()
+	public void deveAdcionarUmaTransacaoDeCredito(){
 			// conta com valor zerado
 			Conta conta = new Conta(); 
 			conta.setSaldo(new BigDecimal(0));
@@ -75,31 +76,31 @@ public class CaixaBeanTest{
 			conta = caixaBean.creditar(conta,new BigDecimal(10.0));
 			
 			assertEquals(conta.getTransacoes().get(0).getTipoTransacao(), TipoTransacao.CREDITO);		
-	}*/
+	}
 	
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorNuloDebitando() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorNuloDebitando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));		
 		caixaBean.debitar(conta, null);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComValorMenorZeroDebitando() throws CaixaException{
+	public void deveDispararUmaExcecaoComValorMenorZeroDebitando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));
 		caixaBean.debitar(conta, new BigDecimal(-0.01));
 	}	
 
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoComContaNulaDebitando() throws CaixaException{
+	public void deveDispararUmaExcecaoComContaNulaDebitando(){
 		caixaBean.debitar(null, new BigDecimal(0));
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExcecaoContaComIDNulaDebitando() throws CaixaException{
+	public void deveDispararUmaExcecaoContaComIDNulaDebitando(){
 		caixaBean.debitar(new Conta(), new BigDecimal(0));
 	}	
 	

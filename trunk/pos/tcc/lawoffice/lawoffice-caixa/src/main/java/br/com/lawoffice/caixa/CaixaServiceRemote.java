@@ -6,5 +6,5 @@ package br.com.lawoffice.caixa;
  * @author rduarte
  *
  */
-public interface CaixaRemote extends Caixa{
+public interface CaixaServiceRemote extends CaixaService{
 }
