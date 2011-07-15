@@ -3,6 +3,7 @@
  */
 package br.com.lawoffice.web.converter;
 
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -29,6 +30,7 @@ import br.com.lawoffice.dominio.Cliente;
 public class ClienteConverter implements Converter {
 
 
+	
 	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
@@ -37,7 +39,7 @@ public class ClienteConverter implements Converter {
 		  
 		try {
 			Context context = new InitialContext();
-			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("lawoffice-ear/PessoaServiceBean/local");
+			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("java:global/lawoffice-ear/lawoffice-dados-1.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
 		} catch (NamingException e) {
 			// TODO: ver como está no exemplo do prime
 			e.printStackTrace();
