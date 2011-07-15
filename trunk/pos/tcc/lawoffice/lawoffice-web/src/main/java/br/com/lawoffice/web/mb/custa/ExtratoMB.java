@@ -16,8 +16,8 @@ import org.primefaces.model.StreamedContent;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
-import br.com.lowoffice.custas.extrato.ExtratoLocal;
-import br.com.lowoffice.custas.extrato.TipoExtrato;
+import br.com.lowoffice.caixa.extrato.ExtratoLocal;
+import br.com.lowoffice.caixa.extrato.TipoExtrato;
 
 /**
  * 
@@ -30,50 +30,50 @@ import br.com.lowoffice.custas.extrato.TipoExtrato;
 @ViewScoped
 public class ExtratoMB extends AutoCompleteMB{
 
-
+/*
 	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
 	
-	/**
+	*//**
 	 * Lista de {@link Custa} com o resultado da pesquisa  
-	 */
+	 *//*
 	private List<Custa> listaCustas;
 
 	
-	/**
+	*//**
 	 * Data inicial para filtrar a pesquisa de lançamentos de custas
-	 */
+	 *//*
 	private Date dataInicial;
 	
 	
-	/**
+	*//**
 	 * Data final para filtrar a pesquisa de lançamentos de custas
-	 */
+	 *//*
 	private Date dataFinal;
 	
 	
-	/**
+	*//**
 	 * valor totala cáculado para a pesquisa realizada.
-	 */
+	 *//*
 	private BigDecimal valorTotalPesquisa;
 	
 	
-	/**
+	*//**
 	 * Arquivo para dowload do .pdf do extrado do resultado da pesquisa.
-	 */
+	 *//*
 	private StreamedContent fileExtrado;
 	
 	
-	/**
+	*//**
 	 * serviços de extrato de {@link Custa}
-	 */
+	 *//*
 	@EJB
 	private ExtratoLocal extrato;
 	
 	
 	
-	/**
+	*//**
 	 * Pesquisa os Lançamentos de {@link Custa} para o {@link Cliente} no periodo passado. 
-	 */
+	 *//*
 	public void pesquisarLancamentos(){			
 		listaCustas = 
 			extrato.getCustasPorDataCliente(
@@ -103,11 +103,11 @@ public class ExtratoMB extends AutoCompleteMB{
 	
 	
 	
-	/**
+	*//**
 	 * Retorna o nome do arquivo formatado
 	 * 
 	 * @return {@link String}
-	 */
+	 *//*
 	private String getNomeArquivoFormatado() {		
 		return cliente.getNome().replace(" ", "-")
 			+ "-"
@@ -172,5 +172,5 @@ public class ExtratoMB extends AutoCompleteMB{
 
 	public void setFileExtrado(StreamedContent fileExtrado) {
 		this.fileExtrado = fileExtrado;
-	}
+	}*/
 }

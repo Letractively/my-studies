@@ -1,7 +1,10 @@
 package br.com.lowoffice.custas.lancamento;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
 
 import java.math.BigDecimal;
 
@@ -11,13 +14,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.lawoffice.caixa.CaixaLocal;
+import br.com.lawoffice.caixa.CaixaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
-import br.com.lawoffice.dominio.Lancamento;
 import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
-import br.com.lowoffice.custas.lancamento.LancamentoDeCustaBean;
 
 /**
  * @author robson
@@ -30,7 +31,7 @@ public class LancamentoDeCustaBeanTest {
 	
 	
 	
-	private CaixaLocal caixaMock = mock(CaixaLocal.class);
+	private CaixaServiceLocal caixaMock = mock(CaixaServiceLocal.class);
 	
 
 	private EntityManager entityManagerMock;

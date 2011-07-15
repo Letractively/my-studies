@@ -20,13 +20,11 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
  *
  */
 @ManagedBean()
-@ViewScoped // TODO: @ViewScoped ? débito técnico 
+@ViewScoped 
 public class LancamentoMB extends AutoCompleteMB {
 	
 	
 	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
-		
-	// TODO: cdi ?
 	/**
 	 * {@link Custa} para adição/edicão/remoção da lista de custas 
 	 */
@@ -48,8 +46,6 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<
 	
-	
-	// TODO: cdi ?
 	/**
 	 * Custas adicionadas para efetuar o lançamento ( montagem da tabela )
 	 */
@@ -57,7 +53,6 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	
 	
-	//TODO: e esse cara temos que ter mesmo ?
 	@PostConstruct
 	public void init(){
 		custa = new Custa();
@@ -96,8 +91,6 @@ public class LancamentoMB extends AutoCompleteMB {
 	}
 	
 	
-	
-	
 	// TODO: revisar o editar/remover
 	// pelo que vi o editar não precisa de ter um serviço no ejb
 	// vou tocado outros lances no projeto
@@ -126,7 +119,11 @@ public class LancamentoMB extends AutoCompleteMB {
 		try {
 			lancamentoDeCusta.fecharLacamento();
 			custas.clear();
-			adicionarMensagemInformacao(null, null, "Lançamento fechado com sucesso.");
+			addMsgInformacao(
+				null, 
+				null, 
+				"Lançamento fechado com sucesso."
+			);
 		} catch (LancamentoDeCustaException e){
 			adicionarMensagemErro(null, null, e.getMessage());
 		}

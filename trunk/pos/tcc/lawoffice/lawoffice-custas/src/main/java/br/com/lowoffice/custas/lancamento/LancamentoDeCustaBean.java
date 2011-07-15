@@ -12,15 +12,10 @@ import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import br.com.lawoffice.caixa.CaixaLocal;
-import br.com.lawoffice.caixa.exception.CaixaException;
+import br.com.lawoffice.caixa.CaixaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
@@ -44,7 +39,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	 * Caixa para fechamento do lançamento , debito para o cliente , credito para o colaborador
 	 */
 	@EJB()
-	private CaixaLocal caixa;
+	private CaixaServiceLocal caixaService;
 	
 	
 	
@@ -91,25 +86,21 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 			
 			entityManager.persist(lancamento);
 			
-			try {
-					caixa.creditar(
-						lancamento.getColaborador().getConta(), 
-						lancamento.getTotal()
-					);
-					
-					caixa.debitar(
-						lancamento.getCliente().getConta(),
-						lancamento.getTotal()
-					);
-					
-			} catch (CaixaException e) {
-				new LancamentoDeCustaException(e);
-			}
+			
+			caixaService.creditar(
+				lancamento.getColaborador().getConta(), 
+				lancamento.getTotal()
+			);
+			
+			caixaService.debitar(
+				lancamento.getCliente().getConta(),
+				lancamento.getTotal()
+			);
+								
 		}
 		
 		mapsLacamentos.clear();
 	}
-	
 	
 	
 	@Override
@@ -202,10 +193,11 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 
 
 
-	public void setCaixa(CaixaLocal caixa) {
-		this.caixa = caixa;
+	public void setCaixa(CaixaServiceLocal caixaService) {
+		this.caixaService = caixaService;
 	}
 
+	
 
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;

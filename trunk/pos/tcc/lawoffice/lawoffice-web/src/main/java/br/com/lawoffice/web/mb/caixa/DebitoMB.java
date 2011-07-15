@@ -9,8 +9,7 @@ import java.text.NumberFormat;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import br.com.lawoffice.caixa.CaixaLocal;
-import br.com.lawoffice.caixa.exception.CaixaException;
+import br.com.lawoffice.caixa.CaixaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -39,35 +38,28 @@ public class DebitoMB extends AutoCompleteMB{
 	 * Serviço de caixa para realizar o debito
 	 */
 	@EJB
-	protected CaixaLocal caixaLocal;
+	protected CaixaServiceLocal caixaService;
 	
 	
 	public void debitarCliente(){
-		try {
-			adicionarMensagemDebitoSucesso(
-					caixaLocal.debitar(cliente.getConta(), valor)
-				);
-		} catch (CaixaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Conta conta = 
+			caixaService.debitar(cliente.getConta(), valor);
+		
+		addMsgDebitoSucesso(conta);
 	}
 	
+	
 	public void debitarColaborador(){
-		try {
-			adicionarMensagemDebitoSucesso(
-					caixaLocal.debitar(colaborador.getConta(), valor)
-				);
-		} catch (CaixaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Conta conta = 
+			caixaService.debitar(colaborador.getConta(), valor);
+		
+		addMsgDebitoSucesso(conta);
 	}
 
 	
-	private void adicionarMensagemDebitoSucesso(Conta conta) {
+	private void addMsgDebitoSucesso(Conta conta) {
 		// TODO: internacionalização
-		adicionarMensagemInformacao(
+		addMsgInformacao(
 				null, 
 				"Débito realizado com sucesso: ",  
 				"Saldo Atual =  "  + NumberFormat.getCurrencyInstance().format(conta.getSaldo())

@@ -23,7 +23,7 @@ public class BaseMB {
 	 * @param sumario
 	 * @param detalhe
 	 */
-	protected void adicionarMensagemInformacao(String clienteID, String sumario, String detalhe) {
+	protected void addMsgInformacao(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_INFO, sumario, detalhe));
 	}
 	

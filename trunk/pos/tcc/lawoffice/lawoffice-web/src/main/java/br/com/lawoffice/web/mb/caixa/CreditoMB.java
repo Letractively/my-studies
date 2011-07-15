@@ -8,12 +8,8 @@ import java.text.NumberFormat;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 
-import org.primefaces.event.TabChangeEvent;
-
-import br.com.lawoffice.caixa.CaixaLocal;
-import br.com.lawoffice.caixa.exception.CaixaException;
+import br.com.lawoffice.caixa.CaixaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -31,7 +27,6 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 @ManagedBean
 public class CreditoMB extends AutoCompleteMB{
 
-	
 	/**
 	 * Valor para creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
 	 */
@@ -42,36 +37,28 @@ public class CreditoMB extends AutoCompleteMB{
 	 * Serviço de caixa para realizar o credito
 	 */
 	@EJB
-	protected CaixaLocal caixaLocal;
+	protected CaixaServiceLocal caixaService;
 	
 	
 	
-	public void creditarCliente(){
-		try {
-			adicionarMensagemCreditoSucesso(
-					caixaLocal.creditar(cliente.getConta(), valor)
-				);						
-		} catch (CaixaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void creditarCliente(){		
+		Conta conta = 
+			caixaService.creditar(cliente.getConta(), valor);
+		
+		addMsgCreditoSucesso(conta);								
 	}
 
 	public void creditarColaborador(){
-		try {
-			adicionarMensagemCreditoSucesso(
-					caixaLocal.creditar(colaborador.getConta(), valor)
-				);			
-		} catch (CaixaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Conta conta =
+			caixaService.creditar(colaborador.getConta(), valor);
+		
+		addMsgCreditoSucesso(conta);					
 	}
 	
 	
-	private void adicionarMensagemCreditoSucesso(Conta conta) {
+	private void addMsgCreditoSucesso(Conta conta) {
 		// TODO: internacionalização
-		adicionarMensagemInformacao(
+		addMsgInformacao(
 				null, 
 				"Crédito realizado com sucesso: ",  
 				"Saldo Atual =  "  + NumberFormat.getCurrencyInstance().format(conta.getSaldo())

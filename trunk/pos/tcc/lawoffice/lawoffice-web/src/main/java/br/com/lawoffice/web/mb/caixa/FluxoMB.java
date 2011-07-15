@@ -3,14 +3,8 @@
  */
 package br.com.lawoffice.web.mb.caixa;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
-import br.com.lawoffice.caixa.fluxo.FluxoCaixaLocal;
-import br.com.lawoffice.dominio.Transacao;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
@@ -25,28 +19,28 @@ public class FluxoMB extends AutoCompleteMB {
 
 	/**
 	 * Data inicial para consulta
-	 */
+	 *//*
 	private Date dataInicial;
 	
 	
-	/**
+	*//**
 	 * Data final para consulta
 	 * 
-	 */
+	 *//*
 	private Date dataFinal;
 	
 	
-	/**
+	*//**
 	 * Lista de {@link Transacao} com o resultado da consulta
 	 * 
-	 */
+	 *//*
 	private List<Transacao> listTransacoes;
 	
-	/**
+	*//**
 	 * 
 	 * Serviço que realiza a consulta de fluxos de Caixa
 	 * 
-	 */
+	 *//*
 	@EJB
 	private FluxoCaixaLocal fluxoLocal;
 	
@@ -102,5 +96,5 @@ public class FluxoMB extends AutoCompleteMB {
 	public void setListTransacoes(List<Transacao> listTransacoes) {
 		this.listTransacoes = listTransacoes;
 	}
-	
+*/	
 }
