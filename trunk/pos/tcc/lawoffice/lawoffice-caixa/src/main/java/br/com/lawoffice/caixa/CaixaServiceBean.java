@@ -3,6 +3,7 @@ package br.com.lawoffice.caixa;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -10,6 +11,7 @@ import javax.ejb.Stateless;
 import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.HistoricoConta;
 import br.com.lawoffice.dominio.TipoTransacao;
+import br.com.lawoffice.persistencia.ContaDao;
 
 /**
  * Implementação para a Interface de serviços de caixa do escritório.
@@ -22,29 +24,37 @@ import br.com.lawoffice.dominio.TipoTransacao;
 @Remote(CaixaServiceRemote.class)
 public class CaixaServiceBean implements CaixaService {
 	
+
+	/**
+	 * Dao para operacoes de persistencia para {@link Conta}.
+	 */
+	@EJB
+	private ContaDao contaDao;
+
 	
 	@Override
 	public Conta creditar(Conta conta, BigDecimal valor){
 		validarParamentros(conta, valor);
 	
-/*		conta = getConta(conta); 
-			
+		conta = getConta(conta); 
+
+		
+		conta
+			.getHistoricos()
+			.add(new HistoricoConta(
+				new Date(), 
+				TipoTransacao.CREDITO, 
+				valor, 
+				conta.getSaldo(), 
+				conta)
+			);
+		 
+		
 		conta.setSaldo(
 				conta.getSaldo().add(valor)
 			);
-		
-		entityManager.persist(
-			new HistoricoConta(
-				new Date(), 
-				TipoTransacao.CREDITO,
-				valor,
-				conta
-			)
-		);
-		
-		return entityManager.merge(conta);*/
-		
-		return null;
+
+		return contaDao.atualizar(conta);
 	}
 
 	
@@ -52,24 +62,24 @@ public class CaixaServiceBean implements CaixaService {
 	public Conta debitar(Conta conta, BigDecimal  valor){
 		validarParamentros(conta, valor);
 		
-/*		conta = getConta(conta);
-		
+		conta = getConta(conta);
+
+		conta
+			.getHistoricos()
+			.add(new HistoricoConta(
+					new Date(), 
+					TipoTransacao.DEBITO, 
+					valor, 
+					conta.getSaldo(), 
+					conta
+				)
+			);
+		 
 		conta.setSaldo(
 				conta.getSaldo().subtract(valor)
 			);
-	 		
-		entityManager.persist(
-			new HistoricoConta(
-				new Date(), 
-				TipoTransacao.DEBITO ,
-				valor,
-				conta
-			)
-		);
 		
-		return entityManager.merge(conta);*/
-		
-		return null;
+		return contaDao.atualizar(conta);
 	}
 
 	
@@ -82,14 +92,11 @@ public class CaixaServiceBean implements CaixaService {
 	 * @return {@link Conta} no contexto do EntityManager.
 	 * @throws CaixaException caso a {@link Conta} não seja encontrada na base de dados.
 	 */
-	private Conta getConta(Conta conta){
-/*		conta = entityManager.find(Conta.class, conta.getId());		
-		
+	private Conta getConta(Conta conta){		
+		conta = contaDao.localizar(Conta.class, conta);				
 		if(conta == null)
-			throw new CaixaException("Conta não encontrado");
-		return conta;*/
-		
-		return null;
+			throw new IllegalArgumentException("Conta não encontrado");		
+		return conta;
 	}	
 
 	
@@ -107,4 +114,11 @@ public class CaixaServiceBean implements CaixaService {
 		if(conta == null || conta.getId() == null)
 			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
 	}
+
+
+	
+	public void setContaDao(ContaDao contaDao) {
+		this.contaDao = contaDao;
+	}
+	
 }

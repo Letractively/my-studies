@@ -1,12 +1,24 @@
 package br.com.lawoffice.caixa;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
+
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+
+import org.mockito.MockitoAnnotations;
 
 import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.HistoricoConta;
+import br.com.lawoffice.dominio.TipoTransacao;
+import br.com.lawoffice.persistencia.ContaDao;
 
 /**
  * 
@@ -18,9 +30,11 @@ import br.com.lawoffice.dominio.Conta;
 public class CaixaServiceBeanTest{
 
 	
+	@Mock
+	private ContaDao contaDao;
 	
-	private Contad
 	
+	@InjectMocks
 	private CaixaServiceBean caixaBean;
 
 	
@@ -28,11 +42,13 @@ public class CaixaServiceBeanTest{
 	@Before
 	public void setUp() throws Exception {
 		caixaBean = new CaixaServiceBean();
+		MockitoAnnotations.initMocks(this);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		caixaBean = null;
+		reset(contaDao);
 	}
 
 	
@@ -64,19 +80,46 @@ public class CaixaServiceBeanTest{
 	}	
 	
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoContaNaoEncontradaCreditar(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		
+		when(
+			contaDao.localizar(Conta.class, conta)
+		).thenReturn(null);
+		
+		caixaBean.creditar(conta, new BigDecimal(1));
+	}
 	
 	
 	@Test()
-	public void deveAdcionarUmaTransacaoDeCredito(){
-			// conta com valor zerado
-			Conta conta = new Conta(); 
-			conta.setSaldo(new BigDecimal(0));
-			conta.setTransacoes(new ArrayList<Transacao>());
-			
-			conta = caixaBean.creditar(conta,new BigDecimal(10.0));
-			
-			assertEquals(conta.getTransacoes().get(0).getTipoTransacao(), TipoTransacao.CREDITO);		
-	}
+	public void deveCreditarQuandoParametrosValidos(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		conta.setSaldo(new BigDecimal(0));
+		conta.setHistoricos(new ArrayList<HistoricoConta>());
+		
+		when(
+			contaDao.localizar(Conta.class, conta)
+		).thenReturn(conta);
+		
+		when(
+			contaDao.atualizar(conta)
+		).thenReturn(conta);
+		
+		conta = caixaBean.creditar(conta, new BigDecimal(1));
+		
+		
+		assertNotNull(conta);
+		assertEquals(new BigDecimal(1), conta.getSaldo());
+		assertNotNull(conta.getHistoricos().get(0));
+		assertEquals(TipoTransacao.CREDITO, conta.getHistoricos().get(0).getTipoTransacao());
+		assertEquals(new BigDecimal(0), conta.getHistoricos().get(0).getSaloAnterior());
+		assertEquals(new BigDecimal(1), conta.getHistoricos().get(0).getValorTransacao());
+		assertNotNull(conta.getHistoricos().get(0).getConta());
+		
+	}	
 	
 	
 	
@@ -102,6 +145,48 @@ public class CaixaServiceBeanTest{
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoContaComIDNulaDebitando(){
 		caixaBean.debitar(new Conta(), new BigDecimal(0));
-	}	
+	}
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoQuandoContaNaoEncontradaDebitar(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		
+		when(
+			contaDao.localizar(Conta.class, conta)
+		).thenReturn(null);
+		
+		caixaBean.debitar(conta, new BigDecimal(1));
+	}
+	
+	
+	@Test()
+	public void deveDebitarQuandoParametrosValidos(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		conta.setSaldo(new BigDecimal(0));
+		conta.setHistoricos(new ArrayList<HistoricoConta>());
+		
+		when(
+			contaDao.localizar(Conta.class, conta)
+		).thenReturn(conta);
+		
+		when(
+			contaDao.atualizar(conta)
+		).thenReturn(conta);
+		
+		conta = caixaBean.debitar(conta, new BigDecimal(1));
+		
+		
+		assertNotNull(conta);
+		assertEquals(new BigDecimal(-1), conta.getSaldo());
+		assertNotNull(conta.getHistoricos().get(0));
+		assertEquals(TipoTransacao.DEBITO, conta.getHistoricos().get(0).getTipoTransacao());
+		assertEquals(new BigDecimal(0), conta.getHistoricos().get(0).getSaloAnterior());
+		assertEquals(new BigDecimal(1), conta.getHistoricos().get(0).getValorTransacao());
+		assertNotNull(conta.getHistoricos().get(0).getConta());
+		
+	}
 	
 }

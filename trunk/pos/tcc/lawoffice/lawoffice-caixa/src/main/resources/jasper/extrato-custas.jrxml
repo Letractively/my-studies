@@ -28,6 +28,7 @@
 	<parameter name="SALDO_ANTERIOR" class="java.lang.String"/>
 	<parameter name="DATA_INICIAL" class="java.lang.String"/>
 	<parameter name="DATA_FINAL" class="java.lang.String"/>
+	<parameter name="SALDO_ATUAL" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -71,7 +72,7 @@
 	<pageHeader>
 		<band height="61" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="46" height="15"/>
+				<reportElement x="0" y="0" width="56" height="15"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -92,7 +93,7 @@
 				<text><![CDATA[Periodo :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="46" y="0" width="283" height="15"/>
+				<reportElement x="52" y="0" width="283" height="15"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{NOME_CLIENTE}]]></textFieldExpression>
 			</textField>
@@ -102,7 +103,7 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{SALDO_ANTERIOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="56" y="25" width="100" height="16"/>
+				<reportElement x="57" y="25" width="64" height="16"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{DATA_INICIAL}]]></textFieldExpression>
 			</textField>
@@ -112,12 +113,12 @@
 				<text><![CDATA[a]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="185" y="25" width="100" height="16"/>
+				<reportElement x="165" y="25" width="100" height="16"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{DATA_FINAL}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="166" y="25" width="8" height="16"/>
+				<reportElement x="139" y="25" width="8" height="16"/>
 				<textElement/>
 				<text><![CDATA[a]]></text>
 			</staticText>
@@ -130,7 +131,7 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Data Lançamento]]></text>
+				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="139" y="0" width="100" height="20"/>
@@ -171,7 +172,20 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="33" width="67" height="12"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo Atual :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="67" y="33" width="100" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{SALDO_ATUAL}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
