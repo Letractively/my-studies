@@ -1,23 +1,22 @@
 package br.com.lawoffice.caixa;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.mockito.MockitoAnnotations;
 
 import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.HistoricoConta;
-import br.com.lawoffice.dominio.TipoTransacao;
 import br.com.lawoffice.persistencia.ContaDao;
 
 /**
@@ -100,9 +99,11 @@ public class CaixaServiceBeanTest{
 		conta.setSaldo(new BigDecimal(0));
 		conta.setHistoricos(new ArrayList<HistoricoConta>());
 		
+		
 		when(
 			contaDao.localizar(Conta.class, conta)
 		).thenReturn(conta);
+				
 		
 		when(
 			contaDao.atualizar(conta)
@@ -113,11 +114,6 @@ public class CaixaServiceBeanTest{
 		
 		assertNotNull(conta);
 		assertEquals(new BigDecimal(1), conta.getSaldo());
-		assertNotNull(conta.getHistoricos().get(0));
-		assertEquals(TipoTransacao.CREDITO, conta.getHistoricos().get(0).getTipoTransacao());
-		assertEquals(new BigDecimal(0), conta.getHistoricos().get(0).getSaloAnterior());
-		assertEquals(new BigDecimal(1), conta.getHistoricos().get(0).getValorTransacao());
-		assertNotNull(conta.getHistoricos().get(0).getConta());
 		
 	}	
 	
@@ -181,11 +177,6 @@ public class CaixaServiceBeanTest{
 		
 		assertNotNull(conta);
 		assertEquals(new BigDecimal(-1), conta.getSaldo());
-		assertNotNull(conta.getHistoricos().get(0));
-		assertEquals(TipoTransacao.DEBITO, conta.getHistoricos().get(0).getTipoTransacao());
-		assertEquals(new BigDecimal(0), conta.getHistoricos().get(0).getSaloAnterior());
-		assertEquals(new BigDecimal(1), conta.getHistoricos().get(0).getValorTransacao());
-		assertNotNull(conta.getHistoricos().get(0).getConta());
 		
 	}
 	

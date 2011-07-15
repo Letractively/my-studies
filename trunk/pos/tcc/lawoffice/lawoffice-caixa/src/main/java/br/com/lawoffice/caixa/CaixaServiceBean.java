@@ -39,15 +39,15 @@ public class CaixaServiceBean implements CaixaService {
 		conta = getConta(conta); 
 
 		
-		conta
-			.getHistoricos()
-			.add(new HistoricoConta(
+		contaDao.salvar(
+			new HistoricoConta(
 				new Date(), 
 				TipoTransacao.CREDITO, 
 				valor, 
 				conta.getSaldo(), 
-				conta)
-			);
+				conta
+			)
+		);
 		 
 		
 		conta.setSaldo(
@@ -58,22 +58,22 @@ public class CaixaServiceBean implements CaixaService {
 	}
 
 	
+	
 	@Override
 	public Conta debitar(Conta conta, BigDecimal  valor){
 		validarParamentros(conta, valor);
 		
 		conta = getConta(conta);
 
-		conta
-			.getHistoricos()
-			.add(new HistoricoConta(
-					new Date(), 
-					TipoTransacao.DEBITO, 
-					valor, 
-					conta.getSaldo(), 
-					conta
-				)
-			);
+		contaDao.salvar(
+			new HistoricoConta(
+				new Date(), 
+				TipoTransacao.DEBITO, 
+				valor, 
+				conta.getSaldo(), 
+				conta
+			)
+		);
 		 
 		conta.setSaldo(
 				conta.getSaldo().subtract(valor)
