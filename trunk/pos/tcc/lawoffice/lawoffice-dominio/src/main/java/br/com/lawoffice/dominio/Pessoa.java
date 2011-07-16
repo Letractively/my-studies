@@ -2,6 +2,7 @@ package br.com.lawoffice.dominio;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -18,7 +19,7 @@ import javax.persistence.MappedSuperclass;
 public class Pessoa implements EntityBase{
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")	
 	private Long id;
 	
