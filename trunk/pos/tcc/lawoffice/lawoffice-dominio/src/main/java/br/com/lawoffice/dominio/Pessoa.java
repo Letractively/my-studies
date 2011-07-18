@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * 
- * Classe base para entidades que se são pessoas no sistema
+ * Classe base para entidades que  representa pessoas no escritorio.
  * 
  * @author robson
  * 
@@ -31,7 +31,6 @@ public class Pessoa implements EntityBase{
 	
 
 	public Pessoa() {
-		super();
 	}
 
 	public Long getId() {
