@@ -3,6 +3,8 @@
  */
 package br.com.lawoffice.persistencia.ejb;
 
+import java.util.Date;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
@@ -14,7 +16,8 @@ import br.com.lawoffice.persistencia.ContaDao;
  * @author robson
  *
  */
-@Local(ContaDao.class)
 @Stateless
+@Local(ContaDao.class)
 public class ContaDaoBean extends BaseDaoBean implements ContaDao {
+
 }
