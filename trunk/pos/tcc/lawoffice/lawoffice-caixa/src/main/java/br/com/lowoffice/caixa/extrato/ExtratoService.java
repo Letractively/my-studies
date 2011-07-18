@@ -1,11 +1,9 @@
 package br.com.lowoffice.caixa.extrato;
 
-import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
-import br.com.lawoffice.dominio.Custa;
-import br.com.lawoffice.dominio.Pessoa;
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
 
 
 /**
@@ -22,7 +20,12 @@ import br.com.lawoffice.dominio.Pessoa;
  */
 public interface ExtratoService{
 	
-	public ExtratoDTO getExtrato(Date dataInicial, Date dataFinal, Pessoa pessoa);
+	
+	public ExtratoDTO getExtratoColaborador(Date dataInicial, Date dataFinal, Colaborador colaborador);
+	
+	
+	public ExtratoDTO getExtratoCliente(Date dataInicial, Date dataFinal, Cliente cliente);
+	
 	
 	
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato); 

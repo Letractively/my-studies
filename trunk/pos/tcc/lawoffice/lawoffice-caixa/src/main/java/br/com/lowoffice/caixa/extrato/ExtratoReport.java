@@ -9,7 +9,7 @@ import br.com.lawoffice.dominio.Custa;
 
 /**
  * 
- * Interface de serviço para a criação do extrato de custa
+ * Interface de serviço para a criação do extrato.
  * 
  * @author robson
  *
@@ -18,7 +18,7 @@ public interface ExtratoReport{
 
 	/**
 	 * 
-	 * Gera o Extrato utilizando a {@link List} de {@link Custa} passada como resource.
+	 * Gera o Extrato utilizando um {@link ExtratoDTO} passada como resource.
 	 * 
 	 * @param listaCustas
 	 * @return

@@ -3,23 +3,17 @@
  */
 package br.com.lowoffice.caixa.extrato;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
-import br.com.lawoffice.dominio.Custa;
-import br.com.lawoffice.dominio.Lancamento;
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Pessoa;
+import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 
@@ -31,21 +25,236 @@ import br.com.lawoffice.dominio.Pessoa;
  *
  */
 @Stateful
-@Local(ExtratoLocal.class)
-@Remote(ExtratoRemote.class)
-public class ExtratoBean implements ExtratoService{
+@Local(ExtratoServiceLocal.class)
+@Remote(ExtratoServiceRemote.class)
+public class ExtratoServiceBean implements ExtratoService{
 
+	
+	
+
+	
+
+	
 	@Override
-	public ExtratoDTO getExtrato(Date dataInicial, Date dataFinal, Pessoa pessoa) {
-		// TODO Auto-generated method stub
+	public ExtratoDTO getExtratoColaborador(Date dataInicial, Date dataFinal,
+			Colaborador colaborador) {
+		validarParametros(dataInicial, dataFinal, colaborador);
 		return null;
 	}
+
+
+
+
+
+
+	@Override
+	public ExtratoDTO getExtratoCliente(Date dataInicial, Date dataFinal,
+			Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
+	
+	
+	
+	
+	
+	/*@Override
+	public ExtratoDTO getExtrato(Date dataInicial, Date dataFinal, Pessoa pessoa) {
+		validarParametros(dataInicial,dataFinal,pessoa);
+		
+		
+		pessoa = 
+			pessoaDao.localizar(Pessoa.class, pessoa);
+		
+		
+		if(pessoa == null)
+			return null;
+		
+
+		// obter a conta
+		// pegar o seu historico pela datainicial - 1;
+		// pegar as custas no periodo (lançamento)
+		// gerar os itens baseado nas datas
+		
+		
+		
+		
+		ExtratoDTO extratoDTO =
+				new ExtratoDTO(
+						pessoa.getNome(),
+						dataInicial, 
+						dataFinal
+					);
+		
+		
+		
+		
+		return extratoDTO null;
+	}*/
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	@Override
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	private void validarParametros(Date dataInicial, Date dataFinal,
+			Pessoa pessoa) {
+		if(dataInicial == null)
+			throw new IllegalArgumentException("Data inicial nula");
+		if(dataFinal == null)
+			throw new IllegalArgumentException("Data final nula");
+		if(pessoa == null || pessoa.getId() == null)
+			throw new IllegalArgumentException("Pessoa nula ou Pessoa sem ID"); 
+		
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
 
 	/*
 	*//**
