@@ -3,7 +3,10 @@
  */
 package br.com.lowoffice.caixa.extrato;
 
+import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -12,9 +15,12 @@ import javax.ejb.Stateful;
 
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
+import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.HistoricoConta;
 import br.com.lawoffice.dominio.Pessoa;
 import br.com.lawoffice.persistencia.ClienteDao;
 import br.com.lawoffice.persistencia.ColaboradorDao;
+import br.com.lawoffice.persistencia.HistoricoContaDao;
 
 /**
  * 
@@ -37,6 +43,10 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 	@EJB
 	private ClienteDao clienteDao;
+	
+	
+	@EJB
+	private HistoricoContaDao historicoContaDao;
 
 
 	@Override
@@ -50,15 +60,23 @@ public class ExtratoServiceBean implements ExtratoService{
 		if(colaborador == null)
 			return null;
 		
-		// obter saldo da datainicial - 1
+		
+		ExtratoDTO extratoDTO =
+				createExtratoDTO(
+					dataInicial, 
+					dataFinal, 
+					colaborador,
+					colaborador.getConta()
+				);
+
+		
+		
 		// obter historico da conta no periodo
 		// obter lancamentos ( custas ) no perido
 		// criar lista de itens do historicos + custas .. 
 		
-		return new ExtratoDTO(null, null, null);
+		return extratoDTO;
 	}
-
-
 
 
 
@@ -75,124 +93,77 @@ public class ExtratoServiceBean implements ExtratoService{
 			return null;
 				
 		
-		return new ExtratoDTO(null, null, null);
+		ExtratoDTO extratoDTO =
+				createExtratoDTO(
+						dataInicial, 
+						dataFinal, 
+						cliente,
+						cliente.getConta()
+					);
+		
+
+		
+		return extratoDTO;
 	}	
 	
 	
+
+	
+	
+	/**
+	 * Cria um {@link ExtratoDTO} 
+	 * 
+	 * @param dataInicial - da consulta.
+	 * @param dataFinal - da consulta.
+	 * @param pessoa - da consulta.
+	 * @param conta - da pessoa da consulta.
+	 * @return  {@link ExtratoDTO}
+	 */
+	private ExtratoDTO createExtratoDTO(Date dataInicial, Date dataFinal, Pessoa pessoa, Conta conta) {
+		return new ExtratoDTO(
+			pessoa.getNome(), 
+			getSaldoAnterior(conta,dataInicial), 
+			conta.getSaldo(),
+			dataInicial, 
+			dataFinal
+		);
+	}	
+	
+
+
 	
 	
 	
-	/*@Override
-	public ExtratoDTO getExtrato(Date dataInicial, Date dataFinal, Pessoa pessoa) {
-		validarParametros(dataInicial,dataFinal,pessoa);
+	
+	/**
+	 * Obtem o saldo anterior a data inicial de pesquisa para conta passada.
+	 * 
+	 * @param conta - a obter o saldo anterior.
+	 * @param dataInicial - de consulta.
+	 * @return - {@link BigDecimal} com saldo anterior
+	 */
+	private BigDecimal getSaldoAnterior(Conta conta, Date dataInicial) {
+	
+		// data anterior / - 1 dia
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dataInicial);
+		calendar.add(Calendar.DAY_OF_MONTH, -1);
+	
+		List<HistoricoConta> historicosConta =
+				historicoContaDao.getHistoricosConta(calendar.getTime(), conta);
+		
+		if(historicosConta.isEmpty())
+			return new BigDecimal(0.0);
 		
 		
-		pessoa = 
-			pessoaDao.localizar(Pessoa.class, pessoa);
-		
-		
-		if(pessoa == null)
-			return null;
-		
-
-		// obter a conta
-		// pegar o seu historico pela datainicial - 1;
-		// pegar as custas no periodo (lançamento)
-		// gerar os itens baseado nas datas
-		
-		
-		
-		
-		ExtratoDTO extratoDTO =
-				new ExtratoDTO(
-						pessoa.getNome(),
-						dataInicial, 
-						dataFinal
-					);
-		
-		
-		
-		
-		return extratoDTO null;
-	}*/
+		return historicosConta.get(historicosConta.size() -1).getSaloAnterior();
+	}
 
 	
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato) {
@@ -223,11 +194,14 @@ public class ExtratoServiceBean implements ExtratoService{
 
 
 
-
-
-
 	public void setClienteDao(ClienteDao clienteDao) {
 		this.clienteDao = clienteDao;
+	}
+
+
+	
+	public void setHistoricoContaDao(HistoricoContaDao historicoContaDao) {
+		this.historicoContaDao = historicoContaDao;
 	}
 
 

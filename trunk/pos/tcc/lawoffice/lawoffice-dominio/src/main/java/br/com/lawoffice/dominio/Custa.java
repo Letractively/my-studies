@@ -39,10 +39,23 @@ public class Custa implements EntityBase{
 	@JoinColumn(name="LANCAMENTO_ID")
 	private Lancamento lancamento;
 	
+
+	
+	public Custa() {
+	}
+	
+	
+	
+	public Custa(BigDecimal valor, String natureza) {
+		super();
+		this.valor = valor;
+		this.natureza = natureza;
+	}
+
 	
 	
 	// 	>>>>>>>> MÉTODOS DE DOMINIO <<<<<<<<<
-		
+	
 	public Custa addLancamento(Lancamento lancamento) {
 		setLancamento(lancamento);
 		return this;

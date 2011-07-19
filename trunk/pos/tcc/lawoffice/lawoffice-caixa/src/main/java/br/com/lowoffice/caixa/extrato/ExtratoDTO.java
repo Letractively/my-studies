@@ -49,16 +49,17 @@ public class ExtratoDTO {
 	private List<ExtroItem> extratoItens;
 
 	
-	
-	
-	
-	public ExtratoDTO(String nomePessoa, Date dataInicial, Date dataFinal) {
+	public ExtratoDTO(String nomePessoa, BigDecimal saldoAnterior,
+			BigDecimal saldoAtual, Date dataInicial, Date dataFinal) {
 		super();
 		this.nomePessoa = nomePessoa;
+		this.saldoAnterior = saldoAnterior;
+		this.saldoAtual = saldoAtual;
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
 	}
 
+	
 	public String getNomePessoa() {
 		return nomePessoa;
 	}

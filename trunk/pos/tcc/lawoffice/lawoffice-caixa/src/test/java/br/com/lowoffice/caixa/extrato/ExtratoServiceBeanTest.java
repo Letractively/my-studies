@@ -1,11 +1,16 @@
 package br.com.lowoffice.caixa.extrato;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.when;
 
-
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,10 +21,14 @@ import org.mockito.MockitoAnnotations;
 
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
+import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.Custa;
+import br.com.lawoffice.dominio.HistoricoConta;
+import br.com.lawoffice.dominio.Lancamento;
+import br.com.lawoffice.dominio.TipoTransacao;
 import br.com.lawoffice.persistencia.ClienteDao;
 import br.com.lawoffice.persistencia.ColaboradorDao;
 import br.com.lawoffice.persistencia.HistoricoContaDao;
-import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 
@@ -36,6 +45,10 @@ public class ExtratoServiceBeanTest {
 
 	@Mock
 	private ClienteDao clienteDao;
+	
+	@Mock
+	private HistoricoContaDao historicoContaDao;
+	
 	
 	@InjectMocks
 	private ExtratoServiceBean extratoServiceBean;
@@ -165,46 +178,322 @@ public class ExtratoServiceBeanTest {
 	
 	
 	
-/*	@Test()
-	public void deveRetornaUmExtratoDTOQuandoParametrosValidos() {
+	@Test()
+	public void deveRetornaUmExtratoDTOQuandoParametrosValidosExtratoColaborador() {
 
 		
 		// pessoa para ser pesquisada
 		Colaborador colaboradorPesquisa = new Colaborador();
 		colaboradorPesquisa.setId(1L);
-		
 
-		// pessoa para retorno 		
-		Colaborador colaboradorRetorno
 		
+		// colaborador retorno pelo mock do dao de colaborador
+		Colaborador colaboradorRetorno = new Colaborador();
+		colaboradorRetorno.setNome("Robson Oliveira Duarte");
+	
+		// conta do colaborador de retorno do mock
+		Conta conta = new Conta();
+		conta.setId(1L);
+		conta.setSaldo(new BigDecimal(10));		
+		colaboradorRetorno.setConta(conta);
 		
 		
 		// data inicial para consulta.
 		Calendar calendar = Calendar.getInstance();		
 		Date dataInicial = calendar.getTime();
-				
+
+		
 		// data final para consulta.
 		calendar.add(Calendar.DAY_OF_MONTH, 1);		
 		Date dataFinal = calendar.getTime();
 		
 		
-	
-		when( pessoaDao.localizar(Colaborador.class, colaboradorPesquisa)).thenReturn(value);
+		// data anterior a inicial para consultar saldo anterior
+		calendar.add(Calendar.DAY_OF_MONTH, -2);
+		Date dataAnterior = calendar.getTime();
 		
+		
+		// MASSA DE DADOS PARA TESTE
+		
+		// historicos retornados para dataIncial - 1 , para obter o saldo anterior				
+		HistoricoConta historicoContaDataAnterior1 = 
+				new HistoricoConta(
+						dataAnterior, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);
+				
+		
+		HistoricoConta historicoContaDataAnterior2 = 
+				new HistoricoConta(
+						dataAnterior, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(10), 
+						conta
+					);
+		
+		List<HistoricoConta> historicosContaDataAnterior = new ArrayList<HistoricoConta>(); 
+		historicosContaDataAnterior.add(historicoContaDataAnterior1);
+		historicosContaDataAnterior.add(historicoContaDataAnterior2);
+		
+		
+		// historicos do perido da consulta.						
+		HistoricoConta historicoContaPeriodoConsulta1 = 
+				new HistoricoConta(
+						dataInicial, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);
+		
+		
+		HistoricoConta historicoContaPeriodoConsulta2 = 
+				new HistoricoConta(
+						dataInicial, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);		
+	
+		List<HistoricoConta> historicosContaPeridoConsuta =
+				new ArrayList<HistoricoConta>();
+		
+		historicosContaPeridoConsuta.add(historicoContaPeriodoConsulta1);
+		historicosContaPeridoConsuta.add(historicoContaPeriodoConsulta2);
+
+		
+		// Lancamentos de custas para o periodo da consulta		
+		Lancamento lancamentoPeridoConsulta1 = new Lancamento();
+		lancamentoPeridoConsulta1.setDataLancamento(dataInicial);
+				
+		lancamentoPeridoConsulta1.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 1"
+				)
+			);
+		
+		lancamentoPeridoConsulta1.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 1"
+				)
+			);
+		
+		Lancamento lancamentoPeridoConsulta2 =new Lancamento();
+		lancamentoPeridoConsulta2.setDataLancamento(dataFinal);
+				
+		lancamentoPeridoConsulta2.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 2"
+				)
+			);
+		
+		lancamentoPeridoConsulta2.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 2"
+				)
+			);		
+
+		List<Lancamento> lancamentosPeriodo = 
+				new ArrayList<Lancamento>();
+		
+		lancamentosPeriodo.add(lancamentoPeridoConsulta1);
+		lancamentosPeriodo.add(lancamentoPeridoConsulta2);
+		
+		// FIM DA MASSA DE DADOS PARA TESTE
+	
+		when(
+			  colaboradorDao.localizar(Colaborador.class, colaboradorPesquisa) 	
+			).thenReturn(colaboradorRetorno);	
+		
+		
+		
+		when(
+			 historicoContaDao.getHistoricosConta(dataAnterior, conta)
+			).thenReturn(historicosContaDataAnterior);
 		
 		
 		
 		ExtratoDTO extratoDTO = 
-				extratoServiceBean.getExtrato(dataInicial, dataFinal, colaboradorPesquisa);
+				extratoServiceBean.getExtratoColaborador(dataInicial, dataFinal, colaboradorPesquisa);
 		
 		
 		
-		assertNotNull(extratoDTO);		
+		assertNotNull(extratoDTO);
+		assertEquals("Robson Oliveira Duarte", extratoDTO.getNomePessoa());
+		assertEquals(dataInicial, extratoDTO.getDataInicial());		
+		assertEquals(dataFinal, extratoDTO.getDataFinal());
+		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior());// deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
+		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
+		assertEquals(6, extratoDTO.getExtratoItens().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
+
+	}
+	
+	
+	
+	
+	@Test()
+	public void deveRetornaUmExtratoDTOQuandoParametrosValidosExtratoCliente() {
+
+		// pessoa para ser pesquisada
+		Cliente clientePesquisa = new Cliente();
+		clientePesquisa.setId(1l);
+		
+		// colaborador retorno pelo mock do dao de colaborador
+		Cliente clienteRetorno = new Cliente();
+		clienteRetorno.setNome("Robson Oliveira Duarte");
+		
+		// conta do cliente de retorno do mock
+		Conta conta = new Conta();
+		conta.setId(1L);
+		conta.setSaldo(new BigDecimal(10));		
+		clienteRetorno.setConta(conta);
+		
+		
+		// data inicial para consulta.
+		Calendar calendar = Calendar.getInstance();		
+		Date dataInicial = calendar.getTime();
+
+		
+		// data final para consulta.
+		calendar.add(Calendar.DAY_OF_MONTH, 1);		
+		Date dataFinal = calendar.getTime();
+		
+		// data anterior a inicial para consultar saldo anterior
+		calendar.add(Calendar.DAY_OF_MONTH, -2);
+		Date dataAnterior = calendar.getTime();
+		
+		
+		// MASSA DE DADOS PARA TESTE 
+		 
+		// historicos retornados para dataIncial - 1 , para obter o saldo anterior				
+		HistoricoConta historicoContaDataAnterior1 = 
+				new HistoricoConta(
+						dataAnterior, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);
+		
+		
+		HistoricoConta historicoContaDataAnterior2 = 
+				new HistoricoConta(
+						dataAnterior, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(10), 
+						conta
+					);
+		
+		List<HistoricoConta> historicosContaDataAnterior = new ArrayList<HistoricoConta>(); 
+		historicosContaDataAnterior.add(historicoContaDataAnterior1);
+		historicosContaDataAnterior.add(historicoContaDataAnterior2);		
+		
+		
+		
+		// historicos do perido da consulta.						
+		HistoricoConta historicoContaPeriodoConsulta1 = 
+				new HistoricoConta(
+						dataInicial, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);
+		
+		
+		HistoricoConta historicoContaPeriodoConsulta2 = 
+				new HistoricoConta(
+						dataInicial, 
+						TipoTransacao.CREDITO, 
+						new BigDecimal(10), 
+						new BigDecimal(0.0), 
+						conta
+					);		
+	
+		List<HistoricoConta> historicosContaPeridoConsuta =
+				new ArrayList<HistoricoConta>();
+		
+		historicosContaPeridoConsuta.add(historicoContaPeriodoConsulta1);
+		historicosContaPeridoConsuta.add(historicoContaPeriodoConsulta2);
+		
+		// Lancamentos de custas para o periodo da consulta		
+		Lancamento lancamentoPeridoConsulta1 = new Lancamento();
+		lancamentoPeridoConsulta1.setDataLancamento(dataInicial);
+				
+		lancamentoPeridoConsulta1.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 1"
+				)
+			);
+		
+		lancamentoPeridoConsulta1.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 1"
+				)
+			);
+		
+		Lancamento lancamentoPeridoConsulta2 =new Lancamento();
+		lancamentoPeridoConsulta2.setDataLancamento(dataFinal);
+				
+		lancamentoPeridoConsulta2.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 2"
+				)
+			);
+		
+		lancamentoPeridoConsulta2.addCusta( 
+				new Custa(
+					new BigDecimal(10), 
+					"Natureza 2"
+				)
+			);		
+
+		List<Lancamento> lancamentosPeriodo = 
+				new ArrayList<Lancamento>();
+		
+		lancamentosPeriodo.add(lancamentoPeridoConsulta1);
+		lancamentosPeriodo.add(lancamentoPeridoConsulta2);		
+		
+		
+		// FIM DA MASSA DE DADOS PARA TESTE 
+	
+		when(
+			  clienteDao.localizar(Cliente.class, clientePesquisa) 	
+			).thenReturn(clienteRetorno);	
+		
+		
+		when(
+			  historicoContaDao.getHistoricosConta(dataAnterior, conta)
+			).thenReturn(historicosContaDataAnterior);		
+		
+		
+		ExtratoDTO extratoDTO = 
+				extratoServiceBean.getExtratoCliente(dataInicial, dataFinal, clientePesquisa);
+		
+		
+		
+		assertNotNull(extratoDTO);
+		assertEquals("Robson Oliveira Duarte", extratoDTO.getNomePessoa());
 		assertEquals(dataInicial, extratoDTO.getDataInicial());
 		assertEquals(dataFinal, extratoDTO.getDataFinal());
-		assertEquals("Robson Oliveira Duarte", extratoDTO.getNomePessoa());
-		assertEquals(expected, actual)
-	}	*/
+		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior()); // deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
+		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
+		assertEquals(6, extratoDTO.getExtratoItens().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
+		
+	}	
 	
 
 	

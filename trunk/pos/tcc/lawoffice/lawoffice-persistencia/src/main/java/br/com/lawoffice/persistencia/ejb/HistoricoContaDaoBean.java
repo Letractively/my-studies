@@ -48,8 +48,42 @@ public class HistoricoContaDaoBean extends BaseDaoBean implements HistoricoConta
 						criteriaBuilder.equal(root.get("dataTransacao").as(Date.class),date ),
 						criteriaBuilder.equal(root.get("conta"),conta)
 					)
-				);
+				).orderBy(
+						criteriaBuilder.asc(root.get("dataTransacao").as(Date.class))
+					);
 		
+		
+		return entityManager
+				.createQuery(criteriaQuery)
+				.getResultList();
+	}
+
+	
+	
+	
+	@Override
+	public List<HistoricoConta> getHistoricosConta(Date dataIncial, Date dataFinal, Conta conta) {
+		
+		CriteriaBuilder criteriaBuilder =
+				entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<HistoricoConta> criteriaQuery =
+				criteriaBuilder.createQuery(HistoricoConta.class);
+		
+		
+		Root<HistoricoConta> root =
+				criteriaQuery.from(HistoricoConta.class);
+		
+		
+		criteriaQuery.select(root)
+			.where(
+					criteriaBuilder.and(
+							criteriaBuilder.between(root.get("dataTransacao").as(Date.class), dataIncial, dataFinal),
+							criteriaBuilder.equal(root.get("conta"),conta)
+						)
+				).orderBy(
+						criteriaBuilder.asc(root.get("dataTransacao").as(Date.class))
+					);
 		
 		return entityManager
 				.createQuery(criteriaQuery)
