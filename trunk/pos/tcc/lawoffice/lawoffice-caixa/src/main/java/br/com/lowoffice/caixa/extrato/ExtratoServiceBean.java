@@ -13,7 +13,8 @@ import javax.ejb.Stateful;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Pessoa;
-import br.com.lawoffice.persistencia.PessoaDao;
+import br.com.lawoffice.persistencia.ClienteDao;
+import br.com.lawoffice.persistencia.ColaboradorDao;
 
 /**
  * 
@@ -29,17 +30,32 @@ import br.com.lawoffice.persistencia.PessoaDao;
 @Remote(ExtratoServiceRemote.class)
 public class ExtratoServiceBean implements ExtratoService{
 
-	
-	
 
+	@EJB
+	private ColaboradorDao colaboradorDao;
 	
+	
+	@EJB
+	private ClienteDao clienteDao;
 
-	
+
 	@Override
 	public ExtratoDTO getExtratoColaborador(Date dataInicial, Date dataFinal,
 			Colaborador colaborador) {
 		validarParametros(dataInicial, dataFinal, colaborador);
-		return null;
+		
+		colaborador = 
+				colaboradorDao.localizar(Colaborador.class, colaborador);
+		
+		if(colaborador == null)
+			return null;
+		
+		// obter saldo da datainicial - 1
+		// obter historico da conta no periodo
+		// obter lancamentos ( custas ) no perido
+		// criar lista de itens do historicos + custas .. 
+		
+		return new ExtratoDTO(null, null, null);
 	}
 
 
@@ -50,8 +66,16 @@ public class ExtratoServiceBean implements ExtratoService{
 	@Override
 	public ExtratoDTO getExtratoCliente(Date dataInicial, Date dataFinal,
 			Cliente cliente) {
-		// TODO Auto-generated method stub
-		return null;
+		validarParametros(dataInicial, dataFinal, cliente);
+		
+		cliente =
+				clienteDao.localizar(Cliente.class, cliente);
+		
+		if(cliente == null)
+			return null;
+				
+		
+		return new ExtratoDTO(null, null, null);
 	}	
 	
 	
@@ -181,15 +205,20 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 	
 	
-	private void validarParametros(Date dataInicial, Date dataFinal,
-			Pessoa pessoa) {
+	private void validarParametros(Date dataInicial, Date dataFinal,Pessoa pessoa) {
 		if(dataInicial == null)
 			throw new IllegalArgumentException("Data inicial nula");
 		if(dataFinal == null)
 			throw new IllegalArgumentException("Data final nula");
 		if(pessoa == null || pessoa.getId() == null)
-			throw new IllegalArgumentException("Pessoa nula ou Pessoa sem ID"); 
-		
+			throw new IllegalArgumentException("Pessoa nula ou Pessoa sem ID"); 		
+	}
+
+
+
+
+	public void setColaboradorDao(ColaboradorDao colaboradorDao) {
+		this.colaboradorDao = colaboradorDao;
 	}
 
 
@@ -197,8 +226,12 @@ public class ExtratoServiceBean implements ExtratoService{
 
 
 
+	public void setClienteDao(ClienteDao clienteDao) {
+		this.clienteDao = clienteDao;
+	}
 
 
+	
 
 
 
