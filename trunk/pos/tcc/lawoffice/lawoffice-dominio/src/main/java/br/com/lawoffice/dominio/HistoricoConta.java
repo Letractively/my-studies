@@ -45,11 +45,11 @@ public class HistoricoConta implements EntityBase{
 	private TipoTransacao tipoTransacao;
 	
 	
-	@Column(name="VALOR_TRANSACAO")
+	@Column(name="VALOR_TRANSACAO", precision = 19 , scale = 2)
 	private BigDecimal valorTransacao;
 
 	
-	@Column(name="SALDO_ANTERIOR")
+	@Column(name="SALDO_ANTERIOR", precision = 19 , scale = 2)
 	private BigDecimal saloAnterior;	
 	
 	

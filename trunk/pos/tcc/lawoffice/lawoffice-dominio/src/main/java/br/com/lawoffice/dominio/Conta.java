@@ -32,7 +32,7 @@ public class Conta implements EntityBase{
 	@Column(name="ID")
 	private Long id;
 	
-	@Column(name="SALDO")
+	@Column(name="SALDO", precision = 19 , scale = 2)
 	private BigDecimal saldo;
 	
 	@OneToMany(mappedBy="conta", cascade = CascadeType.ALL)
