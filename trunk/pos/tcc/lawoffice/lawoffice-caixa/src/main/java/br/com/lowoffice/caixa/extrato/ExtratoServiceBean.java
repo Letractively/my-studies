@@ -5,6 +5,7 @@ package br.com.lowoffice.caixa.extrato;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +17,14 @@ import javax.ejb.Stateful;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
+import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.HistoricoConta;
+import br.com.lawoffice.dominio.Lancamento;
 import br.com.lawoffice.dominio.Pessoa;
 import br.com.lawoffice.persistencia.ClienteDao;
 import br.com.lawoffice.persistencia.ColaboradorDao;
 import br.com.lawoffice.persistencia.HistoricoContaDao;
+import br.com.lawoffice.persistencia.LancamentoDao;
 
 /**
  * 
@@ -47,6 +51,10 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 	@EJB
 	private HistoricoContaDao historicoContaDao;
+	
+	
+	@EJB
+	private LancamentoDao lancamentoDao;
 
 
 	@Override
@@ -72,34 +80,12 @@ public class ExtratoServiceBean implements ExtratoService{
 		
 		addItemExtrato(
 			extratoDTO,
-			dataInicial,
-			dataFinal,
-			colaborador.getConta()
+			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, colaborador.getConta()),
+			lancamentoDao.getLancamentos(dataInicial, dataFinal, colaborador)
 		);
-		
-		// obter historico da conta no periodo
-		// obter lancamentos ( custas ) no perido
-		// criar lista de itens do historicos + custas .. 
 		
 		return extratoDTO;
 	}
-
-
-
-
-	private void addItemExtrato(ExtratoDTO extratoDTO, Date dataInicial,
-			Date dataFinal, Conta conta) {
-		
-		
-		List<HistoricoConta> historicosConta =
-				historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta);
-		
-		
-		for (HistoricoConta historicoConta : historicosConta) {				
-			
-		}
-	}
-
 
 
 
@@ -116,20 +102,53 @@ public class ExtratoServiceBean implements ExtratoService{
 				
 		
 		ExtratoDTO extratoDTO =
-				createExtratoDTO(
-						dataInicial, 
-						dataFinal, 
-						cliente,
-						cliente.getConta()
-					);
+			createExtratoDTO(
+					dataInicial, 
+					dataFinal, 
+					cliente,
+					cliente.getConta()
+				);
 		
-
+		addItemExtrato(
+			extratoDTO,
+			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, cliente.getConta()),
+			lancamentoDao.getLancamentos(dataInicial, dataFinal, cliente)
+		);		
+			
 		
 		return extratoDTO;
 	}	
 	
 	
 
+	//TODO: javadoc
+	private void addItemExtrato(ExtratoDTO extratoDTO,
+			List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
+
+		for (Lancamento lancamento : lancamentos) {			
+			for (Custa custa : lancamento.getCustas()) {
+				extratoDTO.addItemExtrato( 
+					new ItemExtrato(
+						lancamento.getDataLancamento(),
+						custa.getNatureza(),
+						custa.getValor()
+					) 
+				);
+			}
+		}
+		
+		for (HistoricoConta historicoConta : historicosConta) {				
+			extratoDTO.addItemExtrato( 
+				new ItemExtrato(
+					historicoConta.getDataTransacao(), 
+					historicoConta.getTipoTransacao().getValue(), 
+					historicoConta.getValorTransacao()
+				) 
+			);
+		}
+		
+		Collections.sort(extratoDTO.getItensExtrato());
+	}	
 	
 	
 	/**
@@ -215,11 +234,9 @@ public class ExtratoServiceBean implements ExtratoService{
 	}
 
 
-
 	public void setClienteDao(ClienteDao clienteDao) {
 		this.clienteDao = clienteDao;
 	}
-
 
 	
 	public void setHistoricoContaDao(HistoricoContaDao historicoContaDao) {
@@ -227,166 +244,8 @@ public class ExtratoServiceBean implements ExtratoService{
 	}
 
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-	/*
-	*//**
-	 * Entity Manager para realizar as consultas na base de dados.
-	 *//*
-	@PersistenceContext(unitName="lawoffice-custas")
-	EntityManager entityManager;
-	
-	
-	*//**
-	 * {@link List} de {@link Custa} com o resultado da pesquisa.
-	 *//*
-	private List<Custa> listaCustas ;
-	
-	
-	@Override
-	public List<Custa> getCustasPorDataCliente(Date dataInicial, Date dataFinal, Long idCliente){
-		this.checarDataInicial(dataInicial) // TODO: refatorar a validacao conforme o bean de fluxo
-			.checarDataFinal(dataFinal) // criar um metodo que da resolve tudo
-			.checarIdCliente(idCliente);
-	
-		List<Lancamento> listaLancamentos = 
-			getLancamentos(dataInicial,dataFinal,idCliente);
-		
-		listaCustas = new ArrayList<Custa>();
-		
-		for (Lancamento lancamento : listaLancamentos)
-			listaCustas.addAll(lancamento.getCustas());
-		
-		return listaCustas;
+	public void setLancamentoDao(LancamentoDao lancamentoDao) {
+		this.lancamentoDao = lancamentoDao;
 	}
 
-
-	@Override
-	public BigDecimal getValorTotalPesquisa() {
-		if(listaCustas == null || listaCustas.isEmpty())
-			return new BigDecimal(0.0);
-		
-		BigDecimal valorTotal = new BigDecimal(0.0);
-		
-		for (Custa custa : listaCustas) 			
-			valorTotal = valorTotal.add(custa.getValor());
-				
-		return valorTotal;
-	}
-	
-	@Override
-	public byte[] gerarExtrato(TipoExtrato tipoExtrato){
-		if(listaCustas == null || listaCustas.isEmpty())
-			throw new IllegalStateException("Não existe custas para gerar o extrato");
-		
-		ExtratoReport extratoReport = 
-			SimpleFactoryExtratoReport.createExtratoReport(tipoExtrato);
-		
-		return extratoReport.gerarExtrato(listaCustas);
-	}	
-	
-	
-	private List<Lancamento> getLancamentos(Date dataInicial, Date dataFinal, Long idCliente) {
-		CriteriaBuilder criteriaBuilder =
-			entityManager.getCriteriaBuilder();
-		
-		CriteriaQuery<Lancamento> criteriaQuery =
-			criteriaBuilder.createQuery(Lancamento.class);
-		
-		Root<Lancamento> root =
-			criteriaQuery.from(Lancamento.class);
-		
-		criteriaQuery
-			.select(root)
-			.where(
-				criteriaBuilder.and(
-					criteriaBuilder.between(root.get("dataLancamento").as(Date.class), dataInicial, dataFinal),
-					criteriaBuilder.equal(root.get("cliente").get("id"), idCliente)
-				)		
-			);
-		
-		return entityManager
-			.createQuery(criteriaQuery)
-			.getResultList();
-	}
-
-	
-	private ExtratoBean checarDataInicial(Date dataInicial) {
-		if(dataInicial == null)
-			throw new IllegalArgumentException("Data Inicial nula");
-		return this;
-	}
-	
-	private ExtratoBean checarDataFinal(Date dataFinal) {
-		if(dataFinal == null)
-			throw new IllegalArgumentException("Data Final nula");
-		return this;		
-	}
-	
-	private ExtratoBean checarIdCliente(Long idCliente){
-		if(idCliente == null)
-			throw new IllegalArgumentException("ID cliente nulo");
-		return this;
-	}
-
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}*/
 }

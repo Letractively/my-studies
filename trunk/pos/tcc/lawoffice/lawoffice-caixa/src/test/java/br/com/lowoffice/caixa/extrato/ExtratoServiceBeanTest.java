@@ -29,6 +29,7 @@ import br.com.lawoffice.dominio.TipoTransacao;
 import br.com.lawoffice.persistencia.ClienteDao;
 import br.com.lawoffice.persistencia.ColaboradorDao;
 import br.com.lawoffice.persistencia.HistoricoContaDao;
+import br.com.lawoffice.persistencia.LancamentoDao;
 
 /**
  * 
@@ -49,9 +50,14 @@ public class ExtratoServiceBeanTest {
 	@Mock
 	private HistoricoContaDao historicoContaDao;
 	
+
+	@Mock
+	private LancamentoDao lancamentoDao;
+	
 	
 	@InjectMocks
 	private ExtratoServiceBean extratoServiceBean;
+
 	
 	
 	@Before
@@ -253,8 +259,8 @@ public class ExtratoServiceBeanTest {
 		
 		HistoricoConta historicoContaPeriodoConsulta2 = 
 				new HistoricoConta(
-						dataInicial, 
-						TipoTransacao.CREDITO, 
+						dataFinal, 
+						TipoTransacao.DEBITO, 
 						new BigDecimal(10), 
 						new BigDecimal(0.0), 
 						conta
@@ -321,14 +327,20 @@ public class ExtratoServiceBeanTest {
 			).thenReturn(historicosContaDataAnterior);
 		
 	
+		
 		when( 
 			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta)
 		).thenReturn(historicosContaPeridoConsuta);
 		
 		
+		
+		when(
+			lancamentoDao.getLancamentos(dataInicial,dataFinal,colaboradorRetorno)
+		).thenReturn(lancamentosPeriodo);
+		
+		
 		ExtratoDTO extratoDTO = 
 				extratoServiceBean.getExtratoColaborador(dataInicial, dataFinal, colaboradorPesquisa);
-		
 		
 		
 		assertNotNull(extratoDTO);
@@ -338,7 +350,13 @@ public class ExtratoServiceBeanTest {
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior());// deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
 		assertEquals(6, extratoDTO.getItensExtrato().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
-
+		// ordenados pela data de lançamento
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(0).getDataLancamento());
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(1).getDataLancamento());
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(2).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(3).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(4).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(5).getDataLancamento());
 	}
 	
 	
@@ -404,7 +422,7 @@ public class ExtratoServiceBeanTest {
 		
 		
 		
-		// historicos do perido da consulta.						
+		// ordenados pela data de lançamento/transacao						
 		HistoricoConta historicoContaPeriodoConsulta1 = 
 				new HistoricoConta(
 						dataInicial, 
@@ -417,8 +435,8 @@ public class ExtratoServiceBeanTest {
 		
 		HistoricoConta historicoContaPeriodoConsulta2 = 
 				new HistoricoConta(
-						dataInicial, 
-						TipoTransacao.CREDITO, 
+						dataFinal, 
+						TipoTransacao.DEBITO, 
 						new BigDecimal(10), 
 						new BigDecimal(0.0), 
 						conta
@@ -488,6 +506,11 @@ public class ExtratoServiceBeanTest {
 				historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta)
 			).thenReturn(historicosContaPeridoConsuta);		
 		
+		when(
+				lancamentoDao.getLancamentos(dataInicial,dataFinal,clienteRetorno)
+			).thenReturn(lancamentosPeriodo);
+		
+		
 		ExtratoDTO extratoDTO = 
 				extratoServiceBean.getExtratoCliente(dataInicial, dataFinal, clientePesquisa);
 		
@@ -500,6 +523,13 @@ public class ExtratoServiceBeanTest {
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior()); // deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
 		assertEquals(6, extratoDTO.getItensExtrato().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
+		// ordenados pela data de lançamento/transacao
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(0).getDataLancamento());
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(1).getDataLancamento());
+		assertEquals(dataInicial, extratoDTO.getItensExtrato().get(2).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(3).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(4).getDataLancamento());
+		assertEquals(dataFinal, extratoDTO.getItensExtrato().get(5).getDataLancamento());
 		
 	}	
 	

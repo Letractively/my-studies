@@ -17,5 +17,5 @@ import br.com.lawoffice.persistencia.ColaboradorDao;
 @Stateless
 @Local(ColaboradorDao.class)
 public class ColaboradorDaoBean extends BaseDaoBean implements ColaboradorDao {
-
+	
 }

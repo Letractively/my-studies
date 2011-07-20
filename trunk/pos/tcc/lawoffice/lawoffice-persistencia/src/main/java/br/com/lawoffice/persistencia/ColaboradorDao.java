@@ -13,5 +13,4 @@ import br.com.lawoffice.dominio.Colaborador;
  *
  */
 public interface ColaboradorDao extends BaseDao {
-
 }

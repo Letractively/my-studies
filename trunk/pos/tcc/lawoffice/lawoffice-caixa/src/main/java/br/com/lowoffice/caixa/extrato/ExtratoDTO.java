@@ -1,5 +1,6 @@
 package br.com.lowoffice.caixa.extrato;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +17,7 @@ import br.com.lawoffice.dominio.Pessoa;
  * @author robson
  *
  */
-public class ExtratoDTO {
+public class ExtratoDTO implements Serializable{
 
 	
 	/**
@@ -49,7 +50,7 @@ public class ExtratoDTO {
 	 */
 	private List<ItemExtrato> itensExtrato;
 
-	
+	//TODO: java doc
 	public ExtratoDTO(String nomePessoa, BigDecimal saldoAnterior,
 			BigDecimal saldoAtual, Date dataInicial, Date dataFinal) {
 		super();
@@ -94,4 +95,14 @@ public class ExtratoDTO {
 		return itensExtrato;
 	}
 
+
+
+	@Override
+	public String toString() {
+		return "ExtratoDTO [nomePessoa=" + nomePessoa + ", saldoAnterior="
+				+ saldoAnterior + ", saldoAtual=" + saldoAtual
+				+ ", dataInicial=" + dataInicial + ", dataFinal=" + dataFinal
+				+ ", itensExtrato=" + itensExtrato + "]";
+	}
+	
 }

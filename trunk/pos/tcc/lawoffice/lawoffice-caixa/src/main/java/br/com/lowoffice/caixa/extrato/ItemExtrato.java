@@ -3,6 +3,7 @@
  */
 package br.com.lowoffice.caixa.extrato;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  * @author rduarte
  *
  */
-public class ItemExtrato {
+public class ItemExtrato implements Serializable, Comparable<ItemExtrato>{
 
 	/**
 	 * 
@@ -31,9 +32,41 @@ public class ItemExtrato {
 	 *  Valor do item.
 	 */
 	private BigDecimal valor;
+
 	
-	
-	
-	
+	public ItemExtrato(Date dataLancamento, String natureza, BigDecimal valor) {
+		super();
+		this.dataLancamento = dataLancamento;
+		this.natureza = natureza;
+		this.valor = valor;
+	}
+
+
+	public Date getDataLancamento() {
+		return dataLancamento;
+	}
+
+
+	public String getNatureza() {
+		return natureza;
+	}
+
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+
+	@Override
+	public int compareTo(ItemExtrato itemExtrato) {
+		return this.dataLancamento.compareTo(itemExtrato.dataLancamento);
+	}
+
+
+	@Override
+	public String toString() {
+		return "ItemExtrato [dataLancamento=" + dataLancamento + ", natureza="
+				+ natureza + ", valor=" + valor + "]";
+	}
 	
 }
