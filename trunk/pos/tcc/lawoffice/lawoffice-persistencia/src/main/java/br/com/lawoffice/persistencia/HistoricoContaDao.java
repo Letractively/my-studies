@@ -45,10 +45,10 @@ public interface HistoricoContaDao extends BaseDao {
 	 * 	  
 	 * Caso nao haja {@link HistoricoConta} para o periodo passado um {@link List} vazio será retornado.	 * 
 	 * 
-	 * @param dataIncial - para consulta.
+	 * @param dataInicial - para consulta.
 	 * @param dataFinal - para consulta.
 	 * @param conta - da consulta.
 	 * @return {@link List} - com os {@link HistoricoConta} no periodo passado, ou vazio caso nao haja historico para o periodo passado.
 	 */
-	List<HistoricoConta> getHistoricosConta(Date dataIncial, Date dataFinal, Conta conta);
+	List<HistoricoConta> getHistoricosConta(Date dataInicial, Date dataFinal, Conta conta);
 }

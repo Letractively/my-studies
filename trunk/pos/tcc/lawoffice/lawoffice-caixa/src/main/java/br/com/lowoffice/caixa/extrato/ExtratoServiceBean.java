@@ -70,12 +70,34 @@ public class ExtratoServiceBean implements ExtratoService{
 				);
 
 		
+		addItemExtrato(
+			extratoDTO,
+			dataInicial,
+			dataFinal,
+			colaborador.getConta()
+		);
 		
 		// obter historico da conta no periodo
 		// obter lancamentos ( custas ) no perido
 		// criar lista de itens do historicos + custas .. 
 		
 		return extratoDTO;
+	}
+
+
+
+
+	private void addItemExtrato(ExtratoDTO extratoDTO, Date dataInicial,
+			Date dataFinal, Conta conta) {
+		
+		
+		List<HistoricoConta> historicosConta =
+				historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta);
+		
+		
+		for (HistoricoConta historicoConta : historicosConta) {				
+			
+		}
 	}
 
 

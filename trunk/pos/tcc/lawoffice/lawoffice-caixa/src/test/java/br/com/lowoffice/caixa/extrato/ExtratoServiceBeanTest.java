@@ -320,6 +320,10 @@ public class ExtratoServiceBeanTest {
 			 historicoContaDao.getHistoricosConta(dataAnterior, conta)
 			).thenReturn(historicosContaDataAnterior);
 		
+	
+		when( 
+			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta)
+		).thenReturn(historicosContaPeridoConsuta);
 		
 		
 		ExtratoDTO extratoDTO = 
@@ -333,7 +337,7 @@ public class ExtratoServiceBeanTest {
 		assertEquals(dataFinal, extratoDTO.getDataFinal());
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior());// deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
-		assertEquals(6, extratoDTO.getExtratoItens().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
+		assertEquals(6, extratoDTO.getItensExtrato().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
 
 	}
 	
@@ -480,6 +484,10 @@ public class ExtratoServiceBeanTest {
 			).thenReturn(historicosContaDataAnterior);		
 		
 		
+		when( 
+				historicoContaDao.getHistoricosConta(dataInicial, dataFinal, conta)
+			).thenReturn(historicosContaPeridoConsuta);		
+		
 		ExtratoDTO extratoDTO = 
 				extratoServiceBean.getExtratoCliente(dataInicial, dataFinal, clientePesquisa);
 		
@@ -491,7 +499,7 @@ public class ExtratoServiceBeanTest {
 		assertEquals(dataFinal, extratoDTO.getDataFinal());
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAnterior()); // deve obter o utilmo saldo anterior para a data anterior da data inicial de consulta
 		assertEquals(new BigDecimal(10), extratoDTO.getSaldoAtual());
-		assertEquals(6, extratoDTO.getExtratoItens().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
+		assertEquals(6, extratoDTO.getItensExtrato().size()); // 2 historicos conta + 4 custas de 2 lancamento >> vide massa de dados
 		
 	}	
 	

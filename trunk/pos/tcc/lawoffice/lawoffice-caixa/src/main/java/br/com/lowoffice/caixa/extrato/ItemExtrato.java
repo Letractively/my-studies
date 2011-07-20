@@ -13,7 +13,7 @@ import java.util.Date;
  * @author rduarte
  *
  */
-public class ExtroItem {
+public class ItemExtrato {
 
 	/**
 	 * 

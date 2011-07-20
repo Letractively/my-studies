@@ -1,6 +1,7 @@
 package br.com.lowoffice.caixa.extrato;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class ExtratoDTO {
 	/**
 	 *  Itens do extrado. 
 	 */
-	private List<ExtroItem> extratoItens;
+	private List<ItemExtrato> itensExtrato;
 
 	
 	public ExtratoDTO(String nomePessoa, BigDecimal saldoAnterior,
@@ -57,6 +58,15 @@ public class ExtratoDTO {
 		this.saldoAtual = saldoAtual;
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
+		itensExtrato = new ArrayList<ItemExtrato>();
+	}
+
+	
+	
+	public void addItemExtrato(ItemExtrato itemExtrato){
+		if(itemExtrato !=null){
+			itensExtrato.add(itemExtrato);
+		}
 	}
 
 	
@@ -80,7 +90,8 @@ public class ExtratoDTO {
 		return dataFinal;
 	}
 
-	public List<ExtroItem> getExtratoItens() {
-		return extratoItens;
+	public List<ItemExtrato> getItensExtrato() {
+		return itensExtrato;
 	}
+
 }
