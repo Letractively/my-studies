@@ -19,7 +19,7 @@ import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
  * @author robson
  *
  */
-@ManagedBean()
+@ManagedBean
 @ViewScoped 
 public class LancamentoMB extends AutoCompleteMB {
 	

@@ -25,7 +25,7 @@ import br.com.lawoffice.persistencia.LancamentoDao;
  *
  */
 @Stateless
-@Local(ColaboradorDao.class)
+@Local(LancamentoDao.class)
 public class LancamentoDaoBean extends BaseDaoBean implements LancamentoDao {
 
 	@Override

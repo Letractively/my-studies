@@ -1,4 +1,4 @@
-package br.com.lawoffice.web.mb.custa;
+package br.com.lawoffice.web.mb.caixa;
 
 import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import org.primefaces.model.StreamedContent;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
-import br.com.lowoffice.caixa.extrato.ExtratoLocal;
+import br.com.lowoffice.caixa.extrato.ExtratoServiceLocal;
 import br.com.lowoffice.caixa.extrato.TipoExtrato;
 
 /**

@@ -14,7 +14,7 @@
   </navigation-case>
   <navigation-case>
    <from-outcome>extrato</from-outcome>
-   <to-view-id>/custas/extrato.xhtml</to-view-id>
+   <to-view-id>/caixa/extrato.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>credito</from-outcome>
@@ -25,20 +25,12 @@
    <to-view-id>/caixa/debito.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>fluxo</from-outcome>
-   <to-view-id>/caixa/fluxo.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
    <from-outcome>cliente</from-outcome>
    <to-view-id>/dados/cliente.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>colaborador</from-outcome>
    <to-view-id>/dados/colaborador.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>saldo</from-outcome>
-   <to-view-id>/caixa/saldo.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <application>
