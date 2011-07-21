@@ -6,17 +6,12 @@
         <groupId>br.com</groupId>
         <version>1.0</version>
     </parent>
-    <groupId>br.com</groupId>
+    
     <artifactId>lawoffice-custas</artifactId>
-    <packaging>ejb</packaging>
-    <version>1.0</version>
+    <packaging>ejb</packaging>    
     <name>lawoffice-custas</name>
-    <description>this module contains functions for work custon..</description>
-    <url>http://maven.apache.org</url>
+    
     <dependencies>
-
-
-
         <dependency>
         	<groupId>br.com</groupId>
         	<artifactId>lawoffice-dominio</artifactId>

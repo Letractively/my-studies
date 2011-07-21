@@ -7,14 +7,11 @@
     <groupId>br.com</groupId>
     <version>1.0</version>
   </parent>
-  <groupId>br.com</groupId>
-  <artifactId>lawoffice-web</artifactId>
-  <version>1.0</version>
+ 
+  <artifactId>lawoffice-web</artifactId> 
   <packaging>war</packaging>
   <name>lawoffice-web</name>
-  <url>http://maven.apache.org</url>
-  <repositories>
-  </repositories>
+
   <dependencies>
   	<dependency>
   		<groupId>br.com</groupId>
@@ -81,16 +78,6 @@
     			<additionalProjectFacets>
     			    <jst.jsf>2.0</jst.jsf>
     			</additionalProjectFacets>
-    		</configuration>
-    	</plugin>
-    	<plugin>
-    		<groupId>org.codehaus.mojo</groupId>
-    		<artifactId>jboss-maven-plugin</artifactId>
-    		<version>1.4.1</version>
-    		<configuration>
-    			<jbossHome>/opt/app/jboss-6.0.0.20100911-M5</jbossHome>
-          		<serverName>lawoffice</serverName>
-          		<fileName>target/lawoffice.war</fileName>    			
     		</configuration>
     	</plugin>
     </plugins>

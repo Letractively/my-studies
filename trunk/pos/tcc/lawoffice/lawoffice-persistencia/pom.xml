@@ -7,11 +7,9 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>br.com</groupId>
+    
     <artifactId>lawoffice-persistencia</artifactId>
-    <version>1.0</version>
     <packaging>ejb</packaging>
-
     <name>lawoffice-persistencia</name>
 
 
