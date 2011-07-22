@@ -1,9 +1,9 @@
-package br.com.lowoffice.caixa.extrato;
+package br.com.lawoffice.caixa.extrato;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -20,7 +20,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import br.com.lawoffice.caixa.extrato.ExtratoDTO;
+import br.com.lawoffice.caixa.extrato.ExtratoReport;
 import br.com.lawoffice.caixa.extrato.ExtratoServiceBean;
+import br.com.lawoffice.caixa.extrato.FactoryExtratoReport;
+import br.com.lawoffice.caixa.extrato.TipoExtrato;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -55,6 +58,10 @@ public class ExtratoServiceBeanTest {
 
 	@Mock
 	private LancamentoDao lancamentoDao;
+	
+	
+	@Mock
+	private FactoryExtratoReport factoryExtratoReport;
 	
 	
 	@InjectMocks
@@ -537,9 +544,47 @@ public class ExtratoServiceBeanTest {
 	
 
 	
-	@Test
-	public void testGerarExtrato() {
-		fail("Not yet implemented");
+	@Test(expected=IllegalStateException.class)
+	public void deveLancarExcecaoQuandoExtratoDTONuloGerarExtrato() {
+		extratoServiceBean.gerarExtrato(TipoExtrato.PDF);
 	}
+	
+	
+	@Test()
+	public void deveRetorarUmArrayDebyteQuandoExtratoDTOGeradoGerarExtrato() {
+		
+		Cliente cliente = new Cliente();
+		cliente.setId(1l);		
+		Conta conta = new Conta();
+		cliente.setConta(conta);
+		
+		when(
+				clienteDao.localizar(Cliente.class, cliente)
+			).thenReturn(cliente);
+		
+		
+		ExtratoDTO extratoDTO = 
+				extratoServiceBean.getExtratoCliente(new Date(), new Date(), cliente);
+		
+		
+		ExtratoReport extratoReport = mock(ExtratoReport.class);
+			
+	
+		when(
+			extratoReport.gerarExtrato(extratoDTO)
+		).thenReturn(new byte[0]);
+		
+		
+		when(
+			factoryExtratoReport.createExtratoReport(TipoExtrato.PDF)
+		).thenReturn(extratoReport);
+		
+		
+		byte[] extrato = 
+				extratoServiceBean.gerarExtrato(TipoExtrato.PDF);
+		
+		assertNotNull(extrato); 		
+	}	
+	
 
 }

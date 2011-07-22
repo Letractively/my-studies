@@ -3,13 +3,10 @@
  */
 package br.com.lawoffice.caixa.extrato;
 
-import java.util.List;
-
-import br.com.lawoffice.dominio.Custa;
 
 /**
  * 
- * Interface de serviço para a criação do extrato.
+ * Interface de serviço para a criação de arquivo de extrato.
  * 
  * @author robson
  *

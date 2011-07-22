@@ -14,6 +14,7 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
 
+import br.com.lawoffice.caixa.extrato.jasper.SimpleFactoryExtratoReportJasper;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -56,7 +57,14 @@ public class ExtratoServiceBean implements ExtratoService{
 	@EJB
 	private LancamentoDao lancamentoDao;
 
+	
+	private FactoryExtratoReport factoryExtratoReport;
 
+	
+	private ExtratoDTO extratoDTO;
+
+
+	
 	@Override
 	public ExtratoDTO getExtratoColaborador(Date dataInicial, Date dataFinal,
 			Colaborador colaborador) {
@@ -69,17 +77,14 @@ public class ExtratoServiceBean implements ExtratoService{
 			return null;
 		
 		
-		ExtratoDTO extratoDTO =
-				createExtratoDTO(
-					dataInicial, 
-					dataFinal, 
-					colaborador,
-					colaborador.getConta()
-				);
-
+		createExtratoDTO(
+			dataInicial, 
+			dataFinal, 
+			colaborador,
+			colaborador.getConta()
+		);
 		
 		addItemExtrato(
-			extratoDTO,
 			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, colaborador.getConta()),
 			lancamentoDao.getLancamentos(dataInicial, dataFinal, colaborador)
 		);
@@ -99,18 +104,15 @@ public class ExtratoServiceBean implements ExtratoService{
 		
 		if(cliente == null)
 			return null;
-				
 		
-		ExtratoDTO extratoDTO =
-			createExtratoDTO(
-					dataInicial, 
-					dataFinal, 
-					cliente,
-					cliente.getConta()
-				);
+		createExtratoDTO(
+				dataInicial, 
+				dataFinal, 
+				cliente,
+				cliente.getConta()
+			);
 		
 		addItemExtrato(
-			extratoDTO,
 			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, cliente.getConta()),
 			lancamentoDao.getLancamentos(dataInicial, dataFinal, cliente)
 		);		
@@ -122,8 +124,7 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 
 	//TODO: javadoc
-	private void addItemExtrato(ExtratoDTO extratoDTO,
-			List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
+	private void addItemExtrato(List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
 
 		for (Lancamento lancamento : lancamentos) {			
 			for (Custa custa : lancamento.getCustas()) {
@@ -160,20 +161,18 @@ public class ExtratoServiceBean implements ExtratoService{
 	 * @param conta - da pessoa da consulta.
 	 * @return  {@link ExtratoDTO}
 	 */
-	private ExtratoDTO createExtratoDTO(Date dataInicial, Date dataFinal, Pessoa pessoa, Conta conta) {
-		return new ExtratoDTO(
-			pessoa.getNome(), 
-			getSaldoAnterior(conta,dataInicial), 
-			conta.getSaldo(),
-			dataInicial, 
-			dataFinal
-		);
+	private void createExtratoDTO(Date dataInicial, Date dataFinal, Pessoa pessoa, Conta conta) {
+		extratoDTO = 
+			new ExtratoDTO(
+				pessoa.getNome(), 
+				getSaldoAnterior(conta,dataInicial), 
+				conta.getSaldo(),
+				dataInicial, 
+				dataFinal
+			);
 	}	
 	
 
-
-	
-	
 	
 	
 	/**
@@ -202,17 +201,24 @@ public class ExtratoServiceBean implements ExtratoService{
 
 	
 	
-	
-	
-	
 
 	@Override
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato) {
-		// TODO Auto-generated method stub
-		return null;
+		if(extratoDTO == null)
+			throw new IllegalStateException("Nao foi realizado nenhuma pesquisa");
+		
+		
+		// TODO: esse if está aqui pq ainda não entedi o lance do CDI
+		// se der tempo vamos remover e aplicar o cdi senão vai assim mesmo !! ( 23/07/2011 )
+		if(factoryExtratoReport == null){
+			factoryExtratoReport  = new SimpleFactoryExtratoReportJasper();
+		}
+
+		ExtratoReport extratoReport =
+				factoryExtratoReport.createExtratoReport(tipoExtrato);
+		
+		return extratoReport.gerarExtrato(extratoDTO);
 	}
-	
-	
 	
 	
 	
@@ -248,4 +254,9 @@ public class ExtratoServiceBean implements ExtratoService{
 		this.lancamentoDao = lancamentoDao;
 	}
 
+
+
+	public void setFactoryExtratoReport(FactoryExtratoReport factoryExtratoReport) {
+		this.factoryExtratoReport = factoryExtratoReport;
+	}
 }
