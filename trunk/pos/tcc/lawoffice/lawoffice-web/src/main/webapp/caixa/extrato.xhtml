@@ -7,135 +7,32 @@
     
   <ui:define name="title">Extrato</ui:define>
   
-   <ui:define name="css">
- 		<h:outputStylesheet name="tablesort.css" library="css"/>
-   </ui:define>
+
   
   <ui:define name="body">
   	
-  	<h:form prependId="false">
-  		
-  		<div id="filtros" >
-			<div id="divInput">
-	  			<div>
-	  				<h:outputLabel value="Data Inicial:" for="dataInicial"/>
-	  				<p:calendar id="dataInicial" 
-	  					pattern="dd/MM/yyyy" 
-	  					value="#{extratoMB.dataInicial}"
-	  					validator="dataValidator"
-	  					readOnlyInputText="true"
-	  					size="10"
-	  					onfocus="nofificationBar.hide()"
-	  					/>
-	  			</div>
-	  			<div>
-	  				<h:outputLabel value="Data Final:" for="dataFinal"/>
-	  				<p:calendar id="dataFinal" 
-	  					pattern="dd/MM/yyyy" 
-	  					readOnlyInputText="true"
-	  					value="#{extratoMB.dataFinal}"
-	  					validator="dataValidator"
-	  					size="10"
-	  					onfocus="nofificationBar.hide()"	  					
-	  					/>	  					  				
-	  			</div>
+		<div id="extrato" >
+			
+			<p:tabView style="border-bottom: none;"
+				onTabChange="nofificationBar.hide()">
+														
+				<p:tab title="#{msg.labelCliente}">
+					<h:form prependId="false">		
+						<ui:include src="/caixa/elements/extrato/extrato-cliente.xhtml"></ui:include>
+					</h:form>
+				</p:tab>
 				
-				<div>
-					<h:outputLabel value="Cliente: " for="cliente"/>
-					<p:autoComplete id="cliente"
-						value="#{extratoMB.cliente}"
-						completeMethod="#{extratoMB.listarClientes}"
-						var="cliente"
-						itemLabel="#{cliente.nome}"
-						itemValue="#{cliente}"
-						converter="clienteConverter"
-						validator="clienteValidator"
-						size="30"
-						onkeypress="nofificationBar.hide()"
-						/>
-				</div>
-	  			
-				<div style="padding-top: 12px;">
-					<p:commandButton value="Pesquisar" 
-						id="btnPesquisar"
-						action="#{extratoMB.pesquisarLancamentos}" 
-						update="tableCustas msg"
-						oncomplete="showHideNotificationBar();showHideTable()"
-						/>										
-				</div>	  			
-	  						
-			</div> 
-			<div style="clear: both;"></div> 			
-  		</div>
-  		
-  		<div class="divContent">
-  		
-  			<p:dataTable 
-  				value="#{extratoMB.listaCustas}"
-  				var="custa"
-  				id="tableCustas"
-  				>
-  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Data" /> 
-						</f:facet>
-						<h:outputText value="#{custa.lancamento.dataLancamento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-						
-					</p:column>  			
-  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Natureza" /> 
-						</f:facet>
-						<h:outputText value="#{custa.natureza}" />
-					</p:column>
-					
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Colaborador" /> 
-						</f:facet>
-						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Valor" /> 
-						</f:facet>
-						<h:outputText value="#{custa.valor}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</p:column>
-					
-					<f:facet name="footer">
-						Valor Total =
-						<h:outputText value="#{extratoMB.valorTotalPesquisa}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</f:facet>
-  			
-  			</p:dataTable>
-  		</div>
-  		
-		<div class="divContent" id="commandButtons">			
-			<p:commandButton 
-					ajax="false" 
-					value="Download Extrato"
-					immediate="true">
-				<p:fileDownload value="#{extratoMB.fileExtrado}" />
-			</p:commandButton>
-		</div>  		
-
-		<p:notificationBar position="bottom" 
-			effect="slide"
-			widgetVar="nofificationBar" 
-			styleClass="nofificationBar">
-		  	<p:messages id="msg" showDetail="true"  showSummary="true"/>
-		</p:notificationBar>  		
-	  
-  	</h:form>
+				<p:tab title="#{msg.labelColaborador}">
+					<h:form prependId="false">
+						<ui:include src="/caixa/elements/extrato/extrato-colaborador.xhtml"></ui:include>
+					</h:form>								
+				</p:tab>								
+			
+			</p:tabView>
+			<div>
+				<ui:include src="/caixa/elements/notification-bar/notification-bar-extrato.xhtml"></ui:include> 			
+			</div>
+		</div>
       
   </ui:define>
  

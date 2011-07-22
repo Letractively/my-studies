@@ -1,8 +1,19 @@
 package br.com.lawoffice.web.mb.caixa;
 
+import java.util.Date;
+
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.primefaces.model.StreamedContent;
+
+import br.com.lawoffice.caixa.extrato.ExtratoDTO;
+import br.com.lawoffice.caixa.extrato.ExtratoServiceLocal;
+import br.com.lawoffice.dominio.Cliente;
+import br.com.lawoffice.dominio.Colaborador;
+import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
@@ -16,96 +27,102 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 @ViewScoped
 public class ExtratoMB extends AutoCompleteMB{
 
-/*
-	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
 	
-	*//**
-	 * Lista de {@link Custa} com o resultado da pesquisa  
-	 *//*
-	private List<Custa> listaCustas;
+	/**
+	 *	DTO representando o resultado da pesquisa.
+	 */
+	private ExtratoDTO extratoDTO;
 
 	
-	*//**
-	 * Data inicial para filtrar a pesquisa de lançamentos de custas
-	 *//*
+	/**
+	 * Data inicial para filtrar a pesquisa do extrato.
+	 */
 	private Date dataInicial;
 	
 	
-	*//**
-	 * Data final para filtrar a pesquisa de lançamentos de custas
-	 *//*
+	/**
+	 * Data final para filtrar a pesquisa do extrato.
+	 */
 	private Date dataFinal;
 	
 	
-	*//**
-	 * valor totala cáculado para a pesquisa realizada.
-	 *//*
-	private BigDecimal valorTotalPesquisa;
-	
-	
-	*//**
+	/**
 	 * Arquivo para dowload do .pdf do extrado do resultado da pesquisa.
-	 *//*
+	 */
 	private StreamedContent fileExtrado;
 	
 	
-	*//**
+	/**
 	 * serviços de extrato de {@link Custa}
-	 *//*
+	 */
 	@EJB
-	private ExtratoLocal extrato;
+	private ExtratoServiceLocal extratoService;
 	
 	
 	
-	*//**
-	 * Pesquisa os Lançamentos de {@link Custa} para o {@link Cliente} no periodo passado. 
-	 *//*
-	public void pesquisarLancamentos(){			
-		listaCustas = 
-			extrato.getCustasPorDataCliente(
-				dataInicial, 
-				dataFinal, 
-				cliente.getId()
-			);
+	/**
+	 * Pesquisa o Extrato para o {@link Cliente} no periodo passado. 
+	 */
+	public void pesquisarExtratoCliente(){
+		extratoDTO =
+				extratoService.getExtratoCliente(dataInicial, dataFinal, cliente);
 		
-		if(listaCustas.isEmpty()){
-			adicionarMensagemAlerta(
-					null, 
-					null, 
-					"Não foi encontrado lançamento de custa para esse periodo"
-				);
+		if(extratoDTO.getItensExtrato().isEmpty()){
+			showMsgAlerta();			
 		}else{
 			
-			valorTotalPesquisa = extrato.getValorTotalPesquisa();
-			
-			fileExtrado = new DefaultStreamedContent(
-					new ByteArrayInputStream(extrato.gerarExtrato(TipoExtrato.PDF)), 
+/*			fileExtrado = new DefaultStreamedContent(
+					new ByteArrayInputStream(extratoService.gerarExtrato(TipoExtrato.PDF)), 
 					"application/pdf", 
-					getNomeArquivoFormatado()
-				);
+					getNomeArquivo()
+				);*/			
 		}
-
 	}
 	
+	/**
+	 * Pesquisa o Extrato para o {@link Colaborador} no periodo passado. 
+	 */
+	public void pesquisarExtratoColaborador(){
+		extratoDTO =
+				extratoService.getExtratoColaborador(dataInicial, dataFinal, colaborador);
+		
+		if(extratoDTO.getItensExtrato().isEmpty()){
+			showMsgAlerta();			
+		}
+	}
+
 	
 	
-	*//**
+	/**
 	 * Retorna o nome do arquivo formatado
 	 * 
 	 * @return {@link String}
-	 *//*
-	private String getNomeArquivoFormatado() {		
-		return cliente.getNome().replace(" ", "-")
-			+ "-"
-			+ DateFormatUtils.format(dataInicial, "dd/MM/yyyy")
-			+ "-"
-			+ "A"
-			+ "-"
-			+DateFormatUtils.format(dataFinal, "dd/MM/yyyy")
-			+ ".pdf";
+	 */
+	private String getNomeArquivo() {		
+		return new StringBuffer(cliente.getNome().replace(" ", "-"))
+			.append("-")
+			.append(DateFormatUtils.format(dataInicial, "dd/MM/yyyy"))
+			.append("-")
+			.append("A")
+			.append("-")
+			.append(DateFormatUtils.format(dataFinal, "dd/MM/yyyy"))
+			.append(".pdf")
+			.toString();
 	}
 
-
+	
+	/**
+	 * exibi msg de alerta.
+	 */
+	private void showMsgAlerta() {
+		addMsgAlerta(
+				null, 
+				null, 
+				"Não foi encontrado lançamentos para esse periodo"
+			);
+	}	
+	
+	
 
 	// >>> GETS e SETS do MB <<<
 
@@ -129,25 +146,14 @@ public class ExtratoMB extends AutoCompleteMB{
 	}
 
 
-	public List<Custa> getListaCustas() {
-		return listaCustas;
+	public ExtratoDTO getExtratoDTO() {
+		return extratoDTO;
 	}
 
-
-	public void setListaCustas(List<Custa> listaCustas) {
-		this.listaCustas = listaCustas;
+	
+	public void setExtratoDTO(ExtratoDTO extratoDTO) {
+		this.extratoDTO = extratoDTO;
 	}
-
-
-	public BigDecimal getValorTotalPesquisa() {
-		return valorTotalPesquisa;
-	}
-
-
-	public void setValorTotalPesquisa(BigDecimal valorTotalPesquisa) {
-		this.valorTotalPesquisa = valorTotalPesquisa;
-	}
-
 
 
 	public StreamedContent getFileExtrado() {
@@ -158,5 +164,5 @@ public class ExtratoMB extends AutoCompleteMB{
 
 	public void setFileExtrado(StreamedContent fileExtrado) {
 		this.fileExtrado = fileExtrado;
-	}*/
+	}
 }

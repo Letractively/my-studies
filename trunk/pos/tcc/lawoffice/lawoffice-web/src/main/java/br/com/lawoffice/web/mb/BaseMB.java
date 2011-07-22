@@ -34,7 +34,7 @@ public class BaseMB {
 	 * @param sumario
 	 * @param detalhe
 	 */
-	protected void adicionarMensagemAlerta(String clienteID, String sumario, String detalhe) {
+	protected void addMsgAlerta(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_WARN, sumario, detalhe));
 	}
 	

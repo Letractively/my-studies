@@ -9,38 +9,36 @@
 		<div id="divInput">
 		
 			<div>
-				<h:outputLabel value="#{msg.labelColaborador}" for="colaborador"/>
+				<h:outputLabel value="#{msg.labelColaborador}:" for="colaborador"/>
 				<p:autoComplete id="colaborador"
-					value="#{debitoMB.colaborador}"
-					completeMethod="#{debitoMB.listarColaboradores}"
+					value="#{creditoMB.colaborador}"
+					completeMethod="#{creditoMB.listarColaboradores}"
 					var="colaborador"
 					itemLabel="#{colaborador.nome}"
 					itemValue="#{colaborador}"
 					converter="colaboradorConverter"
 					validator="colaboradorValidator"
-					onkeypress="nofificationBarColaborador.hide()"
+					onkeypress="nofificationBarColaborador.hide()"											
 					size="30"/>
 			</div>			
 		
 			<div>
-				<h:outputLabel value="${msg.labelValor}" for="valorColaborador"/>
-				<p:inputText 
-					value="#{debitoMB.valor}" 
-					id="valorColaborador" 
-					size="10"
-					onkeypress="nofificationBarColaborador.hide()"
+				<h:outputLabel value="#{msg.labelValor}:" for="valorColaborador"/>
+				<p:inputText value="#{creditoMB.valor}" 
+					id="valorColaborador"
 					validator="valorValidator"
+					onkeypress="nofificationBarColaborador.hide()" 
+					size="10"
 					/>
 			</div>
 										
 			<div style="padding-top: 12px;">			
 				<p:commandButton 
-					value="Debitar"
-					action="#{debitoMB.debitarColaborador}" 
-					id="btnDebitarColaborador"
-					oncomplete="nofificationBarColaborador.show()"
-					update="msgColaborador"
-					 />													
+					value="Creditar" 
+					action="#{creditoMB.creditarColaborador}"
+					onsuccess="nofificationBarColaborador.show()"
+					update="msgColaborador"					 
+					id="btnCreditarColaborador"/>				
 			</div>	
 
 		</div>
@@ -48,9 +46,9 @@
 		<div style="clear: both;"></div>
 		
 	</div>				    
-	
-	<ui:include src="/caixa/elements/notification-bar-colaborador.xhtml"></ui:include>
-		
+
+	<ui:include src="/caixa/elements/notification-bar/notification-bar-colaborador.xhtml"></ui:include>
+			
 </ui:composition>
 
 
