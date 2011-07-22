@@ -1,4 +1,4 @@
-package br.com.lowoffice.caixa.extrato;
+package br.com.lawoffice.caixa.extrato;
 
 /**
  * Factory para criação de {@link ExtratoReport} através do seu {@link TipoExtrato}

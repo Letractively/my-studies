@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.lowoffice.caixa.extrato;
+package br.com.lawoffice.caixa.extrato;
 
 /**
  * Tipos de extratos gerados pelo serviço de {@link ExtratoService}
