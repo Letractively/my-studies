@@ -32,8 +32,8 @@
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
-	<field name="lancamento" class="br.com.lawoffice.dominio.Lancamento">
-		<fieldDescription><![CDATA[lancamento]]></fieldDescription>
+	<field name="dataLancamento" class="java.util.Date">
+		<fieldDescription><![CDATA[dataLancamento]]></fieldDescription>
 	</field>
 	<field name="natureza" class="java.lang.String">
 		<fieldDescription><![CDATA[natureza]]></fieldDescription>
@@ -164,7 +164,7 @@
 			<textField>
 				<reportElement x="0" y="3" width="121" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{lancamento}.getDataLancamento()]]></textFieldExpression>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{dataLancamento}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="4" y="23" width="551" height="1"/>
