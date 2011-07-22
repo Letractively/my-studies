@@ -4,7 +4,7 @@
   <parent>
         <artifactId>lawoffice</artifactId>
         <groupId>br.com</groupId>
-        <version>1.0</version>
+        <version>1.0.0</version>
     </parent>
 
   
@@ -17,43 +17,42 @@
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-caixa</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>ejb</type>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-custas</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>ejb</type>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-web</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>war</type>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-dominio</artifactId>
-  		<version>1.0</version>
-  		<type>jar</type>
+  		<version>${parent.version}</version>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-dados</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>ejb</type>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-agenda</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>ejb</type>
   	</dependency>
   	<dependency>
   		<groupId>br.com</groupId>
   		<artifactId>lawoffice-persistencia</artifactId>
-  		<version>1.0</version>
+  		<version>${parent.version}</version>
   		<type>ejb</type>
   	</dependency>
   </dependencies>

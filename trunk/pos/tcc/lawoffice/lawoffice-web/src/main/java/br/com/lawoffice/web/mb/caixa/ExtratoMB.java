@@ -1,23 +1,9 @@
 package br.com.lawoffice.web.mb.caixa;
 
-import java.io.ByteArrayInputStream;
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang.time.DateFormatUtils;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
-
-import br.com.lawoffice.dominio.Cliente;
-import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
-import br.com.lowoffice.caixa.extrato.ExtratoServiceLocal;
-import br.com.lowoffice.caixa.extrato.TipoExtrato;
 
 /**
  * 
