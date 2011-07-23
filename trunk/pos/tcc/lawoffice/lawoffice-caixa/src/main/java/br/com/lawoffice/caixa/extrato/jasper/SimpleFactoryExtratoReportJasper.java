@@ -15,22 +15,21 @@ public class SimpleFactoryExtratoReportJasper implements FactoryExtratoReport{
 
 	
 	
-	
+
 	@Override
 	public ExtratoReport createExtratoReport(TipoExtrato tipoExtrato) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-/*	public static ExtratoReport createExtratoReport(TipoExtrato tipoExtrato){
-		
+		if(tipoExtrato == null)
+			throw new IllegalArgumentException("TipoExtrato esta nulo");
 		switch (tipoExtrato){
 			case PDF:
-				return new ExtratoReportPDF();
-		default:
-			throw new IllegalArgumentException("Não existe Extrato para o tipo passado");
+				return new ExtratoReportJasperPDF();
+			default:
+				throw new IllegalArgumentException(
+						"Factory nao possui suporte para criacao do tipo de extrato :" 
+								+ tipoExtrato + 
+								"ou nao há implementacao para o tipo de extrato " 
+								+ tipoExtrato
+							);
 		}
-	}*/
+	}
 }

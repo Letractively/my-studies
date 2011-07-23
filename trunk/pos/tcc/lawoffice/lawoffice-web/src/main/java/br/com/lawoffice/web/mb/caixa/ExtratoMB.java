@@ -1,5 +1,6 @@
 package br.com.lawoffice.web.mb.caixa;
 
+import java.io.ByteArrayInputStream;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -7,10 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang.time.DateFormatUtils;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import br.com.lawoffice.caixa.extrato.ExtratoDTO;
 import br.com.lawoffice.caixa.extrato.ExtratoServiceLocal;
+import br.com.lawoffice.caixa.extrato.TipoExtrato;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
@@ -69,13 +72,12 @@ public class ExtratoMB extends AutoCompleteMB{
 		
 		if(extratoDTO.getItensExtrato().isEmpty()){
 			showMsgAlerta();			
-		}else{
-			
-/*			fileExtrado = new DefaultStreamedContent(
+		}else{			
+			fileExtrado = new DefaultStreamedContent(
 					new ByteArrayInputStream(extratoService.gerarExtrato(TipoExtrato.PDF)), 
 					"application/pdf", 
 					getNomeArquivo()
-				);*/			
+				);			
 		}
 	}
 	

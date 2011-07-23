@@ -50,10 +50,30 @@ public class ExtratoDTO implements Serializable{
 	 */
 	private List<ItemExtrato> itensExtrato;
 
-	//TODO: java doc
+
+	/**
+	 * Construtor padrao para criacao do {@link ExtratoDTO}.
+	 * 
+	 * <br>
+	 * 
+	 * OBS. todos sao obrigatorio caso um paramentro esteja nulo uma {@link IllegalArgumentException} será lançada.
+	 * 
+	 * @param nomePessoa - nome da pessoa pesquisada
+	 * @param saldoAnterior - saldo anterior a data inicial da pesquisa.
+	 * @param saldoAtual - saldo atual da conta.
+	 * @param dataInicial - data inicial da pesquisa.
+	 * @param dataFinal - data final da pesquisa.
+	 * @throws IllegalArgumentException - quando algum parametro estiver nulo
+	 */
 	public ExtratoDTO(String nomePessoa, BigDecimal saldoAnterior,
 			BigDecimal saldoAtual, Date dataInicial, Date dataFinal) {
-		super();
+		if(nomePessoa == null 
+				|| saldoAnterior == null 
+				|| saldoAtual == null 
+				|| dataFinal == null 
+				|| dataFinal == null)
+			throw new IllegalArgumentException("existe paramentro(s) nulo(s)");
+		
 		this.nomePessoa = nomePessoa;
 		this.saldoAnterior = saldoAnterior;
 		this.saldoAtual = saldoAtual;

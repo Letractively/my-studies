@@ -10,5 +10,5 @@ package br.com.lawoffice.caixa.extrato;
  *
  */
 public enum TipoExtrato {
-	PDF;
+	PDF, HTML, XLS;
 }
