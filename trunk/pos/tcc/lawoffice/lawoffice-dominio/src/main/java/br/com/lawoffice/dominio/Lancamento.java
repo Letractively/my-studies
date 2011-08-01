@@ -22,8 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * 
- * Representa um laçamento para o {@link Colaborador} e para o {@link Cliente}.
+ * O {@link Lancamento} possui as {@link Custa}(s) de um {@link Cliente} realizada(s) pelo o {@link Colaborador}.
  * 
  * @author robson
  *

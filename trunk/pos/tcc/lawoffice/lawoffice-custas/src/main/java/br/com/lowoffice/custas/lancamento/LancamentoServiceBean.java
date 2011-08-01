@@ -3,25 +3,21 @@
  */
 package br.com.lowoffice.custas.lancamento;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import br.com.lawoffice.caixa.CaixaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.Lancamento;
-import br.com.lawoffice.dominio.Pessoa;
-import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
+import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  *  TODO: javadoc 
@@ -30,25 +26,20 @@ import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
  *
  */
 @Stateful
-@Local(LancamentoDeCustaLocal.class)
-@Remote(LancamentoDeCustaRemote.class)
-public class LancamentoDeCustaBean implements LancamentoDeCusta {
+@Local(LancamentoServiceLocal.class)
+@Remote(LancamentoServiceRemote.class)
+public class LancamentoServiceBean implements LancamentoService {
 	
 	
 	/**
 	 * Caixa para fechamento do lançamento , debito para o cliente , credito para o colaborador
 	 */
-	@EJB()
+	@EJB
 	private CaixaServiceLocal caixaService;
 	
-	
-	
-	/**
-	 * Persisti os lançamentos 
-	 */
-	@PersistenceContext(unitName="lawoffice-custas")
-	private EntityManager entityManager;
-	
+
+	@EJB
+	private PessoaDao pessoaDao;
 	
 	
 	/**
@@ -64,7 +55,24 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	// falo isso pq o método abaixo está aceitando qualquer custa ou cliente ou colaborador
 	// e não á testes de unidade para isso
 	@Override
-	public Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador){
+	public Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador, Date date){
+		validarParametros(custa,cliente,colaborador,date);
+		
+		cliente = 
+				pessoaDao.localizar(Cliente.class, cliente);
+		
+		if(cliente == null)
+			throw new IllegalArgumentException("Cliente na encontrado na base de dados");
+		
+		
+		colaborador =
+				pessoaDao.localizar(Colaborador.class, colaborador);
+		
+		
+		if(colaborador == null)
+			throw new IllegalArgumentException("Colaborador na encontrado na base de dados");
+		
+		
 		return custa.addLancamento(
 				getLacamento(
 						cliente,
@@ -74,10 +82,11 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	}
 	
 
+
 	@Override
-	public void fecharLacamento()throws LancamentoDeCustaException{
+	public void fecharLacamento(){
 		
-		if(mapsLacamentos.isEmpty())
+/*		if(mapsLacamentos.isEmpty())
 			throw new LancamentoDeCustaException("Não há lançamento(s) para fechar");
 		
 		List<Lancamento> lancamentos =  new ArrayList<Lancamento>(mapsLacamentos.values());
@@ -99,19 +108,23 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 								
 		}
 		
-		mapsLacamentos.clear();
+		mapsLacamentos.clear();*/
 	}
 	
 	
 	@Override
-	public void removerCusta(Custa custa) throws LancamentoDeCustaException{
+	public void removerCusta(Custa custa){
 		validarCusta(custa);		
 		getLancamento(custa).getCustas().remove(custa);
 	}
 	
 	
 
-	@Override
+/*	
+ * TODO: se rolar um tempo add essa feature
+ * 
+ * 
+ * @Override
 	public Custa atualizarCusta(Custa custa, Pessoa cliente, Colaborador colaborador) throws LancamentoDeCustaException{
 		validarCusta(custa);
 		
@@ -124,7 +137,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		custaAtual.setValor(custa.getValor());
 		
 		return custaAtual;
-	}
+	}*/
 
 
 
@@ -135,17 +148,17 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	 * @return
 	 * @throws LancamentoDeCustaException
 	 */
-	private Lancamento getLancamento(Custa custa)throws LancamentoDeCustaException {
-		Lancamento lancamento = 
-			mapsLacamentos.get(
+	private Lancamento getLancamento(Custa custa){
+		Lancamento lancamento = null; 
+/*			mapsLacamentos.get(
 					getChave(
-						custa.getLancamento().getCliente(), 
+						custa.getLancamento().getCliente(),
 						custa.getLancamento().getColaborador()
 					)
-				);
+				);*/
 		
-		if(lancamento  == null)
-			throw new LancamentoDeCustaException("O Lançamento da custa não está na sessão do Bean");
+/*		if(lancamento  == null)
+			throw new LancamentoDeCustaException("O Lançamento da custa não está na sessão do Bean");*/
 		return lancamento;
 	}
 	
@@ -160,7 +173,7 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 	 */
 	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
 		
-		// TODO: guava ??
+/*		// TODO: guava ??
 		Map<Long, Long> chave = getChave(cliente, colaborador);
 		
 		if( !mapsLacamentos.containsKey(chave))
@@ -172,7 +185,10 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 						.adicionarDataLancamento()
 				);
 		
-		return mapsLacamentos.get(chave);
+		return mapsLacamentos.get(chave);*/
+		
+		
+		return new Lancamento();
 	}
 	
 
@@ -182,7 +198,23 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		return chave;
 	}
 
+	
+	
+	
+	private void validarParametros(Custa custa, Cliente cliente, Colaborador colaborador, Date date) {
+		if(custa == null)
+			throw new IllegalArgumentException("Custa está nula");
+		if(cliente == null || cliente.getId() == null)
+			throw new IllegalArgumentException("Cliente está nulo ou id cliente nulo");
+		if(colaborador == null || colaborador.getId() == null)
+			throw new IllegalArgumentException("Colaborador está nulo ou id colaborador nulo");
+		if(date == null)
+			throw new IllegalArgumentException("Data está nula");
+	}
+	
 
+	
+	
 
 	private void validarCusta(Custa custa) {
 		if(custa == null)
@@ -197,10 +229,9 @@ public class LancamentoDeCustaBean implements LancamentoDeCusta {
 		this.caixaService = caixaService;
 	}
 
-	
 
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+
+	public void setPessoaDao(PessoaDao pessoaDao) {
+		this.pessoaDao = pessoaDao;
 	}
-	
 }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 /**
  * 
- * Representa um cliente do escritório
+ * Representa um cliente do escritório.
  * 
  * @author robson
  *
@@ -46,5 +46,33 @@ public class Cliente extends Pessoa{
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
-	}	
+	}
+
+	
+	
+	@Override
+	public int hashCode() {
+		return 31 * ((id == null) ? 0 : id.intValue());
+	}
+
+	
+	
+	@Override
+	public boolean equals(Object cliente) {
+		if (this == cliente)
+			return true;
+		if (cliente == null)
+			return false;
+		if (getClass() != cliente.getClass())
+			return false;
+		return this.id.equals(((Cliente) cliente).id);
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "Cliente [lancamentos=" + lancamentos + ", conta=" + conta + "]";
+	}
+	
 }

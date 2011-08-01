@@ -9,6 +9,6 @@ package br.com.lowoffice.custas.lancamento;
  * @author rduarte
  *
  */
-public interface LancamentoDeCustaRemote extends LancamentoDeCusta {
+public interface LancamentoServiceRemote extends LancamentoService {
 
 }

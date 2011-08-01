@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.junit.After;
 import org.junit.Before;
@@ -55,7 +56,7 @@ public class CaixaServiceBeanTest{
 	public void deveDispararUmaExcecaoComValorNuloCreditando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));		
-		caixaBean.creditar(conta, null);
+		caixaBean.creditar(conta, null, new Date());
 	}	
 	
 	
@@ -63,19 +64,31 @@ public class CaixaServiceBeanTest{
 	public void deveDispararUmaExcecaoComValorMenorZeroCreditando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));
-		caixaBean.creditar(conta, new BigDecimal(-0.01));
+		caixaBean.creditar(conta, new BigDecimal(-0.01), new Date());
 	}	
 	
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoComContaNulaCreditando(){
-		caixaBean.creditar(null, new BigDecimal(0));
+		caixaBean.creditar(null, new BigDecimal(0), new Date());
 	}
 
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoContaComIDNulaCreditando(){
-		caixaBean.creditar(new Conta(), new BigDecimal(0));
+		caixaBean.creditar(new Conta(), new BigDecimal(0), new Date());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoContaComDataNulaCreditando(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		
+		when(
+				contaDao.localizar(Conta.class, conta)
+			).thenReturn(conta);
+		
+		caixaBean.creditar(conta, new BigDecimal(0), null);
 	}	
 	
 	
@@ -88,7 +101,7 @@ public class CaixaServiceBeanTest{
 			contaDao.localizar(Conta.class, conta)
 		).thenReturn(null);
 		
-		caixaBean.creditar(conta, new BigDecimal(1));
+		caixaBean.creditar(conta, new BigDecimal(1), new Date());
 	}
 	
 	
@@ -109,7 +122,7 @@ public class CaixaServiceBeanTest{
 			contaDao.atualizar(conta)
 		).thenReturn(conta);
 		
-		conta = caixaBean.creditar(conta, new BigDecimal(1));
+		conta = caixaBean.creditar(conta, new BigDecimal(1), new Date());
 		
 		
 		assertNotNull(conta);
@@ -123,25 +136,37 @@ public class CaixaServiceBeanTest{
 	public void deveDispararUmaExcecaoComValorNuloDebitando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));		
-		caixaBean.debitar(conta, null);
+		caixaBean.debitar(conta, null, new Date());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoComValorMenorZeroDebitando(){
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0));
-		caixaBean.debitar(conta, new BigDecimal(-0.01));
+		caixaBean.debitar(conta, new BigDecimal(-0.01), new Date());
 	}	
 
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoComContaNulaDebitando(){
-		caixaBean.debitar(null, new BigDecimal(0));
+		caixaBean.debitar(null, new BigDecimal(0), new Date());
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
 	public void deveDispararUmaExcecaoContaComIDNulaDebitando(){
-		caixaBean.debitar(new Conta(), new BigDecimal(0));
+		caixaBean.debitar(new Conta(), new BigDecimal(0), new Date());
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveDispararUmaExcecaoContaComDataNulaDebitando(){
+		Conta conta = new Conta();
+		conta.setId(1L);
+		
+		when(
+				contaDao.localizar(Conta.class, conta)
+			).thenReturn(conta);
+		
+		caixaBean.debitar(conta, new BigDecimal(0), null);
+	}	
 	
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -153,7 +178,7 @@ public class CaixaServiceBeanTest{
 			contaDao.localizar(Conta.class, conta)
 		).thenReturn(null);
 		
-		caixaBean.debitar(conta, new BigDecimal(1));
+		caixaBean.debitar(conta, new BigDecimal(1), new Date());
 	}
 	
 	
@@ -172,7 +197,7 @@ public class CaixaServiceBeanTest{
 			contaDao.atualizar(conta)
 		).thenReturn(conta);
 		
-		conta = caixaBean.debitar(conta, new BigDecimal(1));
+		conta = caixaBean.debitar(conta, new BigDecimal(1), new Date());
 		
 		
 		assertNotNull(conta);

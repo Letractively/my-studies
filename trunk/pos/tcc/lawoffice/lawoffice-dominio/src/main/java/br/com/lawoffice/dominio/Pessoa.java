@@ -21,13 +21,13 @@ public class Pessoa implements EntityBase{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")	
-	private Long id;
+	protected Long id;
 	
 	@Column(name = "NOME")
-	private String nome;
+	protected String nome;
 	
 	@Column(name = "EMAIL")
-	private String email;
+	protected String email;
 	
 
 	public Pessoa() {

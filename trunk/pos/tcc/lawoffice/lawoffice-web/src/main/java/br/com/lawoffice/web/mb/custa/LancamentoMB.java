@@ -11,7 +11,7 @@ import javax.faces.bean.ViewScoped;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
-import br.com.lowoffice.custas.lancamento.LancamentoDeCustaLocal;
+import br.com.lowoffice.custas.lancamento.LancamentoServiceLocal;
 
 /**
  * Manager Bean para página de /custas/lacamento.xhtml
@@ -41,7 +41,7 @@ public class LancamentoMB extends AutoCompleteMB {
 	 * Serviço de lançamentos de custas 
 	 */
 	@EJB
-	private LancamentoDeCustaLocal lancamentoDeCusta;
+	private LancamentoServiceLocal lancamentoDeCusta;
 	
 	
 	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<

@@ -33,15 +33,15 @@ public class CaixaServiceBean implements CaixaService {
 
 	
 	@Override
-	public Conta creditar(Conta conta, BigDecimal valor){
-		validarParamentros(conta, valor);
+	public Conta creditar(Conta conta, BigDecimal valor, Date date){
+		validarParamentros(conta, valor,date);
 	
 		conta = getConta(conta); 
 
 		
 		contaDao.salvar(
 			new HistoricoConta(
-				new Date(), 
+				date, 
 				TipoTransacao.CREDITO, 
 				valor, 
 				conta.getSaldo(), 
@@ -60,14 +60,14 @@ public class CaixaServiceBean implements CaixaService {
 	
 	
 	@Override
-	public Conta debitar(Conta conta, BigDecimal  valor){
-		validarParamentros(conta, valor);
+	public Conta debitar(Conta conta, BigDecimal  valor, Date date){
+		validarParamentros(conta, valor, date);
 		
 		conta = getConta(conta);
 
 		contaDao.salvar(
 			new HistoricoConta(
-				new Date(), 
+				date, 
 				TipoTransacao.DEBITO, 
 				valor, 
 				conta.getSaldo(), 
@@ -107,12 +107,15 @@ public class CaixaServiceBean implements CaixaService {
 	 * 
 	 * @param conta a ser validada.
 	 * @param valor a ser validado.
+	 * @param date a ser validada.
 	 */
-	private void validarParamentros(Conta conta, BigDecimal valor) {
+	private void validarParamentros(Conta conta, BigDecimal valor, Date date) {
 		if(valor == null || valor.doubleValue() < 0)
 			throw new IllegalArgumentException("O valor está nulo ou é menor que 0");
 		if(conta == null || conta.getId() == null)
 			throw new IllegalArgumentException("Conta está nula ou nao contém ID");
+		if(date == null)
+			throw new IllegalArgumentException("Data está nula");		
 	}
 
 

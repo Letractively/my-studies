@@ -5,6 +5,7 @@ package br.com.lawoffice.web.mb.caixa;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -43,7 +44,7 @@ public class DebitoMB extends AutoCompleteMB{
 	
 	public void debitarCliente(){
 		Conta conta = 
-			caixaService.debitar(cliente.getConta(), valor);
+			caixaService.debitar(cliente.getConta(), valor, new Date());
 		
 		addMsgDebitoSucesso(conta);
 	}
@@ -51,7 +52,7 @@ public class DebitoMB extends AutoCompleteMB{
 	
 	public void debitarColaborador(){
 		Conta conta = 
-			caixaService.debitar(colaborador.getConta(), valor);
+			caixaService.debitar(colaborador.getConta(), valor, new Date());
 		
 		addMsgDebitoSucesso(conta);
 	}
@@ -66,9 +67,9 @@ public class DebitoMB extends AutoCompleteMB{
 			);		
 	}	
 	
+	
 	// >>>> GETS e SETS do MB <<< 
-	
-	
+		
 	public BigDecimal getValor() {
 		return valor;
 	}

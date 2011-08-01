@@ -5,6 +5,7 @@ package br.com.lawoffice.web.mb.caixa;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -43,14 +44,14 @@ public class CreditoMB extends AutoCompleteMB{
 	
 	public void creditarCliente(){		
 		Conta conta = 
-			caixaService.creditar(cliente.getConta(), valor);
+			caixaService.creditar(cliente.getConta(), valor, new Date());
 		
 		addMsgCreditoSucesso(conta);								
 	}
 
 	public void creditarColaborador(){
 		Conta conta =
-			caixaService.creditar(colaborador.getConta(), valor);
+			caixaService.creditar(colaborador.getConta(), valor, new Date());
 		
 		addMsgCreditoSucesso(conta);					
 	}

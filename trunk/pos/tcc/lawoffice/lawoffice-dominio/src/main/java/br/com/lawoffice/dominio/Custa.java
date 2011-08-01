@@ -13,7 +13,9 @@ import javax.persistence.Table;
 
 /**
  * 
- * TODO: javadoc aqui e nas outras entidades
+ * A Custa esta ligada ao serviço de um {@link Colaborador} e despesa que o escritório tem com um {@link Cliente} e estão 
+ * 
+ * ligadas diretamentee a um {@link Lancamento}.
  * 
  * @author robson
  *
@@ -27,7 +29,6 @@ public class Custa implements EntityBase{
 	@Column(name="ID")
 	private Long id;
 	
-	//TODO: debito tecnico com bigdecimal , usar ou não ?
 	@Column(name="VALOR", precision = 19 , scale = 2)
 	private BigDecimal valor;
 	

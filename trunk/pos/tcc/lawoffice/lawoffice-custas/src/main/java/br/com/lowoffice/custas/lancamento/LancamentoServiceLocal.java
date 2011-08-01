@@ -12,6 +12,6 @@ import br.com.lawoffice.dominio.Custa;
  * @author rduarte
  *
  */
-public interface LancamentoDeCustaLocal extends LancamentoDeCusta {
+public interface LancamentoServiceLocal extends LancamentoService {
 
 }
