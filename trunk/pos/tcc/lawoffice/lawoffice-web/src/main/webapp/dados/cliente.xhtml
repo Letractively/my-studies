@@ -22,7 +22,11 @@
 							var="cliente" 
 							id="tableClientes"
 							selection="#{dadosClienteMB.clienteSelecionado}" 
-							selectionMode="single" >
+							selectionMode="single"
+			  				paginator="true"
+			  				paginatorPosition="bottom"
+			  				rows="15"							 
+							>
 						
 							<p:column sortBy="#{cliente.id}">
 								<f:facet name="header">

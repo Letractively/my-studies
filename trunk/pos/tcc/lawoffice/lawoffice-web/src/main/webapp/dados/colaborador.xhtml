@@ -22,7 +22,11 @@
 							var="colaborador" 
 							id="tableColaboradores"
 							selection="#{dadosColaboradorMB.colaboradorSelecionado}" 
-							selectionMode="single" >
+							selectionMode="single"
+			  				paginator="true"
+			  				paginatorPosition="bottom"
+			  				rows="15"							 
+							>
 						
 							<p:column sortBy="#{colaborador.id}">
 								<f:facet name="header">
