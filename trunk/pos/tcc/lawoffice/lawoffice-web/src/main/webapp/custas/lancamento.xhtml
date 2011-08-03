@@ -16,6 +16,19 @@
 			<div id="dados">
 			
 				<div id="divInput">
+				
+					<div>
+						<h:outputLabel value="Data Lançamento:" for="dataLancamento"/>
+						<p:calendar 
+							id="dataLancamento"
+							pattern="dd/MM/yyyy" 
+							value="#{lancamentoMB.dataLancamento}"
+							validator="dataValidator"
+							readOnlyInputText="true"
+							size="10"
+							onfocus="nofificationBar.hide()"
+							/>
+					</div>				
 									
 					<div>
 						<h:outputLabel value="Colaborador: " for="colaborador"/>
@@ -47,11 +60,17 @@
 							/>
 					</div>					
 					
+				</div>
+					
+				<div style="clear: both;"></div>
+				
+				<div id="divInput" style="margin-top: 15px;">
+				
 					<div>
 						<h:outputLabel value="Natureza: " for="natureza"/>
 						<p:inputText value="#{lancamentoMB.custa.natureza}" 
 							id="natureza"
-							size="30"
+							size="100"
 							onkeypress="nofificationBar.hide()"
 						    validator="naturezaValidator"
 							/>
@@ -81,7 +100,7 @@
 					
 				</div>
 					
-				<div style="clear: both;"></div>
+				<div style="clear: both;"></div>				
 				
 			</div>
 			
@@ -91,10 +110,22 @@
 				<p:dataTable
 					value="#{lancamentoMB.custas}" 
 					var="custa"
+					paginator="true"
+					rows="15"
+					paginatorPosition="bottom"
 					id="tableCustas"
 					selection="#{lancamentoMB.custaSelecionada}" 
 					selectionMode="single"				
 					>
+					
+					<p:column sortBy="#{custa.lancamento.dataLancamento}">
+						<f:facet name="header">
+							<h:outputText value="Data Lançamento" /> 
+						</f:facet>
+						<h:outputText value="#{custa.lancamento.dataLancamento}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</p:column>					
 					
 					<p:column sortBy="#{custa.lancamento.colaborador.nome}">
 						<f:facet name="header">
@@ -109,7 +140,7 @@
 						</f:facet>
 						<h:outputText value="#{custa.lancamento.cliente.nome}" />
 					</p:column>
-					
+										
 					<p:column sortBy="#{custa.natureza}">
 						<f:facet name="header">
 							<h:outputText value="Natureza" /> 
@@ -157,7 +188,7 @@
 					/>
 			</div>
 			
-			<p:notificationBar position="bottom" 
+			<p:notificationBar position="bottom"
 				effect="slide"
 				widgetVar="nofificationBar" 
 				styleClass="nofificationBar">

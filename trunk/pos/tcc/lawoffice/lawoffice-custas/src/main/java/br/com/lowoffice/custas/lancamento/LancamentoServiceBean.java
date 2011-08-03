@@ -3,8 +3,10 @@
  */
 package br.com.lowoffice.custas.lancamento;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -17,6 +19,7 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.dominio.Lancamento;
+import br.com.lawoffice.persistencia.LancamentoDao;
 import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
@@ -42,27 +45,26 @@ public class LancamentoServiceBean implements LancamentoService {
 	private PessoaDao pessoaDao;
 	
 	
+	@EJB
+	private LancamentoDao lancamentoDao;
+	
+	
 	/**
-	 *	Mapa com os laçamento  
+	 *	Mapa com os laçamentos  
 	 */
-	private Map<Map<Long, Long>, Lancamento> mapsLacamentos = new HashMap<Map<Long,Long>, Lancamento>();
+	private Map<ChaveLancamento, Lancamento> mapsLacamentos = new HashMap<ChaveLancamento, Lancamento>();
 	
 	
-	
-	
-	// TODO: em termos da validação da custa e outros cara temos um debito técnico com beans validation
-	// então vamos fechar a camada de persitência e realizar as validações 
-	// falo isso pq o método abaixo está aceitando qualquer custa ou cliente ou colaborador
-	// e não á testes de unidade para isso
+
 	@Override
-	public Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador, Date date){
-		validarParametros(custa,cliente,colaborador,date);
+	public Custa adicionarCusta(Custa custa, Cliente cliente, Colaborador colaborador, Date data){
+		validarParametros(custa,cliente,colaborador,data);
 		
 		cliente = 
 				pessoaDao.localizar(Cliente.class, cliente);
 		
 		if(cliente == null)
-			throw new IllegalArgumentException("Cliente na encontrado na base de dados");
+			throw new IllegalArgumentException("Cliente na encontrado nao base de dados");
 		
 		
 		colaborador =
@@ -70,13 +72,16 @@ public class LancamentoServiceBean implements LancamentoService {
 		
 		
 		if(colaborador == null)
-			throw new IllegalArgumentException("Colaborador na encontrado na base de dados");
+			throw new IllegalArgumentException("Colaborador nao encontrado na base de dados");
 		
 		
 		return custa.addLancamento(
-				getLacamento(
-						cliente,
-						colaborador
+				getLancamento(
+					new ChaveLancamento(
+							cliente, 
+							colaborador, 
+							data
+						)
 					).addCusta(custa)
 			);
 	}
@@ -86,129 +91,91 @@ public class LancamentoServiceBean implements LancamentoService {
 	@Override
 	public void fecharLacamento(){
 		
-/*		if(mapsLacamentos.isEmpty())
-			throw new LancamentoDeCustaException("Não há lançamento(s) para fechar");
+		if(mapsLacamentos.isEmpty())
+			throw new IllegalStateException("Não há lançamento(s) para fechar");
+
 		
-		List<Lancamento> lancamentos =  new ArrayList<Lancamento>(mapsLacamentos.values());
+		List<Lancamento> lancamentos =  
+				new ArrayList<Lancamento>(mapsLacamentos.values());
+		
 		
 		for (Lancamento lancamento : lancamentos){
 			
-			entityManager.persist(lancamento);
-			
-			
 			caixaService.creditar(
 				lancamento.getColaborador().getConta(), 
-				lancamento.getTotal()
+				lancamento.getTotal(),
+				lancamento.getDataLancamento()
 			);
 			
 			caixaService.debitar(
 				lancamento.getCliente().getConta(),
-				lancamento.getTotal()
+				lancamento.getTotal(),
+				lancamento.getDataLancamento()
 			);
-								
+			
+			lancamentoDao.salvar(lancamento);					
 		}
 		
-		mapsLacamentos.clear();*/
+		mapsLacamentos.clear();
 	}
 	
 	
 	@Override
 	public void removerCusta(Custa custa){
-		validarCusta(custa);		
-		getLancamento(custa).getCustas().remove(custa);
-	}
-	
-	
-
-/*	
- * TODO: se rolar um tempo add essa feature
- * 
- * 
- * @Override
-	public Custa atualizarCusta(Custa custa, Pessoa cliente, Colaborador colaborador) throws LancamentoDeCustaException{
 		validarCusta(custa);
 		
-		Lancamento lancamento = getLancamento(custa);
-				
-		Custa custaAtual = 
-			lancamento.getCustas().get(lancamento.getCustas().indexOf(custa));
+		Lancamento lancamento =  
+			mapsLacamentos.get(
+				new ChaveLancamento(
+					custa.getLancamento().getCliente(), 
+					custa.getLancamento().getColaborador(), 
+					custa.getLancamento().getDataLancamento()
+				)
+			);
 		
-		custaAtual.setNatureza(custa.getNatureza());
-		custaAtual.setValor(custa.getValor());
+		if(lancamento  == null)
+			throw new IllegalStateException("O Lançamento da custa não está na sessão do Bean");		
 		
-		return custaAtual;
-	}*/
-
-
-
-	/**
-	 * Retorna o Lançamento da custa que está na sessão do bean
-	 * 
-	 * @param custa
-	 * @return
-	 * @throws LancamentoDeCustaException
-	 */
-	private Lancamento getLancamento(Custa custa){
-		Lancamento lancamento = null; 
-/*			mapsLacamentos.get(
-					getChave(
-						custa.getLancamento().getCliente(),
-						custa.getLancamento().getColaborador()
-					)
-				);*/
-		
-/*		if(lancamento  == null)
-			throw new LancamentoDeCustaException("O Lançamento da custa não está na sessão do Bean");*/
-		return lancamento;
+		lancamento.getCustas().remove(custa);
 	}
 	
 	
 	/**
-	 * Retorna o Lançamento para a combinaçao de {@link Cliente} e {@link Colaborador} que está na sessão do bean
+	 * Retorna o Lançamento para 
 	 * 
 	 * 
 	 * @param cliente
 	 * @param colaborador
 	 * @return
 	 */
-	private Lancamento getLacamento(Cliente cliente, Colaborador colaborador){
-		
-/*		// TODO: guava ??
-		Map<Long, Long> chave = getChave(cliente, colaborador);
-		
-		if( !mapsLacamentos.containsKey(chave))
+	private Lancamento getLancamento(ChaveLancamento  chaveLancamento){	
+	
+		if( !mapsLacamentos.containsKey(chaveLancamento))
 			mapsLacamentos.put(
-					chave, 
+					chaveLancamento, 
 					new Lancamento()
-						.adicionarCliente(cliente)
-						.adicionarColaborador(colaborador)
-						.adicionarDataLancamento()
+						.adicionarCliente(chaveLancamento.getCliente())
+						.adicionarColaborador(chaveLancamento.getColaborador())
+						.adicionarDataLancamento(chaveLancamento.getData())
 				);
 		
-		return mapsLacamentos.get(chave);*/
-		
-		
-		return new Lancamento();
+		return mapsLacamentos.get(chaveLancamento);
 	}
 	
 
-	private Map<Long, Long> getChave(Cliente cliente, Colaborador colaborador) {
-		Map<Long, Long> chave = new HashMap<Long, Long>(); 
-		chave.put(cliente.getId(), colaborador.getId());
-		return chave;
-	}
+	
 
 	
 	
 	
-	private void validarParametros(Custa custa, Cliente cliente, Colaborador colaborador, Date date) {
+	private void validarParametros(Custa custa, Cliente cliente, Colaborador colaborador, Date data) {
 		if(custa == null)
 			throw new IllegalArgumentException("Custa está nula");
 		if(cliente == null || cliente.getId() == null)
 			throw new IllegalArgumentException("Cliente está nulo ou id cliente nulo");
 		if(colaborador == null || colaborador.getId() == null)
 			throw new IllegalArgumentException("Colaborador está nulo ou id colaborador nulo");
-		if(date == null)
+		if(data == null)
 			throw new IllegalArgumentException("Data está nula");
 	}
 	
@@ -224,8 +191,7 @@ public class LancamentoServiceBean implements LancamentoService {
 	}	
 
 
-
-	public void setCaixa(CaixaServiceLocal caixaService) {
+	public void setCaixaService(CaixaServiceLocal caixaService) {
 		this.caixaService = caixaService;
 	}
 
@@ -234,4 +200,11 @@ public class LancamentoServiceBean implements LancamentoService {
 	public void setPessoaDao(PessoaDao pessoaDao) {
 		this.pessoaDao = pessoaDao;
 	}
+
+
+
+	public void setLancamentoDao(LancamentoDao lancamentoDao) {
+		this.lancamentoDao = lancamentoDao;
+	}
+	
 }

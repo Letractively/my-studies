@@ -1,6 +1,7 @@
 package br.com.lawoffice.web.mb.custa;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
-import br.com.lowoffice.custas.exception.LancamentoDeCustaException;
 import br.com.lowoffice.custas.lancamento.LancamentoServiceLocal;
 
 /**
@@ -42,6 +42,10 @@ public class LancamentoMB extends AutoCompleteMB {
 	 */
 	@EJB
 	private LancamentoServiceLocal lancamentoDeCusta;
+
+	
+	
+	private Date dataLancamento;
 	
 	
 	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<
@@ -65,54 +69,21 @@ public class LancamentoMB extends AutoCompleteMB {
 			lancamentoDeCusta.adicionarCusta(
 				custa, 
 				cliente,
-				colaborador
+				colaborador,
+				dataLancamento
 			)
 		);
 		custa = new Custa();	
 	}
 	
 
-	public void removerCusta(){
-		try {
-			if(custaSelecionada != null){
-				lancamentoDeCusta.removerCusta(custaSelecionada);
-				custas.remove(custaSelecionada);
-			}				
-		} catch (LancamentoDeCustaException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+	public void removerCusta(){		
+		if(custaSelecionada != null){
+			lancamentoDeCusta.removerCusta(custaSelecionada);
+			custas.remove(custaSelecionada);
+		}			
 	}
 	
-	
-	public void editarCusta(){
-		if(custaSelecionada != null)
-			custa = custaSelecionada;
-	}
-	
-	
-	// TODO: revisar o editar/remover
-	// pelo que vi o editar não precisa de ter um serviço no ejb
-	// vou tocado outros lances no projeto
-	public void atualizarCusta(){
-		
-/*		try {
-
-			lancamentoDeCusta.atualizarCusta(
-					custa,
-					getClienteSelecionado(),
-					getColaboradorSelecionado()
-				);*/
-			
-			custa = new Custa();
-			
-/*		} catch (LancamentoDeCustaException e) {
-			// TODO Auto-generated catch block
-			
-			e.printStackTrace();
-		}*/
-	}
-
 
 	
 	public void fecharLancamento(){
@@ -124,7 +95,7 @@ public class LancamentoMB extends AutoCompleteMB {
 				null, 
 				"Lançamento fechado com sucesso."
 			);
-		} catch (LancamentoDeCustaException e){
+		} catch (IllegalStateException e){
 			adicionarMensagemErro(null, null, e.getMessage());
 		}
 	}
@@ -156,6 +127,15 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	public void setCustas(List<Custa> custas) {
 		this.custas = custas;
-	}	
+	}
 
+
+	public Date getDataLancamento() {
+		return dataLancamento;
+	}
+
+
+	public void setDataLancamento(Date dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
 }

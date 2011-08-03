@@ -116,19 +116,25 @@ public class Lancamento implements EntityBase{
 	// como estou com débito técnico com beans validation
 	// vamos refatorar após fechar o débito técnico
 	public Lancamento adicionarCliente(Cliente cliente) {
+		if(cliente == null)
+			throw new IllegalArgumentException("Cliente esta nulo");		
 		setCliente(cliente);
 		return this;
 	}
 
 
 	public Lancamento adicionarColaborador(Colaborador colaborador){
+		if(colaborador == null)
+			throw new IllegalArgumentException("Colaborador esta nulo");
 		setColaborador(colaborador);
 		return this;
 	}	
 	
 	
-	public Lancamento adicionarDataLancamento(){
-		setDataLancamento(new Date());
+	public Lancamento adicionarDataLancamento(Date data){
+		if(data == null)
+			throw new IllegalArgumentException("Data esta nula");
+		setDataLancamento(data);
 		return this;
 	}
 

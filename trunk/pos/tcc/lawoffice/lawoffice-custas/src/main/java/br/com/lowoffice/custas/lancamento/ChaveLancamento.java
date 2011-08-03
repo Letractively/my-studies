@@ -9,6 +9,10 @@ import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 
 /**
+ * 
+ * TODO: javadoc
+ * 
+ * 
  * @author rduarte
  *
  */
@@ -18,16 +22,35 @@ class ChaveLancamento {
 	
 	private Colaborador colaborador;
 	
-	private Date date;
+	private Date data;
 
-	public ChaveLancamento(Cliente cliente, Colaborador colaborador, Date date) {		
+	public ChaveLancamento(Cliente cliente, Colaborador colaborador, Date data) {		
 		if( cliente == null 
 				|| colaborador == null 
-				|| date == null);			
+				|| data == null);			
 		this.cliente = cliente;
 		this.colaborador = colaborador;
-		this.date = date;
+		this.data = data;
 	}
+		
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+
+
+	public Colaborador getColaborador() {
+		return colaborador;
+	}
+
+
+
+	public Date getData() {
+		return data;
+	}
+
+
 
 	@Override
 	public int hashCode() {
@@ -36,7 +59,7 @@ class ChaveLancamento {
 		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
 		result = prime * result
 				+ ((colaborador == null) ? 0 : colaborador.hashCode());
-		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		return result;
 	}
 
@@ -60,10 +83,10 @@ class ChaveLancamento {
 				return false;
 		} else if (!colaborador.equals(other.colaborador))
 			return false;
-		if (date == null) {
-			if (other.date != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!date.equals(other.date))
+		} else if (!data.equals(other.data))
 			return false;
 		return true;
 	}
@@ -72,7 +95,7 @@ class ChaveLancamento {
 	@Override
 	public String toString() {
 		return "ChaveLancamento [cliente=" + cliente + ", colaborador="
-				+ colaborador + ", date=" + date + "]";
+				+ colaborador + ", date=" + data + "]";
 	}
 	
 }
