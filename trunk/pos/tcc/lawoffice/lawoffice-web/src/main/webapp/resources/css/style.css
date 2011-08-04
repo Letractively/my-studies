@@ -63,7 +63,8 @@ body, h1, h3{
 	border-left:1px solid #aed0ea;
 	border-right:1px solid #aed0ea;
 	border-top:1px solid #aed0ea;
-	-moz-border-radius: 5px 5px;	
+	border-top-left-radius:6px 6px;
+  	border-top-right-radius:6px 6px;	
 	padding: 10px;
 }
 
