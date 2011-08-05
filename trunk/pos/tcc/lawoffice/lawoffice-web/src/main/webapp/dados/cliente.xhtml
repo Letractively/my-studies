@@ -79,7 +79,8 @@
 						<p:commandButton value="Remover" 
 							action="#{clienteMB.removerCliente}"
 							id="btnRemover"
-							update="tableClientes" 
+							update="tableClientes"
+							oncomplete="bindClickTable()" 
 						/>								
 					</div>
 										
