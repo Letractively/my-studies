@@ -3,6 +3,8 @@
  */
 package br.com.lawoffice.web.mb;
 
+import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -15,7 +17,7 @@ import javax.faces.context.FacesContext;
  * @author robson
  *
  */
-public class BaseMB {
+public class BaseMB implements Serializable{
 
 	/**
 	 * TODO: javadoc
