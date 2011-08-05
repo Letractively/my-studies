@@ -1,13 +1,13 @@
 package br.com.lawoffice.caixa.extrato.jasper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
 import org.apache.commons.lang.time.DateFormatUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ import br.com.lawoffice.caixa.extrato.ExtratoDTO;
  * @author rduarte
  *
  */
-public class ExtratoReportPDFTest {
+public class ExtratoReportJasperPDFTest {
 
 	
 	private ExtratoReportJasperPDF extratoReportPDF;
@@ -41,11 +41,7 @@ public class ExtratoReportPDFTest {
 		extratoReportPDF.gerarExtrato(null);
 	}
 	
-	
-	
-/*	<parameter name="NOME_CLIENTE" class="java.lang.String"/>*/
-	
-	
+		
 	@Test()
 	public void deveRetornaUmMapComParmentros() {
 		
