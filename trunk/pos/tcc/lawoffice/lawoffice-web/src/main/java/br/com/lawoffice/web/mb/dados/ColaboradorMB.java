@@ -11,7 +11,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.lawoffice.dados.PessoaService;
 import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
@@ -27,7 +26,7 @@ import br.com.lawoffice.web.mb.BaseMB;
  */
 @ManagedBean
 @ViewScoped
-public class DadosColaboradorMB extends BaseMB {
+public class ColaboradorMB extends BaseMB {
 
 	
 	/**

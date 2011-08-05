@@ -18,10 +18,10 @@
 					<div>
 					
 						<p:dataTable
-							value="#{dadosClienteMB.listClientes}"
+							value="#{clienteMB.listClientes}"
 							var="cliente" 
 							id="tableClientes"
-							selection="#{dadosClienteMB.clienteSelecionado}" 
+							selection="#{clienteMB.clienteSelecionado}" 
 							selectionMode="single"
 			  				paginator="true"
 			  				paginatorPosition="bottom"
@@ -47,7 +47,14 @@
 									<h:outputText value="Email" /> 
 								</f:facet>
 								<h:outputText value="#{cliente.email}" />
-							</p:column>											
+							</p:column>
+							
+							<p:column sortBy="#{cliente.telefone}">
+								<f:facet name="header">
+									<h:outputText value="Telefone" /> 
+								</f:facet>
+								<h:outputText value="#{cliente.telefone}" />
+							</p:column>																		
 						</p:dataTable>
 											
 					</div>
@@ -55,25 +62,25 @@
 					<div class="divContent">
 					
 						<p:commandButton value="Novo" 
-							action="#{dadosClienteMB.novoCliente}"
+							action="#{clienteMB.novoCliente}"
 							id="btnNovo"
-							update="nome email"
+							update="nome email telefone"
 							oncomplete="onClickBtnNovo()" 
-							>						
-						</p:commandButton>					
+						/>					
 						
 						
-						<h:commandButton value="Editar" 
-							action="#{dadosClienteMB.editarCliente}" 
-							id="btnEditar" >					
-							<f:ajax execute="tableClientes" render="nome email" onevent="onClickBtnEditar" oneerror="temp"/>						
-						</h:commandButton>
+						<p:commandButton value="Editar" 
+							action="#{clienteMB.editarCliente}" 
+							id="btnEditar"
+							update="nome email telefone"
+							oncomplete="onClickBtnEditar()" 
+						/>
 								
-						<h:commandButton value="Remover" 
-							action="#{dadosClienteMB.removerCliente}"
-							id="btnRemover" >					
-							<f:ajax execute="tableClientes" render="tableClientes"/>						
-						</h:commandButton>										
+						<p:commandButton value="Remover" 
+							action="#{clienteMB.removerCliente}"
+							id="btnRemover"
+							update="tableClientes" 
+						/>								
 					</div>
 										
 				</div>
@@ -83,32 +90,40 @@
 					<div>
 						<p>
 							<h:outputLabel value="Nome:"  for="nome"/>
-							<h:inputText value="#{dadosClienteMB.cliente.nome}" id="nome" size="60"/>
+							<p:inputText value="#{clienteMB.cliente.nome}" id="nome" size="60"/>
 						</p>
 					
 						<p>
 							<h:outputLabel value="Email:"  for="email"/>
-							<h:inputText value="#{dadosClienteMB.cliente.email}" id="email" size="60"/>
-						</p>									
+							<p:inputText value="#{clienteMB.cliente.email}" id="email" size="60"/>
+						</p>
+						
+						<p>
+							<h:outputLabel value="Telefone:"  for="telefone"/>
+							<p:inputMask mask="(99) 9999-9999" value="#{clienteMB.cliente.telefone}" id="telefone" />
+						</p>															
 					</div>
 				
 					<div class="divContent">
-						<h:commandButton value="Salvar" 
-							action="#{dadosClienteMB.adicionarCliente}" 
-							id="btnSalvarNovo" >					
-							<f:ajax execute="nome email" render="tableClientes" onevent="onClickBtnSalvar"/>						
-						</h:commandButton>
+					
+						<p:commandButton value="Salvar" 
+							action="#{clienteMB.adicionarCliente}" 
+							id="btnSalvarNovo"
+							update="tableClientes"
+							oncomplete="onClickBtnSalvar()" 
+							/>
 												
-						<h:commandButton value="Salvar" 
-							action="#{dadosClienteMB.atualizarCliente}" 
-							id="btnSalvarEditar" >					
-							<f:ajax execute="nome email" render="tableClientes" onevent="onClickBtnSalvar"/>						
-						</h:commandButton>
+						<p:commandButton value="Salvar" 
+							action="#{clienteMB.atualizarCliente}" 
+							id="btnSalvarEditar"
+							update="tableClientes"
+							oncomplete="onClickBtnSalvar()" 
+							/>
 						
-						<h:commandButton value="Cancelar"
-							id="btnCancelar">
-							<f:ajax  onevent="onClickBtnCancelar"/>																		
-						</h:commandButton>						
+						<p:commandButton value="Cancelar"
+							id="btnCancelar" 
+							onclick="onClickBtnCancelar()"
+						/>											
 							
 					</div>											
 				</div>

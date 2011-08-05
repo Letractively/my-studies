@@ -14,13 +14,13 @@
 			<p:tabView style="border-bottom: none;"
 				onTabChange="nofificationBarCliente.hide();nofificationBarColaborador.hide()">
 														
-				<p:tab title="#{msg.labelCliente}">
+				<p:tab title="Cliente">
 					<h:form prependId="false">		
 						<ui:include src="/caixa/elements/debito/debito-cliente.xhtml"></ui:include>
 					</h:form>
 				</p:tab>
 				
-				<p:tab title="#{msg.labelColaborador}">
+				<p:tab title="Colaborador">
 					<h:form prependId="false">
 						<ui:include src="/caixa/elements/debito/debito-colaborador.xhtml"></ui:include>
 					</h:form>								

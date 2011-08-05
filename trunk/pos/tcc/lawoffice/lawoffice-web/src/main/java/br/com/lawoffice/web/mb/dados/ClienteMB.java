@@ -26,7 +26,7 @@ import br.com.lawoffice.web.mb.BaseMB;
  */
 @ManagedBean
 @ViewScoped
-public class DadosClienteMB extends BaseMB {
+public class ClienteMB extends BaseMB {
 
 	
 	/**

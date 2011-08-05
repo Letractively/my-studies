@@ -9,7 +9,7 @@
 		<div id="divInput">
 		
 			<div>
-				<h:outputLabel value="#{msg.labelColaborador}" for="colaborador"/>
+				<h:outputLabel value="Colaborador:" for="colaborador"/>
 				<p:autoComplete id="colaborador"
 					value="#{debitoMB.colaborador}"
 					completeMethod="#{debitoMB.listarColaboradores}"
@@ -23,7 +23,7 @@
 			</div>			
 		
 			<div>
-				<h:outputLabel value="${msg.labelValor}" for="valorColaborador"/>
+				<h:outputLabel value="Valor:" for="valorColaborador"/>
 				<p:inputText 
 					value="#{debitoMB.valor}" 
 					id="valorColaborador" 

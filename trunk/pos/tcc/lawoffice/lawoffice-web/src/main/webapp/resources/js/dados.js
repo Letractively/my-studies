@@ -33,3 +33,8 @@ function showDados() {
 	jQuery("#listaDados").hide();		
 	jQuery("#dados").show();
 }
+
+
+function temp() {
+	alert('SSS');
+}
