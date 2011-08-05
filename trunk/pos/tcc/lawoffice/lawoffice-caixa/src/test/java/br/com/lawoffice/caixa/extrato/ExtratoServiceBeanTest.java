@@ -83,14 +83,14 @@ public class ExtratoServiceBeanTest {
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoDataInicialNulaExtratoColaborador() {
+	public void deveDispararUmaExcecaoQuandoDataInicialNulaExtratoColaborador() {
 		extratoServiceBean.getExtratoColaborador(null, new Date(), new Colaborador());
 	}
 
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoDataFinalNulaExtratoColaborador() {
+	public void deveDispararUmaExcecaoQuandoDataFinalNulaExtratoColaborador() {
 		extratoServiceBean.getExtratoColaborador(new Date(), null, new Colaborador());
 	}	
 	
@@ -98,7 +98,7 @@ public class ExtratoServiceBeanTest {
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoColaboradorNulaExtratoColaborador() {
+	public void deveDispararUmaExcecaoQuandoColaboradorNulaExtratoColaborador() {
 		extratoServiceBean.getExtratoColaborador(new Date(), new Date(), null);
 	}	
 	
@@ -106,34 +106,34 @@ public class ExtratoServiceBeanTest {
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoColaboradorSemIDExtratoColaborador() {
+	public void deveDispararUmaExcecaoQuandoColaboradorSemIDExtratoColaborador() {
 		extratoServiceBean.getExtratoColaborador(new Date(), new Date(), new Colaborador());
 	}	
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoDataInicialNulaExtratoCliente() {
+	public void deveDispararUmaExcecaoQuandoDataInicialNulaExtratoCliente() {
 		extratoServiceBean.getExtratoCliente(null, new Date(), new Cliente());
 	}
 
 	
 
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoDataFinalNulaExtratoCliente() {
+	public void deveDispararUmaExcecaoQuandoDataFinalNulaExtratoCliente() {
 		extratoServiceBean.getExtratoCliente(new Date(), null, new Cliente());
 	}	
 
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoClienteNuloExtratoCliente() {
+	public void deveDispararUmaExcecaoQuandoClienteNuloExtratoCliente() {
 		extratoServiceBean.getExtratoCliente(new Date(), new Date(), null);
 	}	
 	
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-	public void deveDispararUmaExceçãoQuandoClienteSemIDExtratoCliente() {
+	public void deveDispararUmaExcecaoQuandoClienteSemIDExtratoCliente() {
 		extratoServiceBean.getExtratoCliente(new Date(), new Date(), new Cliente());
 	}
 	
