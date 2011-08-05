@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name="CLIENTE")
 public class Cliente extends Pessoa{
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "cliente")
 	private List<Lancamento> lancamentos;
 	
 	@Column(name="TELEFONE")
