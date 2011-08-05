@@ -9,9 +9,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.lawoffice.custas.lancamento.LancamentoServiceLocal;
 import br.com.lawoffice.dominio.Custa;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
-import br.com.lowoffice.custas.lancamento.LancamentoServiceLocal;
 
 /**
  * Manager Bean para página de /custas/lacamento.xhtml
