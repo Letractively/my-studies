@@ -11,7 +11,7 @@ import br.com.lawoffice.dominio.Pessoa;
  * @author robson
  *
  */
-public interface PessoaService {
+public interface PessoaService{
 
 	public <T extends Pessoa> List<T> listarPorNome(Class<T> c,  String nome);
 	
