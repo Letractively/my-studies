@@ -15,6 +15,7 @@ import javax.ejb.Stateless;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Evento;
 import br.com.lawoffice.persistencia.EventoDao;
+import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 
@@ -29,41 +30,71 @@ import br.com.lawoffice.persistencia.EventoDao;
 public class AgendaServiceBean implements AgendaService {
 
 	
+	
+	// TODO: javado doc na classe e na interface
+	
 	@EJB
 	private EventoDao enventoDao;
 	
 	
+	
+	
 	@Override
 	public List<Evento> listarEventos(Colaborador colaborador, Date dataIncial, Date dataFinal){
-		if(colaborador == null || dataIncial == null || dataFinal == null)
-			return new ArrayList<Evento>();
-		if(enventoDao.localizar(Colaborador.class, colaborador) == null)
-			return new ArrayList<Evento>();
+		
+		validarColaborador(colaborador);
+		
+		validarDatas(dataIncial,dataFinal);
+		
+	
 		return enventoDao.getEventos(colaborador, dataIncial, dataFinal);
 	}
 
-	
-	
+
+
 	@Override
-	public Evento adicionarEvento(Colaborador colaborador, Evento evento) {
-		return null;
+	public Evento adicionarEvento(Colaborador colaborador, Evento evento) {		
+		validarColaborador(colaborador);
+		validarEvento(evento);
+		evento.setAgenda(colaborador.getAgenda());
+		return enventoDao.salvar(evento);
 	}
 
-	
+
+
 	@Override
 	public Evento atualizarEvento(Evento evento){
-		return null;
+		validarEvento(evento);
+		return enventoDao.atualizar(evento);
 	}
 
 	
-	@Override
-	public void removerEvento(Evento evento) {
+	
+	private void validarColaborador(Colaborador colaborador) {
+		if(colaborador == null)
+			throw new IllegalArgumentException("colaborador esta nulo");		
 	}
+	
+	
+	private void validarDatas(Date dataIncial, Date dataFinal) {
+		if(dataIncial == null)
+			throw new IllegalArgumentException("Data inicial está nula");
+		if(dataFinal == null)
+			throw new IllegalArgumentException("Data Final está nula");
+		
+	}
+	
 
-
-
+	private void validarEvento(Evento evento) {
+		if(evento == null)
+			throw new IllegalArgumentException("Evento está nulo");		
+	}		
+	
+	
 	public void setEnventoDao(EventoDao enventoDao) {
 		this.enventoDao = enventoDao;
 	}
 	
 }
+
+

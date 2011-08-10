@@ -1,6 +1,6 @@
 package br.com.lawoffice.agenda.service;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
@@ -19,6 +19,7 @@ import org.mockito.MockitoAnnotations;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Evento;
 import br.com.lawoffice.persistencia.EventoDao;
+import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 
@@ -32,7 +33,7 @@ public class AgendaServiceBeanTest {
 
 	@Mock
 	private EventoDao enventoDao;
-	
+
 	
 	@InjectMocks
 	private AgendaServiceBean agendaServiceBean;
@@ -51,98 +52,113 @@ public class AgendaServiceBeanTest {
 		reset(enventoDao);
 	}
 
-	@Test
-	public void deveRetornarListaVaziaQuandoColaboradorNulo() {
-		assertTrue(
-			agendaServiceBean.listarEventos(
-					null, 
-					new Date(), 
-					new Date()
-					).isEmpty()
-				);
+	@Test(expected=IllegalArgumentException.class)
+	public void deveLancarExcecaoQuandoColaboradorNuloListarEventos() {
+		agendaServiceBean.listarEventos(
+				null, 
+				new Date(), 
+				new Date()
+			);
 	}
 	
-	@Test
-	public void deveRetornarListaVaziaQuandoDataInicialNula() {
-		assertTrue(
-			agendaServiceBean.listarEventos(
-					new Colaborador(), 
-					null, 
-					new Date()
-					).isEmpty()
-				);
+	@Test(expected=IllegalArgumentException.class)
+	public void deveLancarExcecaoQuandoDataInicialNulaListarEventos() {
+		agendaServiceBean.listarEventos(
+				new Colaborador(), 
+				null, 
+				new Date()
+			);
 	}
 	
-	@Test
-	public void deveRetornarListaVaziaQuandoDataFinalNula() {
-		assertTrue(
-			agendaServiceBean.listarEventos(
-					new Colaborador(), 
-					new Date(), 
-					null)
-					.isEmpty()
-				);
+	@Test(expected=IllegalArgumentException.class)
+	public void deveLancarExcecaoQuandoDataFinalNulaListarEventos() {
+		agendaServiceBean.listarEventos(
+				new Colaborador(), 
+				new Date(), 
+				null
+			);
 	}
 	
+		
+	
 	@Test
-	public void deveRetornarListaVaziaQuandoColaboradorNaoCadastrado() {
+	public void deveRetornarListaQuandoParamentrosValidosListarEventos() {
 		
 		Colaborador colaborador = new Colaborador();
 		
-		when(
-			enventoDao.localizar(Colaborador.class , colaborador)
-			).thenReturn(null);
-		
-		assertTrue(
-			agendaServiceBean.listarEventos(
-					colaborador, 
-					new Date(), 
-					new Date()
-					).isEmpty()
-				);
-	}
-	
-	
-	@Test
-	public void deveRetornarListaQuandoColaboradorCadastrado() {
-		
-		Colaborador colaborador = new Colaborador();
-		
-		when(
-			enventoDao.localizar(Colaborador.class, colaborador)
-			).thenReturn(new Colaborador());
-		
+
 		List<Evento> eventos = new ArrayList<Evento>();
 		eventos.add(new Evento());
 		
+		Date dataInicial = new Date();
+		Date dataFinal = new Date();
+		
 		when(
-			enventoDao.getEventos(colaborador, new Date(), new Date())
-			).thenReturn(eventos);
+			enventoDao.getEventos(colaborador, dataInicial, dataFinal)
+		).thenReturn(eventos);
 		
 		assertTrue(
 			!agendaServiceBean.listarEventos(
 					colaborador, 
-					new Date(), 
-					new Date()
+					dataInicial, 
+					dataFinal
 					).isEmpty()
 			);
 	}	
 		
 	
 	
-	@Test
-	public void testAdicionarEvento() {
-		fail("Not yet implemented");
+	@Test(expected=IllegalArgumentException.class)
+	public void deveLancarExcecaoQuandoColaboradorNuloAdicionarEvento() {
+		agendaServiceBean.adicionarEvento(null, new Evento());
 	}
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deveLancarExcecaoQuandoEventoNuloAdicionarEvento() {
+		agendaServiceBean.adicionarEvento(new Colaborador(), null);
+	}	
 
+	
 	@Test
-	public void testAtualizarEvento() {
-		fail("Not yet implemented");
+	public void deveLancarAdicionarEventoQuandoParamentrosValidos() {
+		
+		Evento evento = new Evento();
+		
+		when(
+			enventoDao.salvar(evento)
+		).thenReturn(evento);
+		
+		
+		evento = 
+			agendaServiceBean.adicionarEvento(new Colaborador(), evento);
+		
+		assertNotNull(evento);
+	}	
+	
+	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void deverLancarExcecaoQuandoEventoNuloAtualizarEvento() {
+		agendaServiceBean.atualizarEvento(null);
 	}
-
+	
+	
+	
 	@Test
-	public void testRemoverEvento() {
-		fail("Not yet implemented");
-	}
+	public void deverAtualizarEventoQuandoParamentrosValidosAtualizarEvento() {
+		
+		
+		Evento evento = new Evento();
+		
+		when(
+			enventoDao.atualizar(evento)
+		).thenReturn(evento);
+		
+		evento =
+			agendaServiceBean.atualizarEvento(evento);
+		
+		assertNotNull(evento);
+	}	
 
 }

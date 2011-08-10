@@ -47,7 +47,4 @@ public interface AgendaService {
 	Evento atualizarEvento(Evento evento);
 	
 	
-	void removerEvento(Evento evento);
-	
-	
 }

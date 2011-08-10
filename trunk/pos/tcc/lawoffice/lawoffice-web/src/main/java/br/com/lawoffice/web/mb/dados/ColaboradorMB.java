@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.dados.PessoaServiceLocal;
+import br.com.lawoffice.dominio.Agenda;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
 import br.com.lawoffice.dominio.Pessoa;
@@ -98,6 +99,9 @@ public class ColaboradorMB extends BaseMB {
 		conta.setSaldo(new BigDecimal(0.0));
 		colaborador.setConta(conta);
 		conta.setColaborador(colaborador);// TODO: fornecer um método de criação conforme java efetivo ( livro )
+		Agenda agenda = new Agenda();
+		colaborador.setAgenda(agenda);
+		agenda.setColaborador(colaborador);
 	}
 	
 	
