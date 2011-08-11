@@ -30,8 +30,8 @@
 					<p:commandButton value="Pesquisar" 
 						id="btnPesquisarExtratoCliente"
 						action="#{extratoMB.pesquisarExtratoCliente}" 
-						update="tableItensExtratoCliente msg"
-						oncomplete="showHideNotificationBar();showHideTable()"
+						update="panelGridExtratoCliente panelGridButtonsCliente msg"
+						oncomplete="showHideNotificationBar()"
 						/>										
 				</div>	  			
 	  						
@@ -39,57 +39,64 @@
 			<div style="clear: both;"></div> 			
   		</div>
   		
-  		<div class="divContent">  		
-  			<p:dataTable 
-  				value="#{extratoMB.extratoDTO.itensExtrato}"
-  				var="itenExtrato"
-  				id="tableItensExtratoCliente"
-  				paginator="true"
-  				paginatorPosition="bottom"
-  				rows="15"  				
-  				>  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Data" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.dataLancamento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
+  		<div class="divContent" >
+			<h:panelGrid id="panelGridExtratoCliente" style="width: 100%">  		  		
+	  			<p:dataTable 
+	  				value="#{extratoMB.extratoDTO.itensExtrato}"
+	  				var="itenExtrato"
+	  				id="tableItensExtratoCliente"
+	  				paginator="true"
+	  				paginatorPosition="bottom"
+	  				rows="15"
+	  				rendered="#{not empty extratoMB.extratoDTO.itensExtrato}"  				
+	  				>  			
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Data" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.dataLancamento}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+							
+						</p:column>  			
+	  			
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Natureza" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.natureza}" />
+						</p:column>
+	
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Valor" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.valor}" >
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>
+						</p:column>
 						
-					</p:column>  			
-  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Natureza" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.natureza}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Valor" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.valor}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</p:column>
-					
-					<f:facet name="footer">
-						Saldo Atual =
-						<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</f:facet>  			
-  			</p:dataTable>
+						<f:facet name="footer">
+							Saldo Atual =
+							<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>
+						</f:facet>  			
+	  			</p:dataTable>
+  			</h:panelGrid>
   		</div>
   		
 		<div class="divContent" id="commandButtons">			
-			<p:commandButton 
+			<h:panelGrid id="panelGridButtonsCliente" style="width: 100%">
+				<p:commandButton 
 					ajax="false" 
 					value="Download Extrato"
-					immediate="true">
-				<p:fileDownload value="#{extratoMB.fileExtrado}" />
-			</p:commandButton>
+					immediate="true"
+					rendered="#{not empty extratoMB.extratoDTO.itensExtrato}"
+					>
+					<p:fileDownload value="#{extratoMB.fileExtrado}" />
+				</p:commandButton>
+			</h:panelGrid>
 		</div>  		
 	    
 </ui:composition>

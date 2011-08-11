@@ -21,6 +21,7 @@
 				 onEventSelectUpdate="titulo"
 				 aspectRatio="2"
 				 allDaySlot="false"
+				 id="schedule"
 				 >						
 			</p:schedule>
 			
@@ -34,7 +35,12 @@
 				 	</div>
 				 	
 				 	<div>
-						<p:commandButton value="Salvar"  action="#{agendaMB.salvarEvento}"/>				 	
+						<p:commandButton 
+							value="Salvar"  
+							action="#{agendaMB.salvarEvento}" 
+							oncomplete="eventoDialog.hide()"
+							update="schedule"
+						/>				 	
 				 	</div>
 				</div>
 			

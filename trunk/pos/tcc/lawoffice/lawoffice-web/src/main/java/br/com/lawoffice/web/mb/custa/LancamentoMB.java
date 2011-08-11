@@ -41,7 +41,7 @@ public class LancamentoMB extends AutoCompleteMB {
 	 * Serviço de lançamentos de custas 
 	 */
 	@EJB
-	private LancamentoServiceLocal lancamentoDeCusta;
+	private LancamentoServiceLocal lancamentoService;
 
 	
 	
@@ -66,7 +66,7 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	public void adicionarCusta(){		
 		custas.add(
-			lancamentoDeCusta.adicionarCusta(
+			lancamentoService.adicionarCusta(
 				custa, 
 				cliente,
 				colaborador,
@@ -79,7 +79,7 @@ public class LancamentoMB extends AutoCompleteMB {
 
 	public void removerCusta(){		
 		if(custaSelecionada != null){
-			lancamentoDeCusta.removerCusta(custaSelecionada);
+			lancamentoService.removerCusta(custaSelecionada);
 			custas.remove(custaSelecionada);
 		}			
 	}
@@ -88,7 +88,7 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	public void fecharLancamento(){
 		try {
-			lancamentoDeCusta.fecharLacamento();
+			lancamentoService.fecharLacamento();
 			custas.clear();
 			addMsgInformacao(
 				null, 
@@ -101,6 +101,7 @@ public class LancamentoMB extends AutoCompleteMB {
 	}
 
 
+	
 	// >>>>>>>> GETS E SETS DO MB <<<<<<<<<<<<<
 	
 	public Custa getCusta() {

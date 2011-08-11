@@ -20,8 +20,8 @@
 						itemValue="#{colaborador}"
 						converter="colaboradorConverter"
 						validator="colaboradorValidator"
-						size="30"
 						onkeypress="nofificationBar.hide()"
+						size="30"
 						/>
 				</div>
 	  			
@@ -29,8 +29,8 @@
 					<p:commandButton value="Pesquisar" 
 						id="btnPesquisarExtratoColaborador"
 						action="#{extratoMB.pesquisarExtratoColaborador}" 
-						update="tableItensExtratoColaborador msg"
-						oncomplete="showHideNotificationBar();showHideTable()"
+						update="panelGridExtratoColaborador msg"
+						oncomplete="showHideNotificationBar()"
 						/>										
 				</div>	  			
 	  						
@@ -38,48 +38,51 @@
 			<div style="clear: both;"></div> 			
   		</div>
   		
-  		<div class="divContent">  		
-  			<p:dataTable 
-  				value="#{extratoMB.extratoDTO.itensExtrato}"
-  				var="itenExtrato"
-  				id="tableItensExtratoColaborador"
-  				paginator="true"
-  				paginatorPosition="bottom"
-  				rows="15"
-  				>  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Data" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.dataLancamento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
+  		<div class="divContent" > 
+  			<h:panelGrid id="panelGridExtratoColaborador" style="width: 100%;">  		
+	  			<p:dataTable 
+	  				value="#{extratoMB.extratoDTO.itensExtrato}"
+	  				var="itenExtrato"
+	  				id="tableItensExtratoColaborador"
+	  				paginator="true"
+	  				paginatorPosition="bottom"
+	  				rows="15"
+	  				rendered="#{not empty extratoMB.extratoDTO.itensExtrato}"
+	  				>  			
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Data" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.dataLancamento}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+							
+						</p:column>  			
+	  			
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Natureza" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.natureza}" />
+						</p:column>
+	
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Valor" /> 
+							</f:facet>
+							<h:outputText value="#{itenExtrato.valor}" >
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>
+						</p:column>
 						
-					</p:column>  			
-  			
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Natureza" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.natureza}" />
-					</p:column>
-
-					<p:column>
-						<f:facet name="header">
-							<h:outputText value="Valor" /> 
-						</f:facet>
-						<h:outputText value="#{itenExtrato.valor}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</p:column>
-					
-					<f:facet name="footer">
-						Saldo Atual =
-						<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>
-					</f:facet>  			
-  			</p:dataTable>		
+						<f:facet name="footer">
+							Saldo Atual =
+							<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>
+						</f:facet>  			
+	  			</p:dataTable>
+  			</h:panelGrid>		
   		</div>
   
 </ui:composition>

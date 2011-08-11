@@ -4,6 +4,7 @@
 package br.com.lawoffice.web.mb.agenda;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -109,7 +110,8 @@ public class AgendaMB extends AutoCompleteMB{
 						evento.getDataIncial(), 
 						evento.getDataFinal(), 
 						false,
-						evento.getId()
+						evento.getId(),
+						evento.getAgenda().getId()
 					)
 				);
 		}
@@ -129,6 +131,7 @@ public class AgendaMB extends AutoCompleteMB{
     				dateSelectEvent.getDate(), 
     				dateSelectEvent.getDate(), 
     				false, 
+    				null,
     				null
     			);
     }  
@@ -147,11 +150,20 @@ public class AgendaMB extends AutoCompleteMB{
 	
 	public void onEventoMovido(ScheduleEntryMoveEvent event) {
 		
-		System.out.println(event);
 		
-/*        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());  
-          
-        addMessage(message);  */
+		eventoAdapter = 
+				(EventoAdapter) event.getScheduleEvent();
+		
+		
+		Calendar c = Calendar.getInstance();
+		c.setTime(eventoAdapter.getEndDate());
+		c.add(Calendar.DAY_OF_MONTH, event.getDayDelta());
+		
+		
+		eventoAdapter.setEndDate(c.getTime());
+		eventoAdapter.setStartDate(c.getTime());
+		
+		agendaService.atualizarEvento(eventoAdapter.getEvento());
     }  
     
 	
@@ -185,11 +197,10 @@ public class AgendaMB extends AutoCompleteMB{
 				eventoAdapter.getEvento();
 		
 		if(e.getId() == null){
-			agendaService.atualizarEvento(e);
+			agendaService.adicionarEvento(c, eventoAdapter.getEvento());			
 		}else{
-			agendaService.adicionarEvento(c, eventoAdapter.getEvento());
+			agendaService.atualizarEvento(e);
 		}
-		
 	}
 	
 	
@@ -207,11 +218,13 @@ public class AgendaMB extends AutoCompleteMB{
 	public class EventoAdapter extends DefaultScheduleEvent{
 		
 		public Long idEvento;
+		public Long idAgenda;
 		
 
-		public EventoAdapter(String title, Date start, Date end, boolean allDay, Long idEvento) {
+		public EventoAdapter(String title, Date start, Date end, boolean allDay, Long idEvento, Long idAgenda) {
 			super(title, start, end, allDay);
-			this.idEvento = idEvento;		
+			this.idEvento = idEvento;
+			this.idAgenda = idAgenda;
 		}
 
 
@@ -222,9 +235,13 @@ public class AgendaMB extends AutoCompleteMB{
 					getStartDate(), 
 					getEndDate()
 				);
+
+			Agenda agenda = new Agenda();
+			agenda.setId(getIdAgenda());
 			
 			evento.setId(getIdEvento());
-			
+			evento.setAgenda(agenda);
+	
 			return evento; 
 		}
 
@@ -239,6 +256,15 @@ public class AgendaMB extends AutoCompleteMB{
 			this.idEvento = idEvento;
 		}
 
+
+		public Long getIdAgenda() {
+			return idAgenda;
+		}
+
+
+		public void setIdAgenda(Long idAgenda) {
+			this.idAgenda = idAgenda;
+		}
 		
 	}
 	

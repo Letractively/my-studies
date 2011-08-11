@@ -18,6 +18,33 @@
 				<div id="divInput">
 				
 					<div>
+						<h:outputLabel value="Natureza: " for="natureza"/>
+						<p:inputText value="#{lancamentoMB.custa.natureza}" 
+							id="natureza"
+							size="97"
+							onkeypress="nofificationBar.hide()"
+						    validator="naturezaValidator"
+							/>
+					</div>
+					
+					<div>
+						<h:outputLabel value="Valor: " for="valor" />
+						<p:inputText 
+							value="#{lancamentoMB.custa.valor}" 
+							id="valor"
+							size="10"
+							validator="valorValidator"
+							onkeypress="nofificationBar.hide()"
+							/>					
+					</div>
+										
+				</div>
+					
+				<div style="clear: both;"></div>
+				
+				<div id="divInput" style="margin-top: 15px;">
+				
+					<div>
 						<h:outputLabel value="Data:" for="dataLancamento"/>
 						<p:calendar 
 							id="dataLancamento"
@@ -58,42 +85,15 @@
 							size="30"
 							onkeypress="nofificationBar.hide()"
 							/>
-					</div>					
-					
-				</div>
-					
-				<div style="clear: both;"></div>
-				
-				<div id="divInput" style="margin-top: 15px;">
-				
-					<div>
-						<h:outputLabel value="Natureza: " for="natureza"/>
-						<p:inputText value="#{lancamentoMB.custa.natureza}" 
-							id="natureza"
-							size="92"
-							onkeypress="nofificationBar.hide()"
-						    validator="naturezaValidator"
-							/>
-					</div>
-					
-					<div>
-						<h:outputLabel value="Valor: " for="valor" />
-						<p:inputText 
-							value="#{lancamentoMB.custa.valor}" 
-							id="valor"
-							size="10"
-							validator="valorValidator"
-							onkeypress="nofificationBar.hide()"
-							/>					
-					</div>
+					</div>				
 					
 					<div style="padding-top: 15px;">
 						<p:commandButton 
 							value="Adicionar" 
 							action="#{lancamentoMB.adicionarCusta}" 
 							id="btnAdicionar"
-							update="tableCustas natureza valor msg"
-							oncomplete="showHideNotificationBar();showHideTable();focusNatureza()"
+							update="panelGridCustas panelGridButtons natureza valor msg"
+							oncomplete="showHideNotificationBar();focusNatureza();"
 						/>
 					</div>
 					
@@ -104,87 +104,84 @@
 			</div>
 			
 			
-			<div class="divContent">
-			
-				<p:dataTable
-					value="#{lancamentoMB.custas}" 
-					var="custa"
-					paginator="true"
-					rows="15"
-					paginatorPosition="bottom"
-					id="tableCustas"
-					selection="#{lancamentoMB.custaSelecionada}" 
-					selectionMode="single"				
-					>
-					
-					<p:column sortBy="#{custa.lancamento.dataLancamento}">
-						<f:facet name="header">
-							<h:outputText value="Data Lançamento" /> 
-						</f:facet>
-						<h:outputText value="#{custa.lancamento.dataLancamento}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-					</p:column>					
-					
-					<p:column sortBy="#{custa.lancamento.colaborador.nome}">
-						<f:facet name="header">
-							<h:outputText value="Colaborador" /> 
-						</f:facet>
-						<h:outputText value="#{custa.lancamento.colaborador.nome}" />
-					</p:column>
-								
-					<p:column sortBy="#{custa.lancamento.cliente.nome}">
-						<f:facet name="header">
-							<h:outputText value="Cliente" /> 
-						</f:facet>
-						<h:outputText value="#{custa.lancamento.cliente.nome}" />
-					</p:column>
-										
-					<p:column sortBy="#{custa.natureza}">
-						<f:facet name="header">
-							<h:outputText value="Natureza" /> 
-						</f:facet>
-						<h:outputText value="#{custa.natureza}" />
-					</p:column>
-					
-					<p:column sortBy="#{custa.valor}">
-						<f:facet name="header">
-							<h:outputText value="Valor" /> 
-						</f:facet>
-						<h:outputText value="#{custa.valor}" >
-							<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
-						</h:outputText>	
-					</p:column>				
-					
-				</p:dataTable>			
+			<div class="divContent" >
+				<h:panelGrid id="panelGridCustas" style="width: 100%;">				
+					<p:dataTable
+						value="#{lancamentoMB.custas}" 
+						var="custa"
+						paginator="true"
+						rows="15"
+						paginatorPosition="bottom"
+						id="tableCustas"
+						selection="#{lancamentoMB.custaSelecionada}"
+						rendered="#{not empty lancamentoMB.custas}" 
+						selectionMode="single"				
+						>
+
+						<p:column sortBy="#{custa.natureza}">
+							<f:facet name="header">
+								<h:outputText value="Natureza" /> 
+							</f:facet>
+							<h:outputText value="#{custa.natureza}" />
+						</p:column>
+						
+						<p:column sortBy="#{custa.valor}">
+							<f:facet name="header">
+								<h:outputText value="Valor" /> 
+							</f:facet>
+							<h:outputText value="#{custa.valor}" >
+								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+							</h:outputText>	
+						</p:column>						
+						
+						<p:column sortBy="#{custa.lancamento.dataLancamento}">
+							<f:facet name="header">
+								<h:outputText value="Data Lançamento" /> 
+							</f:facet>
+							<h:outputText value="#{custa.lancamento.dataLancamento}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</p:column>					
+						
+						<p:column sortBy="#{custa.lancamento.colaborador.nome}">
+							<f:facet name="header">
+								<h:outputText value="Colaborador" /> 
+							</f:facet>
+							<h:outputText value="#{custa.lancamento.colaborador.nome}" />
+						</p:column>
+									
+						<p:column sortBy="#{custa.lancamento.cliente.nome}">
+							<f:facet name="header">
+								<h:outputText value="Cliente" /> 
+							</f:facet>
+							<h:outputText value="#{custa.lancamento.cliente.nome}" />
+						</p:column>
+																	
+					</p:dataTable>
+				</h:panelGrid>			
 			</div>
 			
-			<div class="divContent" id="commandButtons">
-			
-			
-				<h:commandButton action="#{lancamentoMB.removerCusta}" 
-						value="Remover" 
-						id="btnRemover"
-						>
-					<f:ajax render="tableCustas" execute="tableCustas" onevent="hideTableRemove"/>
-				</h:commandButton>
+			<div class="divContent">			
+				<h:panelGrid id="panelGridButtons" columns="2">
 				
-				
-				<h:commandButton action="#{lancamentoMB.editarCusta}" 
-						value="Editar" 
-						id="btnEditar"
-						>
-					<f:ajax render="tableCustas" execute="tableCustas"/>
-				</h:commandButton>				
-			
-				
-				<p:commandButton action="#{lancamentoMB.fecharLancamento}" 
-						value="Fechar Lançamento" 
-						id="btnFecharLancamento"
-						update="tableCustas msg"
-						oncomplete="nofificationBar.show();hideTable()"
-						immediate="true"						
-					/>
+					<h:commandButton action="#{lancamentoMB.removerCusta}" 
+							value="Remover" 
+							id="btnRemover"
+							rendered="#{not empty lancamentoMB.custas}"
+							styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+							>
+						<f:ajax render="panelGridCustas panelGridButtons" execute="tableCustas" />
+					</h:commandButton>
+													
+					<p:commandButton action="#{lancamentoMB.fecharLancamento}" 
+							value="Fechar Lançamento" 
+							id="btnFecharLancamento"
+							update="panelGridCustas panelGridButtons msg dataLancamento colaborador cliente"
+							oncomplete="nofificationBar.show();"							
+							rendered="#{not empty lancamentoMB.custas}"
+							immediate="true"						
+						/>
+				</h:panelGrid>		
 			</div>
 			
 			<p:notificationBar position="bottom"
