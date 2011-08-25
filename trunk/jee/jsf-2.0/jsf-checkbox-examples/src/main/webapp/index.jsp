@@ -1,0 +1,1 @@
+<% response.sendRedirect("/jsf-checkbox-examples/home.jsf");  %>

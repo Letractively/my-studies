@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+
+    <h:outputScript name="jquery-1.4.4.min.js" library="js"/>
+    <h:outputScript name="checkbox-table.js" library="js"/>
+    
+	<h:form prependId="false">
+	
+		<div>
+			<h:commandButton value="Show Itens" action="#{checkBoxTableExampleMB.showItens}" />			
+		</div>
+		
+		<div>
+			<h:dataTable value="#{checkBoxTableExampleMB.itensTable}" var="itenTable">
+			
+				<h:column>
+					<h:selectBooleanCheckbox value="#{itenTable.checked}" styleClass="checkbox"/>
+				</h:column>
+				
+				
+				<h:column>
+					<h:outputLabel value="#{itenTable.description}" />
+				</h:column>						
+	
+			</h:dataTable>		
+		</div>
+
+
+	
+	</h:form>
+  	
+  
+  
+</ui:composition>
