@@ -21,9 +21,9 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
  * 
- * @author robson
- * 
  * Manager Bean para página de /caixa/extrato.xhtml
+ * 
+ * @author robson
  *
  */
 @ManagedBean
@@ -31,6 +31,12 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 public class ExtratoMB extends AutoCompleteMB{
 
 	
+	/**
+	 * serial version uid do mb.
+	 */
+	private static final long serialVersionUID = 5304123152213392231L;
+
+
 	/**
 	 *	DTO representando o resultado da pesquisa.
 	 */

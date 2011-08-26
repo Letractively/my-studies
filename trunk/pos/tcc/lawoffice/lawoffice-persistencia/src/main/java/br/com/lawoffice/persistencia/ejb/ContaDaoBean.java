@@ -3,8 +3,6 @@
  */
 package br.com.lawoffice.persistencia.ejb;
 
-import java.util.Date;
-
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 

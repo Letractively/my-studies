@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.lawoffice.custas.lancamento.LancamentoServiceLocal;
 import br.com.lawoffice.dominio.Custa;
+import br.com.lawoffice.dominio.Lancamento;
 import br.com.lawoffice.web.mb.AutoCompleteMB;
 
 /**
@@ -24,7 +25,12 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 public class LancamentoMB extends AutoCompleteMB {
 	
 	
-	// >>>>>>> ATRIBUTOS DE DOMINIO <<<<<<<<<<<<
+	/**
+	 * serial version uid do mb.
+	 */
+	private static final long serialVersionUID = -3836463046908701559L;
+
+
 	/**
 	 * {@link Custa} para adição/edicão/remoção da lista de custas 
 	 */
@@ -45,10 +51,12 @@ public class LancamentoMB extends AutoCompleteMB {
 
 	
 	
+	/**
+	 * Data do {@link Lancamento}
+	 */
 	private Date dataLancamento;
 	
-	
-	// >>>>>>>>>>>  ATRIBUTOS PARA MONTAGEM DA VIEW <<<<<<<<<<<<<<<
+
 	
 	/**
 	 * Custas adicionadas para efetuar o lançamento ( montagem da tabela )
@@ -57,6 +65,9 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 	
 	
+	/**
+	 * inicializa os objetos necessario do mb apos sua criacao no contexto JSF. 
+	 */
 	@PostConstruct
 	public void init(){
 		custa = new Custa();
@@ -64,6 +75,11 @@ public class LancamentoMB extends AutoCompleteMB {
 	}
 	
 	
+	
+	
+	/**
+	 * adiciona um custa ao lancamento.
+	 */
 	public void adicionarCusta(){		
 		custas.add(
 			lancamentoService.adicionarCusta(
@@ -77,6 +93,9 @@ public class LancamentoMB extends AutoCompleteMB {
 	}
 	
 
+	/**
+	 * remove uma custa do lancamento.
+	 */
 	public void removerCusta(){		
 		if(custaSelecionada != null){
 			lancamentoService.removerCusta(custaSelecionada);
@@ -86,6 +105,9 @@ public class LancamentoMB extends AutoCompleteMB {
 	
 
 	
+	/**
+	 * realiza o fechamento do(s) lancamento(s).
+	 */
 	public void fecharLancamento(){
 		try {
 			lancamentoService.fecharLacamento();

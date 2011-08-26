@@ -3,7 +3,6 @@
  */
 package br.com.lawoffice.web.converter;
 
-import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -18,8 +17,6 @@ import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Colaborador;
 
 /**
- * TODO: terminar a programação conforme exemplo do prime faces
- * 
  * Faces Converter para o {@link Colaborador}
  * 
  * @author robson
@@ -37,10 +34,10 @@ public class ColaboradorConverter implements Converter {
 		
 		try {
 			Context context = new InitialContext();
-			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("java:global/lawoffice-ear/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
+			pessoaServiceLocal = 
+					(PessoaServiceLocal) context.lookup("java:global/lawoffice-ear/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
 		} catch (NamingException e) {
-			// TODO: ver como está no exemplo do prime
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 
 		if(NumberUtils.isNumber(colaboradorID)){

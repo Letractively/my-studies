@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- * O {@link Lancamento} possui as {@link Custa}(s) de um {@link Cliente} realizada(s) pelo o {@link Colaborador}.
+ * O {@link Lancamento} possui as {@link Custa}(s) de um {@link Cliente} realizada(s) pelo o {@link Colaborador} em uma determinada data.
  * 
  * @author robson
  *
@@ -31,26 +31,47 @@ import javax.persistence.TemporalType;
 @Table(name="LANCAMENTO")
 public class Lancamento implements EntityBase{
 
+	/**
+	 *  serial version uid da classe.
+	 */
+	private static final long serialVersionUID = 3967490166883427717L;
+
+	/**
+	 * Identificador na base de dados.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private Long id;
 	
+	/**
+	 * {@link Cliente} do lancamento.
+	 */
 	@ManyToOne
 	@JoinColumn(name="CLIENTE_ID")
 	private Cliente cliente;
 	
 	
+	/**
+	 * {@link Colaborador} do lancamento.
+	 */
 	@ManyToOne
 	@JoinColumn(name="COLABORADOR_ID")
 	private Colaborador colaborador;
 	
 	
+	/**
+	 * Data do lancamento.
+	 */
 	@Column(name="DATA_LANCAMENTO")
 	@Temporal(TemporalType.DATE)
 	private Date dataLancamento;
 	
 	
+	
+	/**
+	 * {@link Custa}s do lancamento. 
+	 */
 	@OneToMany(mappedBy="lancamento", cascade = CascadeType.ALL)
 	private List<Custa> custas;
 	
@@ -111,10 +132,15 @@ public class Lancamento implements EntityBase{
 	
 	// >>>>>>>> MÉTODOS DE DOMINIO <<<<<<<<<<<<<<
 	
-	// TODO; para o método que recebe parametros abaixo
-	// a necessidade de refatorar para validar os mesmo
-	// como estou com débito técnico com beans validation
-	// vamos refatorar após fechar o débito técnico
+
+	/**
+	 * Adiciona um {@link Cliente} ao {@link Lancamento}
+	 * 
+	 * @param cliente - a ser adicionado ao lancamento.
+	 * @return {@link Lancamento} com o cliente adicionado.
+	 * @throws IllegalArgumentException quando o cliente estiver nulo.
+	 */
+	
 	public Lancamento adicionarCliente(Cliente cliente) {
 		if(cliente == null)
 			throw new IllegalArgumentException("Cliente esta nulo");		
@@ -123,6 +149,13 @@ public class Lancamento implements EntityBase{
 	}
 
 
+	/**
+	 * Adiciona um {@link Colaborador} ao {@link Lancamento}
+	 * 
+	 * @param colaborador - a ser adicionado ao lancamento.
+	 * @return {@link Lancamento} com o colaborador adicionado.
+	 * @throws IllegalArgumentException quando o colaborador estiver nulo.
+	 */
 	public Lancamento adicionarColaborador(Colaborador colaborador){
 		if(colaborador == null)
 			throw new IllegalArgumentException("Colaborador esta nulo");
@@ -131,7 +164,13 @@ public class Lancamento implements EntityBase{
 	}	
 	
 	
-	public Lancamento adicionarDataLancamento(Date data){
+	/**
+	 * Adiciona uma {@link Date} para o {@link Lancamento}.
+	 * @param data  data do lancamento.
+	 * @return {@link Lancamento} com a data.
+	 * @throws IllegalArgumentException quando a data estiver nula.
+	 */
+	public Lancamento adicionarDataLancamento(Date data){		
 		if(data == null)
 			throw new IllegalArgumentException("Data esta nula");
 		setDataLancamento(data);
@@ -139,7 +178,15 @@ public class Lancamento implements EntityBase{
 	}
 
 	
+	/**
+	 * Adicona uma {@link Custa} a lista de custas do {@link Lancamento}.
+	 * @param custa a ser adicionada no lancamento. 
+	 * @return {@link Lancamento} com a custa adicionada.
+	 * @throws IllegalArgumentException quando a custa estiver nula.
+	 */
 	public Lancamento addCusta(Custa custa){
+		if(custa == null)
+			throw new IllegalArgumentException("custa esta nula");
 		if(custas == null)
 			custas = new ArrayList<Custa>();
 		custas.add(custa);
@@ -165,4 +212,12 @@ public class Lancamento implements EntityBase{
 		return total;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Lancamento [id=" + id + ", cliente=" + cliente
+				+ ", colaborador=" + colaborador + ", dataLancamento="
+				+ dataLancamento + ", custas=" + custas + "]";
+	}
+	
 }

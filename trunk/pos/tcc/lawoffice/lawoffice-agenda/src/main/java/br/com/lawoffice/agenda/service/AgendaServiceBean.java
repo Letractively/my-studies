@@ -3,7 +3,6 @@
  */
 package br.com.lawoffice.agenda.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import javax.ejb.Stateless;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Evento;
 import br.com.lawoffice.persistencia.EventoDao;
-import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 

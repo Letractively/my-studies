@@ -17,6 +17,11 @@ import java.util.Date;
 public class ItemExtrato implements Serializable, Comparable<ItemExtrato>{
 
 	/**
+	 *  serial version uid da classe.
+	 */
+	private static final long serialVersionUID = -2770861593925656092L;
+
+	/**
 	 * 
 	 * Data do lancamento do item.
 	 * 

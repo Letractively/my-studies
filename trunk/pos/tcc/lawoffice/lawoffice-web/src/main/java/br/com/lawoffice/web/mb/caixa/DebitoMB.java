@@ -30,6 +30,12 @@ public class DebitoMB extends AutoCompleteMB{
 	
 	
 	/**
+	 * serial version uid da classe.
+	 */
+	private static final long serialVersionUID = -2943873434703795932L;
+
+
+	/**
 	 * Valor para debitar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
 	 */
 	protected BigDecimal valor;
@@ -42,6 +48,10 @@ public class DebitoMB extends AutoCompleteMB{
 	protected CaixaServiceLocal caixaService;
 	
 	
+	/**
+	 * realiza o debito na {@link Conta} do {@link Cliente} com o valor passado.
+	 * 
+	 */
 	public void debitarCliente(){
 		Conta conta = 
 			caixaService.debitar(cliente.getConta(), valor, new Date());
@@ -50,6 +60,10 @@ public class DebitoMB extends AutoCompleteMB{
 	}
 	
 	
+	/**
+	 * realiza o debito na {@link Conta} do {@link Colaborador} no valor passado.
+	 * 
+	 */
 	public void debitarColaborador(){
 		Conta conta = 
 			caixaService.debitar(colaborador.getConta(), valor, new Date());
@@ -58,8 +72,12 @@ public class DebitoMB extends AutoCompleteMB{
 	}
 
 	
+	/**
+	 * add msg de debito realizado com sucesso.
+	 * 
+	 * @param conta
+	 */
 	private void addMsgDebitoSucesso(Conta conta) {
-		// TODO: internacionalização
 		addMsgInformacao(
 				null, 
 				"Débito realizado com sucesso: ",  

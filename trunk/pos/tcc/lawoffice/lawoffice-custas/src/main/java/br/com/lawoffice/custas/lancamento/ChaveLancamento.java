@@ -4,24 +4,35 @@
 package br.com.lawoffice.custas.lancamento;
 
 import java.util.Date;
+import java.util.Map;
 
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 
 /**
  * 
- * TODO: javadoc
- * 
+ * Chave para o {@link Map} de lancamentos do serivco de lancamentos.
  * 
  * @author rduarte
+ * 
+ * @see LancamentoService
  *
  */
 class ChaveLancamento {
 
+	/**
+	 * Cliente do lancamento.
+	 */
 	private Cliente cliente;
 	
+	/**
+	 * Colaborador do lancamento.
+	 */
 	private Colaborador colaborador;
 	
+	/**
+	 * Data do lancamento.
+	 */
 	private Date data;
 
 	public ChaveLancamento(Cliente cliente, Colaborador colaborador, Date data) {		

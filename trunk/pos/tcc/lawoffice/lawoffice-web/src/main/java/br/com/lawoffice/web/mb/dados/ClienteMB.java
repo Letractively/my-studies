@@ -30,6 +30,12 @@ public class ClienteMB extends BaseMB {
 
 	
 	/**
+	 * serial version uid do mb.
+	 */
+	private static final long serialVersionUID = -6574264805469938663L;
+
+
+	/**
 	 * Cliente para adicionar/remover/editar 
 	 */
 	private Cliente cliente;
@@ -54,6 +60,9 @@ public class ClienteMB extends BaseMB {
 	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
+	/**
+	 * inicializa os objetos necessarios do mb no contexto do JSF. 
+	 */
 	@PostConstruct
 	public void init(){
 		listarClientes();
@@ -61,18 +70,27 @@ public class ClienteMB extends BaseMB {
 	}
 	
 	
+	/**
+	 * persiste um {@link Cliente} na base de dados.
+	 */
 	public void adicionarCliente(){
 		pessoaServiceLocal.salvar(cliente);
 		listarClientes();
 	}
 	
 	
+	/**
+	 * atualiza os dados de um {@link Cliente} na base de dados.
+	 */
 	public void atualizarCliente(){
 		pessoaServiceLocal.atualizar(cliente);
 	}
 	
 	
 	
+	/**
+	 * remove um {@link Cliente} da base de dados.
+	 */
 	public void removerCliente(){
 		if(clienteSelecionado != null){			
 			pessoaServiceLocal.remover(Cliente.class,clienteSelecionado);
@@ -81,14 +99,18 @@ public class ClienteMB extends BaseMB {
 	}
 	
 	
+	/**
+	 * recupera o {@link Cliente} selecionado para edicao.
+	 */
 	public void editarCliente(){
 		if(clienteSelecionado != null)
 			cliente = clienteSelecionado;
 	}
 	
 	
-	
-	// TODO: fornecer um método de criação conforme java efetivo ( livro )
+	/**
+	 * cria um novo {@link Cliente} com seu relacionamentos obrigatorios.
+	 */
 	public void novoCliente(){
 		cliente = new Cliente();  
 		Conta conta = new Conta();
@@ -98,6 +120,9 @@ public class ClienteMB extends BaseMB {
 	}
 	
 	
+	/**
+	 * lsita todos os {@link Cliente} do escritori.
+	 */
 	private void listarClientes() {
 		listClientes = pessoaServiceLocal.listar(Cliente.class);
 	}

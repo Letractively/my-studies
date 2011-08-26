@@ -29,6 +29,12 @@ import br.com.lawoffice.web.mb.AutoCompleteMB;
 public class CreditoMB extends AutoCompleteMB{
 
 	/**
+	 * serial version uid da classe.
+	 */
+	private static final long serialVersionUID = 5082283090828796781L;
+
+
+	/**
 	 * Valor para creditar na {@link Conta} do {@link Cliente} ou do {@link Colaborador}
 	 */
 	protected BigDecimal valor;
@@ -41,7 +47,9 @@ public class CreditoMB extends AutoCompleteMB{
 	protected CaixaServiceLocal caixaService;
 	
 	
-	
+	/**
+	 * realiza o credito na {@link Conta} do {@link Cliente} no valor passado.
+	 */
 	public void creditarCliente(){		
 		Conta conta = 
 			caixaService.creditar(cliente.getConta(), valor, new Date());
@@ -49,6 +57,9 @@ public class CreditoMB extends AutoCompleteMB{
 		addMsgCreditoSucesso(conta);								
 	}
 
+	/**
+	 * realiza o creidto na {@link Conta} do {@link Colaborador} no valor passado.
+	 */
 	public void creditarColaborador(){
 		Conta conta =
 			caixaService.creditar(colaborador.getConta(), valor, new Date());
@@ -57,8 +68,12 @@ public class CreditoMB extends AutoCompleteMB{
 	}
 	
 	
+	/**
+	 * add msg de credito realizado com sucesso.
+	 * 
+	 * @param conta - que foi realizado o credito.
+	 */
 	private void addMsgCreditoSucesso(Conta conta) {
-		// TODO: internacionalização
 		addMsgInformacao(
 				null, 
 				"Crédito realizado com sucesso: ",  

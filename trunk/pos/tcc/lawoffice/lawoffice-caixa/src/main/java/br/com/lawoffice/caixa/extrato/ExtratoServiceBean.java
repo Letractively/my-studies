@@ -29,7 +29,7 @@ import br.com.lawoffice.persistencia.LancamentoDao;
 
 /**
  * 
- * Implementação para o serviço de Extrato
+ * Implementação para o serviço de Extrato.
  * 
  * 
  * @author robson
@@ -84,7 +84,7 @@ public class ExtratoServiceBean implements ExtratoService{
 			colaborador.getConta()
 		);
 		
-		addItemExtrato(
+		addItensExtrato(
 			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, colaborador.getConta()),
 			lancamentoDao.getLancamentos(dataInicial, dataFinal, colaborador)
 		);
@@ -112,7 +112,7 @@ public class ExtratoServiceBean implements ExtratoService{
 				cliente.getConta()
 			);
 		
-		addItemExtrato(
+		addItensExtrato(
 			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, cliente.getConta()),
 			lancamentoDao.getLancamentos(dataInicial, dataFinal, cliente)
 		);		
@@ -123,8 +123,16 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 	
 
-	//TODO: javadoc
-	private void addItemExtrato(List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
+	
+	/**
+	 * 
+	 * Adiciona os {@link ItemExtrato} ao {@link ExtratoDTO} apartir do(s) {@link HistoricoConta} e do(s) {@link Lancamento}
+	 * obtidos no periodo da consulta. 
+	 * 
+	 * @param historicosConta - obtidos no periodo da consulta.
+	 * @param lancamentos - obtidos no periodo da consulta.
+	 */
+	private void addItensExtrato(List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
 
 		for (Lancamento lancamento : lancamentos) {			
 			for (Custa custa : lancamento.getCustas()) {
@@ -178,6 +186,7 @@ public class ExtratoServiceBean implements ExtratoService{
 	/**
 	 * Obtem o saldo anterior a data inicial de pesquisa para conta passada.
 	 * 
+	 * 
 	 * @param conta - a obter o saldo anterior.
 	 * @param dataInicial - de consulta.
 	 * @return - {@link BigDecimal} com saldo anterior
@@ -206,10 +215,7 @@ public class ExtratoServiceBean implements ExtratoService{
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato) {
 		if(extratoDTO == null)
 			throw new IllegalStateException("Nao foi realizado nenhuma pesquisa");
-		
-		
-		// TODO: esse if está aqui pq ainda não entedi o lance do CDI
-		// se der tempo vamos remover e aplicar o cdi senão vai assim mesmo !! ( 23/07/2011 )
+				
 		if(factoryExtratoReport == null){
 			factoryExtratoReport  = new SimpleFactoryExtratoReportJasper();
 		}
@@ -223,6 +229,13 @@ public class ExtratoServiceBean implements ExtratoService{
 	
 	
 	
+	/**
+	 * valida os paramentros básicos de entrada do serviço.
+	 * 
+	 * @param dataInicial - a ser avalida.
+	 * @param dataFinal - a ser avalida.
+	 * @param pessoa - a ser avalida.
+	 */
 	private void validarParametros(Date dataInicial, Date dataFinal,Pessoa pessoa) {
 		if(dataInicial == null)
 			throw new IllegalArgumentException("Data inicial nula");

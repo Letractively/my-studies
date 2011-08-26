@@ -25,6 +25,12 @@ public class AutoCompleteMB extends BaseMB{
 	
 	
 	/**
+	 * serial version uid da classe.
+	 */
+	private static final long serialVersionUID = 1166161353799699898L;
+
+
+	/**
 	 * Serviço de dados cadastrais de {@link Pessoa} para realizar o autoComplete 
 	 */
 	@EJB
@@ -44,12 +50,24 @@ public class AutoCompleteMB extends BaseMB{
 	
 	
 	
-	public List<Cliente> listarClientes(String query){
-		return pessoaServiceLocal.listarPorNome(Cliente.class, query); 
+	/**
+	 * lista os {@link Cliente}(s) utilizando o nome como paramentro para filtro.
+	 * 
+	 * @param nome - nome do cliente.
+	 * @return {@link List} de {@link Cliente} com o nome passsado.
+	 */ 
+	public List<Cliente> listarClientes(String nome){
+		return pessoaServiceLocal.listarPorNome(Cliente.class, nome); 
 	}
 	
-	public List<Colaborador> listarColaboradores(String query){
-		return pessoaServiceLocal.listarPorNome(Colaborador.class, query); 
+	/**
+	 * lista os {@link Colaborador}(s) utilizando o neom como paramentro para filtro.
+	 * 
+	 * @param nome - nome do cliente.
+	 * @return {@link List} de {@link Colaborador} com o nome passado.
+	 */
+	public List<Colaborador> listarColaboradores(String nome){
+		return pessoaServiceLocal.listarPorNome(Colaborador.class, nome); 
 	}
 	
 

@@ -32,7 +32,7 @@ public class ValorValidator implements Validator {
 				new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, 
 					"Existem campos obrigatórios sem preenchimento..: ", 
-					"O Valor é obrigatório e deve ser maior que zero" // TODO: internacionalização
+					"O Valor é obrigatório e deve ser maior que zero"
 			));
 		}
 	}

@@ -10,9 +10,7 @@ import br.com.lawoffice.dominio.Conta;
  * 
  * @author robson
  * 
- * @see
- * 
- * {@link CaixaServiceBean} {@link CaixaServiceLocal} {@link CaixaServiceRemote}
+ * @see {@link CaixaServiceBean} {@link CaixaServiceLocal} {@link CaixaServiceRemote}
  *
  */
 public interface CaixaService {

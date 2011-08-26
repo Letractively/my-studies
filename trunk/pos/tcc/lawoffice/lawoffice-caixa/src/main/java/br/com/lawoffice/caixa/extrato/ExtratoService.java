@@ -43,5 +43,11 @@ public interface ExtratoService{
 	
 	
 	
+	/**
+	 * Gera o extrato apartir do tipo passado.
+	 * 
+	 * @param tipoExtrato a ser gerado.
+	 * @return extrato em array de byte.
+	 */
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato); 
 }

@@ -10,7 +10,11 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import br.com.lawoffice.dominio.Cliente;
+
 /**
+ * Validator para os objetos {@link Cliente} obtidos na view.
+ * 
  * @author rduarte
  *
  */
@@ -25,7 +29,7 @@ public class ClienteValidator implements Validator {
 				 new FacesMessage(
 							FacesMessage.SEVERITY_ERROR, 
 							"Existem campos obrigatórios sem preenchimento..: ", 
-							"O Cliente é obrigatório" // TODO: internacionlização no livro jsf tem um esquema ver em bundles ( para todo validators )
+							"O Cliente é obrigatório"
 				));
 		}
 	}

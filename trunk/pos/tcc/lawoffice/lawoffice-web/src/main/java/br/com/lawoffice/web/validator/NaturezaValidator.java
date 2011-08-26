@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Validator para a natureza do lançamento de custas  
+ * Validator para a natureza do lançamento de custas obtidos na view.  
  *
  * @author rduarte
  *
@@ -30,7 +30,7 @@ public class NaturezaValidator implements Validator {
 				new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, 
 					"Existem campos obrigatórios sem preenchimento..: ", 
-					"A Natureza é obrigatória" // TODO: internacionalização
+					"A Natureza é obrigatória"
 			));
 		}
 	}

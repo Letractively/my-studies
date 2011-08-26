@@ -11,7 +11,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * Validator para a natureza do lançamento de custas  
+ * Validator para a natureza do lançamento de custas obtidos na view.  
  *
  * @author rduarte
  *
@@ -28,7 +28,7 @@ public class DataValidator implements Validator {
 				new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, 
 					"Existem campos obrigatórios sem preenchimento..: ", 
-					"A Data é obrigatória" // TODO: internacionalização
+					"A Data é obrigatória"
 			));
 		}
 	}

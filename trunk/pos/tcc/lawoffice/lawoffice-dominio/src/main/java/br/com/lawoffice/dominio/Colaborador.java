@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * 
@@ -24,18 +23,33 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="COLABORADOR")
 public class Colaborador extends Pessoa{
-		
+
+	
+	/**
+	 * Cargo do colaborador no escritorio. 
+	 */
 	@Column(name="CARGO")
 	private String cargo;
 	
+	
+	/**
+	 * lancamentos do colaborador. 
+	 */
 	@OneToMany(mappedBy="colaborador")
 	private List<Lancamento> lancamentos;
 	
 	
+	/**
+	 * Conta do colaborador no escritorio.
+	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
 
+	
+	/**
+	 * agenda de compromissos do colaborador. 
+	 */
 	@OneToOne(mappedBy="colaborador", cascade = CascadeType.ALL)
 	private Agenda agenda;
 	
@@ -70,5 +84,12 @@ public class Colaborador extends Pessoa{
 
 	public void setAgenda(Agenda agenda) {
 		this.agenda = agenda;
+	}
+
+	@Override
+	public String toString() {
+		return "Colaborador [cargo=" + cargo + ", lancamentos=" + lancamentos
+				+ ", conta=" + conta + ", agenda=" + agenda + "]";
 	}	
+	
 }

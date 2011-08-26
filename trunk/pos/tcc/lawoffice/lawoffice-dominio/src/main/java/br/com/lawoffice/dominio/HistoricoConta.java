@@ -29,30 +29,54 @@ import javax.persistence.TemporalType;
 @Table(name="HISTORICO_CONTA")
 public class HistoricoConta implements EntityBase{
 
+	/**
+	 * serial version uid da classe.
+	 */
+	private static final long serialVersionUID = 8517085025952138296L;
+
+
+	/**
+	 * identificador da entidade. 
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private Long id;
 	
 	
+	/**
+	 *  data da ocorrencia da transacao na conta.
+	 */
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="DATA_TRANSACAO")
 	private Date dataTransacao;
 	
 	
+	/**
+	 * tipo de transacao ocorrida na conta.
+	 */
 	@Enumerated(EnumType.STRING)
 	@Column(name="TIPO_TRANSACAO")
 	private TipoTransacao tipoTransacao;
 	
 	
+	/**
+	 * valor da transacao ocorrida na conta. 
+	 */
 	@Column(name="VALOR_TRANSACAO", precision = 19 , scale = 2)
 	private BigDecimal valorTransacao;
 
 	
+	/**
+	 * saldo anterior da conta antes da transacao.
+	 */
 	@Column(name="SALDO_ANTERIOR", precision = 19 , scale = 2)
 	private BigDecimal saloAnterior;	
 	
 	
+	/**
+	 * conta do historicos.
+	 */
 	@ManyToOne
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
@@ -146,4 +170,14 @@ public class HistoricoConta implements EntityBase{
 	public void setConta(Conta conta) {
 		this.conta = conta;
 	}
+
+
+	@Override
+	public String toString() {
+		return "HistoricoConta [id=" + id + ", dataTransacao=" + dataTransacao
+				+ ", tipoTransacao=" + tipoTransacao + ", valorTransacao="
+				+ valorTransacao + ", saloAnterior=" + saloAnterior
+				+ ", conta=" + conta + "]";
+	}
+	
 }

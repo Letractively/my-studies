@@ -2,8 +2,6 @@ package br.com.lawoffice.dominio;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-
 /**
  * 
  * Interface base para as entidades de dominio.

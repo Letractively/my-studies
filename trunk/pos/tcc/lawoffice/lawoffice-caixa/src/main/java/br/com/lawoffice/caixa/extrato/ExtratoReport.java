@@ -6,7 +6,7 @@ package br.com.lawoffice.caixa.extrato;
 
 /**
  * 
- * Interface de serviço para a criação de arquivo de extrato.
+ * Interface de serviço para a criacao de arquivo de extrato.
  * 
  * @author robson
  *

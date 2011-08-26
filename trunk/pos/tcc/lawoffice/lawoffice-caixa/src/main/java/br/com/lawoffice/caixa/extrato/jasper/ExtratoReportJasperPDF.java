@@ -4,14 +4,14 @@
 package br.com.lawoffice.caixa.extrato.jasper;
 
 
-import br.com.lawoffice.caixa.extrato.ExtratoDTO;
-import br.com.lawoffice.caixa.extrato.ExtratoReport;
-import br.com.lawoffice.caixa.extrato.ExtratoReportException;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import br.com.lawoffice.caixa.extrato.ExtratoDTO;
+import br.com.lawoffice.caixa.extrato.ExtratoReport;
+import br.com.lawoffice.caixa.extrato.ExtratoReportException;
 
 
 /**

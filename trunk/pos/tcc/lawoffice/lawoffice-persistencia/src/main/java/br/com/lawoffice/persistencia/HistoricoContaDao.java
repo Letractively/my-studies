@@ -9,7 +9,6 @@ import java.util.List;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;
-import br.com.lawoffice.dominio.EntityBase;
 import br.com.lawoffice.dominio.HistoricoConta;
 
 

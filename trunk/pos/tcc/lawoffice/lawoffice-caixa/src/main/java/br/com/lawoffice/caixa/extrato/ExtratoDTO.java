@@ -21,6 +21,11 @@ public class ExtratoDTO implements Serializable{
 
 	
 	/**
+	 *  serial version uid da classe.
+	 */
+	private static final long serialVersionUID = 7488732670828611506L;
+
+	/**
 	 * Nome da pessoa que o extrato será gerado.
 	 */
 	private String nomePessoa;

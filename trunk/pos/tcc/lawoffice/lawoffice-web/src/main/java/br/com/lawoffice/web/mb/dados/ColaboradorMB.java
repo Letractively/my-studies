@@ -31,6 +31,12 @@ public class ColaboradorMB extends BaseMB {
 
 	
 	/**
+	 * serial version uid do mb.
+	 */
+	private static final long serialVersionUID = 8501097824652676049L;
+
+
+	/**
 	 * Colaborador para adicionar/remover/editar 
 	 */
 	private Colaborador colaborador;
@@ -55,6 +61,9 @@ public class ColaboradorMB extends BaseMB {
 	private PessoaServiceLocal pessoaServiceLocal;
 	
 	
+	/**
+	 * inicializa os objetos necessario do mb no contexto JSF. 
+	 */
 	@PostConstruct
 	public void init(){
 		listarColaboradores();
@@ -62,17 +71,26 @@ public class ColaboradorMB extends BaseMB {
 	}
 	
 	
+	/**
+	 * persiste um {@link Colaborador} na base de dados.
+	 */
 	public void adicionarColaborador(){
 		pessoaServiceLocal.salvar(colaborador);
 		listarColaboradores();
 	}
 	
 	
+	/**
+	 * atualizar um {@link Colaborador} na base de dados.
+	 */
 	public void atualizarColaborador(){
 		pessoaServiceLocal.atualizar(colaborador);
 	}
 	
 	
+	/**
+	 * remove o {@link Colaborador} da base de dados.
+	 */
 	public void removerColaborador(){
 		if(colaboradorSelecionado != null){
 			pessoaServiceLocal.remover(Colaborador.class, colaboradorSelecionado);
@@ -81,30 +99,33 @@ public class ColaboradorMB extends BaseMB {
 	}
 	
 	
-	// TODO: problemas na edição na página
-	// quando clica no btn de editar e não tem ninguém
-	// selecionado a página de cadastro é exibida
-	// e isso não pode ocorrer , analisar como podemos bloquear isso
-	// existe um onerror mas não funcionou então vamos estudar com 
-	// mais calma isso ficando como todo
+	/**
+	 * recupera o {@link Colaborador} selecionado para edicao.
+	 */
 	public void editarColaborador(){
 		if(colaboradorSelecionado != null)
 			colaborador = colaboradorSelecionado;
 	}
 	
 	
+	/**
+	 * cria um novo {@link Colaborador} com o seus relacionamentos obrigatorios.
+	 */
 	public void novoColaborador(){
 		colaborador = new Colaborador();
 		Conta conta = new Conta();
 		conta.setSaldo(new BigDecimal(0.0));
 		colaborador.setConta(conta);
-		conta.setColaborador(colaborador);// TODO: fornecer um método de criação conforme java efetivo ( livro )
+		conta.setColaborador(colaborador);
 		Agenda agenda = new Agenda();
 		colaborador.setAgenda(agenda);
 		agenda.setColaborador(colaborador);
 	}
 	
 	
+	/**
+	 * lista todos os {@link Colaborador} do escritorio.
+	 */
 	private void listarColaboradores() {
 		listColaboradores = pessoaServiceLocal.listar(Colaborador.class);
 	}

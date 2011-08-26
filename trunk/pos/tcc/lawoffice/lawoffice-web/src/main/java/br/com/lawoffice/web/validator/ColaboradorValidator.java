@@ -30,7 +30,7 @@ public class ColaboradorValidator implements Validator {
 				 new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, 
 					"Existem campos obrigatórios sem preenchimento..: ", 
-					"O Colaborador é obrigatório" // TODO: internacionlização no livro jsf tem um esquema ver em bundles ( para todo validators )
+					"O Colaborador é obrigatório"
 				));
 		}
 	}

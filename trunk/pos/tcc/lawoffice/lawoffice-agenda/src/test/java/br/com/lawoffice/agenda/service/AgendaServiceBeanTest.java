@@ -1,8 +1,9 @@
 package br.com.lawoffice.agenda.service;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,13 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Evento;
 import br.com.lawoffice.persistencia.EventoDao;
-import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
  * 

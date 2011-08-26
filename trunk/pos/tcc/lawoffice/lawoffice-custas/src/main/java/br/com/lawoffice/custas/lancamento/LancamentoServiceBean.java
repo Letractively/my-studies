@@ -23,7 +23,7 @@ import br.com.lawoffice.persistencia.LancamentoDao;
 import br.com.lawoffice.persistencia.PessoaDao;
 
 /**
- *  TODO: javadoc 
+ *  implementacao para o serviço de lancamento utilizando tecnologia EJB.
  * 
  * @author robson
  *
@@ -141,7 +141,7 @@ public class LancamentoServiceBean implements LancamentoService {
 	
 	
 	/**
-	 * Retorna o Lançamento para 
+	 * Retorna o Lançamento para a chave passada, caso nao haja lancamento para a chave um novo sera criado.
 	 * 
 	 * 
 	 * @param cliente
@@ -168,6 +168,15 @@ public class LancamentoServiceBean implements LancamentoService {
 	
 	
 	
+	/**
+	 * valida os paramentros de entrada do servico.
+	 * 
+	 * @param custa - a ser validada.
+	 * @param cliente - a ser validado.
+	 * @param colaborador - a ser validado.
+	 * @param data - a ser validada.
+	 * @throws IllegalArgumentException quando algum parametro noa estiver  correto.
+	 */
 	private void validarParametros(Custa custa, Cliente cliente, Colaborador colaborador, Date data) {
 		if(custa == null)
 			throw new IllegalArgumentException("Custa está nula");
@@ -183,6 +192,12 @@ public class LancamentoServiceBean implements LancamentoService {
 	
 	
 
+	/**
+	 * valida uma custa
+	 * 
+	 * @param custa - a ser validada.
+	 * @throws IllegalArgumentException quando a custa estiver ou nao estar associada a um lancamento.
+	 */
 	private void validarCusta(Custa custa) {
 		if(custa == null)
 			throw new IllegalArgumentException("Custa está nula");

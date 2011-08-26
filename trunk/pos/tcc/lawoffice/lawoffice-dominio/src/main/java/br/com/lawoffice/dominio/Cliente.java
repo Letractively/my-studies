@@ -25,15 +25,35 @@ import javax.persistence.Table;
 @Table(name="CLIENTE")
 public class Cliente extends Pessoa{
 
+	
+	
+	/**
+	 * servial version uid da entidade.
+	 */
+	private static final long serialVersionUID = -5411526954284584650L;
+	
+
+	/**
+	 * Lista de lancamentos do cliente. 
+	 */
 	@OneToMany(mappedBy = "cliente")
 	private List<Lancamento> lancamentos;
 	
+	/**
+	 * telefone do cliente.
+	 */
 	@Column(name="TELEFONE")
 	private String telefone;	
 	
+	
+	/**
+	 * conta do cliente no escritorio.
+	 */
 	@OneToOne(cascade = CascadeType.ALL)	
 	@JoinColumn(name="CONTA_ID")
 	private Conta conta;
+	
+	
 	
 
 	public List<Lancamento> getLancamentos() {

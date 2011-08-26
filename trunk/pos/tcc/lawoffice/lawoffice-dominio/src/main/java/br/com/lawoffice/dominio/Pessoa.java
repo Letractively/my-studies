@@ -18,14 +18,23 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class Pessoa implements EntityBase{
 
+	/**
+	 * identificador da entidade. 
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")	
 	protected Long id;
 	
+	/**
+	 * nome da pessoa.
+	 */
 	@Column(name = "NOME")
 	protected String nome;
 	
+	/**
+	 * email da pessoa. 
+	 */
 	@Column(name = "EMAIL")
 	protected String email;
 	

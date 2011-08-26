@@ -19,11 +19,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import br.com.lawoffice.caixa.extrato.ExtratoDTO;
-import br.com.lawoffice.caixa.extrato.ExtratoReport;
-import br.com.lawoffice.caixa.extrato.ExtratoServiceBean;
-import br.com.lawoffice.caixa.extrato.FactoryExtratoReport;
-import br.com.lawoffice.caixa.extrato.TipoExtrato;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Conta;

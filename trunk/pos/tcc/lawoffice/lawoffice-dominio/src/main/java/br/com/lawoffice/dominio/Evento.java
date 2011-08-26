@@ -15,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 /**
  * 
@@ -29,32 +28,45 @@ import javax.validation.constraints.NotNull;
 @Table(name="EVENTO")
 public class Evento implements EntityBase{
 
+	/**
+	 * serial verion uid da classe.
+	 */
+	private static final long serialVersionUID = 1687779862606665824L;
+
+	/**
+	 * identificador da entidade.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 	
+	/**
+	 * agenda onde o evento esta atrelado.
+	 */
 	@ManyToOne
 	@JoinColumn(name="AGENDA_ID")
 	private Agenda agenda;
 	
-	@NotNull
+	/**
+	 * titulo do evento.
+	 */
 	@Column(name = "TITULO")
 	private String titulo;
 	
-	@NotNull
+	/**
+	 * data inicial do evento. 
+	 */
 	@Column(name = "DATA_INICIAL")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataIncial;
 	
-	@NotNull
+	/**
+	 * data final do evento.
+	 */
 	@Column(name = "DATA_FINAL")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFinal;
-
-	
-
-	
 
 
 
@@ -129,4 +141,14 @@ public class Evento implements EntityBase{
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", agenda=" + agenda + ", titulo=" + titulo
+				+ ", dataIncial=" + dataIncial + ", dataFinal=" + dataFinal
+				+ "]";
+	}
+	
 }

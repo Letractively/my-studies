@@ -24,18 +24,36 @@ import javax.persistence.Table;
 @Table(name="CUSTA")
 public class Custa implements EntityBase{
 
+	/**
+	 * serial version uid da entidade.
+	 * 
+	 */
+	private static final long serialVersionUID = 4857927343419332646L;
+
+	/**
+	 * identificador da entidade.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private Long id;
 	
+	/**
+	 * valor da custa.
+	 */
 	@Column(name="VALOR", precision = 19 , scale = 2)
 	private BigDecimal valor;
 	
+	/**
+	 * natureza da custa.
+	 */
 	@Column(name="NATUREZA")
 	private String natureza;
 
 	
+	/**
+	 * lancamento que a custa esta ligada.
+	 */
 	@ManyToOne
 	@JoinColumn(name="LANCAMENTO_ID")
 	private Lancamento lancamento;
@@ -56,7 +74,6 @@ public class Custa implements EntityBase{
 	
 	
 	// 	>>>>>>>> MÉTODOS DE DOMINIO <<<<<<<<<
-	
 	public Custa addLancamento(Lancamento lancamento) {
 		setLancamento(lancamento);
 		return this;
@@ -100,6 +117,10 @@ public class Custa implements EntityBase{
 	public void setLancamento(Lancamento lacamento) {
 		this.lancamento = lacamento;
 	}
-	
 
+	@Override
+	public String toString() {
+		return "Custa [id=" + id + ", valor=" + valor + ", natureza="
+				+ natureza + ", lancamento=" + lancamento + "]";
+	}
 }

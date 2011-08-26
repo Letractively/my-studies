@@ -11,8 +11,6 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.ejb.EJB;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,9 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import br.com.lawoffice.caixa.CaixaService;
 import br.com.lawoffice.caixa.CaixaServiceLocal;
-import br.com.lawoffice.custas.lancamento.LancamentoServiceBean;
 import br.com.lawoffice.dominio.Cliente;
 import br.com.lawoffice.dominio.Colaborador;
 import br.com.lawoffice.dominio.Custa;

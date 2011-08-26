@@ -11,8 +11,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * 
- * Classe base para os Manager Beans do projeto
- * 
+ * Classe base para os Manager Beans do projeto.
  * 
  * @author robson
  *
@@ -20,10 +19,16 @@ import javax.faces.context.FacesContext;
 public class BaseMB implements Serializable{
 
 	/**
-	 * TODO: javadoc
+	 * serial version uid da classe.
+	 */
+	private static final long serialVersionUID = -2737478216055226686L;
+
+
+	/**
+	 * adiciona uma mensagem do tipo de informação.
 	 * 
-	 * @param sumario
-	 * @param detalhe
+	 * @param sumario - da mensagem.
+	 * @param detalhe - da mensagem.
 	 */
 	protected void addMsgInformacao(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_INFO, sumario, detalhe));
@@ -31,10 +36,10 @@ public class BaseMB implements Serializable{
 	
 	
 	/**
-	 * TODO: javadoc
+	 * adiciona uma mensagem do tipo de alerta.
 	 * 
-	 * @param sumario
-	 * @param detalhe
+	 * @param sumario - da mensagem.
+	 * @param detalhe - da mensagem.
 	 */
 	protected void addMsgAlerta(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_WARN, sumario, detalhe));
@@ -42,30 +47,29 @@ public class BaseMB implements Serializable{
 	
 	
 	/**
-	 * TODO: javadoc
+	 * adiciona uma mensagem do tipo de erro.
 	 * 
-	 * @param sumario
-	 * @param detalhe
+	 * @param sumario - da mensagem.
+	 * @param detalhe - da mensagem.
 	 */
 	protected void adicionarMensagemErro(String clienteID, String sumario, String detalhe) {
 		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_ERROR, sumario, detalhe));
 	}
 	
 	/**
-	 * TODO: javadoc
+	 * adiciona uma mensagem do tipo de erro para campos obrigatórios.
 	 * 
-	 * @param sumario
-	 * @param detalhe
-	 */
-	protected void adicionarMensagemErroValidacao(String clienteID, String detalhe) {
-		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existem campos obrigatórios sem preenchimento..: ", detalhe)); // TODO: internacionalizacao
+	 * @param sumario - da mensagem.
+	 * @param detalhe - da mensagem.
+	 */	protected void adicionarMensagemErroValidacao(String clienteID, String detalhe) {
+		adicionarMensagem(clienteID, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Existem campos obrigatórios sem preenchimento..: ", detalhe));
 	}	
 	
 	
 	/**
-	 * TODO: javadoc
+	 * adiciona um mensgem no contexto da aplicacao.
 	 * 
-	 * @param clienteID
+	 * @param clienteID 
 	 * @param facesMessage
 	 */
 	private void adicionarMensagem(String clienteID, FacesMessage facesMessage){
