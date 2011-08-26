@@ -549,8 +549,10 @@ public class ExtratoServiceBeanTest {
 	public void deveRetorarUmArrayDebyteQuandoExtratoDTOGeradoGerarExtrato() {
 		
 		Cliente cliente = new Cliente();
+		cliente.setNome("Robson");
 		cliente.setId(1l);		
 		Conta conta = new Conta();
+		conta.setSaldo(new BigDecimal(10));
 		cliente.setConta(conta);
 		
 		when(
