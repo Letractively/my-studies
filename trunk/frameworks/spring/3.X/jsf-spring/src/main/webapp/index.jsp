@@ -1,0 +1,1 @@
+<% response.sendRedirect("/jsf-spring/service.jsf");  %>

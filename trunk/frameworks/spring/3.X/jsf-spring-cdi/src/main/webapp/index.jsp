@@ -1,0 +1,1 @@
+<% response.sendRedirect("/jsf-spring-cdi/service.jsf");  %>
