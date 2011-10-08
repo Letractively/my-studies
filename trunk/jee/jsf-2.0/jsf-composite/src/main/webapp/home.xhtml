@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:t="http://java.sun.com/jsf/composite/transacoes"
+    xmlns:ft="http://java.sun.com/jsf/composite/features"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Composite Component</ui:define>
+  
+  <ui:define name="body">
+		<h:form>
+			<t:transacoes value="#{consultaMB.transacao}" />
+			<ft:features transacao="B100" label="feature 1" value="#{consultaMB.featureUm}"/>
+			<ft:features transacao="B101" label="feature 2" value="#{consultaMB.featureDois}"/>
+			<h:commandButton value="Consultar" action="#{consultaMB.consultar}" />
+		</h:form>														
+  </ui:define>
+</ui:composition>

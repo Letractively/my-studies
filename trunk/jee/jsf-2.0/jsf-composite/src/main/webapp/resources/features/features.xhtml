@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	
+	<composite:interface>
+		<composite:attribute name="transacao" required="true" type="java.lang.String"/>
+		<composite:attribute name="value" required="true" />
+		<composite:attribute name="label" required="true" />
+	</composite:interface>
+	
+	<composite:implementation>
+		<h:outputLabel value="#{cc.attrs.label}"/>
+			<h:selectBooleanCheckbox  rendered="#{features[cc.attrs.transacao]}" value="#{cc.attrs.value}" />
+			<h:selectBooleanCheckbox  rendered="#{!features[cc.attrs.transacao]}" disabled="true"/>
+		<h:outputLabel />				
+	</composite:implementation>							
+  
+</ui:composition>

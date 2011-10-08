@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+	
+	<composite:interface>
+		<composite:attribute name="value" required="true" />
+	</composite:interface>
+	
+	<composite:implementation>	
+		<h:selectOneMenu value="#{cc.attrs.value}">
+			<f:selectItems 
+				value="#{transacoes}" 
+				var="transacao" 
+				itemValue="#{transacao.nome}" 
+				itemLabel="#{transacao.nome}"
+			/>
+		</h:selectOneMenu>
+	</composite:implementation>							
+  
+</ui:composition>
