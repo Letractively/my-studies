@@ -1,4 +1,4 @@
-package br.com.mystudies.dp.proxy.provider.factory;
+package br.com.mystudies.dp.proxy.providers;
 
 public enum Provider {
 

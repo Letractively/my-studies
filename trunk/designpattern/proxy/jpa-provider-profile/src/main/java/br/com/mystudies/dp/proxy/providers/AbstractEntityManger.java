@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.metamodel.Metamodel;
 
-public abstract class AbstractEntityManger implements EntityManager {
+abstract class AbstractEntityManger implements EntityManager {
 
 	@Override
 	public void clear() {
