@@ -24,7 +24,13 @@ public class TryWithResourcesTest {
 
 	@Test
 	public void shouldClosedResource() {
-		assertTrue(tryWithResources.copy(new File("file.txt")));
+		assertTrue(
+			tryWithResources.copy(
+				new File(
+					ClassLoader.getSystemResource("file.txt").getPath()
+					)
+				)
+			);
 	}
 
 }

@@ -9,7 +9,13 @@ public class TryWithResources {
 	public boolean copy(File file) {
 		
 		try {
+			
+			
+			
 			FileInputStream fileInputStream = new FileInputStream(file);
+			
+			/*if(fileInputStream.)
+			*/
 			
 			/*
 			
