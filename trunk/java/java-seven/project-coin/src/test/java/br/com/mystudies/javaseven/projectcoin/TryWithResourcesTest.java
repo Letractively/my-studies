@@ -3,6 +3,8 @@ package br.com.mystudies.javaseven.projectcoin;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,13 +28,19 @@ public class TryWithResourcesTest {
 
 	@Test
 	public void shouldClosedResource() {
-		assertTrue(
-			tryWithResources.copy(
-				new File(
-					ClassLoader.getSystemResource("file.txt").getPath()
-					)
-				)
-			);
+		
+		FileInputStream fileInputStream = 
+				tryWithResources.copy(
+							new File(
+								ClassLoader.getSystemResource("file.txt").getPath()
+							)
+						);
+		
+		try {
+			fileInputStream.available(); // should throw IOException because stream will closed.
+		} catch (IOException e) {
+			assertTrue(true);
+		}
 	}
 
 }
