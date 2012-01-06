@@ -14,7 +14,11 @@
 			function(){
 				$.getJSON(
 					'json',
-					$('form').serializeArray()
+					$('form').serialize(),
+					function(data){
+						
+					}
+					
 				);	
 			}
 		);
@@ -30,12 +34,12 @@
 <form>
 	<p>
 		<label for="name">Name:
-			<input type="text" name="name"/>
+			<input type="text"  name="name" />
 		</label>
 	</p>
 	<p>
-		<label for="name">Idade:
-			<input type="text" name="idade"/>
+		<label for="age">Age:
+			<input type="text" name="age"/>
 		</label>
 	</p>
 	<input type="button" value="submit"/>

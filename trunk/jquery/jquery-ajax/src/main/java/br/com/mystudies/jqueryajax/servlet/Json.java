@@ -1,7 +1,8 @@
 package br.com.mystudies.jqueryajax.servlet;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,38 +10,70 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class Json
- */
+import com.google.gson.Gson;
+
+
 @WebServlet("/json")
 public class Json extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private List<Person> persons;
+	
+	private Gson gson;
+	
     public Json() {
         super();
-        // TODO Auto-generated constructor stub
+        persons = new ArrayList<>();
+        gson = new Gson();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Map<String, String[]> parameterMap = request.getParameterMap();
-		
-		response.getWriter().print("robson");
-		System.out.println("sksk");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		addPerson(request);
+		writeJSON(response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("sksk");
-	}
 
+
+	private void addPerson(HttpServletRequest request) {
+		persons.add(
+				new Person(
+					request.getParameter("name"), 
+					request.getParameter("age")
+				)
+			);
+	}	
+	
+	
+	private void writeJSON(HttpServletResponse response) throws IOException {
+		response.getWriter().print(gson.toJson(persons));
+	}
+	
+	
+	
+	public class Person{
+		
+		private String name;
+		private String age;
+		
+		
+		public Person(String name, String age) {
+			super();
+			this.name = name;
+			this.age = age;
+		}
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public String getAge() {
+			return age;
+		}
+		public void setAge(String age) {
+			this.age = age;
+		}
+		
+	}
 }
