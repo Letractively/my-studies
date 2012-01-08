@@ -6,6 +6,14 @@
 
 <script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
 
+<style type="text/css">
+	.line{
+		margin: 0;
+		padding: 5px; 
+	}
+
+</style>
+
 <title>$.getJSON()</title>
 
 <script type="text/javascript">
@@ -16,7 +24,28 @@
 					'json',
 					$('form').serialize(),
 					function(data){
-						
+						$("div").empty()
+						$.each(data,
+							function(index, person){
+								$("div")
+									.append( 
+										'<p> Name: ' 
+										+ person.name 
+										+ '- Age: ' 
+										+  person.age 
+										+ '</p>'
+									)								
+							}							
+						);
+
+						$('p', $('div')).each(
+								function(index){
+								 	$(this).addClass('line')
+								 	if(index % 2 == 0){
+						            	 $(this).css('background-color', '#E8E8E8');
+									}									 
+								}								
+							);	
 					}
 					
 				);	
@@ -44,7 +73,7 @@
 	</p>
 	<input type="button" value="submit"/>
 	<br/><br/>
-	<div style="background-color: red; display: none; padding: 5px;" >
+	<div>
 	</div>	
 </form>
 
