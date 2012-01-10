@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+
+<script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
+
+
+
+<title>$.getScript</title>
+
+<script type="text/javascript">
+	$(function(){
+		$('input:button').click(
+			function(){
+				$.getScript(
+						'http://www.bitstorm.org/jquery/color-animation/jquery.animate-colors-min.js',
+						function(){
+							$('div')
+							.animate({backgroundColor: '#FF0000'}, 1000)
+							.delay(500)
+							.animate({backgroundColor: '#1E90FF'}, 1000)
+							.delay(500)
+							.animate({backgroundColor: '#000000'}, 1000);
+						}
+				);						
+			}
+		);
+	});	
+</script>
+
+
+</head>
+
+<body>
+<h4>$.getScript</h4>
+<hr />
+<form>
+
+	<div style="width:200px; height: 200px; background-color: black;">
+	</div>
+	<br/>
+	<br/>
+	<input type="button" value="Animate"/>	
+</form>
+
+</body>
+</html>
