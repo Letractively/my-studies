@@ -12,15 +12,10 @@
 	$(function(){
 		$('input:button').click(
 			function(){
-				$('div').load(
-						'load',
-						$('form').serialize(),
-						function(){
-							$('div')
-								.fadeIn()
-								.fadeOut(10000);	
-						}
-					);
+				$('#content')
+					.load('load')
+					.fadeIn()
+					.fadeOut(10000);
 			}
 		);
 	});	
@@ -33,10 +28,10 @@
 	<h4>$.load()</h4>
 	<hr />
 	<form >
-		<label for="name">Name: <input type="text" name="name" />
-		</label> <input type="button" value="submit" /> <br />
-		<br />
-		<div style="background-color: red; display: none; padding: 5px;">
+		<div style="float: left;"> 		
+			<input type="button" value="what's time now ?" />
+		</div>
+		<div style="background-color: #87CEEB; display: none; padding: 5px; margin-left: 135px;" id="content">
 		</div>
 	</form>
 

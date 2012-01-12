@@ -22,10 +22,8 @@ public class Load extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter()
-		.print("Welcome..: "
-				+ request.getParameter("name")
-				+ " the time now is..: "
-				+ new SimpleDateFormat("HH:mm:ss").format(new Date())
+		.print("The Time now is ..: "
+				+ new SimpleDateFormat("HH:mm:ss a").format(new Date())
 			);
 	}
 
