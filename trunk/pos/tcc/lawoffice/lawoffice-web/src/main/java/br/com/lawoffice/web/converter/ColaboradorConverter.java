@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.com.lawoffice.web.converter;
 
@@ -18,7 +18,7 @@ import br.com.lawoffice.dominio.Colaborador;
 
 /**
  * Faces Converter para o {@link Colaborador}
- * 
+ *
  * @author robson
  *
  */
@@ -27,15 +27,15 @@ public class ColaboradorConverter implements Converter {
 
 
 	private PessoaServiceLocal pessoaServiceLocal;
-	
-	
+
+
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String colaboradorID) {
-		
+
 		try {
 			Context context = new InitialContext();
-			pessoaServiceLocal = 
-					(PessoaServiceLocal) context.lookup("java:global/lawoffice-ear/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
+			pessoaServiceLocal =
+					(PessoaServiceLocal) context.lookup("java:global/lawoffice-ear-1.0.0/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
 		} catch (NamingException e) {
 			throw new RuntimeException(e);
 		}
@@ -44,10 +44,10 @@ public class ColaboradorConverter implements Converter {
 			Colaborador colaborador = new Colaborador();
 			colaborador.setId(Long.valueOf(colaboradorID));
 			return pessoaServiceLocal.localizar(Colaborador.class, colaborador);
-		}			
+		}
 		else
 			return null;
-		
+
 	}
 
 

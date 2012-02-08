@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.com.lawoffice.web.converter;
 
@@ -17,9 +17,9 @@ import br.com.lawoffice.dados.PessoaServiceLocal;
 import br.com.lawoffice.dominio.Cliente;
 
 /**
- * 
+ *
  * Faces Converter para o {@link Cliente}
- * 
+ *
  * @author robson
  *
  */
@@ -27,16 +27,16 @@ import br.com.lawoffice.dominio.Cliente;
 public class ClienteConverter implements Converter {
 
 
-	
+
 	private PessoaServiceLocal pessoaServiceLocal;
-	
-	
+
+
 	@Override
 	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String clienteID) {
-		  
+
 		try {
 			Context context = new InitialContext();
-			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("java:global/lawoffice-ear/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
+			pessoaServiceLocal = (PessoaServiceLocal) context.lookup("java:global/lawoffice-ear-1.0.0/lawoffice-dados-1.0.0/PessoaServiceBean!br.com.lawoffice.dados.PessoaServiceLocal");
 		} catch (NamingException e) {
 			new RuntimeException(e);
 		}
