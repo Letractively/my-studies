@@ -71,14 +71,14 @@
 								<h:outputText value="Valor" /> 
 							</f:facet>
 							<h:outputText value="#{itenExtrato.valor}" >
-								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+								<f:convertNumber pattern="R$ ###,###,###,##0.00" locale="pt_BR"/>
 							</h:outputText>
 						</p:column>
 						
 						<f:facet name="footer">
 							Saldo Atual =
 							<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
-								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+								<f:convertNumber pattern="R$ ###,###,###,##0.00" locale="pt_BR"/>
 							</h:outputText>
 						</f:facet>  			
 	  			</p:dataTable>

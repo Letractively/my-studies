@@ -53,6 +53,7 @@
 							validator="dataValidator"
 							readOnlyInputText="true"
 							size="10"
+							locale="pt_BR"
 							onfocus="nofificationBar.hide()"
 							/>
 					</div>				
@@ -130,7 +131,7 @@
 								<h:outputText value="Valor" /> 
 							</f:facet>
 							<h:outputText value="#{custa.valor}" >
-								<f:convertNumber pattern="R$ ###,###,###,##0.00"/>
+								<f:convertNumber pattern="R$ ###,###,###,##0.00" locale="pt_BR"/>
 							</h:outputText>	
 						</p:column>						
 						
