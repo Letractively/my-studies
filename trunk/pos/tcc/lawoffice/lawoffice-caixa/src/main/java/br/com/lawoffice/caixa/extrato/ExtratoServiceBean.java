@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.com.lawoffice.caixa.extrato;
 
@@ -28,10 +28,10 @@ import br.com.lawoffice.persistencia.HistoricoContaDao;
 import br.com.lawoffice.persistencia.LancamentoDao;
 
 /**
- * 
+ *
  * Implementação para o serviço de Extrato.
- * 
- * 
+ *
+ *
  * @author robson
  * @see ExtratoService
  *
@@ -44,51 +44,54 @@ public class ExtratoServiceBean implements ExtratoService{
 
 	@EJB
 	private ColaboradorDao colaboradorDao;
-	
-	
+
+
 	@EJB
 	private ClienteDao clienteDao;
-	
-	
+
+
 	@EJB
 	private HistoricoContaDao historicoContaDao;
-	
-	
+
+
 	@EJB
 	private LancamentoDao lancamentoDao;
 
-	
+
 	private FactoryExtratoReport factoryExtratoReport;
 
-	
+
 	private ExtratoDTO extratoDTO;
 
 
-	
+
 	@Override
 	public ExtratoDTO getExtratoColaborador(Date dataInicial, Date dataFinal,
 			Colaborador colaborador) {
 		validarParametros(dataInicial, dataFinal, colaborador);
-		
-		colaborador = 
+
+		colaborador =
 				colaboradorDao.localizar(Colaborador.class, colaborador);
-		
+
 		if(colaborador == null)
 			return null;
-		
-		
+
+
 		createExtratoDTO(
-			dataInicial, 
-			dataFinal, 
+			dataInicial,
+			dataFinal,
 			colaborador,
 			colaborador.getConta()
 		);
-		
+
 		addItensExtrato(
-			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, colaborador.getConta()),
-			lancamentoDao.getLancamentos(dataInicial, dataFinal, colaborador)
-		);
-		
+			lancamentoDao.getLancamentos(
+					dataInicial,
+					dataFinal,
+					colaborador
+				)
+			);
+
 		return extratoDTO;
 	}
 
@@ -98,71 +101,65 @@ public class ExtratoServiceBean implements ExtratoService{
 	public ExtratoDTO getExtratoCliente(Date dataInicial, Date dataFinal,
 			Cliente cliente) {
 		validarParametros(dataInicial, dataFinal, cliente);
-		
+
 		cliente =
 				clienteDao.localizar(Cliente.class, cliente);
-		
+
 		if(cliente == null)
 			return null;
-		
+
 		createExtratoDTO(
-				dataInicial, 
-				dataFinal, 
+				dataInicial,
+				dataFinal,
 				cliente,
 				cliente.getConta()
 			);
-		
-		addItensExtrato(
-			historicoContaDao.getHistoricosConta(dataInicial, dataFinal, cliente.getConta()),
-			lancamentoDao.getLancamentos(dataInicial, dataFinal, cliente)
-		);		
-			
-		
-		return extratoDTO;
-	}	
-	
-	
 
-	
+
+		addItensExtrato(
+			lancamentoDao.getLancamentos(
+					dataInicial,
+					dataFinal,
+					cliente
+				)
+			);
+
+
+		return extratoDTO;
+	}
+
+
+
+
 	/**
-	 * 
+	 *
 	 * Adiciona os {@link ItemExtrato} ao {@link ExtratoDTO} apartir do(s) {@link HistoricoConta} e do(s) {@link Lancamento}
-	 * obtidos no periodo da consulta. 
-	 * 
+	 * obtidos no periodo da consulta.
+	 *
 	 * @param historicosConta - obtidos no periodo da consulta.
 	 * @param lancamentos - obtidos no periodo da consulta.
 	 */
-	private void addItensExtrato(List<HistoricoConta> historicosConta, List<Lancamento> lancamentos) {
+	private void addItensExtrato(List<Lancamento> lancamentos) {
 
-		for (Lancamento lancamento : lancamentos) {			
+		for (Lancamento lancamento : lancamentos) {
 			for (Custa custa : lancamento.getCustas()) {
-				extratoDTO.addItemExtrato( 
+				extratoDTO.addItemExtrato(
 					new ItemExtrato(
 						lancamento.getDataLancamento(),
 						custa.getNatureza(),
 						custa.getValor()
-					) 
+					)
 				);
 			}
 		}
-		
-		for (HistoricoConta historicoConta : historicosConta) {				
-			extratoDTO.addItemExtrato( 
-				new ItemExtrato(
-					historicoConta.getDataTransacao(), 
-					historicoConta.getTipoTransacao().getValue(), 
-					historicoConta.getValorTransacao()
-				) 
-			);
-		}
-		
+
 		Collections.sort(extratoDTO.getItensExtrato());
-	}	
-	
-	
+	}
+
+
 	/**
-	 * Cria um {@link ExtratoDTO} 
-	 * 
+	 * Cria um {@link ExtratoDTO}
+	 *
 	 * @param dataInicial - da consulta.
 	 * @param dataFinal - da consulta.
 	 * @param pessoa - da consulta.
@@ -170,68 +167,68 @@ public class ExtratoServiceBean implements ExtratoService{
 	 * @return  {@link ExtratoDTO}
 	 */
 	private void createExtratoDTO(Date dataInicial, Date dataFinal, Pessoa pessoa, Conta conta) {
-		extratoDTO = 
+		extratoDTO =
 			new ExtratoDTO(
-				pessoa.getNome(), 
-				getSaldoAnterior(conta,dataInicial), 
+				pessoa.getNome(),
+				getSaldoAnterior(conta,dataInicial),
 				conta.getSaldo(),
-				dataInicial, 
+				dataInicial,
 				dataFinal
 			);
-	}	
-	
+	}
 
-	
-	
+
+
+
 	/**
 	 * Obtem o saldo anterior a data inicial de pesquisa para conta passada.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param conta - a obter o saldo anterior.
 	 * @param dataInicial - de consulta.
 	 * @return - {@link BigDecimal} com saldo anterior
 	 */
 	private BigDecimal getSaldoAnterior(Conta conta, Date dataInicial) {
-	
+
 		// data anterior / - 1 dia
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(dataInicial);
 		calendar.add(Calendar.DAY_OF_MONTH, -1);
-	
+
 		List<HistoricoConta> historicosConta =
 				historicoContaDao.getHistoricosConta(calendar.getTime(), conta);
-		
+
 		if(historicosConta.isEmpty())
 			return new BigDecimal(0.0);
-		
-		
+
+
 		return historicosConta.get(historicosConta.size() -1).getSaloAnterior();
 	}
 
-	
-	
+
+
 
 	@Override
 	public byte[] gerarExtrato(TipoExtrato tipoExtrato) {
 		if(extratoDTO == null)
 			throw new IllegalStateException("Nao foi realizado nenhuma pesquisa");
-				
+
 		if(factoryExtratoReport == null){
 			factoryExtratoReport  = new SimpleFactoryExtratoReportJasper();
 		}
 
 		ExtratoReport extratoReport =
 				factoryExtratoReport.createExtratoReport(tipoExtrato);
-		
+
 		return extratoReport.gerarExtrato(extratoDTO);
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * valida os paramentros básicos de entrada do serviço.
-	 * 
+	 *
 	 * @param dataInicial - a ser avalida.
 	 * @param dataFinal - a ser avalida.
 	 * @param pessoa - a ser avalida.
@@ -242,7 +239,7 @@ public class ExtratoServiceBean implements ExtratoService{
 		if(dataFinal == null)
 			throw new IllegalArgumentException("Data final nula");
 		if(pessoa == null || pessoa.getId() == null)
-			throw new IllegalArgumentException("Pessoa nula ou Pessoa sem ID"); 		
+			throw new IllegalArgumentException("Pessoa nula ou Pessoa sem ID");
 	}
 
 
@@ -257,7 +254,7 @@ public class ExtratoServiceBean implements ExtratoService{
 		this.clienteDao = clienteDao;
 	}
 
-	
+
 	public void setHistoricoContaDao(HistoricoContaDao historicoContaDao) {
 		this.historicoContaDao = historicoContaDao;
 	}
