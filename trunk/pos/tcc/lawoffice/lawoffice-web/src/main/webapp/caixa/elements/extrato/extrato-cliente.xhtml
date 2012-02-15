@@ -78,7 +78,7 @@
 						
 						<f:facet name="footer">
 							Saldo Atual =
-							<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" >
+							<h:outputText value="#{extratoMB.extratoDTO.saldoAtual}" styleClass="#{extratoMB.extratoDTO.saldoAtual lt 0 ? 'negativo' : 'positivo'}">
 								<f:convertNumber pattern="R$ ###,###,###,##0.00" locale="pt_BR"/>
 							</h:outputText>
 						</f:facet>  			
