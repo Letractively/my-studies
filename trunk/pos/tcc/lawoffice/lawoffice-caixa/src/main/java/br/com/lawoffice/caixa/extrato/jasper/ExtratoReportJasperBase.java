@@ -26,18 +26,19 @@ public abstract class ExtratoReportJasperBase implements ExtratoReport{
 	 * @param extratoDTO
 	 * @return
 	 */
-	protected Map<String,String> getMapParametros(ExtratoDTO extratoDTO) {
-		Map<String, String> paramentros =
-				new HashMap<String, String>();
+	protected Map<String,Object> getMapParametros(ExtratoDTO extratoDTO) {
+		Map<String, Object> paramentros =
+				new HashMap<String, Object>();
 
 		NumberFormat numberFormat =
 				NumberFormat.getCurrencyInstance(new Locale("pt", "Br"));
 
 		paramentros.put("SALDO_ANTERIOR", numberFormat.format(extratoDTO.getSaldoAnterior()));
 		paramentros.put("SALDO_ATUAL", numberFormat.format(extratoDTO.getSaldoAtual()));
-		paramentros.put("DATA_INICIAL", DateFormatUtils.format(extratoDTO.getDataInicial(), "dd/MM/yyy"));
-		paramentros.put("DATA_FINAL", DateFormatUtils.format(extratoDTO.getDataFinal(), "dd/MM/yyy"));
+		paramentros.put("DATA_INICIAL", DateFormatUtils.format(extratoDTO.getDataInicial(), "dd/MM/yyyy"));
+		paramentros.put("DATA_FINAL", DateFormatUtils.format(extratoDTO.getDataFinal(), "dd/MM/yyyy"));
 		paramentros.put("NOME_PESSOA", extratoDTO.getNomePessoa());
+		paramentros.put("REPORT_LOCALE", new Locale("pt", "BR"));
 
 		return paramentros;
 	}

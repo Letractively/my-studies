@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.com.lawoffice.caixa.extrato.jasper;
 
@@ -15,36 +15,36 @@ import br.com.lawoffice.caixa.extrato.ExtratoReportException;
 
 
 /**
- * 
+ *
  * Implementação do {@link ExtratoReport} para geração de PDF utilizando Jasper Report 4.2.
- * 
+ *
  * @author robson
  *
  */
 public class ExtratoReportJasperPDF extends ExtratoReportJasperBase {
 
-	
+
 	@Override
 	public byte[] gerarExtrato(ExtratoDTO extratoDTO) {
 		if(extratoDTO == null)
 			throw new IllegalArgumentException("Extrato DTO nulo");
-		
+
 		JRBeanCollectionDataSource jrBeanCollectionDataSource =
-				new JRBeanCollectionDataSource(extratoDTO.getItensExtrato());		
-		 
+				new JRBeanCollectionDataSource(extratoDTO.getItensExtrato());
+		
 		try {
-			
-			JasperPrint	jasperPrint = 
+
+			JasperPrint	jasperPrint =
 				JasperFillManager.fillReport(
-						this.getClass().getResourceAsStream("/jasper/extrato-custas.jasper"), 
-						getMapParametros(extratoDTO), 
+						this.getClass().getResourceAsStream("/jasper/extrato-custas.jasper"),
+						getMapParametros(extratoDTO),
 						jrBeanCollectionDataSource
-					 );
+					);
 			
 			return JasperExportManager.exportReportToPdf(jasperPrint);
-			
-		} catch (JRException e){ 
+
+		} catch (JRException e){
 			throw new ExtratoReportException(e);
-		}	
+		}
 	}
 }

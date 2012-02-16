@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.lang.time.DateFormatUtils;
@@ -15,17 +16,17 @@ import org.junit.Test;
 import br.com.lawoffice.caixa.extrato.ExtratoDTO;
 
 /**
- * 
+ *
  * Teste de unidade para {@link ExtratoReportJasperPDF}.
- * 
+ *
  * @author rduarte
  *
  */
 public class ExtratoReportJasperPDFTest {
 
-	
+
 	private ExtratoReportJasperPDF extratoReportPDF;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		extratoReportPDF = new ExtratoReportJasperPDF();
@@ -40,48 +41,49 @@ public class ExtratoReportJasperPDFTest {
 	public void deveDisparaUmaExcecaoQuandoExtratoDTONulo() {
 		extratoReportPDF.gerarExtrato(null);
 	}
-	
-		
+
+
 	@Test()
 	public void deveRetornaUmMapComParmentros() {
-		
-		Map<String, String> parametros = 
+
+		Map<String, Object> parametros =
 				extratoReportPDF.getMapParametros(
 					new ExtratoDTO(
-						"Robson", 
-							new BigDecimal(111222.22), 
-							new BigDecimal(222300.22), 
-							new Date(), 
+						"Robson",
+							new BigDecimal(111222.22),
+							new BigDecimal(222300.22),
+							new Date(),
 							new Date()
 						)
 				);
-		
-		
+
+
 		assertNotNull(parametros);
 		assertEquals("R$ 111.222,22", parametros.get("SALDO_ANTERIOR"));
-		assertEquals("R$ 222.300,22", parametros.get("SALDO_ATUAL"));		
-		assertEquals(DateFormatUtils.format(new Date(), "dd/MM/yyy"), parametros.get("DATA_INICIAL"));
-		assertEquals(DateFormatUtils.format(new Date(), "dd/MM/yyy"), parametros.get("DATA_FINAL"));
+		assertEquals("R$ 222.300,22", parametros.get("SALDO_ATUAL"));
+		assertEquals(DateFormatUtils.format(new Date(), "dd/MM/yyyy"), parametros.get("DATA_INICIAL"));
+		assertEquals(DateFormatUtils.format(new Date(), "dd/MM/yyyy"), parametros.get("DATA_FINAL"));
 		assertEquals("Robson", 	parametros.get("NOME_PESSOA"));
-		
+		assertEquals(new Locale("pt", "BR"), parametros.get("REPORT_LOCALE"));
+
 	}
-	
-	
-	
-	
+
+
+
+
 	@Test()
 	public void deveRetornaByteArray() {
-		byte[] extrato = 
+		byte[] extrato =
 				extratoReportPDF.gerarExtrato(
 					new ExtratoDTO(
-							"Robson", 
-								new BigDecimal(111222.22), 
-								new BigDecimal(222300.22), 
-								new Date(), 
+							"Robson",
+								new BigDecimal(111222.22),
+								new BigDecimal(222300.22),
+								new Date(),
 								new Date()
 							)
 					);
-		
+
 		assertNotNull(extrato);
 	}
 
