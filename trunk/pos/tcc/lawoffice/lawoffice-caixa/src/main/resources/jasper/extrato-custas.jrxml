@@ -88,7 +88,7 @@
 				<textFieldExpression><![CDATA[$P{NOME_PESSOA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="225" y="105" width="95" height="25"/>
+				<reportElement x="225" y="105" width="100" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -159,7 +159,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="554" height="30" backcolor="#CCCCCC"/>
 				<staticText>
-					<reportElement x="10" y="0" width="144" height="30" backcolor="#999999"/>
+					<reportElement x="10" y="0" width="150" height="30" backcolor="#999999"/>
 					<textElement verticalAlignment="Middle">
 						<font size="16" isBold="true"/>
 					</textElement>
@@ -319,7 +319,7 @@
 				<reportElement x="554" y="0" width="1" height="25"/>
 			</line>
 			<staticText>
-				<reportElement x="10" y="0" width="75" height="25"/>
+				<reportElement x="10" y="0" width="80" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
