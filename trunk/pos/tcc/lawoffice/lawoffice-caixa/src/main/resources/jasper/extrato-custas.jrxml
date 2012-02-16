@@ -74,7 +74,7 @@
 				<text><![CDATA[Extrato de Custas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="80" width="45" height="25"/>
+				<reportElement x="10" y="80" width="47" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -88,7 +88,7 @@
 				<textFieldExpression><![CDATA[$P{NOME_PESSOA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="225" y="105" width="92" height="25"/>
+				<reportElement x="225" y="105" width="95" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -159,7 +159,7 @@
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="554" height="30" backcolor="#CCCCCC"/>
 				<staticText>
-					<reportElement x="10" y="0" width="142" height="30" backcolor="#999999"/>
+					<reportElement x="10" y="0" width="144" height="30" backcolor="#999999"/>
 					<textElement verticalAlignment="Middle">
 						<font size="16" isBold="true"/>
 					</textElement>
@@ -215,7 +215,7 @@
 				<text><![CDATA[Data]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="0" width="56" height="25"/>
+				<reportElement x="100" y="0" width="70" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -245,7 +245,7 @@
 				</graphicElement>
 			</line>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="10" y="0" width="70" height="25"/>
+				<reportElement x="10" y="0" width="72" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -319,7 +319,7 @@
 				<reportElement x="554" y="0" width="1" height="25"/>
 			</line>
 			<staticText>
-				<reportElement x="10" y="0" width="71" height="25"/>
+				<reportElement x="10" y="0" width="73" height="25"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
