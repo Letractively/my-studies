@@ -11,17 +11,24 @@ public class ServiceImplProxy implements  MethodInterceptor {
 
 	private Service service;
 
+	private User user;
 
-	public ServiceImplProxy(Service service) {
+	public ServiceImplProxy(Service service, User user) {
 		this.service = service;
+		this.user = user;
 	}
 
 
 	@Override
-	public Object intercept(Object object, Method method, Object[] objects,
+	public Object intercept(Object object, Method method, Object[] args,
 			MethodProxy methodProxy) throws Throwable {
-		// TODO Auto-generated method stub
-		return null;
+
+		switch (user.getGroup()) {
+			case ADMINISTRATORS:
+				return method.invoke(service, args);
+			default:
+				throw new SecurityException("User isn't of group administrators");
+		}
 	}
 
 }
