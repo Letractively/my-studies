@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.com.lawoffice.persistencia.ejb;
 
@@ -20,7 +20,7 @@ import br.com.lawoffice.persistencia.LancamentoDao;
 
 /**
  * classe de implementacao para o {@link ColaboradorDao} utilizando tecnologia EJB 3.1
- * 
+ *
  * @author robson
  *
  */
@@ -31,62 +31,84 @@ public class LancamentoDaoBean extends BaseDaoBean implements LancamentoDao {
 	@Override
 	public List<Lancamento> getLancamentos(Date dataInicial, Date dataFinal,
 			Colaborador colaborador) {
-		
+
 		CriteriaBuilder criteriaBuilder =
 				entityManager.getCriteriaBuilder();
-		
-		
+
+
 		CriteriaQuery<Lancamento> criteriaQuery =
 				criteriaBuilder.createQuery(Lancamento.class);
-		
-		
+
+
 		Root<Lancamento> root =
 				criteriaQuery.from(Lancamento.class);
-		
-	
+
+
 		criteriaQuery.select(root)
 			.where(
 					criteriaBuilder.and(
 						criteriaBuilder.between(root.get("dataLancamento").as(Date.class), dataInicial, dataFinal),
-						criteriaBuilder.equal(root.get("colaborador"), colaborador)						
+						criteriaBuilder.equal(root.get("colaborador"), colaborador)
 					)
 				).orderBy(
 						criteriaBuilder.asc(root.get("dataLancamento").as(Date.class))
 					);
-		
+
 		return entityManager
 				.createQuery(criteriaQuery)
 				.getResultList();
 	}
 
-	
-	
+
+
 	@Override
 	public List<Lancamento> getLancamentos(Date dataInicial, Date dataFinal,
 			Cliente cliente) {
-		
+
 		CriteriaBuilder criteriaBuilder =
 				entityManager.getCriteriaBuilder();
-		
-		
+
+
 		CriteriaQuery<Lancamento> criteriaQuery =
 				criteriaBuilder.createQuery(Lancamento.class);
-		
-		
+
+
 		Root<Lancamento> root =
 				criteriaQuery.from(Lancamento.class);
-		
-	
+
+
 		criteriaQuery.select(root)
 			.where(
 					criteriaBuilder.and(
 						criteriaBuilder.between(root.get("dataLancamento").as(Date.class), dataInicial, dataFinal),
-						criteriaBuilder.equal(root.get("cliente"), cliente)						
+						criteriaBuilder.equal(root.get("cliente"), cliente)
 					)
 				).orderBy(
 						criteriaBuilder.asc(root.get("dataLancamento").as(Date.class))
 					);
-		
+
+		return entityManager
+				.createQuery(criteriaQuery)
+				.getResultList();
+	}
+
+
+
+	@Override
+	public List<Lancamento> getLancamentos(Cliente cliente) {
+
+		CriteriaBuilder criteriaBuilder =
+				entityManager.getCriteriaBuilder();
+
+		CriteriaQuery<Lancamento> criteriaQuery =
+				criteriaBuilder.createQuery(Lancamento.class);
+
+		Root<Lancamento> root =
+				criteriaQuery.from(Lancamento.class);
+
+		criteriaQuery.select(root)
+			.where(criteriaBuilder.equal(root.get("cliente"), cliente));
+
 		return entityManager
 				.createQuery(criteriaQuery)
 				.getResultList();

@@ -220,7 +220,11 @@ public class ExtratoServiceBean implements ExtratoService{
 		ExtratoReport extratoReport =
 				factoryExtratoReport.createExtratoReport(tipoExtrato);
 
-		return extratoReport.gerarExtrato(extratoDTO);
+		try {
+			return extratoReport.gerarExtrato(extratoDTO);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 
