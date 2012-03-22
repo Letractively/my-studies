@@ -6,16 +6,25 @@
 
 <style type="text/css">
 
-
-html, body {
-height: 100%;
-}
-	div{
+	html, body {
+		height: 100%;
+	}
+	
+	.droppable{
 		margin: 10px;
 		border: 1px solid red;
 		width: 30%;
 		height: 80%;
+		float: left;
 	}
+	
+	.draggable{
+		margin: 10px;
+		border: 1px solid red;
+		width: 20%;
+		height: 15%;		
+	}	
+	
 </style>
 
 </head>
@@ -24,17 +33,23 @@ height: 100%;
 	<hr/>
 	<br>
 	
-	<div style="float: left;">
-		ssss
+	<div class="droppable">
+		<div class="draggable">
+		</div>
 	</div>
 	
-	<div style="float: left;">
-		ssss
+	<div class="droppable">
 	</div>
 	
-	<div style="float: left;">
-		ssss
+	<div class="droppable">
 	</div>		
+
+	<script  src="resources/js/jquery-1.7.1.min.js"></script>
+	<script  src="resources/js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script  src="resources/js/drag-drop.js"></script>
 	
 </body>
+
+
+
 </html>
