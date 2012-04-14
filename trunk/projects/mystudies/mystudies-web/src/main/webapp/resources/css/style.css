@@ -1,0 +1,54 @@
+@CHARSET "ISO-8859-1";
+
+
+html,body {
+	height: 100%	
+}
+
+
+hr {
+	margin: 5px 0 0;
+}
+
+h2 {
+	margin: 0;
+	color: #9E9E9E;
+}
+
+h4 {
+	margin: 5px;	
+	color: #6666FF;	
+}
+
+td{	
+	font-size: 13px;
+	padding: 0 5px 0 5px;
+}
+
+.tema{
+
+	border-top: 1px solid #0482FF;	
+	margin-bottom: 10px;
+	height: 10%;
+	width: 80%;
+}
+
+.history{
+
+	border-top: 1px solid #0482FF;	
+	margin-bottom: 10px;
+	height: 10%;
+	width: 80%;
+}
+
+
+#containerTema{
+	margin-top:20px;
+	height: 100%
+}
+
+
+#containerHistoria{
+	margin-top:20px;
+	height: 100%
+}
