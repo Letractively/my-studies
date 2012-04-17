@@ -49,6 +49,14 @@ public class BacklogServlet extends HttpServlet {
 		themes.add(new Theme("JAVA 7 - project coin", Priority.HEIGHT, new Date()));
 		themes.add(new Theme("CSS3",Priority.HEIGHT, new Date()));
 		themes.add(new Theme("HTML5",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("JEE 7 - JMS 2.0",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("HADOP",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("JEE 7 - Cache",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("JSF 2.0",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("JQuery - AJAX",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("CDI",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("CDI",Priority.HEIGHT, new Date()));
+		themes.add(new Theme("CDI",Priority.HEIGHT, new Date()));
 		themes.add(new Theme("CDI",Priority.HEIGHT, new Date()));
 
 		request.setAttribute("themes", themes);
