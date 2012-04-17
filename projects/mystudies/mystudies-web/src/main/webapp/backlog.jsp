@@ -15,36 +15,45 @@
 	</head>
 	<body>
 
-		<h2>My Studies - Backlog</h2>
-		<hr/>
-
-
-
-		<div id="containerTema">
-
-			<c:forEach items="${themes}" var="theme">
-
-				<div class="tema">
-				    <h4>${theme.title}</h4>
-
-				    <table  cellspacing="0">
-				   		<tbody>
-				   			<tr>
-				   				<td>${theme.priority}</td>
-				   				<td> <fmt:formatDate value="${theme.creationDate}" pattern="dd/MM/yyyy"/> </td>
-				   				<td><a href="story"> ${fn:length(theme.stories)} stories </a></td>
-				   				<td>3 comments</td>
-				   				<td><button>new history</button></td>
-				   			</tr>
-				   		</tbody>
-				   	</table>
-				</div>
-
-			</c:forEach>
-
-
-
+		<div class="header">
+			<a>MYSTUDIES</a>
 		</div>
+			
+			
+		<div class="title-content">
+			<h3><a href="#">THEMES</a> </h3>
+		</div>
+
+
+		<div class="main-content">
+			<c:forEach items="${themes}" var="theme">			
+				<div class="item">				
+					<div>
+					    <h3 class="item-title"><a href="#">${theme.title}</a> </h3>
+					</div>
+						
+					<div >
+						<ul class="item-information">
+							<li>${theme.priority}</li>
+							<li> <fmt:formatDate value="${theme.creationDate}" pattern="dd/MM/yyyy"/> </li>
+							<li><a href="history.html">${fn:length(theme.stories)} stories</a></li>
+							<li><a href="#">${fn:length(theme.comments)} comments</a></li>
+						</ul>
+						<div style="clear: both;"></div>					
+					</div>					    
+				</div>				
+			</c:forEach>			
+		</div>
+
+
+		<ul class="menu">
+			<li class="home"><a>New Theme</a></li>
+			<li class="about"><a>Add Story</a></li>
+			<li class="about"><a>Add Comment</a></li>
+		</ul>
+		
+		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="resources/js/menu.js"></script>
 
 	</body>
 </html>
