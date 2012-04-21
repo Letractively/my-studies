@@ -7,19 +7,13 @@
     <groupId>br.com</groupId>
     <version>1.0.0</version>
   </parent>
-  
+
   <artifactId>mystudies-service</artifactId>
   <packaging>ejb</packaging>
   <name>mystudies-service</name>
-  
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>br.com</groupId>
-  		<artifactId>mystudies-domain</artifactId>
-  	</dependency>
-  </dependencies>
-  
+
+
+
   <build>
   	<plugins>
   		<plugin>
@@ -28,8 +22,28 @@
   			<version>2.3</version>
             <configuration>
                 <ejbVersion>3.1</ejbVersion>
-            </configuration>  			
+            </configuration>
   		</plugin>
   	</plugins>
-  </build>  
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.mockito</groupId>
+  		<artifactId>mockito-all</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>javax</groupId>
+  		<artifactId>javaee-api</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com</groupId>
+  		<artifactId>mystudies-domain</artifactId>
+  		<version>1.0.0</version>
+  		<scope>provided</scope>
+  	</dependency>
+  </dependencies>
 </project>
