@@ -9,7 +9,12 @@ import br.com.mystudies.domain.enun.Status;
 /**
  * @author Robson
  */
-public class Story {
+public class Story implements EntityBase{
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 
 
 	private String title;
