@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,7 +26,7 @@ public class BackLog implements EntityBase{
 	private Long id;
 
 
-	@OneToMany(mappedBy="backLog", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="backLog", cascade=CascadeType.ALL, fetch= FetchType.EAGER) // FIXME: can't is EAGER
 	private List<Theme> themes;
 
 
@@ -33,6 +34,7 @@ public class BackLog implements EntityBase{
 		if(themes == null){
 			themes = new ArrayList<>();
 		}
+		theme.setBackLog(this); // FIXME: Null pointer, remove this logic there ?
 		themes.add(theme);
 	}
 

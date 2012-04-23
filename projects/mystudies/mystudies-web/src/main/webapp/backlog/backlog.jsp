@@ -26,23 +26,38 @@
 
 
 		<div class="main-content">
-			<c:forEach items="${themes}" var="theme">			
-				<div class="item">				
+		
+			<div id="themes">
+				<c:if test="${includeThemesFragment}">
+					<jsp:include page="themes-fragment.jsp"/>
+				</c:if>	
+			</div>
+			
+			<div id="addTheme" style="display: none;">
+				<form id="formAddTheme">
 					<div>
-					    <h3 class="item-title"><a href="#">${theme.title}</a> </h3>
+						<p>
+							<label>Title: 
+								<input name="title" size="100"  maxlength="100" />
+							</label>							
+						</p>
+						<p>
+							<label>Priority: 
+								<select name="priority">
+									<option>HEIGHT</option>
+									<option>MEDIUM</option>
+									<option>LOW</option>
+								</select>
+							</label>						
+						</p>
+						<p>
+							<button id="btnAddTheme" type="button">Add</button>
+						</p>
 					</div>
-						
-					<div >
-						<ul class="item-information">
-							<li>${theme.priority}</li>
-							<li> <fmt:formatDate value="${theme.creationDate}" pattern="dd/MM/yyyy"/> </li>
-							<li><a href="history.html">${fn:length(theme.stories)} stories</a></li>
-							<li><a href="#">${fn:length(theme.comments)} comments</a></li>
-						</ul>
-						<div style="clear: both;"></div>					
-					</div>					    
-				</div>				
-			</c:forEach>			
+					<input type="hidden" name="action" value="ADDTHEME"/>
+				</form>
+			</div>
+										
 		</div>
 
 
@@ -51,6 +66,7 @@
 			<li ><a>Add Story</a></li>
 			<li ><a>Add Comment</a></li>
 		</ul>
+		
 		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="resources/js/menu.js"></script>

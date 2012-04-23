@@ -3,6 +3,7 @@
  */
 package br.com.mystudies.service;
 
+import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -62,7 +63,27 @@ public class BackLogServiceBeanTest {
 		verify(backlogDAO).update(backLog);
 
 		assertEquals(backLog.getThemes().get(0), theme);
+		assertEquals(backLog.getThemes().get(0).getBackLog(), backLog);
 
+
+	}
+
+	@Test
+	public void shouldListThemesInBackLog() {
+
+		BackLog backLog = new BackLog();
+		backLog.addTheme(new Theme());
+		backLog.addTheme(new Theme());
+		backLog.addTheme(new Theme());
+
+		when(backlogDAO.find(1L)).thenReturn(backLog);
+
+		backLog = backLogServicebean.getBackLog(1L);
+
+		verify(backlogDAO).find(1L);
+
+		assertNotNull(backLog.getThemes().size());
+		assertEquals(3, backLog.getThemes().size());
 	}
 
 }

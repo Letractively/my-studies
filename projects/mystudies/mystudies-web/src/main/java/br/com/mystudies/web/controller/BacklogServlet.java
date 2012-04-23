@@ -1,8 +1,10 @@
 package br.com.mystudies.web.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.ejb.EJB;
+import javax.persistence.EnumType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.mystudies.domain.entity.BackLog;
 import br.com.mystudies.domain.entity.Theme;
+import br.com.mystudies.domain.enun.Priority;
 import br.com.mystudies.service.BackLogService;
 
 /**
@@ -32,6 +35,11 @@ public class BacklogServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		sendToBackLogPage(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action =
 				(String) request.getParameter("action");
@@ -50,39 +58,41 @@ public class BacklogServlet extends HttpServlet {
 
 		}
 
-
-
-
-
-		sendToBackLogPage(request, response);
+		sendtoBackLogThemesFragment(request, response);
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		sendToBackLogPage(request, response);
-	}
+
 
 
 
 
 	private Theme getTheme(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Theme(
+				request.getParameter("title"),
+				Priority.valueOf(request.getParameter("priority")),
+				new Date()
+			);
 	}
 
 
 
 	private BackLog getBackLog() {
-		// TODO Auto-generated method stub
-		return null;
+		return backLogService.getBackLog(1L);
 	}
-
-
 
 
 	private void sendToBackLogPage(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("backlog.jsp").forward(request, response);
+		request.setAttribute("themes", getBackLog().getThemes());
+		request.setAttribute("includeThemesFragment", true);
+		request.getRequestDispatcher("backlog/backlog.jsp").forward(request, response);
+	}
+
+
+	private void sendtoBackLogThemesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("themes", getBackLog().getThemes());
+		request.getRequestDispatcher("backlog/themes-fragment.jsp").forward(request, response);
 	}
 
 }

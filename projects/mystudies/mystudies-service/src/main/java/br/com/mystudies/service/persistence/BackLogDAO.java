@@ -17,5 +17,13 @@ public interface BackLogDAO {
 	 */
 	BackLog update(BackLog backLog);
 
+	/**
+	 * find the {@link BackLog} by ID.
+	 *
+	 * @param id - the id to find.
+	 * @return - {@link BackLog} found with id;
+	 */
+	BackLog find(long id);
+
 
 }
