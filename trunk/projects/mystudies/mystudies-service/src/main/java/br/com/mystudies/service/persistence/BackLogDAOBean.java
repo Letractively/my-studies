@@ -25,9 +25,15 @@ public class BackLogDAOBean  implements BackLogDAO{
 	public BackLog update(BackLog backLog) {
 
 		// FIXME: EXTREMELY TEMPORARY BECAUSE I'VE TECHNICAL DEBT ABOUT UNIT TEST WITH PERSISTENCE CLASS.
-		backLog = entityManager.find(BackLog.class, backLog);
 
 		return entityManager.merge(backLog);
+	}
+
+
+	@Override
+	public BackLog find(long id) {
+		// FIXME: EXTREMELY TEMPORARY BECAUSE I'VE TECHNICAL DEBT ABOUT UNIT TEST WITH PERSISTENCE CLASS.
+		return  entityManager.find(BackLog.class, id);
 	}
 
 }

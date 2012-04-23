@@ -25,8 +25,17 @@ public class BackLogServiceBean implements BackLogService {
 
 	@Override
 	public BackLog addTheme(BackLog backLog, Theme theme) {
+		// FIXME: validation with beans validation !! technical debt !
+
 		backLog.addTheme(theme);
 		return backLogDAO.update(backLog);
+	}
+
+
+	@Override
+	public BackLog getBackLog(long id) {
+		// FIXME: validate the parameters
+		return backLogDAO.find(id);
 	}
 
 }

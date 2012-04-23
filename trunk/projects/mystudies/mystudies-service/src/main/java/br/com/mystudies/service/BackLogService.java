@@ -20,4 +20,12 @@ public interface BackLogService {
 	 */
 	BackLog addTheme(BackLog backLog, Theme theme);
 
+	/**
+	 * return the {@link BackLog} by id.
+	 *
+	 * @param id - the id to find.
+	 * @return - {@link BackLog} found with id;
+	 */
+	BackLog getBackLog(long id);
+
 }
