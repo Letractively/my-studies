@@ -17,6 +17,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import br.com.mystudies.domain.entity.BackLog;
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.service.persistence.BackLogDAO;
 
@@ -67,7 +68,7 @@ public class BackLogServiceBeanTest {
 
 
 	}
-
+	
 	@Test
 	public void shouldListThemesInBackLog() {
 

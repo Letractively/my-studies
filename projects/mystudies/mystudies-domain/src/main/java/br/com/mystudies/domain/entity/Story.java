@@ -25,9 +25,13 @@ public class Story implements EntityBase{
 
 	private Date creationDate;
 
+	private Theme theme;
+	
 	private List<Comment> comments;
 
-
+	public Story() {
+	}
+	
 	public Story(String title, Priority priority, Status status,
 			Date criationDate) {
 		super();
@@ -67,6 +71,14 @@ public class Story implements EntityBase{
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public Theme getTheme() {
+		return theme;
+	}
+
+	public void setTheme(Theme theme) {
+		this.theme = theme;
 	}
 
 	public List<Comment> getComments() {
