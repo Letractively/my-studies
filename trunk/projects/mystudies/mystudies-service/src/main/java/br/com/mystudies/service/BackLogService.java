@@ -1,6 +1,7 @@
 package br.com.mystudies.service;
 
 import br.com.mystudies.domain.entity.BackLog;
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 
 /**
@@ -19,7 +20,8 @@ public interface BackLogService {
 	 * @return {@link BackLog} with {@link Theme} added.
 	 */
 	BackLog addTheme(BackLog backLog, Theme theme);
-
+	
+	
 	/**
 	 * return the {@link BackLog} by id.
 	 *
@@ -28,4 +30,8 @@ public interface BackLogService {
 	 */
 	BackLog getBackLog(long id);
 
+
+
+
+	
 }
