@@ -39,6 +39,7 @@ public class BacklogServlet extends HttpServlet {
 	}
 
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action =
@@ -48,19 +49,17 @@ public class BacklogServlet extends HttpServlet {
 
 			switch (action) {
 
-			case "ADDTHEME":
-				backLogService.addTheme(getBackLog(), getTheme(request));
-				break;
-
-			default:
-				break;
+				case "ADDTHEME":
+					backLogService.addTheme(getBackLog(), getTheme(request));
+					sendtoBackLogThemesFragment(request, response);
+					break;
+					
+				default:
+					sendtoBackLogThemesFragment(request, response);
+					break;
 			}
-
 		}
-
-		sendtoBackLogThemesFragment(request, response);
 	}
-
 
 
 
@@ -76,23 +75,24 @@ public class BacklogServlet extends HttpServlet {
 	}
 
 
-
+	
+	// FIXME: only testing app. should getting the backlog of user logged.
 	private BackLog getBackLog() {
 		return backLogService.getBackLog(1L);
 	}
 
-
+	
 	private void sendToBackLogPage(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("themes", getBackLog().getThemes());
 		request.setAttribute("includeThemesFragment", true);
-		request.getRequestDispatcher("backlog/backlog.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/backlog/backlog.jsp").forward(request, response);
 	}
 
 
 	private void sendtoBackLogThemesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("themes", getBackLog().getThemes());
-		request.getRequestDispatcher("backlog/themes-fragment.jsp").forward(request, response);
+		request.getRequestDispatcher("pages/backlog/backlog-themes-fragment.jsp").forward(request, response);
 	}
-
+	
 }
