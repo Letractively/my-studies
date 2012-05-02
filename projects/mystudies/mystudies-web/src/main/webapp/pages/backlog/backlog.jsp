@@ -29,7 +29,7 @@
 		
 			<div id="themes">
 				<c:if test="${includeThemesFragment}">
-					<jsp:include page="themes-fragment.jsp"/>
+					<jsp:include page="backlog-themes-fragment.jsp"/>
 				</c:if>	
 			</div>
 			

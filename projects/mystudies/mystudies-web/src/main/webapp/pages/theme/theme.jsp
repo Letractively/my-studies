@@ -21,7 +21,7 @@
 			
 			
 		<div class="title-content">
-			<h3><a href="#">$(theme.title)</a> </h3>
+			<h3><a href="#">${theme.title}</a> </h3>
 		</div>
 
 
@@ -31,7 +31,7 @@
 		<!-- 
 			<div id="themes">
 				<c:if test="${includeThemesFragment}">
-					<jsp:include page="theme-stories.jsp"/>
+					<jsp:include page="theme-stories-fragment.jsp"/>
 				</c:if>	
 			</div>
 			

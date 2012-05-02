@@ -1,5 +1,6 @@
 
 
+// hide themes > show add theme 
 $(function() {
 	$("#addTheme", $('.menu'))
 		.click(function() {
@@ -15,6 +16,7 @@ $(function() {
 
 
 
+// submit form add theme > hide add theme > show themes 
 $(function() {
 	$("#btnAddTheme").click(function() {
 		$.post( "backlog",
@@ -33,3 +35,14 @@ $(function() {
 			);
 		});
 });
+
+
+// submit form view theme  
+$(function() {
+	$("#linkViewTheme").click(function() {
+		$(this).parents('form').submit();
+	});
+});
+
+
+

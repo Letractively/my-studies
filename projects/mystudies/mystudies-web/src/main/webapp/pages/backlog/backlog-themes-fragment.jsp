@@ -6,7 +6,10 @@
 <c:forEach items="${themes}" var="theme">			
 	<div class="item">				
 		<div>
-		    <h3 class="item-title"><a href="#">${theme.title}</a> </h3>
+			<form action="theme"  method="post">
+			    <h3 class="item-title"><a id="linkViewTheme">${theme.title}</a></h3>
+			    <input type="hidden" name="themeId" value="${theme.id}"/>
+			</form>
 		</div>
 			
 		<div >
