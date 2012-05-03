@@ -28,15 +28,14 @@
 		<div class="main-content">
 		
 		
-		<!-- 
-			<div id="themes">
+			<div id="stories">
 				<c:if test="${includeThemesFragment}">
 					<jsp:include page="theme-stories-fragment.jsp"/>
 				</c:if>	
 			</div>
 			
-			<div id="addTheme" style="display: none;">
-				<form id="formAddTheme">
+			<div id="addStory" style="display: none;">
+				<form id="formAddStory">
 					<div>
 						<p>
 							<label>Title: 
@@ -53,13 +52,13 @@
 							</label>						
 						</p>
 						<p>
-							<button id="btnAddTheme" type="button">Add</button>
+							<button id="btnAddStory" type="button">Add</button>
 						</p>
 					</div>
-					<input type="hidden" name="action" value="ADDTHEME"/>
+					<input type="hidden" name="action" value="ADDSTORY"/>
 				</form>
 			</div>
-			
+		<!-- 	
 		 -->
  
 										
@@ -67,13 +66,14 @@
 
 
 		<ul class="menu">
-			<li ><a>Add Story</a></li>
+			<li ><a id="addStory">Add Story</a></li>
 			<li ><a>Add Comment</a></li>
 		</ul>
 		
 		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="resources/js/menu.js"></script>
+		<script type="text/javascript" src="resources/js/theme.js"></script>
 
 	</body>
 </html>
