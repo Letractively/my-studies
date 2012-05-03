@@ -7,7 +7,7 @@
 	<div class="item">				
 		<div>
 			<form action="theme"  method="post">
-			    <h3 class="item-title"><a id="linkViewTheme">${theme.title}</a></h3>
+			    <h3 class="item-title"><a>${theme.title}</a></h3>
 			    <input type="hidden" name="themeId" value="${theme.id}"/>
 			</form>
 		</div>

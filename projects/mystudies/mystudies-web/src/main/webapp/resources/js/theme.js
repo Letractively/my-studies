@@ -2,13 +2,13 @@
 
 // hide themes > show add theme
 $(function() {
-	$("#addTheme", $('.menu'))
+	$("#addStory", $('.menu'))
 		.click(function() {
-			$('#themes')
+			$('#stories')
 				.fadeOut(
 					1000,
 					function() {
-						$('#addTheme').fadeIn(100);
+						$('#addStory').fadeIn(100);
 					}
 				);
 		});
@@ -18,15 +18,15 @@ $(function() {
 
 // submit form add theme > hide add theme > show themes
 $(function() {
-	$("#btnAddTheme").click(function() {
-		$.post( "backlog",
-				$('#formAddTheme').serialize(),
+	$("#btnAddStory").click(function() {
+		$.post( "theme",
+				$('#formAddStory').serialize(),
 				function(data){
-					$("#themes").html(data);
-					$('#addTheme').fadeOut(
+					$("#story").html(data);
+					$('#addStory').fadeOut(
 							1000,
 							function() {
-								$('#themes').fadeIn(100);
+								$('#stories').fadeIn(100);
 							}
 						);
 					},

@@ -1,4 +1,7 @@
-package br.com.mystudies.service.persitence;
+package br.com.mystudies.service.persistence;
+
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 import org.junit.After;
 import org.junit.Before;
