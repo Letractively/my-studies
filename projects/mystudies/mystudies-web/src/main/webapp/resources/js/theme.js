@@ -22,7 +22,7 @@ $(function() {
 		$.post( "theme",
 				$('#formAddStory').serialize(),
 				function(data){
-					$("#story").html(data);
+					$("#stories").html(data);
 					$('#addStory').fadeOut(
 							1000,
 							function() {

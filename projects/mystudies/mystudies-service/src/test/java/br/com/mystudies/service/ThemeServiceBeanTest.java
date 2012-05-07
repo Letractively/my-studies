@@ -1,9 +1,15 @@
 package br.com.mystudies.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.service.persistence.ThemeDao;
 
@@ -48,6 +55,25 @@ public class ThemeServiceBeanTest {
 		verify(themeDao).find(1L);
 
 		assertNotNull(theme);
+	}
+	
+	
+	@Test
+	public void shouldAddStoryInTheme() {
+		
+		Theme theme = new Theme();
+		theme.setStories(new HashSet<Story>());
+		Story story = new Story();
+		
+		when(themeDao.update(theme)).thenReturn(theme);
+		
+		themeServiceBean.addStory(theme, story);
+		
+		verify(themeDao).update(theme);
+		
+		assertTrue(theme.getStories().contains(story));
+		assertEquals(theme, story.getTheme());
+		
 	}
 
 }

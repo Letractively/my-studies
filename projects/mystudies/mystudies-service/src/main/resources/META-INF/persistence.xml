@@ -10,6 +10,7 @@
       <jta-data-source>java:/mystudies</jta-data-source>
       <class>br.com.mystudies.domain.entity.BackLog</class>
       <class>br.com.mystudies.domain.entity.Theme</class>
+      <class>br.com.mystudies.domain.entity.Story</class>
 
 
       <properties>

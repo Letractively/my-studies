@@ -5,6 +5,7 @@ package br.com.mystudies.service;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -63,9 +64,8 @@ public class BackLogServiceBeanTest {
 
 		verify(backlogDAO).update(backLog);
 
-		assertEquals(backLog.getThemes().get(0), theme);
-		assertEquals(backLog.getThemes().get(0).getBackLog(), backLog);
-
+		assertTrue(backLog.getThemes().contains(theme));
+		assertEquals(theme.getBackLog(), backLog);
 
 	}
 	

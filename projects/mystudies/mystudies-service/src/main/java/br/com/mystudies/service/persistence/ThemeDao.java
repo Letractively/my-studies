@@ -6,4 +6,6 @@ public interface ThemeDao {
 
 	Theme find(Long themeId);
 
+	Theme update(Theme theme);
+
 }

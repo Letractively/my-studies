@@ -2,16 +2,20 @@ package br.com.mystudies.domain.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -45,8 +49,8 @@ public class Theme implements EntityBase{
 	@JoinColumn(name="BACKLOG_ID")
 	private BackLog backLog;
 
-	@Transient // not implemented
-	private List<Story> stories;
+	@OneToMany(mappedBy="theme", cascade = CascadeType.ALL, fetch=FetchType.EAGER) 
+	private Set<Story> stories;
 
 	@Transient // not implemented
 	private List<Comment> comments;
@@ -102,11 +106,12 @@ public class Theme implements EntityBase{
 		this.backLog = backLog;
 	}
 
-	public List<Story> getStories() {
+
+	public Set<Story> getStories() {
 		return stories;
 	}
 
-	public void setStories(List<Story> stories) {
+	public void setStories(Set<Story> stories) {
 		this.stories = stories;
 	}
 
@@ -117,5 +122,4 @@ public class Theme implements EntityBase{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-
 }

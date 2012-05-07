@@ -62,7 +62,6 @@ public class BacklogServlet extends HttpServlet {
 	}
 
 
-
 	private Theme getTheme(HttpServletRequest request) {
 		return new Theme(
 				request.getParameter("title"),
@@ -71,6 +70,7 @@ public class BacklogServlet extends HttpServlet {
 			);
 	}
 
+	
 	// FIXME: only testing app. should getting the backlog of user logged.
 	private BackLog getBackLog() {
 		return backLogService.getBackLog(1L);
@@ -79,14 +79,14 @@ public class BacklogServlet extends HttpServlet {
 
 	private void sendToBackLogPage(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("themes", getBackLog().getThemes());
+		request.setAttribute("backLog", getBackLog());
 		request.setAttribute("includeThemesFragment", true);
 		request.getRequestDispatcher("pages/backlog/backlog.jsp").forward(request, response);
 	}
 
 
 	private void sendtoBackLogThemesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("themes", getBackLog().getThemes());
+		request.setAttribute("backLog", getBackLog());
 		request.getRequestDispatcher("pages/backlog/backlog-themes-fragment.jsp").forward(request, response);
 	}
 
