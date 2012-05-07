@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.service.persistence.ThemeDao;
 
@@ -17,8 +18,14 @@ public class ThemeServiceBean implements ThemeService{
 
 	@Override
 	public Theme getTheme(Long themeId) {
-		// FIXME: validate parameter
 		return themeDao.find(themeId);
+	}
+
+	@Override
+	public Theme addStory(Theme theme, Story story) {
+		theme.getStories().add(story);
+		story.setTheme(theme);
+		return themeDao.update(theme);
 	}
 
 }

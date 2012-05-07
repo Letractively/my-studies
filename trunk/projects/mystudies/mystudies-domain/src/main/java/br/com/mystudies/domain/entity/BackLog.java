@@ -1,7 +1,9 @@
 package br.com.mystudies.domain.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,12 +29,12 @@ public class BackLog implements EntityBase{
 
 
 	@OneToMany(mappedBy="backLog", cascade=CascadeType.ALL, fetch= FetchType.EAGER) // FIXME: can't is EAGER
-	private List<Theme> themes;
+	private Set<Theme> themes;
 
 
 	public void addTheme(Theme theme) {
 		if(themes == null){
-			themes = new ArrayList<>();
+			themes = new HashSet<>();
 		}
 		theme.setBackLog(this); // FIXME: Null pointer, remove this logic there ?
 		themes.add(theme);
@@ -50,14 +52,12 @@ public class BackLog implements EntityBase{
 	}
 
 
-	public List<Theme> getThemes() {
+	public Set<Theme> getThemes() {
 		return themes;
 	}
 
-
-	public void setThemes(List<Theme> themes) {
+	public void setThemes(Set<Theme> themes) {
 		this.themes = themes;
 	}
-
 
 }

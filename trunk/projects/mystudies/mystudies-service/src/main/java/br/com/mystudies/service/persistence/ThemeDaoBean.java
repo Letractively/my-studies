@@ -19,4 +19,9 @@ public class ThemeDaoBean implements ThemeDao{
 		return entityManager.find(Theme.class, themeId);
 	}
 
+	@Override
+	public Theme update(Theme theme) {
+		return entityManager.merge(theme);
+	}
+
 }

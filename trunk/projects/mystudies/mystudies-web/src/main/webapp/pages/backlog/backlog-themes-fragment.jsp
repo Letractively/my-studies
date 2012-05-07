@@ -3,12 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
-<c:forEach items="${themes}" var="theme">			
+<c:forEach items="${backLog.themes}" var="theme">			
 	<div class="item">				
 		<div>
 			<form action="theme"  method="post">
 			    <h3 class="item-title"><a>${theme.title}</a></h3>
 			    <input type="hidden" name="themeId" value="${theme.id}"/>
+			    <input type="hidden" name="action" value="NOACTION"/>
 			</form>
 		</div>
 			

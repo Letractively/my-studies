@@ -19,19 +19,16 @@
 			<a>MYSTUDIES</a>
 		</div>
 			
-			
 		<div class="title-content">
 			<h3><a href="#">${theme.title}</a> </h3>
 		</div>
-
-
+		
 		<div class="main-content">
 		
-		
 			<div id="stories">
-				<c:if test="${includeThemesFragment}">
+				<c:if test="${includeThemesStoriesFragment}">
 					<jsp:include page="theme-stories-fragment.jsp"/>
-				</c:if>	
+				</c:if>
 			</div>
 			
 			<div id="addStory" style="display: none;">
@@ -56,23 +53,19 @@
 						</p>
 					</div>
 					<input type="hidden" name="action" value="ADDSTORY"/>
+					<input type="hidden" name="themeId" value="${theme.id}"/>
 				</form>
 			</div>
-		<!-- 	
-		 -->
- 
-										
 		</div>
-
 
 		<ul class="menu">
 			<li ><a id="addStory">Add Story</a></li>
 			<li ><a>Add Comment</a></li>
 		</ul>
 		
-		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="resources/js/menu.js"></script>
+		<script type="text/javascript" src="resources/js/general.js"></script>
 		<script type="text/javascript" src="resources/js/theme.js"></script>
 
 	</body>
