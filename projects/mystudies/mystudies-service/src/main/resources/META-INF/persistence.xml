@@ -11,6 +11,7 @@
       <class>br.com.mystudies.domain.entity.BackLog</class>
       <class>br.com.mystudies.domain.entity.Theme</class>
       <class>br.com.mystudies.domain.entity.Story</class>
+      <class>br.com.mystudies.domain.entity.Sprint</class>
 
 
       <properties>
