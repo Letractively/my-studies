@@ -48,6 +48,11 @@ public class Story implements EntityBase{
 	@ManyToOne
 	@JoinColumn(name="THEME_ID")
 	private Theme theme;
+	
+	@ManyToOne
+	@JoinColumn(name="SPRINT_ID")
+	private Sprint sprint;
+	
 
 	@Transient // FIXME: future implemenation
 	private List<Comment> comments;
@@ -136,4 +141,5 @@ public class Story implements EntityBase{
 		this.comments = comments;
 	}
 
+						
 }
