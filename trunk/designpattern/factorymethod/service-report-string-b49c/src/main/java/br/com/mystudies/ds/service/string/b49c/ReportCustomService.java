@@ -7,8 +7,8 @@ public class ReportCustomService implements ReportService{
 
 	@Override
 	public Report getReport() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Custom Report by module B49C");
+		return new Report();
 	}
 
 }

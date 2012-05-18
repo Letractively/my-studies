@@ -7,7 +7,8 @@ public class ReportSintaticServie implements ReportService {
 
 	@Override
 	public Report getReport() {
-		return null;
+		System.out.println("Sintatic Report by module PRP6");
+		return new Report();
 	}
 
 }
