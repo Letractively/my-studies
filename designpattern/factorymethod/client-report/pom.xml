@@ -36,6 +36,21 @@
   		<version>4.10</version>
   		<scope>test</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>br.com.mystudies.ds</groupId>
+  		<artifactId>service-report</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com.mystudies.ds</groupId>
+  		<artifactId>service-report-string-b49c</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>br.com.mystudies.ds</groupId>
+  		<artifactId>service-report-string-prp6</artifactId>
+  		<version>1.0.0</version>
+  	</dependency>
   </dependencies>
   
 </project>

@@ -7,8 +7,8 @@ public class ReportSintaticService implements ReportService{
 
 	@Override
 	public Report getReport() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Sintatic Report by module B49C");
+		return new Report();
 	}
 
 }

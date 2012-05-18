@@ -7,8 +7,8 @@ public class ReportAnaliticService implements ReportService {
 
 	@Override
 	public Report getReport() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Analitic Report by module PRP6");
+		return new Report();
 	}
 
 }
