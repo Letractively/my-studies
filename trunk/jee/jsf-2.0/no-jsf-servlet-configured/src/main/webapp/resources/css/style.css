@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+
+#header h1{
+	margin: 0px;
+	padding: 0px;
+}
+
+.red{
+	color: red;
+}
+
+
+.explication{
+	border: 1px solid #838383;
+	background-color: #E0E0E0;
+	padding: 10px;
+}
+	
