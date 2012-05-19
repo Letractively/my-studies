@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+
+<script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
+
+<title>$.ajax()</title>
+
+<script type="text/javascript">
+	$(function(){
+		$('img').hide();
+		$('input:button').click(
+			function(){
+				$.ajax({
+						url: 'ajax',
+						data:$('form').serialize(),
+						dataType: 'html', 
+						beforeSend: function(){
+							$('img').show();
+							$('input:button').attr('disabled', 'disabled');
+						},
+						success: function(data){
+							$('div')
+								.html(data)
+								.fadeIn()
+								.fadeOut(10000);						
+						},
+						complete: function(){
+							$('img').hide();							
+							$('input:button').removeAttr('disabled');
+						}
+					});	
+			}
+		);
+	});	
+</script>
+
+
+</head>
+
+<body>
+<h4>$.ajax()</h4>
+<hr />
+
+
+
+<form action="get">
+	<label for="name">Name:
+		<input type="text" name="name"/>
+	</label>
+	<input type="button" value="submit" />
+	<img alt="ajax" src="resources/images/ajax-loader.gif" >
+	<br/><br/>
+	<div style="background-color: red; display: none; padding: 5px;" >
+	</div>	
+</form>
+
+</body>
+</html>
