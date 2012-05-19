@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="resources/css/main.css" />
+
+<script type="text/javascript" src="resources/js/jquery-1.7.1.min.js"></script>
+
+<title>on()</title>
+
+<script type="text/javascript">
+
+	$(function(){
+		$('#content').on('mouseover', 'div', function(){
+				$(this).css('background-color', '#EEEEEE');
+			}
+		).on('mouseout', 'div', function(){
+				$(this).css('background-color', '#FFF');
+			}
+		);
+	});
+
+	$(function(){
+		$('input:button').click(
+			function(){
+				$.ajax({
+						url: 'on',
+						data:$('form').serialize(),
+						dataType: 'html', 
+						success: function(data){
+							$('div').html(data);
+						}
+					});	
+				}
+		);
+	});	
+</script>
+
+
+</head>
+
+<body>
+<h4>on()</h4>
+<hr />
+
+
+
+<form action="get">
+	<label for="name">Name:
+		<input type="text" name="name"/>
+	</label>
+	<input type="button" value="submit" />
+	<br/><br/>
+	<div id="content">
+	</div>	
+</form>
+
+</body>
+</html>
