@@ -16,7 +16,7 @@
 					</label>							
 				</p>
 				<p>
-					<label>Start Date: 
+					<label>Final Date: 
 						<input name="finalDate" size="10"  maxlength="10" />
 					</label>							
 				</p>

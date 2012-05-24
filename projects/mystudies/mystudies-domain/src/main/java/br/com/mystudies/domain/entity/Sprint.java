@@ -49,12 +49,23 @@ public class Sprint implements EntityBase {
 	private Date finalDate;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name="SPRINT_STATUS")
 	private SprintStatus sprintStatus;
 	
 	@OneToMany(mappedBy="sprint", cascade = CascadeType.ALL, fetch=FetchType.EAGER) // FIXME: can't eager !!
 	private Set<Story> stories;
 
 	
+	public Sprint() {
+	}
+
+	public Sprint(Date startDate, Date finalDate, SprintStatus sprintStatus) {
+		super();
+		this.startDate = startDate;
+		this.finalDate = finalDate;
+		this.sprintStatus = sprintStatus;
+	}
+
 	public Long getId() {
 		return id;
 	}

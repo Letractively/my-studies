@@ -21,7 +21,7 @@
 		<div class="title-content">
 			<c:choose>
 				<c:when test="${sprint != null}">
-					<h3><a href="#">Sprint ${sprint.id} - ${sprint.startDate} a ${sprint.finalDate}</a></h3>
+					<h3><a href="#">Sprint ${sprint.id} - <fmt:formatDate value="${sprint.startDate}" pattern="dd/MM/yyyy"/>  a  <fmt:formatDate value="${sprint.finalDate}" pattern="dd/MM/yyyy"/> </a> </h3>
 				</c:when>
 				<c:otherwise>
 					<h3><a href="#"> haven't sprint in running </a></h3>
