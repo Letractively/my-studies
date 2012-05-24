@@ -5,6 +5,8 @@ import br.com.mystudies.domain.enun.SprintStatus;
 
 public interface SprintDao {
 
-	Sprint findSprintByStatus(SprintStatus running);
+	Sprint findSprintByStatus(SprintStatus sprintStatus);
+
+	Sprint persist(Sprint sprint);
 
 }
