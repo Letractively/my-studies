@@ -11,6 +11,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import java.util.Date;
+import java.util.HashSet;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,7 +20,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import br.com.mystudies.domain.entity.Sprint;
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.enun.SprintStatus;
+import br.com.mystudies.domain.enun.StoryStatus;
 
 public class SrpintServiceBeanTest {
 
@@ -144,6 +147,45 @@ public class SrpintServiceBeanTest {
 		
 		assertNotNull(sprint);				
 	}
+	
+	
+	@Test(expected=IllegalStateException.class)
+	public void shouldThrowAExceptionWhenHaventSprintInRunning() {
+		
+		when(sprintDao.findSprintByStatus(SprintStatus.RUNNING)).thenReturn(null);
+		
+		sprintServiceBean.addStoryInSprint(new Story());
+		
+		verify(sprintDao).findSprintByStatus(SprintStatus.RUNNING);
+		
+	}
+	
+	
+	@Test()
+	public void shouldReturnSprintWithStoryWithStatusInSprint() {
+		
+		Sprint sprint = new Sprint();
+		sprint.setStories(new HashSet<Story>());
+		
+		Story story = new Story();
+		story.setStatus(StoryStatus.SPRINT_BACKLOG);
+		
+		when(sprintDao.findSprintByStatus(SprintStatus.RUNNING)).thenReturn(sprint);
+		when(sprintDao.update(sprint)).thenReturn(sprint);
+		
+		sprint = sprintServiceBean.addStoryInSprint(story);
+		
+		verify(sprintDao).findSprintByStatus(SprintStatus.RUNNING);
+		verify(sprintDao).update(sprint);
+		
+		story = sprint.getStories().iterator().next();
+		
+		assertEquals(StoryStatus.IN_SPRINT, story.getStatus());
+		assertEquals(sprint, story.getSprint());
+		
+	}
 
+	
+	
 	
 }

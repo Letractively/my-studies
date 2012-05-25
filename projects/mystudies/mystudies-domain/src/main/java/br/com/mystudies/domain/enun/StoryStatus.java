@@ -1,6 +1,6 @@
 package br.com.mystudies.domain.enun;
 
-public enum Status {
+public enum StoryStatus {
 
 	SPRINT_BACKLOG,
 	IN_SPRINT;

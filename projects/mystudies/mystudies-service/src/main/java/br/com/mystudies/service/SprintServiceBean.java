@@ -5,7 +5,9 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import br.com.mystudies.domain.entity.Sprint;
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.enun.SprintStatus;
+import br.com.mystudies.domain.enun.StoryStatus;
 
 @Stateless
 @Remote(SprintService.class)
@@ -19,10 +21,7 @@ public class SprintServiceBean implements SprintService{
 	@Override
 	public boolean containsSprintInRun() {
 		
-		Sprint sprint = 
-				sprintDao.findSprintByStatus(SprintStatus.RUNNING);
-		
-		if(sprint != null){
+		if( getCurrentSprint() != null){
 			return true;
 		}
 				
@@ -44,10 +43,32 @@ public class SprintServiceBean implements SprintService{
 
 
 
+	
 	@Override
 	public Sprint getCurrentSprint() {		
 		return sprintDao.findSprintByStatus(SprintStatus.RUNNING);
 	}
+
+
+	@Override
+	public Sprint addStoryInSprint(Story story) {
+		
+		// FIXME: validation of parameters story...
+		
+		Sprint sprint = getCurrentSprint();
+		
+		if(sprint == null)
+			throw new IllegalStateException("Haven't sprint in running");
+		
+		sprint.getStories().add(story);
+		
+		story.setSprint(sprint);
+		story.setStatus(StoryStatus.IN_SPRINT);
+		 
+			
+		return sprintDao.update(sprint);		
+	}
 	
 	
 }
+

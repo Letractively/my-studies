@@ -17,7 +17,7 @@ import br.com.mystudies.domain.entity.Sprint;
 import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.enun.Priority;
 import br.com.mystudies.domain.enun.SprintStatus;
-import br.com.mystudies.domain.enun.Status;
+import br.com.mystudies.domain.enun.StoryStatus;
 import br.com.mystudies.service.SprintService;
 
 
@@ -160,21 +160,21 @@ public class SprintServlet extends HttpServlet {
 		Sprint sprint = new Sprint();
 		
 		sprint.setStories(new HashSet<Story>());
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
-		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, Status.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
+		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
 		
 		return sprint;
 	}
