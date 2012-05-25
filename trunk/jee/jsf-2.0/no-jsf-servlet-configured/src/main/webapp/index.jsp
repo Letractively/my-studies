@@ -1,1 +1,1 @@
-<% response.sendRedirect("/jsf2news/home.jsf"); %>
+<% response.sendRedirect("/no-jsf-servlet-configured/home.jsf"); %>

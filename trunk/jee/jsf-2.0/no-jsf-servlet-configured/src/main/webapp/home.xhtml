@@ -4,9 +4,16 @@
     xmlns:f="http://java.sun.com/jsf/core"
     template="/WEB-INF/templates/template.xhtml">
     
-  <ui:define name="title">List of news feature in JSF 2.0</ui:define>
+  <ui:define name="title">JSF Servlet/Mapping is optional</ui:define>
   
   <ui:define name="body">
-		<a href="/jsf2news/tags/list-examples.jsf">News Tags</a>					
-  </ui:define>
+		<p>Some application servers ( this poc was tested in JBOSS AS 7) automatically provide a servlet mapping for the /faces/*, *.faces and *.jsf patterns, provided that any of the following conditions applies;</p>
+		<ul>
+			<li>Any of the classes in the web application uses a JSF annotation</li>
+			<li>Any initialization parameters start whit javax.faces</li>
+			<li>the web-inf/faces-config.xml file is present</li>
+		</ul>
+		<a href="http://horstmann.com/corejsf/"><strong>font.</strong></a>
+	</ui:define>
+			
 </ui:composition>
