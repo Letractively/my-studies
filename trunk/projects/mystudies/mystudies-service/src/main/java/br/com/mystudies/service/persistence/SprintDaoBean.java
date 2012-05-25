@@ -59,4 +59,10 @@ public class SprintDaoBean implements SprintDao {
 		return sprint;
 	}
 
+
+	@Override
+	public Sprint update(Sprint sprint) {
+		return entityManager.merge(sprint);
+	}
+
 }

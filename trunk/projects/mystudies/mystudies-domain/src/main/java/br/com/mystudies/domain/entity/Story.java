@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import br.com.mystudies.domain.enun.Priority;
-import br.com.mystudies.domain.enun.Status;
+import br.com.mystudies.domain.enun.StoryStatus;
 
 /**
  * @author Robson
@@ -40,7 +40,7 @@ public class Story implements EntityBase{
 
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")
-	private Status status;
+	private StoryStatus status;
 
 	@Column(name="CREATION_DATE")
 	private Date creationDate;
@@ -62,7 +62,7 @@ public class Story implements EntityBase{
 	}
 	
 	
-	public Story(String title, Priority priority, Status status,
+	public Story(String title, Priority priority, StoryStatus status,
 			Date criationDate) {
 		super();
 		this.title = title;
@@ -102,12 +102,12 @@ public class Story implements EntityBase{
 	}
 
 
-	public Status getStatus() {
+	public StoryStatus getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(Status status) {
+	public void setStatus(StoryStatus status) {
 		this.status = status;
 	}
 
@@ -132,14 +132,13 @@ public class Story implements EntityBase{
 	}
 
 
-	public List<Comment> getComments() {
-		return comments;
+	public Sprint getSprint() {
+		return sprint;
 	}
 
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+	public void setSprint(Sprint sprint) {
+		this.sprint = sprint;
 	}
-
-						
+					
 }

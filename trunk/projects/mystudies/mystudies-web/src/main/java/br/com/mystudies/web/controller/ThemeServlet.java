@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.domain.enun.Priority;
-import br.com.mystudies.domain.enun.Status;
+import br.com.mystudies.domain.enun.StoryStatus;
+import br.com.mystudies.service.SprintService;
 import br.com.mystudies.service.ThemeService;
 
 /**
@@ -29,7 +30,9 @@ public class ThemeServlet extends HttpServlet {
 	@EJB
 	private ThemeService themeService;
 
-
+	@EJB
+	private SprintService sprintService;
+	
     public ThemeServlet() {
         super();
     }
@@ -57,6 +60,17 @@ public class ThemeServlet extends HttpServlet {
 						themeService.addStory(getTheme(request), getStory(request))
 					);					
 				break;
+				
+				case "ADDSTORYSPRINT":
+					
+					s
+					
+					sendToThemeStoriesFragment(
+							request, 
+							response, 
+							getTheme(request)
+							);					
+					break;
 
 				default:
 					sendToThemePage(request, response);			
@@ -75,7 +89,7 @@ public class ThemeServlet extends HttpServlet {
 		return new Story(
 				request.getParameter("title"), 
 				Priority.valueOf(request.getParameter("priority")), 
-				Status.SPRINT_BACKLOG, 
+				StoryStatus.SPRINT_BACKLOG, 
 				new Date()
 			);
 	}
