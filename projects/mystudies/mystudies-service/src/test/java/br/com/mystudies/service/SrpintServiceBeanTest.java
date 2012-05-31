@@ -23,6 +23,7 @@ import br.com.mystudies.domain.entity.Sprint;
 import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.enun.SprintStatus;
 import br.com.mystudies.domain.enun.StoryStatus;
+import br.com.mystudies.service.persistence.SprintDao;
 
 public class SrpintServiceBeanTest {
 

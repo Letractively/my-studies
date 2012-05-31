@@ -16,6 +16,7 @@ import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.domain.enun.Priority;
 import br.com.mystudies.domain.enun.StoryStatus;
 import br.com.mystudies.service.SprintService;
+import br.com.mystudies.service.StoryService;
 import br.com.mystudies.service.ThemeService;
 
 /**
@@ -32,6 +33,10 @@ public class ThemeServlet extends HttpServlet {
 
 	@EJB
 	private SprintService sprintService;
+	
+	@EJB
+	private StoryService storyService;
+	
 	
     public ThemeServlet() {
         super();
@@ -63,7 +68,13 @@ public class ThemeServlet extends HttpServlet {
 				
 				case "ADDSTORYSPRINT":
 					
-					s
+					
+					sprintService.addStoryInSprint(
+							storyService.getStory(
+									Long.parseLong(request.getParameter("storyId"))
+									)
+								);
+					
 					
 					sendToThemeStoriesFragment(
 							request, 
@@ -83,6 +94,7 @@ public class ThemeServlet extends HttpServlet {
 	private Theme getTheme(HttpServletRequest request) {
 		return themeService.getTheme(Long.valueOf(request.getParameter("themeId")));			
 	}
+	
 	
 	
 	private Story getStory(HttpServletRequest request){
