@@ -37,6 +37,21 @@ $(function() {
 });
 
 
+$(function() {
+	$(".main-content")
+		.on('click', 'a.addStory', function(){
+			$.post( 
+				"theme",
+				$(this).parents('form').serialize(),
+				function(data){
+					$("#stories").html(data);
+				},
+				'html'		
+			);
+		});
+});
+
+
 // submit form view theme
 $(function() {
 	$("h3 > a").click(function() {

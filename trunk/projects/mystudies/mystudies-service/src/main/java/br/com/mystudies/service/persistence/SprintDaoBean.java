@@ -11,7 +11,6 @@ import javax.persistence.criteria.Root;
 
 import br.com.mystudies.domain.entity.Sprint;
 import br.com.mystudies.domain.enun.SprintStatus;
-import br.com.mystudies.service.SprintDao;
 
 @Stateless
 @Local(SprintDao.class)

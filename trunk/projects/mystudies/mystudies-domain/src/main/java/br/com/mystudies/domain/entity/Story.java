@@ -140,5 +140,17 @@ public class Story implements EntityBase{
 	public void setSprint(Sprint sprint) {
 		this.sprint = sprint;
 	}
+
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
+	
 					
 }

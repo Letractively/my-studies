@@ -21,8 +21,6 @@ public class ThemeServiceBean implements ThemeService{
 	@EJB
 	private ThemeDao themeDao;
 
-	@EJB
-	private SprintService sprintService;
 	
 	@Override
 	public Theme getTheme(Long themeId) {

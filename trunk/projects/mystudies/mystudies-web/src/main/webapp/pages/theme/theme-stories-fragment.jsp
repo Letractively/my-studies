@@ -9,15 +9,20 @@
 		    <h3 class="item-title"><a href="#">${story.title}</a> </h3>
 		</div>
 			
-		<div >
-			<ul class="item-information">
-				<li>${story.priority}</li>
-				<li>${story.status}</li>
-				<li> <fmt:formatDate value="${story.creationDate}" pattern="dd/MM/yyyy"/> </li>
-				<li><a href="#">${fn:length(story.comments)} comments</a></li>
-				<li><a href="#">add sprint</a></li>				
-			</ul>
-			<div style="clear: both;"></div>					
+		<div>
+			<form>
+				<ul class="item-information">
+					<li>${story.priority}</li>
+					<li>${story.status}</li>
+					<li> <fmt:formatDate value="${story.creationDate}" pattern="dd/MM/yyyy"/> </li>
+					<li><a href="#">${fn:length(story.comments)} comments</a></li>
+					<li><a href="#" class="addSprint" >add sprint</a></li>
+				</ul>
+				<input type="hidden" value="${story.id}" name="storyId"/>
+				<input type="hidden" value="${theme.id}" name="themeId"/>
+				<input type="hidden" value="ADDSTORYSPRINT" name="action"/>
+				<div style="clear: both;"></div>
+			</form>					
 		</div>					    
 	</div>				
 </c:forEach>
