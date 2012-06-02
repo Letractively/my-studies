@@ -40,6 +40,11 @@
 							</label>							
 						</p>
 						<p>
+							<label>Points: 
+								<input name="points" size="3"  maxlength="3" />
+							</label>							
+						</p>
+						<p>
 							<label>Priority: 
 								<select name="priority">
 									<option>HEIGHT</option>
@@ -56,6 +61,7 @@
 					<input type="hidden" name="themeId" value="${theme.id}"/>
 				</form>
 			</div>
+			
 		</div>
 
 		<ul class="menu">

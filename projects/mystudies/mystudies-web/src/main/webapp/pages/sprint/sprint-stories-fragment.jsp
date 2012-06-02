@@ -12,8 +12,7 @@
 		<div >
 			<ul class="item-information">
 				<li>${story.priority}</li>
-				<li>${story.status}</li>
-				<li>4 points</li>
+				<li>${story.points} points</li>
 				<li> <fmt:formatDate value="${story.creationDate}" pattern="dd/MM/yyyy"/> </li>
 				<li><a href="#">${fn:length(story.comments)} comments</a></li>
 			</ul>

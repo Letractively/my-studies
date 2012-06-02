@@ -16,7 +16,14 @@
 					<li>${story.status}</li>
 					<li> <fmt:formatDate value="${story.creationDate}" pattern="dd/MM/yyyy"/> </li>
 					<li><a href="#">${fn:length(story.comments)} comments</a></li>
-					<li><a href="#" class="addSprint" >add sprint</a></li>
+					<c:choose>
+						<c:when test="${story.status == 'SPRINT_BACKLOG'}">
+							<li><a href="#" class="addSprint" >add sprint</a></li>
+						</c:when>
+						<c:otherwise>
+							<li>${story.points } points</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<input type="hidden" value="${story.id}" name="storyId"/>
 				<input type="hidden" value="${theme.id}" name="themeId"/>

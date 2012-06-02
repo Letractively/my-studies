@@ -37,18 +37,19 @@ $(function() {
 });
 
 
+
 $(function() {
 	$(".main-content")
-		.on('click', 'a.addStory', function(){
-			$.post( 
+	.on('click', 'li > a.addSprint', function(){
+		$.post(
 				"theme",
 				$(this).parents('form').serialize(),
 				function(data){
 					$("#stories").html(data);
 				},
-				'html'		
-			);
-		});
+				'html'
+		);
+	});
 });
 
 
