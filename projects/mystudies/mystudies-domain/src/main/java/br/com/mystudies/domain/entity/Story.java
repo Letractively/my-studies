@@ -45,23 +45,26 @@ public class Story implements EntityBase{
 	@Column(name="CREATION_DATE")
 	private Date creationDate;
 
+	@Column(name="POINTS")
+	private Integer points;
+
 	@ManyToOne
 	@JoinColumn(name="THEME_ID")
 	private Theme theme;
-	
+
 	@ManyToOne
 	@JoinColumn(name="SPRINT_ID")
 	private Sprint sprint;
-	
+
 
 	@Transient // FIXME: future implemenation
 	private List<Comment> comments;
 
-	
+
 	public Story() {
 	}
-	
-	
+
+
 	public Story(String title, Priority priority, StoryStatus status,
 			Date criationDate) {
 		super();
@@ -150,7 +153,17 @@ public class Story implements EntityBase{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
-	
-	
-					
+
+
+	public Integer getPoints() {
+		return points;
+	}
+
+
+	public void setPoints(Integer points) {
+		this.points = points;
+	}
+
+
+
 }
