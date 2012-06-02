@@ -14,62 +14,64 @@ import br.com.mystudies.service.persistence.SprintDao;
 @Remote(SprintService.class)
 public class SprintServiceBean implements SprintService{
 
-	
+
 	@EJB
 	private SprintDao sprintDao;
-	
-	
+
+
 	@Override
 	public boolean containsSprintInRun() {
-		
+
 		if( getCurrentSprint() != null){
 			return true;
 		}
-				
+
 		return false;
 	}
 
 
-	
+
 	@Override
 	public Sprint create(Sprint sprint) {
-		
+
 		if(containsSprintInRun())
 			throw new IllegalStateException("Contains sprint in running");
-		
+
 		// FIXME: validate parameters
-		
+		sprint.setPoints(new Long(0));
+
 		return sprintDao.persist(sprint);
 	}
 
 
 
-	
+
 	@Override
-	public Sprint getCurrentSprint() {		
+	public Sprint getCurrentSprint() {
 		return sprintDao.findSprintByStatus(SprintStatus.RUNNING);
 	}
 
 
 	@Override
 	public Sprint addStoryInSprint(Story story) {
-		
+
 		// FIXME: validation of parameters story...
-		
+
 		Sprint sprint = getCurrentSprint();
-		
+
 		if(sprint == null)
 			throw new IllegalStateException("Haven't sprint in running");
-		
+
 		sprint.getStories().add(story);
-		
+		sprint.setPoints(sprint.getPoints() + story.getPoints());
+
 		story.setSprint(sprint);
 		story.setStatus(StoryStatus.IN_SPRINT);
-		 
-			
-		return sprintDao.update(sprint);		
+
+
+		return sprintDao.update(sprint);
 	}
-	
-	
+
+
 }
 
