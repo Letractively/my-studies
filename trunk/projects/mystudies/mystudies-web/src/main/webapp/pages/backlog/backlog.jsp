@@ -65,6 +65,7 @@
 			<li id="addTheme" ><a>Add Theme</a></li>
 			<li ><a>Add Comment</a></li>
 			<li ><a href="sprint" >Sprint</a></li>
+			<li ><a href="kanban" >Kanban</a></li>
 		</ul>
 		
 		
