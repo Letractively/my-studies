@@ -5,12 +5,15 @@
 
 <c:forEach items="${sprint.stories}" var="story">			
 	<div class="item">				
-		<div>
-		    <h3 class="item-title"><a href="#">${story.title}</a> </h3>
+		<div>  
+		    <h3 class="item-title">
+		    	<a href="#">${story.theme.title} - </a>  
+		    	<a href="#">${story.title}</a> 
+		    </h3>
 		</div>
 			
 		<div >
-			<ul class="item-information">
+			<ul class="item-information">	
 				<li>${story.priority}</li>
 				<li>${story.points} points</li>
 				<li> <fmt:formatDate value="${story.creationDate}" pattern="dd/MM/yyyy"/> </li>
