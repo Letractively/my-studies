@@ -49,7 +49,7 @@ public class Theme implements EntityBase{
 	@JoinColumn(name="BACKLOG_ID")
 	private BackLog backLog;
 
-	@OneToMany(mappedBy="theme", cascade = CascadeType.ALL, fetch=FetchType.EAGER) 
+	@OneToMany(mappedBy="theme", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private Set<Story> stories;
 
 	@Transient // not implemented
@@ -122,4 +122,49 @@ public class Theme implements EntityBase{
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((creationDate == null) ? 0 : creationDate.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((priority == null) ? 0 : priority.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Theme other = (Theme) obj;
+		if (creationDate == null) {
+			if (other.creationDate != null)
+				return false;
+		} else if (!creationDate.equals(other.creationDate))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (priority != other.priority)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
+
+
 }
