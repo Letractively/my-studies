@@ -109,28 +109,12 @@ ol, ul {
 }
 
 
-.droppable{
-	margin: 10px;
-	border: 1px solid red;
-	width: 30%;
-	height: 80%;
-	float: left;
-}
-
-
-.draggable{
-	margin: 10px;
-	border: 1px solid red;
-	width: 20%;
-	height: 15%;
-}
-
-
 .kanban{
 	height: 90%;
 	margin-top: 10px;
 	border: 1px solid red;
 }
+
 
 .kanban .story{
 	margin: 10px;

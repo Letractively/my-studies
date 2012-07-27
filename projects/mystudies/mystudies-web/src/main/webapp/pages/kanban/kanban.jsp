@@ -26,30 +26,38 @@
 	
 		<c:forEach var="entry" items="${map}">
 		
-			<div style="border: 1px solid blue; float: left; width: 10%;    height: ${100 / fn:length(map)}%; ">
-												
-				<c:out value="${entry.key.title}"></c:out>
-				
+			<div style="border: 1px solid blue; float: left; width: 10%;    height: ${100 / fn:length(map)}%; ">									
+				<c:out value="${entry.key.title}"></c:out>				
 			</div>
 			
-			<div style="border: 1px solid black; float: left; width: 30%; height: ${100 / fn:length(map)}%;">
+			<div style="border: 1px solid black; float: left; width: 30%; height: ${100 / fn:length(map)}%;" class="droppable" id="TODO">
 				<c:forEach var="story" items="${entry.value}">
-					<div class="story">
-						<c:out value="${story.title}"></c:out>
-					</div>
+					<c:if test="${story.status == 'TODO'}">
+						<div class="story draggable">
+							<c:out value="${story.title}"></c:out>
+						</div>
+					</c:if>
 				</c:forEach>				
 			</div>
 			
-			<div style="border: 1px solid black; float: left;  width: 30%; height: ${100 / fn:length(map)}%;">
+			<div style="border: 1px solid black; float: left;  width: 30%; height: ${100 / fn:length(map)}%;" class="droppable"  id="DOING">
 				<c:forEach var="story" items="${entry.value}">
-					<c:out value="${story.title}"></c:out>
+					<c:if test="${story.status == 'DOING'}">
+						<div class="story draggable">
+							<c:out value="${story.title}"></c:out>
+						</div>
+					</c:if>
 				</c:forEach>				
 			</div>
 			
-			<div style="border: 1px solid black;  height: ${100 / fn:length(map)}%;">
+			<div style="border: 1px solid black;  height: ${100 / fn:length(map)}%;" class="droppable" id="DONE">
 				<c:forEach var="story" items="${entry.value}">
-					<c:out value="${story.title}"></c:out>
-				</c:forEach>				
+					<c:if test="${story.status == 'DONE'}">
+						<div class="story draggable">
+							<c:out value="${story.title}"></c:out>
+						</div>
+					</c:if>
+				</c:forEach>
 			</div>
 					
 		</c:forEach>
