@@ -10,11 +10,11 @@ import org.junit.Test;
 public class StoryDaoTest {
 
 	// FIXME: make test using anything tecnologic about persistence with unit.
-	
-	
+
+
 	private StoryDaoBean storyDaoBean;
-	
-	
+
+
 	@Before
 	public void setUp() throws Exception {
 		storyDaoBean  = new StoryDaoBean();

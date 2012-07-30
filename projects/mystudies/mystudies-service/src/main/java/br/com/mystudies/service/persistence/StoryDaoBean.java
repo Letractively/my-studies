@@ -11,14 +11,20 @@ import br.com.mystudies.domain.entity.Story;
 @Local(StoryDao.class)
 public class StoryDaoBean implements StoryDao {
 
-	
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
-	
+
+
 	@Override
 	public Story getStory(Long id) {
 		return entityManager.find(Story.class, id);
+	}
+
+
+	@Override
+	public Story update(Story story) {
+		return entityManager.merge(story);
 	}
 
 }

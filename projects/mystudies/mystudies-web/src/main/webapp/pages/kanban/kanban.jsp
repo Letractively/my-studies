@@ -22,6 +22,11 @@
 	
 	<div class="kanban">
 	
+		<form>
+			<input type="hidden" name="kanbanFase" id="kanbanFase">			
+			<input type="hidden" name="storyID" id="storyID">			
+			<input type="hidden" name="action" value="UPDATESTATUSSTORY">			
+		</form>
 		
 	
 		<c:forEach var="entry" items="${map}">
@@ -33,7 +38,7 @@
 			<div style="border: 1px solid black; float: left; width: 30%; height: ${100 / fn:length(map)}%;" class="droppable" id="TODO">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'TODO'}">
-						<div class="story draggable">
+						<div class="story draggable" id="${story.id}">
 							<c:out value="${story.title}"></c:out>
 						</div>
 					</c:if>
@@ -43,22 +48,24 @@
 			<div style="border: 1px solid black; float: left;  width: 30%; height: ${100 / fn:length(map)}%;" class="droppable"  id="DOING">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'DOING'}">
-						<div class="story draggable">
+						<div class="story draggable" id="${story.id}">
 							<c:out value="${story.title}"></c:out>
 						</div>
 					</c:if>
 				</c:forEach>				
 			</div>
 			
-			<div style="border: 1px solid black;  height: ${100 / fn:length(map)}%;" class="droppable" id="DONE">
+			<div style="border: 1px solid black; margin-left: 70.4%; height: ${100 / fn:length(map)}%;" class="droppable" id="DONE">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'DONE'}">
-						<div class="story draggable">
+						<div class="story draggable"  id="${story.id}">
 							<c:out value="${story.title}"></c:out>
 						</div>
 					</c:if>
 				</c:forEach>
 			</div>
+
+
 					
 		</c:forEach>
 	</div>	

@@ -6,4 +6,6 @@ public interface StoryDao {
 
 	Story getStory(Long id);
 
+	Story update(Story story);
+
 }
