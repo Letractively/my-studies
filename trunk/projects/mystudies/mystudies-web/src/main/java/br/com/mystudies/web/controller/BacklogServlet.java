@@ -70,7 +70,7 @@ public class BacklogServlet extends HttpServlet {
 			);
 	}
 
-	
+
 	// FIXME: only testing app. should getting the backlog of user logged.
 	private BackLog getBackLog() {
 		return backLogService.getBackLog(1L);
