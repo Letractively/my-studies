@@ -4,9 +4,11 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,6 +17,7 @@ import org.junit.Test;
 public class ScannerPathTest {
 
 	private ScannerPath scannerPath;
+
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,24 +30,26 @@ public class ScannerPathTest {
 	}
 
 	@Test
-	public void shouldReturnNewFile() {
+	public void shouldReturnNewFile() throws IOException {
 
 		Path path =
-				Paths.get("src/test/resources/files/");
+				Paths.get("src/test/resources/scanner/");
+
 
 		scannerPath.start(path);
 
+		Files.createDirectory(Paths.get("src/test/resources/scanner/dir1"));
+		Files.createDirectory(Paths.get("src/test/resources/scanner/dir2"));
+		Files.createDirectory(Paths.get("src/test/resources/scanner/dir3"));
 
-
-		Files.createDirectories(path, )
-
-		Path p = scannerPath.getNewFile();
-
-		assertNotNull(p);
-
-		/*assertEquals("src", p.getFileName());*/
+		List<Path> paths = scannerPath.getNewFiles();
 
 		scannerPath.stop();
+
+
+		assertNotNull(paths);
+		assertEquals(3, paths.size());
+
 
 	}
 
