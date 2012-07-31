@@ -31,11 +31,11 @@
 	
 		<c:forEach var="entry" items="${map}">
 		
-			<div style="border: 1px solid blue; float: left; width: 10%;    height: ${100 / fn:length(map)}%; ">									
+			<div style="border: 1px solid blue; float: left; width: 10%;    height: 150px;">									
 				<c:out value="${entry.key.title}"></c:out>				
 			</div>
 			
-			<div style="border: 1px solid black; float: left; width: 30%; height: ${100 / fn:length(map)}%;" class="droppable" id="TODO">
+			<div style="border: 1px solid black; float: left; width: 30%; height: 150px;" class="droppable" id="TODO">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'TODO'}">
 						<div class="story draggable" id="${story.id}">
@@ -45,7 +45,7 @@
 				</c:forEach>				
 			</div>
 			
-			<div style="border: 1px solid black; float: left;  width: 30%; height: ${100 / fn:length(map)}%;" class="droppable"  id="DOING">
+			<div style="border: 1px solid black; float: left;  width: 30%; height: 150px;" class="droppable"  id="DOING">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'DOING'}">
 						<div class="story draggable" id="${story.id}">
@@ -55,7 +55,7 @@
 				</c:forEach>				
 			</div>
 			
-			<div style="border: 1px solid black; margin-left: 70.4%; height: ${100 / fn:length(map)}%;" class="droppable" id="DONE">
+			<div style="border: 1px solid black; margin-left: 70.4%; height: 150px;" class="droppable" id="DONE">
 				<c:forEach var="story" items="${entry.value}">
 					<c:if test="${story.status == 'DONE'}">
 						<div class="story draggable"  id="${story.id}">
