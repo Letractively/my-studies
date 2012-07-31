@@ -2,7 +2,6 @@ package br.com.mystudies.niotwo;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,26 +29,34 @@ public class ScannerPathTest {
 	}
 
 	@Test
-	public void shouldReturnNewFile() throws IOException {
+	public void shouldReturnNewFile() throws IOException, InterruptedException {
+
+		if(Files.exists(Paths.get("src/test/resources/scanner/dir1"))){
+
+			Files.delete(Paths.get("src/test/resources/scanner/dir1"));
+			Files.delete(Paths.get("src/test/resources/scanner/dir2"));
+			Files.delete(Paths.get("src/test/resources/scanner/dir3"));
+		}
+
 
 		Path path =
 				Paths.get("src/test/resources/scanner/");
 
 
-		scannerPath.start(path);
+		scannerPath.scan(path);
 
 		Files.createDirectory(Paths.get("src/test/resources/scanner/dir1"));
 		Files.createDirectory(Paths.get("src/test/resources/scanner/dir2"));
 		Files.createDirectory(Paths.get("src/test/resources/scanner/dir3"));
 
+
 		List<Path> paths = scannerPath.getNewFiles();
-
-		scannerPath.stop();
-
 
 		assertNotNull(paths);
 		assertEquals(3, paths.size());
 
+
+		scannerPath.stopScan();
 
 	}
 
