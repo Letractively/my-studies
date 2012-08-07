@@ -58,7 +58,7 @@ public class StoryServiceBeanTest {
     public void shouldUpdateStatusStory() {
 
     	Story story =
-    			new Story(null,null, StoryStatus.TODO, null);
+    			new Story(null,null, StoryStatus.TODO, null, null);
 
     	when(storyDao.getStory(any(Long.class))).thenReturn(story);
     	when(storyDao.update(story)).thenReturn(story);

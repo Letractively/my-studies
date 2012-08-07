@@ -34,8 +34,11 @@ public class Sprint implements EntityBase {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="POINTS")
-	private Long points;
+	@Column(name="ESTIMATED_POINTS")
+	private Long estimatedPoints;
+
+	@Column(name="DONE_POINTS")
+	private Long donePoints;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="START_DATE")
@@ -56,6 +59,7 @@ public class Sprint implements EntityBase {
 	public Sprint() {
 	}
 
+
 	public Sprint(Date startDate, Date finalDate, SprintStatus sprintStatus) {
 		super();
 		this.startDate = startDate;
@@ -63,52 +67,75 @@ public class Sprint implements EntityBase {
 		this.sprintStatus = sprintStatus;
 	}
 
+
 	public Long getId() {
 		return id;
 	}
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Long getPoints() {
-		return points;
+
+	public Long getEstimatedPoints() {
+		return estimatedPoints;
 	}
 
-	public void setPoints(Long points) {
-		this.points = points;
+
+	public void setEstimatedPoints(Long estimatedPoints) {
+		this.estimatedPoints = estimatedPoints;
 	}
+
+
+	public Long getDonePoints() {
+		return donePoints;
+	}
+
+
+	public void setDonePoints(Long donePoints) {
+		this.donePoints = donePoints;
+	}
+
 
 	public Date getStartDate() {
 		return startDate;
 	}
 
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
 
 	public Date getFinalDate() {
 		return finalDate;
 	}
 
+
 	public void setFinalDate(Date finalDate) {
 		this.finalDate = finalDate;
 	}
+
 
 	public SprintStatus getSprintStatus() {
 		return sprintStatus;
 	}
 
+
 	public void setSprintStatus(SprintStatus sprintStatus) {
 		this.sprintStatus = sprintStatus;
 	}
+
 
 	public Set<Story> getStories() {
 		return stories;
 	}
 
+
 	public void setStories(Set<Story> stories) {
 		this.stories = stories;
 	}
+
 
 }
