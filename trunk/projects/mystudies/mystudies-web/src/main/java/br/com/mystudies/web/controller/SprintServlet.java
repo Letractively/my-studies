@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,42 +22,43 @@ import br.com.mystudies.domain.enun.StoryStatus;
 import br.com.mystudies.service.SprintService;
 
 
-@WebServlet("/sprint")
+@WebServlet("/sprints")
 public class SprintServlet extends HttpServlet {
-	
-	
+
+
 	private static final long serialVersionUID = 1L;
-       
+
 
 	@EJB
 	private SprintService sprintService;
-	
-	
+
+
+
     public SprintServlet() {
         super();
     }
 
 
-    
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		sendToSprintPage(
+		sendToSprintsPage(
 				request,
 				response,
-				sprintService.getCurrentSprint()
+				sprintService.getAllSprints()
 			);
 	}
 
 
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String action = 
+
+/*		String action =
 				request.getParameter("action");
-		
+
 
 		if(action != null){
-			
-			switch (action) {				
+
+			switch (action) {
 				case "NEWSPRINT":
 					sendToSprintFormFragment(
 							request,
@@ -68,21 +70,38 @@ public class SprintServlet extends HttpServlet {
 					sprintService.create(getSprint(request, response));
 					sendToSprintStoriesFragment(request, response);
 					break;
-			}	
-		}
+			}
+		}*/
 	}
 
 
-	
-	private Sprint getSprint(HttpServletRequest request,
+
+
+
+
+
+	private void sendToSprintsPage(HttpServletRequest request,HttpServletResponse response, List<Sprint> sprints) throws ServletException, IOException {
+		request.setAttribute("includeStoriesFragment", true);
+		request.setAttribute("sprints", sprints);
+		request.getRequestDispatcher("pages/sprint/sprints.jsp").forward(request, response);
+	}
+
+
+
+
+
+
+
+
+	/*	private Sprint getSprint(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException {
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
+
 		try {
 			return new Sprint(
 					sdf.parse(request.getParameter("startDate")),
-					sdf.parse(request.getParameter("finalDate")), 
+					sdf.parse(request.getParameter("finalDate")),
 					SprintStatus.RUNNING
 				);
 		} catch (ParseException e) {
@@ -94,57 +113,43 @@ public class SprintServlet extends HttpServlet {
 
 	private void sendToSprintFormFragment(HttpServletRequest request,HttpServletResponse response, boolean containsSprintInRun) throws ServletException, IOException {
 		request.setAttribute("containsSprintInRun", containsSprintInRun);
-		request.getRequestDispatcher("pages/sprint/sprint-form-fragment.jsp").forward(request, response);				
-	}
-	
-	
-	private void sendToSprintStoriesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {		
-		request.getRequestDispatcher("pages/sprint/sprint-stories-fragment.jsp").forward(request, response);				
+		request.getRequestDispatcher("pages/sprint/sprint-form-fragment.jsp").forward(request, response);
 	}
 
-	
-	private void sendToSprintPage(HttpServletRequest request,HttpServletResponse response, Sprint sprint) throws ServletException, IOException {
-		request.setAttribute("includeStoriesFragment", true);
-		request.setAttribute("sprint", sprint);
-		request.getRequestDispatcher("pages/sprint/sprint.jsp").forward(request, response);		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	private void sendToSprintStoriesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("pages/sprint/sprints-fragment.jsp").forward(request, response);
+	}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	private void temp(HttpServletRequest request, HttpServletResponse response) {
@@ -154,11 +159,11 @@ public class SprintServlet extends HttpServlet {
 	}
 
 
-	
+
 	private Object getSprint(HttpServletRequest request) {
-		
+
 		Sprint sprint = new Sprint();
-		
+
 		sprint.setStories(new HashSet<Story>());
 		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
 		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
@@ -175,7 +180,7 @@ public class SprintServlet extends HttpServlet {
 		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
 		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
 		sprint.getStories().add(new Story("tesmte", Priority.HEIGHT, StoryStatus.IN_SPRINT, new Date()));
-		
+
 		return sprint;
 	}
 

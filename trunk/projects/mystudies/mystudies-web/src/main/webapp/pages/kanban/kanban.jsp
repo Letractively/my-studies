@@ -40,6 +40,7 @@
 					<c:if test="${story.status == 'TODO'}">
 						<div class="story draggable" id="${story.id}">
 							<c:out value="${story.title}"></c:out>
+							<c:out value="${story.points}"/>  &ensp;points
 						</div>
 					</c:if>
 				</c:forEach>				
@@ -50,6 +51,7 @@
 					<c:if test="${story.status == 'DOING'}">
 						<div class="story draggable" id="${story.id}">
 							<c:out value="${story.title}"></c:out>
+							<c:out value="${story.points}"/> &ensp;points
 						</div>
 					</c:if>
 				</c:forEach>				
@@ -60,6 +62,7 @@
 					<c:if test="${story.status == 'DONE'}">
 						<div class="story draggable"  id="${story.id}">
 							<c:out value="${story.title}"></c:out>
+							<c:out value="${story.points}"/> &ensp;points
 						</div>
 					</c:if>
 				</c:forEach>

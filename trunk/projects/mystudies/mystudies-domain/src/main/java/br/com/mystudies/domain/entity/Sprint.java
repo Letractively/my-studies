@@ -24,38 +24,35 @@ import br.com.mystudies.domain.enun.SprintStatus;
 public class Sprint implements EntityBase {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
+
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id; 
-	
-	@Column(name="NUMBER")
-	private Long number;
-	
+	private Long id;
+
 	@Column(name="POINTS")
 	private Long points;
-		
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="START_DATE")
 	private Date startDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name="FINAL_DATE")
 	private Date finalDate;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name="SPRINT_STATUS")
 	private SprintStatus sprintStatus;
-	
+
 	@OneToMany(mappedBy="sprint", cascade = CascadeType.ALL, fetch=FetchType.EAGER) // FIXME: can't eager !!
 	private Set<Story> stories;
 
-	
+
 	public Sprint() {
 	}
 
@@ -72,14 +69,6 @@ public class Sprint implements EntityBase {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getNumber() {
-		return number;
-	}
-
-	public void setNumber(Long number) {
-		this.number = number;
 	}
 
 	public Long getPoints() {
@@ -121,5 +110,5 @@ public class Sprint implements EntityBase {
 	public void setStories(Set<Story> stories) {
 		this.stories = stories;
 	}
-		
+
 }

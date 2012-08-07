@@ -1,5 +1,8 @@
 package br.com.mystudies.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -70,6 +73,13 @@ public class SprintServiceBean implements SprintService{
 
 
 		return sprintDao.update(sprint);
+	}
+
+
+
+	@Override
+	public List<Sprint> getAllSprints() {
+		return sprintDao.listAll();
 	}
 
 

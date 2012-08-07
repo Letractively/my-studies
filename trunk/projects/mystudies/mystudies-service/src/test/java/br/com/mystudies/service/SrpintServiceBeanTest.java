@@ -10,8 +10,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -126,19 +128,6 @@ public class SrpintServiceBeanTest {
 
 
 	@Test()
-	public void shouldReturnSprintWhenHaventSprintInRunning() {
-
-		when(sprintDao.findSprintByStatus(SprintStatus.RUNNING)).thenReturn(null);
-
-		Sprint sprint = sprintServiceBean.getCurrentSprint();
-
-		verify(sprintDao).findSprintByStatus(SprintStatus.RUNNING);
-
-		assertNull(sprint);
-
-	}
-
-	@Test()
 	public void shouldReturnNullWhenHaveSprintInRunning() {
 
 		when(sprintDao.findSprintByStatus(SprintStatus.RUNNING)).thenReturn(new Sprint());
@@ -187,6 +176,21 @@ public class SrpintServiceBeanTest {
 		assertEquals(StoryStatus.IN_SPRINT, story.getStatus());
 		assertEquals(sprint, story.getSprint());
 		assertEquals(new Long(6), sprint.getPoints());
+
+	}
+
+	@Test()
+	public void shouldReturnListAllSprint() {
+
+
+		when(sprintDao.listAll()).thenReturn(new ArrayList<Sprint>());
+
+		List<Sprint> sprints =
+				sprintServiceBean.getAllSprints();
+
+		verify(sprintDao).listAll();
+
+		assertNotNull(sprints);
 
 	}
 

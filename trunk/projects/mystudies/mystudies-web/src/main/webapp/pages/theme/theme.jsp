@@ -68,7 +68,7 @@
 			<li ><a id="addStory">Add Story</a></li>
 			<li ><a>Add Comment</a></li>
 			<li ><a href="backlog">Backlog</a></li>
-			<li ><a href="sprint">Sprint</a></li>
+			<li ><a href="sprints">Sprints</a></li>
 		</ul>
 		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
