@@ -15,16 +15,18 @@
 	<body>
 
 		<div class="header">
-			<a>MYSTUDIES</a>
+			<a>MYSTUDIES (alfa) </a>
 		</div>
 			
 		<div class="title-content">
 			<h3><a href="#"> Sprints </a></h3>
 		</div>
 		
-		<div class="main-content">		
+		
+		<div class="main-content">
+				
 			<div id="stories">
-				<c:if test="${includeStoriesFragment}">
+				<c:if test="${includeSprintsFragment}">
 					<jsp:include page="sprints-fragment.jsp"/>				
 				</c:if>
 			</div>			
@@ -45,7 +47,6 @@
 		<script type="text/javascript" src="resources/js/menu.js"></script>
 		<script type="text/javascript" src="resources/js/general.js"></script>
 		<script type="text/javascript" src="resources/js/sprint.js"></script>
-
 
 	</body>
 </html>

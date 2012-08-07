@@ -14,7 +14,8 @@
 		<div >
 			<ul class="item-information">	
 				<li>${sprint.sprintStatus}</li>
-				<li>${sprint.points} points</li>
+				<li>${sprint.estimatedPoints} estimated points</li>
+				<li>${sprint.donePoints} done points</li>
 			</ul>
 			<div style="clear: both;"></div>					
 		</div>					    

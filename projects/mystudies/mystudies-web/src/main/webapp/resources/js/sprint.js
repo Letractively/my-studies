@@ -1,9 +1,8 @@
 
-
 $(function() {
 	$("#newSprint", $('.menu'))
 		.click(function() {
-			$.post( "sprint",
+			$.post( "sprints",
 					{ action: "NEWSPRINT"},
 					function(data){
 						$("#newSprint").html(data);
@@ -15,14 +14,14 @@ $(function() {
 							});
 						},
 					'html'
-				);		
+				);
 		});
 });
 
 
 $(function() {
 	$("#btnCreateSprint").live("click", function() {
-		$.post( "sprint",
+		$.post( "sprints",
 				$(this).parents('form').serialize(),
 				function(data){
 					$("#stories").html(data);
@@ -34,12 +33,7 @@ $(function() {
 							});
 				},
 				'html'
-		);		
+		);
 	});
 
 });
-
-
-
-
-

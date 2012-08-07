@@ -52,7 +52,7 @@ public class SprintServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-/*		String action =
+		String action =
 				request.getParameter("action");
 
 
@@ -68,32 +68,17 @@ public class SprintServlet extends HttpServlet {
 					break;
 				case "CREATESPRINT":
 					sprintService.create(getSprint(request, response));
-					sendToSprintStoriesFragment(request, response);
+					sendToSprintsFragment(request, response);
 					break;
 			}
-		}*/
+		}
 	}
 
 
 
 
 
-
-
-	private void sendToSprintsPage(HttpServletRequest request,HttpServletResponse response, List<Sprint> sprints) throws ServletException, IOException {
-		request.setAttribute("includeStoriesFragment", true);
-		request.setAttribute("sprints", sprints);
-		request.getRequestDispatcher("pages/sprint/sprints.jsp").forward(request, response);
-	}
-
-
-
-
-
-
-
-
-	/*	private Sprint getSprint(HttpServletRequest request,
+	private Sprint getSprint(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -110,6 +95,12 @@ public class SprintServlet extends HttpServlet {
 	}
 
 
+	private void sendToSprintsPage(HttpServletRequest request,HttpServletResponse response, List<Sprint> sprints) throws ServletException, IOException {
+		request.setAttribute("includeSprintsFragment", true);
+		request.setAttribute("sprints", sprints);
+		request.getRequestDispatcher("pages/sprint/sprints.jsp").forward(request, response);
+	}
+
 
 	private void sendToSprintFormFragment(HttpServletRequest request,HttpServletResponse response, boolean containsSprintInRun) throws ServletException, IOException {
 		request.setAttribute("containsSprintInRun", containsSprintInRun);
@@ -117,9 +108,8 @@ public class SprintServlet extends HttpServlet {
 	}
 
 
-
-	private void sendToSprintStoriesFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+	private void sendToSprintsFragment(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("pages/sprint/sprints-fragment.jsp").forward(request, response);
-	}*/
+	}
 
 }
