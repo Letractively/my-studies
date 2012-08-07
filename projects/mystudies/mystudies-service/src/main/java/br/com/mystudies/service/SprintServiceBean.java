@@ -41,7 +41,7 @@ public class SprintServiceBean implements SprintService{
 			throw new IllegalStateException("Contains sprint in running");
 
 		// FIXME: validate parameters
-		sprint.setPoints(new Long(0));
+		sprint.setEstimatedPoints(new Long(0));
 
 		return sprintDao.persist(sprint);
 	}
@@ -66,10 +66,10 @@ public class SprintServiceBean implements SprintService{
 			throw new IllegalStateException("Haven't sprint in running");
 
 		sprint.getStories().add(story);
-		sprint.setPoints(sprint.getPoints() + story.getPoints());
+		sprint.setEstimatedPoints(sprint.getEstimatedPoints() + story.getPoints());
 
 		story.setSprint(sprint);
-		story.setStatus(StoryStatus.IN_SPRINT);
+		story.setStatus(StoryStatus.TODO);
 
 
 		return sprintDao.update(sprint);

@@ -2,6 +2,8 @@ package br.com.mystudies.web.controller;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.persistence.EnumType;
@@ -12,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.mystudies.domain.entity.BackLog;
+import br.com.mystudies.domain.entity.Story;
 import br.com.mystudies.domain.entity.Theme;
 import br.com.mystudies.domain.enun.Priority;
+import br.com.mystudies.domain.enun.StoryStatus;
 import br.com.mystudies.service.BackLogService;
 
 /**
@@ -73,8 +77,28 @@ public class BacklogServlet extends HttpServlet {
 
 	// FIXME: only testing app. should getting the backlog of user logged.
 	private BackLog getBackLog() {
-		return backLogService.getBackLog(1L);
+
+		BackLog backLog =
+				backLogService.getBackLog(1L);
+
+		Set<Theme> themes =
+				backLog.getThemes();
+
+		for (Theme theme : themes) {
+
+			Iterator<Story> iterator =
+					theme.getStories().iterator();
+
+			while (iterator.hasNext()) {
+				if(iterator.next().getStatus() != StoryStatus.BACKLOG){
+					iterator.remove();
+				}
+
+			}
+		}
+		return backLog;
 	}
+
 
 
 	private void sendToBackLogPage(HttpServletRequest request,

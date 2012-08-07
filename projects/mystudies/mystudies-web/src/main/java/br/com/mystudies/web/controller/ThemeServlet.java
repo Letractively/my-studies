@@ -104,14 +104,10 @@ public class ThemeServlet extends HttpServlet {
 			new Story(
 				request.getParameter("title"),
 				Priority.valueOf(request.getParameter("priority")),
-				StoryStatus.SPRINT_BACKLOG,
-				new Date()
+				StoryStatus.BACKLOG,
+				new Date(),
+				Integer.valueOf(request.getParameter("points"))
 			);
-
-		// TODO: não criei construtor com esse paramentro pq
-		// não tenho uma definicão final se os pontos tem que ser passados
-		// na hora da criação da historia ou na hora de adicionar no sprint.
-		story.setPoints(Integer.valueOf(request.getParameter("points")));
 
 		return story;
 	}

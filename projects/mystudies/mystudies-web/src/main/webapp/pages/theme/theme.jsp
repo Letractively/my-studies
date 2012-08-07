@@ -16,7 +16,7 @@
 	<body>
 
 		<div class="header">
-			<a>MYSTUDIES</a>
+			<a>MYSTUDIES (alfa)</a>
 		</div>
 			
 		<div class="title-content">

@@ -66,13 +66,15 @@ public class Story implements EntityBase{
 
 
 	public Story(String title, Priority priority, StoryStatus status,
-			Date criationDate) {
+			Date creationDate, Integer points) {
 		super();
 		this.title = title;
 		this.priority = priority;
 		this.status = status;
-		this.creationDate = criationDate;
+		this.creationDate = creationDate;
+		this.points = points;
 	}
+
 
 
 	public Long getId() {

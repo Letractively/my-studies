@@ -7,15 +7,13 @@
 	<title>Kanban</title>
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 	<style type="text/css">
-		
-
 	
 	</style>
 </head>
 <body>
 
 	<div class="header">
-		<a>MYSTUDIES</a>
+		<a>MYSTUDIES (alfa)</a>
 	</div>
 
 

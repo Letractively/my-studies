@@ -12,9 +12,7 @@ public interface SprintDao {
 	Sprint persist(Sprint sprint);
 
 	Sprint update(Sprint sprint);
-
+	
 	List<Sprint> listAll();
-
-
 
 }

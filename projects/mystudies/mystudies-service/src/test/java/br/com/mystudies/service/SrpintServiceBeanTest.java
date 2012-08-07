@@ -107,7 +107,7 @@ public class SrpintServiceBeanTest {
 
 		assertNotNull(sprint);
 		assertEquals(SprintStatus.RUNNING, sprint.getSprintStatus());
-		assertEquals(new Long(0), sprint.getPoints());
+		assertEquals(new Long(0), sprint.getEstimatedPoints());
 
 
 	}
@@ -157,10 +157,10 @@ public class SrpintServiceBeanTest {
 
 		Sprint sprint = new Sprint();
 		sprint.setStories(new HashSet<Story>());
-		sprint.setPoints(new Long(3));
+		sprint.setEstimatedPoints(new Long(3));
 
 		Story story = new Story();
-		story.setStatus(StoryStatus.SPRINT_BACKLOG);
+		story.setStatus(StoryStatus.BACKLOG);
 		story.setPoints(3);
 
 		when(sprintDao.findSprintByStatus(SprintStatus.RUNNING)).thenReturn(sprint);
@@ -173,9 +173,9 @@ public class SrpintServiceBeanTest {
 
 		story = sprint.getStories().iterator().next();
 
-		assertEquals(StoryStatus.IN_SPRINT, story.getStatus());
+		assertEquals(StoryStatus.TODO, story.getStatus());
 		assertEquals(sprint, story.getSprint());
-		assertEquals(new Long(6), sprint.getPoints());
+		assertEquals(new Long(6), sprint.getEstimatedPoints());
 
 	}
 
@@ -193,8 +193,6 @@ public class SrpintServiceBeanTest {
 		assertNotNull(sprints);
 
 	}
-
-
 
 
 }
