@@ -1,0 +1,1 @@
+in this directory have .jar used in class test (DependencyClassScannerTest)

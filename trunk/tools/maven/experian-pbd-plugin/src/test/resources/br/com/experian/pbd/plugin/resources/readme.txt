@@ -1,0 +1,1 @@
+in this directory have .class files for used in class test (ProjectClassScannerTest and JavassistClassInformation and PBDMojoTest) .
