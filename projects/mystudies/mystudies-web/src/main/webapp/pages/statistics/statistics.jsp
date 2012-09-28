@@ -6,6 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Statistics</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css">
+		<link rel="stylesheet" type="text/css" href="resources/css/jquery.jqplot.min.css">
 
 	</head>
 	<body>
@@ -20,7 +21,7 @@
 		</div>			
 			
 		<div class="main-content">		
-			statistics....										
+			<div id="chartdiv" style="height:400px;width:1000px; "></div>										
 		</div>		
 		
 		
@@ -30,6 +31,8 @@
 
 		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="resources/js/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" src="resources/js/statistics.js"></script>
 		<script type="text/javascript" src="resources/js/menu.js"></script>
 		<script type="text/javascript" src="resources/js/general.js"></script>
 		
