@@ -1,1 +1,1 @@
-<% response.sendRedirect("/no-jsf-servlet-configured/home.jsf"); %>
+<% response.sendRedirect("/dynamic-image/home.jsf"); %>
