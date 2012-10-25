@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui" 
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">CDI PRODUCES</ui:define>
+  
+  	<ui:define name="body">
+  	
+		<h:form>
+		
+			<h:selectOneMenu value="#{hashMB.algoritmo}">
+				<f:selectItem itemLabel="MD5" itemValue="MD5"/>
+				<f:selectItem itemLabel="SHA1" itemValue="SHA1"/>
+				<f:selectItem itemLabel="SHA256" itemValue="SHA256"/>
+			</h:selectOneMenu>
+			
+			<br /><br />
+			
+			<h:inputText value="#{hashMB.value}" /> <h:outputText value="#{hashMB.valueHash}" />
+			
+			<br /><br />
+			<h:commandButton value="calcule hash" action="#{hashMB.calculeHash}" />		
+		
+		</h:form>
+		
+		
+	</ui:define>
+			
+</ui:composition>
