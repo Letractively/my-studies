@@ -38,6 +38,7 @@ public class HashServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String algoritmo = request.getParameter("algoritmo");
+		String nome = request.getParameter("nome");
 		
 		
 		if(algoritmo == null)
@@ -48,15 +49,15 @@ public class HashServlet extends HttpServlet {
 		switch (algoritmo) {
 		
 			case "md5":
-				print = md5.getHash(null);
+				print = md5.getHash(nome);
 				break;
 				
 			case "sha1":
-				print = sha1.getHash(null);
+				print = sha1.getHash(nome);
 				break;
 				
 			case "sha256":
-				print = sha256.getHash(null);
+				print = sha256.getHash(nome);
 				break;
 	
 			default:
