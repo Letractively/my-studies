@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/WEB-INF/templates/template.xhtml">
+    
+  <ui:define name="title">Java Script Labrary</ui:define>
+  
+  <ui:define name="body">
+  		
+  		<h:form prependId="false">
+			  	<h:outputText value="Name: " />
+			  	<h:inputText value="#{executeMB.name}" id="name" />
+				<h:outputText value="#{executeMB.name}" id="upper-case-name" styleClass="red" />
+				<br/>
+				<br/>
+				<h:commandButton value="Upper Case" action="#{executeMB.upperCaseName}" styleClass="btn" type="button" id="btn"/>
+	  			<h:outputScript library="js" name="jquery-1.4.2.min.js"/>
+		  		<h:outputScript library="javax.faces" name="jsf.js"/>	
+	  			<h:outputScript library="js" name="js-library.js"/>	  		
+	  	</h:form>
+	  					
+  </ui:define>
+</ui:composition>
