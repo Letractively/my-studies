@@ -11,12 +11,12 @@ public class ExecuteMB {
 
 	private String name;
 
-	
+
 	public void upperCaseName(){
 		setName(name.toUpperCase());
 	}
-	
-	
+
+
 	public String getName() {
 		return name;
 	}
