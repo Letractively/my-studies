@@ -3,10 +3,9 @@
 
 	<head>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Statistics</title>
 		<link rel="stylesheet" type="text/css" href="resources/css/style.css">
-		<link rel="stylesheet" type="text/css" href="resources/css/jquery.jqplot.min.css">
 
 	</head>
 	<body>
@@ -21,17 +20,21 @@
 		</div>			
 			
 		<div class="main-content">		
-			<div id="chartdiv" style="height:400px;width:1000px; "></div>										
+			<div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+			<div style="margin-top: 20px;"></div>
+			<div id="container2" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+												
 		</div>		
 		
 		
 		<ul class="menu">
-			<li ><a href="backlog">Backlog</a></li>m
+			<li ><a href="backlog">Backlog</a></li>
 		</ul>
 
 		
 		<script type="text/javascript" src="resources/js/jquery-1.7.2.min.js"></script>
-		<script type="text/javascript" src="resources/js/jquery.jqplot.min.js"></script>
+		<script type="text/javascript" src="resources/js/highcharts.js"></script>
+		<script type="text/javascript" src="resources/js/exporting.js"></script>
 		<script type="text/javascript" src="resources/js/statistics.js"></script>
 		<script type="text/javascript" src="resources/js/menu.js"></script>
 		<script type="text/javascript" src="resources/js/general.js"></script>
