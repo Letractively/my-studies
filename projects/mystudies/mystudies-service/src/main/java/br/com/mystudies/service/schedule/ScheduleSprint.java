@@ -25,7 +25,7 @@ public class ScheduleSprint {
 	private SprintDao sprintDao;
 
 
-	@Schedule(hour="0", minute="1")
+//	@Schedule(hour="*", minute="*/1")
 	public void execute() {
 
 		LOGGER.info("starting scheduling sprint");
