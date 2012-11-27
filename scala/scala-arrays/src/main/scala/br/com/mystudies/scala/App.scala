@@ -1,55 +1,45 @@
 package br.com.mystudies.scala
 
 
-
-object App {
-
-  def signum( n: Int ) = { if (n > 0) 1 else if (n < 0) -1 else 0 }
-
-  def unit() = {}
-
-  def loop() = {for(i <- 1 to 10){print(i)} }
-
-  def countdown(n: Int) { for (x <- 0 to n reverse) print(x + " ") }
+object App{
   
   
-  def product (s: String) = {
+  def ex2 = {
     
-    var product = 1L; 
-   
-    for( x <- s){
-      product = product * x toLong; // << these shortcut for this >> product= product.*(x.toLong)      
-    }
+	  val x = Array(2, 1, 4, 3, 5, 8)
+	  
+	  
+	  for( i <- 0 until x.length )	    
+		if( i % 2 != 0){
+			var y = x(i-1)
+			x(i-1) = x(i) 
+			x(i) = y
+		}
+	    
+      for(i <- x )
+        print(i)
     
-    product
-
+  }
+  
+  def ex3 = {
+		  
+	   val x = Array(2, 1, 4, 3, 5, 8)
+				  				  
+		for( i <- 0 until x.length if i % 2 != 0 ) yield x(i) 	    
+ 			  
   }
   
   
   
   
-/*  def product (s: String):Long = {
-	  if( s.size == 1 )
-	    s toLong
-	    else
-  }*/
-  
-  
 
-  
-  
-
-  def main(args : Array[String]) {
-    
-    println( signum(10) )
-    println( signum(-10) )
-    println( signum(0) )
-    println( unit() )
-    loop()
-    countdown(30)
-   
-    print(product("Hello"))
-    
+  def main(args : Array[String]) {    
+	  	//ex2
+	  	
+	  	for( x <- ex3)
+	  		print(x)
+	  	
   }
+
   
 }
