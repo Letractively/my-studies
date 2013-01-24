@@ -4,6 +4,7 @@ import scala.io.Source
 import scala.collection.mutable.HashMap
 
 
+
 object App {
 
   def applyDiscount(map: Map[String,Double]) = {
@@ -15,7 +16,8 @@ object App {
 
 
   def main(args : Array[String]) {
-  	  print(applyDiscount( Map( "pc" -> 20.0, "tv" -> 30.0 , "dvd" -> 10.0 , "cd" -> 5.0 ) ))
+    
+  	  println(applyDiscount( Map( "pc" -> 20.0, "tv" -> 30.0 , "dvd" -> 10.0 , "cd" -> 5.0 ) ))
 
 
   	  val map = new HashMap[String,Int]
@@ -29,7 +31,9 @@ object App {
 
   	  println(map)
   	  println(map size)
+  	  println(map toMap ) // immutable map
 
   }
 
+  
 }
