@@ -4,6 +4,7 @@ import scala.io.Source
 import scala.collection.mutable.HashMap
 import scala.collection.immutable.TreeMap
 import scala.collection.mutable.LinkedHashMap
+import scala.sys.SystemProperties
 
 
 
@@ -22,6 +23,14 @@ object App {
     weekdays(day)
   }
   
+  
+  def printSystemProperties(){	  
+	 for((k,v) <- new SystemProperties().toMap){
+	   println(k + " | " + v )
+	 }
+  }
+  
+
   
   def main(args : Array[String]) {
     
@@ -43,8 +52,7 @@ object App {
       println(TreeMap(map.toMap.toArray:_*) ) // mutable map to immutable map to sorted map ( immutable then  ) but I travled in (  :_* )I taked example in stackoverflow.
       println(getWeekDay(1))
       println(getWeekDay(2))
-      
-  	  
+      printSystemProperties
 
   }
 
