@@ -22,18 +22,25 @@ object App {
     val weekdays = LinkedHashMap( 1 -> "Monday", 2 -> "Tuesday", 3 -> "Wednesday", 4 -> "Thursday",  5 -> "Friday", 6 -> "Sartuday", 7 -> "Sunday" )
     weekdays(day)
   }
-  
-  
-  def printSystemProperties(){	  
+
+
+  def printSystemProperties(){
 	 for((k,v) <- new SystemProperties().toMap){
 	   println(k + " | " + v )
 	 }
   }
-  
 
-  
+
+  def minMax(values: Array[Int]) = {
+    Map("Max" -> values.max, "Min" -> values.min )
+  }
+
+
+
+
+
   def main(args : Array[String]) {
-    
+
   	  println(applyDiscount( Map( "pc" -> 20.0, "tv" -> 30.0 , "dvd" -> 10.0 , "cd" -> 5.0 ) ))
 
 
@@ -53,8 +60,9 @@ object App {
       println(getWeekDay(1))
       println(getWeekDay(2))
       printSystemProperties
+      print(minMax(Array(2, 1, 4, -10, 3, 5, 8, 100)))
 
   }
 
-  
+
 }
