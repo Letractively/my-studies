@@ -16,7 +16,13 @@ object App{
     bankAccount.deposit(10)
     bankAccount.withdrow
 
-    print(bankAccount.total) // accessing a read-only properties in bankAccount
+    println(bankAccount.total) // accessing a read-only properties in bankAccount
+
+
+    val time1 = new Time(20,21,24)
+    val time2 = new Time(20,21,23)
+
+    println(time1 before time2)
 
   }
 
