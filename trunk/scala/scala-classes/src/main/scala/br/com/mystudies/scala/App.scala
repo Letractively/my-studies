@@ -1,5 +1,5 @@
 package br.com.mystudies.scala
-import scala.collection.mutable.ArrayBuffer
+
 
 
 object App{
@@ -21,9 +21,29 @@ object App{
 
     val time1 = new Time(20,21,24)
     val time2 = new Time(20,21,23)
-
     println(time1 before time2)
 
+
+    val student = new Student
+
+    // java bean properties convention
+
+    student.setId(1)
+    student.setName("Robson Duarte")
+    println( student.getId() + " " + student.getName())
+
+    // scala methods
+
+    student.id = 2
+    student.name = "robsonoduarte"
+    println( student.id + " " + student.name)
+
+
+    // the primary constructor using default arguments
+    val person = new Person()
+    println( person.name + " " + person.age)
+
   }
+
 
 }
