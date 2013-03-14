@@ -1,7 +1,6 @@
 package br.com.mystudies.scala
 
 
-
 object App{
 
   def main(args : Array[String]) {
@@ -42,6 +41,11 @@ object App{
     // the primary constructor using default arguments
     val person = new Person()
     println( person.name + " " + person.age)
+
+
+    val car1 = new Car("GM", "Corsa")
+    val car2 = new Car("GM", "Corsa", 20)
+    val car3 = new Car("GM", "Corsa", 20, "BMW")
 
   }
 
