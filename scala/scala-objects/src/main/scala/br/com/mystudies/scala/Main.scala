@@ -1,8 +1,10 @@
 package br.com.mystudies.scala
 
-object App {
+import CardSuit._
 
-  def main(args : Array[String]) {
+object Main extends App {
+
+
 
 	  println(Conversions inchesToCentimeters(2.55))
 	  println(Conversions milesToKilometers(2))
@@ -28,6 +30,9 @@ object App {
 	  println(p y)
 
 
-  }
+	  println(Clubs)
+	  println(Diamonds)
+	  println(Spades)
+	  println(Hearts)
 
 }
