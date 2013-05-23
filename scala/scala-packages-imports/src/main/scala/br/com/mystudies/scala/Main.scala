@@ -14,5 +14,4 @@ object Main extends App {
 	println(randon nextInt)
 	println(randon nextDouble)
 
-
 }
