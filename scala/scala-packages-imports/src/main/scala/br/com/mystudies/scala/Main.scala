@@ -1,17 +1,22 @@
 package br.com.mystudies.scala
 
+import java.util.HashMap
+
 object Main extends App {
-  	println(new C1);
-	println(new C2);
-	println(new C3);
 
 
-	println(randon nextInt)
-	println(randon nextDouble)
+	val jMap = new HashMap[Int,String]()
 
-	randon setSeed(1)
+	jMap put(1, "One")
+	jMap put(2, "Two")
+	jMap put(3, "Three")
 
-	println(randon nextInt)
-	println(randon nextDouble)
+
+	def i = new Imports()
+
+	val sMap = i toScalaHashMap(jMap)
+
+	for( x <- sMap)
+	  print(x)
 
 }
