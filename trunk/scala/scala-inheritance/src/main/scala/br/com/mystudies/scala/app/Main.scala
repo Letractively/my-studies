@@ -6,24 +6,49 @@ import br.com.mystudies.scala.animals.Fish
 import br.com.mystudies.scala.animals.Amphibian
 import br.com.mystudies.scala.animals.Mammal
 import br.com.mystudies.scala.bank.CheckingAccount
+import br.com.mystudies.scala.itens.SimpleItem
+import br.com.mystudies.scala.itens.Bundle
+import br.com.mystudies.scala.itens.Bundle
+
 
 object Main extends App {
 
-	val ca = new CheckingAccount(3)
+  val ca = new CheckingAccount(3)
 
-	println(ca deposit(-1))
-	println(ca deposit(2))
+  println(ca deposit(-1))
+  println(ca deposit(2))
 
-	println(ca withdraw(-1))
-	println(ca withdraw(2))
+  println(ca withdraw(-1))
+  println(ca withdraw(2))
 
-	
-	val cod = new Fish("cod", "salinity")
-	val frog = new Amphibian("frog", "green")
-	val human = new Mammal("Robson", 1.82)
-	
-	println(cod)
-	println(frog)
-	println(human)
-		
+
+  val cod = new Fish("cod", "salinity")
+  val frog = new Amphibian("frog", "green")
+  val human = new Mammal("Robson", 1.82)
+
+  println(cod)
+  println(frog)
+  println(human)
+
+
+
+  val item = new SimpleItem(1.0, "simple item")
+
+  println(item price)
+  println(item description)
+
+
+
+  val bundle = new Bundle()
+
+  bundle.addItem(new SimpleItem(1.0, "simple item 1 "))
+  bundle.addItem(new SimpleItem(1.0, "simple item 2 "))
+  bundle.addItem(new SimpleItem(1.0, "simple item 3 "))
+  bundle.addItem(new SimpleItem(1.0, "simple item 4 "))
+  bundle.addItem(new SimpleItem(1.0, "simple item 5 "))
+  bundle.addItem(new SimpleItem(1.0, "simple item 6 "))
+
+
+  println(bundle.price)
+  println(bundle.description)
 }
