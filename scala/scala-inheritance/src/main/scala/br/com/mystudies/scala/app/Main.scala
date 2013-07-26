@@ -9,6 +9,7 @@ import br.com.mystudies.scala.bank.CheckingAccount
 import br.com.mystudies.scala.itens.SimpleItem
 import br.com.mystudies.scala.itens.Bundle
 import br.com.mystudies.scala.itens.Bundle
+import br.com.mystudies.scala.shapes.LabelPoint
 
 
 object Main extends App {
@@ -51,4 +52,15 @@ object Main extends App {
 
   println(bundle.price)
   println(bundle.description)
+  
+  
+  
+  val point = new LabelPoint("black point", 2.0, 3.0);
+  
+  
+  println(point.label)
+  println(point.x)
+  println(point.y)
+  
+  
 }
