@@ -10,6 +10,9 @@ import br.com.mystudies.scala.itens.SimpleItem
 import br.com.mystudies.scala.itens.Bundle
 import br.com.mystudies.scala.itens.Bundle
 import br.com.mystudies.scala.shapes.LabelPoint
+import br.com.mystudies.scala.shapes.Square
+import br.com.mystudies.scala.people.Person
+import br.com.mystudies.scala.people.SecretAgent
 
 
 object Main extends App {
@@ -61,6 +64,26 @@ object Main extends App {
   println(point.label)
   println(point.x)
   println(point.y)
+
   
+  
+  
+  val square1 = new Square(1,1,1)
+  val square2 = new Square(1)
+  val square3 = new Square(1,1)
+  
+  println(square1)
+  println(square2)
+  println(square3)
+  
+
+  
+  val person = new Person("Robson");
+  val secretAgent = new SecretAgent("agent")
+  
+  println(person)
+  println(secretAgent)
+  println(secretAgent.name)
+  println(secretAgent.codeName)
   
 }
